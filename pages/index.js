@@ -1,10 +1,12 @@
-import React from 'react'
-import { logo } from '../public/assets/img'
+import React from "react";
+import { Banner, Navbar, Social } from "../components";
 
 export default function Home() {
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-bl from-indigo-500 via-purple-500 to-pink-500">
-      <img src={logo.src} alt="logo" className="w-60 h-60 animate-pulse" />
+    <div className="w-full h-full">
+      <Navbar />
+      <Banner />
+      <Social />
     </div>
   );
 }
