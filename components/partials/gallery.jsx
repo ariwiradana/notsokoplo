@@ -39,7 +39,7 @@ const GalleryComponent = () => {
               {image?.map(({ src, alt }) => (
                 <div className="w-full bg-cover overflow-hidden" key={alt}>
                   <img
-                    class="h-full max-w-full object-cover transform hover:scale-110 transition-transform ease-in-out duration-500"
+                    class="h-full max-h-[50vh] max-w-full object-cover transform hover:scale-110 transition-transform ease-in-out duration-500"
                     src={src}
                     alt={alt}
                   />
