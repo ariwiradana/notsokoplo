@@ -19,7 +19,7 @@ const Navbar = () => {
         <Link
           href="/"
           className={`flex relative w-20 h-auto items-center transition-all ease-in-out duration-500 delay-150 ${
-            position > 10 ? "my-3" : "my-5"
+            position > 10 ? "md:my-3 my-2" : "md:my-5 my-3"
           }`}
         >
           <Image
