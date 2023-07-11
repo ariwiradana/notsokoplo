@@ -162,7 +162,7 @@ const FormEditGallery = ({
     <>
       <div className="mt-4 w-full flex justify-center">
         <div className="relative w-full h-56 rounded-lg overflow-hidden">
-          <Image fill className="object-cover" src={values?.src} />
+          <Image alt="edit-images" fill className="object-cover" src={values?.src} />
         </div>
       </div>
       <form
@@ -211,7 +211,12 @@ const FormAddGallery = ({
       {values?.src && (
         <div className="mt-4 w-full flex justify-center">
           <div className="relative w-full h-56 rounded-lg overflow-hidden">
-            <Image fill className="object-cover" src={values?.src} />
+            <Image
+              alt="add-image"
+              fill
+              className="object-cover"
+              src={values?.src}
+            />
           </div>
         </div>
       )}
