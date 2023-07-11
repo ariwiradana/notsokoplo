@@ -21,7 +21,7 @@ const FullscreenThumbnail = () => {
         modules={[Autoplay, Navigation, Pagination]}
         className="thumbnail-slider"
       >
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <video
             preload="auto"
             autoPlay="autoplay"
@@ -31,7 +31,7 @@ const FullscreenThumbnail = () => {
           >
             <source src="/video/thumbnail.mp4" type="video/mp4" />
           </video>
-        </SwiperSlide>
+        </SwiperSlide> */}
         {THUMBNAIL_IMAGES?.slice(0, 4)?.map(({ src, alt }) => (
           <SwiperSlide className="overflow-hidden" key={alt}>
             <div

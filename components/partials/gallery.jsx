@@ -13,8 +13,6 @@ const GalleryComponent = () => {
   const { images } = useGallery();
   const { position } = useNavbar();
 
-  console.log({ images });
-
   if (!images) return <></>;
 
   return (
