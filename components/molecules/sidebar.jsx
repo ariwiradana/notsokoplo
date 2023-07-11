@@ -26,6 +26,7 @@ const Sidebar = ({ show, position, setShowSidebar }) => {
         </Link>
         {NAVLINKS.map(({ path, title }) => (
           <Link
+            key={path}
             onClick={() => setShowSidebar(false)}
             className={`text-white font-montserrat tracking-wide py-2 md:py-4 ${
               position > 10 ? "text-base" : "text-lg"
