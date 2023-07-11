@@ -21,7 +21,7 @@ const GalleryComponent = () => {
       <Loading isLoading={load} />
       <Layout>
         <div
-          class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500 ${
+          class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500 min-h-screen ${
             position > 10 ? "md:mt-16 mt-12" : "md:mt-24 mt-16"
           }`}
         >
@@ -30,7 +30,7 @@ const GalleryComponent = () => {
               {image?.map(({ src, alt, title, date, path }) => (
                 <div
                   key={alt}
-                  className="w-full bg-cover overflow-hidden relative group cursor-pointer"
+                  className="w-full bg-cover max-h-[30vh] md:max-h-full overflow-hidden relative group cursor-pointer"
                 >
                   <Link href={`/gallery/${path}`}>
                     <img
@@ -38,11 +38,11 @@ const GalleryComponent = () => {
                       src={src}
                       alt={alt}
                     />
-                    <div className="absolute max-h-[30vh] md:max-h-full px-4 group-hover:scale-110 inset-0 flex justify-center items-center flex-col bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 delay-300 transition-all ease-in-out duration-500">
-                      <h5 className="font-montserrat text-white font-medium capitalize text-base leading-5 text-center md:text-2xl md:tracking-wider">
+                    <div className="absolute max-h-[30vh] md:max-h-full bottom-0 inset-x-0 p-3 md:px-4 md:py-3 lg:py-6 lg:px-8 items-center flex-col bg-black bg-opacity-70 delay-300 transition-all ease-in-out duration-500">
+                      <h5 className="font-montserrat text-white font-medium text-sm leading-5 md:text-lg lg:text-xl md:tracking-wide capitalize">
                         {title}
                       </h5>
-                      <h5 className="font-raleway text-white font-medium mt-1 md:mt-0 tracking-widest text-xs uppercase">
+                      <h5 className="font-raleway text-white font-light md:mt-0 lg:tracking-widest text-[10px] md:text-xs uppercase">
                         {date}
                       </h5>
                     </div>
