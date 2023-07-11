@@ -15,7 +15,7 @@ const FullscreenThumbnail = () => {
         loop
         spaceBetween={0}
         autoplay={{
-          delay: 10000,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         navigation
