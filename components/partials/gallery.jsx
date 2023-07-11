@@ -14,18 +14,18 @@ const GalleryComponent = () => {
 
   return (
     <>
-      <Seo title="Notsokoplo | Gallery"/>
+      <Seo title="Notsokoplo | Gallery" />
       <Loading isLoading={load} />
       <Layout>
         <div className="w-full h-[70vh] bg-cover overflow-hidden relative">
           <Image
-            src="/images/thumbnail-2.jpg"
+            src={images[0][0]?.src}
             className="object-cover relative w-full h-full"
             fill
           />
           <div className="absolute inset-0 flex justify-center items-center flex-col bg-black bg-opacity-40">
             <h5 className="font-montserrat text-white font-medium capitalize text-3xl md:text-5xl tracking-wider mt-16">
-              Cozzy Bali
+              GetUp Bali
             </h5>
             <h5 className="font-montserrat text-white font-medium tracking-widest text-xs md:text-sm mt-1 md:mt-3 uppercase">
               16 Agustus 2020
