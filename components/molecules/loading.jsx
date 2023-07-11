@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { LineWave } from "react-loader-spinner";
+import { InfinitySpin } from "react-loader-spinner";
 
 const Loading = ({ isLoading }) => {
   useEffect(() => {
@@ -12,19 +12,10 @@ const Loading = ({ isLoading }) => {
 
   if (!isLoading) return <></>;
   return (
-    <div className="min-h-screen w-full flex justify-center items-center bg-black inset-0 z-[999] fixed">
-      <LineWave
-        height="150"
-        width="150"
-        color="#ffff"
-        ariaLabel="line-wave"
-        wrapperStyle={{}}
-        wrapperClass=""
-        visible={true}
-        firstLineColor=""
-        middleLineColor=""
-        lastLineColor=""
-      />
+    <div className="min-h-screen w-full bg-black inset-0 z-[999] relative flex justify-center items-center">
+      <div>
+        <InfinitySpin width="200" color="#ffff" />
+      </div>
     </div>
   );
 };
