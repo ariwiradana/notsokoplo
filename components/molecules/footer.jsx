@@ -7,9 +7,9 @@ import { FiChevronUp } from "react-icons/fi";
 const Footer = () => {
   return (
     <div className="bg-gray-100 relative z-10">
-      <Container className="grid grid-cols-1 md:grid-cols-3 gap-y-4 py-4 px-8 md:px-0">
+      <Container className="grid grid-cols-1 md:grid-cols-3 gap-y-4 py-4 px-6 md:px-8 2xl:px-0">
         <div className="order-2 md:order-1 flex items-center justify-center md:justify-start">
-          <h5 className="text-gray-400 font-raleway font-light uppercase text-[10px]">
+          <h5 className="text-gray-400 font-raleway font-light uppercase text-xs">
             @Notsokoplo <span> 2021</span>
           </h5>
         </div>
@@ -24,7 +24,7 @@ const Footer = () => {
           className="hidden md:flex items-center gap-x-1 justify-end order-3"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <h5 className="text-gray-400 font-raleway font-light uppercase text-[10px]">
+          <h5 className="text-gray-400 font-raleway font-light uppercase text-xs">
             Top
           </h5>
           <FiChevronUp className="text-gray-400" />
