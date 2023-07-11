@@ -16,8 +16,18 @@ const Navbar = () => {
       }`}
     >
       <Container className="grid grid-cols-2 md:grid-cols-3 gap-y-4 h-full">
-        <Link href="/" className="flex relative w-20 h-auto my-2 items-center">
-          <Image alt="logo" className="object-contain relative w-full h-full" layout="fill" src="/logo/logo.png" />
+        <Link
+          href="/"
+          className={`flex relative w-20 h-auto items-center transition-all ease-in-out duration-500 delay-150 ${
+            position > 10 ? "my-3" : "my-5"
+          }`}
+        >
+          <Image
+            alt="logo"
+            className="object-contain relative w-full h-full"
+            layout="fill"
+            src="/logo/logo-nsk.png"
+          />
         </Link>
         <div className="md:flex hidden justify-center items-center md:gap-x-8 px-8 md:px-0">
           {NAVLINKS.map(({ title, path }) => (

@@ -22,22 +22,6 @@ const GalleryComponent = () => {
       <Seo title="Notsokoplo | Gallery" />
       <Loading isLoading={load} />
       <Layout>
-        {/* <div className="w-full h-[70vh] bg-cover overflow-hidden relative">
-          <Image
-            src={images[0][0]?.src}
-            className="object-cover relative w-full h-full"
-            fill
-          />
-          <div className="absolute inset-0 flex justify-center items-center flex-col bg-black bg-opacity-40">
-            <h5 className="font-montserrat text-white font-medium capitalize text-3xl md:text-5xl tracking-wider mt-16">
-              GetUp Bali
-            </h5>
-            <h5 className="font-montserrat text-white font-medium tracking-widest text-xs md:text-sm mt-1 md:mt-3 uppercase">
-              16 Agustus 2020
-            </h5>
-          </div>
-        </div> */}
-
         <div
           class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500 ${
             position > 10 ? "md:mt-16 mt-12" : "md:mt-24 mt-16"

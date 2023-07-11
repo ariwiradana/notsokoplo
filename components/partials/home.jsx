@@ -14,7 +14,7 @@ const HomePage = () => {
       <Loading isLoading={load} />
       <Layout>
         <FullscreenThumbnail />
-        <div className="h-screen"></div>
+        <div className="h-screen bg-white mt-[100vh] relative z-10"></div>
       </Layout>
     </>
   );
