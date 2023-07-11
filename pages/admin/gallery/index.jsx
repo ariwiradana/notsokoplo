@@ -162,7 +162,12 @@ const FormEditGallery = ({
     <>
       <div className="mt-4 w-full flex justify-center">
         <div className="relative w-full h-56 rounded-lg overflow-hidden">
-          <Image alt="edit-images" fill className="object-cover" src={values?.src} />
+          <Image
+            alt="edit-images"
+            fill
+            className="object-cover"
+            src={values?.src}
+          />
         </div>
       </div>
       <form
@@ -248,7 +253,13 @@ const FormAddGallery = ({
           value={moment(values?.date).format("YYYY-MM-DD")}
         />
         <div className="mt-2 w-full">
-          <Button type="submit" loading={loading} title="Save" full />
+          <Button
+            disabled={!values?.title || !values?.date || !values?.src}
+            type="submit"
+            loading={loading}
+            title="Save"
+            full
+          />
         </div>
       </form>
     </>

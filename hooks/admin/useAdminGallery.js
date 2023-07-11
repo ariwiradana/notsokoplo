@@ -1,4 +1,5 @@
 import client from "@/lib/axios";
+import { formatBytes } from "@/lib/bytesConvert";
 import fetcher from "@/lib/fetcher";
 import { toBase64 } from "@/lib/toBase64";
 import moment from "moment";
@@ -13,6 +14,7 @@ const useAdminGallery = () => {
     src: "",
     date: moment().format("YYYY-MM-DD"),
   });
+
   const [detail, setDetail] = useState(null);
   const [openModalAdd, setOpenModalAdd] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -29,20 +31,30 @@ const useAdminGallery = () => {
   };
 
   const onChangeForm = (value, id) => {
-    if (id == "image") {
-      toBase64(value).then((base64) => {
-        setDetail({ ...detail, src: base64 });
-      });
+    if (id == "image" && value) {
+      if (value?.size > 700000) {
+        alert(`Image size too big (${formatBytes(value?.size)})`);
+        setValues({ ...values, src: "" });
+      } else {
+        toBase64(value).then((base64) => {
+          setDetail({ ...detail, src: base64 });
+        });
+      }
     } else {
       setDetail({ ...detail, [id]: value });
     }
   };
 
   const onChangeFormAdd = (value, id) => {
-    if (id == "image") {
-      toBase64(value).then((base64) => {
-        setValues({ ...values, src: base64 });
-      });
+    if (id == "image" && value) {
+      if (value?.size > 700000) {
+        alert(`Image size too big (${formatBytes(value?.size)})`);
+        setValues({ ...values, src: "" });
+      } else {
+        toBase64(value).then((base64) => {
+          setValues({ ...values, src: base64 });
+        });
+      }
     } else {
       setValues({ ...values, [id]: value });
     }
@@ -57,6 +69,11 @@ const useAdminGallery = () => {
       .finally(() => {
         setOpenModal(false);
         setLoading(false);
+        setDetail({
+          title: "",
+          src: "",
+          date: moment().format("YYYY-MM-DD"),
+        });
       });
   };
 
@@ -68,7 +85,11 @@ const useAdminGallery = () => {
       .then((res) => mutate())
       .finally(() => {
         setOpenModalAdd(false);
-        formRef.current.reset();
+        setValues({
+          title: "",
+          src: "",
+          date: moment().format("YYYY-MM-DD"),
+        });
         setLoading(false);
       });
   };
