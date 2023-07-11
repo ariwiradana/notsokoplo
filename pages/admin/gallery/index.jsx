@@ -65,7 +65,7 @@ const AdminGallery = () => {
         />
       </CustomModal>
       <Loading isLoading={isLoading} />
-      <div className="bg-white min-h-screen w-full flex items-center">
+      <div className="bg-white min-h-screen w-full flex items-center px-6 md:px-8 xl:px-0">
         <Container>
           <div className="flex items-center gap-x-4 py-8 mb-4">
             <h5 className="text-center text-gray-800 font-semibold text-5xl font-montserrat">
