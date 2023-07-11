@@ -38,7 +38,7 @@ const FullscreenThumbnail = () => {
             <div
               style={{
                 marginTop: position * -0.3,
-                transform: `scale(${position * 0.00005 + 1})`,
+                transform: `scale(${position * 0.0001 + 1})`,
               }}
               className="w-full h-screen relative"
             >
