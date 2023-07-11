@@ -4,10 +4,12 @@ import CustomModal from "@/components/elements/modal";
 import Container from "@/components/molecules/container";
 import Loading from "@/components/molecules/loading";
 import useAdminGallery from "@/hooks/admin/useAdminGallery";
+import { formatBytes } from "@/lib/bytesConvert";
 import { Pagination } from "@mui/material";
 import moment from "moment";
 import Image from "next/image";
 import React from "react";
+import { FiDelete, FiEdit, FiTrash } from "react-icons/fi";
 
 const AdminGallery = () => {
   const {
@@ -21,6 +23,7 @@ const AdminGallery = () => {
     openModalAdd,
     loading,
     values,
+    imageSize,
     handleChange,
     handleSubmit,
     setOpenModal,
@@ -29,6 +32,7 @@ const AdminGallery = () => {
     onChangeFormAdd,
     handleSubmitAdd,
     setOpenModalAdd,
+    setImageSize,
   } = useAdminGallery();
 
   return (
@@ -39,6 +43,7 @@ const AdminGallery = () => {
         onClose={() => setOpenModalAdd(false)}
       >
         <FormAddGallery
+          imageSize={imageSize}
           loading={loading}
           onChangeForm={onChangeFormAdd}
           handleSubmit={handleSubmitAdd}
@@ -52,6 +57,7 @@ const AdminGallery = () => {
         onClose={() => setOpenModal(false)}
       >
         <FormEditGallery
+          imageSize={imageSize}
           loading={loading}
           onChangeForm={onChangeForm}
           handleSubmit={handleSubmit}
@@ -111,7 +117,7 @@ const AdminGallery = () => {
                       <td className="px-6 py-4">
                         {moment(col?.date).format("dddd, D MMMM YYYY")}
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-4 flex items-center gap-x-2">
                         <button
                           onClick={() => {
                             setDetail({
@@ -120,11 +126,15 @@ const AdminGallery = () => {
                               src: col?.src,
                               date: col?.date,
                             });
+                            setImageSize(0);
                             setOpenModal(true);
                           }}
-                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                          className="font-medium text-gray-600 hover:underline"
                         >
-                          Edit
+                          <FiEdit size={16} />
+                        </button>
+                        <button className="font-medium text-red-600 hover:underline">
+                          <FiTrash size={16} />
                         </button>
                       </td>
                     </tr>
@@ -157,11 +167,17 @@ const FormEditGallery = ({
   onChangeForm,
   values,
   handleSubmit,
+  imageSize,
 }) => {
   return (
     <>
       <div className="mt-4 w-full flex justify-center">
         <div className="relative w-full h-56 rounded-lg overflow-hidden">
+          {imageSize != 0 && (
+            <p className="absolute bottom-2 px-2 py-1 rounded right-2 z-30 text-white bg-black bg-opacity-50 text-xs font-montserrat">
+              {formatBytes(imageSize)}
+            </p>
+          )}
           <Image
             alt="edit-images"
             fill
@@ -210,12 +226,18 @@ const FormAddGallery = ({
   loading,
   values,
   handleSubmit,
+  imageSize,
 }) => {
   return (
     <>
       {values?.src && (
         <div className="mt-4 w-full flex justify-center">
           <div className="relative w-full h-56 rounded-lg overflow-hidden">
+            {imageSize != 0 && (
+              <p className="absolute bottom-2 px-2 py-1 rounded right-2 z-30 text-white bg-black bg-opacity-50 text-xs font-montserrat">
+                {formatBytes(imageSize)}
+              </p>
+            )}
             <Image
               alt="add-image"
               fill

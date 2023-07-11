@@ -15,6 +15,7 @@ const useAdminGallery = () => {
     date: moment().format("YYYY-MM-DD"),
   });
 
+  const [imageSize, setImageSize] = useState(0);
   const [detail, setDetail] = useState(null);
   const [openModalAdd, setOpenModalAdd] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -38,6 +39,7 @@ const useAdminGallery = () => {
       } else {
         toBase64(value).then((base64) => {
           setDetail({ ...detail, src: base64 });
+          setImageSize(value?.size);
         });
       }
     } else {
@@ -53,6 +55,7 @@ const useAdminGallery = () => {
       } else {
         toBase64(value).then((base64) => {
           setValues({ ...values, src: base64 });
+          setImageSize(value?.size);
         });
       }
     } else {
@@ -105,6 +108,7 @@ const useAdminGallery = () => {
     values,
     openModalAdd,
     loading,
+    imageSize,
     handleChange,
     setOpenModal,
     setDetail,
@@ -113,6 +117,7 @@ const useAdminGallery = () => {
     onChangeFormAdd,
     handleSubmitAdd,
     setOpenModalAdd,
+    setImageSize,
   };
 };
 
