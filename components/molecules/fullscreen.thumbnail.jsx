@@ -1,6 +1,8 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import Image from "next/image";
+import { THUMBNAIL_IMAGES } from "@/constants/thumbnail.images";
 
 const FullscreenThumbnail = () => {
   return (
@@ -17,18 +19,18 @@ const FullscreenThumbnail = () => {
         modules={[Autoplay, Pagination]}
         className="thumbnail-slider"
       >
-        <SwiperSlide>
-          <div className="bg-[url('/images/thumbnail.jpg')] bg-cover bg-center overflow-hidden w-full h-screen"></div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="bg-[url('/images/thumbnail-2.jpg')] bg-cover bg-center overflow-hidden w-full h-screen"></div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="bg-[url('/images/thumbnail-3.jpg')] bg-cover bg-center overflow-hidden w-full h-screen"></div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="bg-[url('/images/thumbnail-4.jpg')] bg-cover bg-center overflow-hidden w-full h-screen"></div>
-        </SwiperSlide>
+        {THUMBNAIL_IMAGES?.map(({ src, alt }) => (
+          <SwiperSlide key={alt}>
+            <div className="w-full h-screen relative">
+              <Image
+                alt={alt}
+                src={src}
+                className="object-cover w-full"
+                fill
+              />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

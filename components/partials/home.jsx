@@ -3,16 +3,10 @@ import Layout from "../molecules/layout";
 import Seo from "./seo";
 import Loading from "../molecules/loading";
 import FullscreenThumbnail from "../molecules/fullscreen.thumbnail";
+import useLoader from "@/hooks/useLoader";
 
 const HomePage = () => {
-  const [load, setLoad] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setLoad(false);
-    }, 1 * 1000);
-    return () => clearInterval(interval);
-  }, []);
+  const { load } = useLoader();
 
   return (
     <>
@@ -20,6 +14,7 @@ const HomePage = () => {
       <Loading isLoading={load} />
       <Layout>
         <FullscreenThumbnail />
+        <div className="h-screen"></div>
       </Layout>
     </>
   );
