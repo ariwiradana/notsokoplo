@@ -10,7 +10,7 @@ const HomePage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setLoad(false);
-    }, 2 * 1000);
+    }, 1 * 1000);
     return () => clearInterval(interval);
   }, []);
 
