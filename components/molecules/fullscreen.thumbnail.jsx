@@ -35,6 +35,7 @@ const FullscreenThumbnail = () => {
         {THUMBNAIL_IMAGES?.slice(0, 4)?.map(({ src, alt }) => (
           <SwiperSlide className="overflow-hidden" key={alt}>
             <div
+              style={{ marginTop: position * -0.2 }}
               className={`w-full h-screen relative transform transition-transform ease-in-out duration-700 delay-500 ${
                 position > 10 ? "scale-110" : "scale-100"
               }`}
