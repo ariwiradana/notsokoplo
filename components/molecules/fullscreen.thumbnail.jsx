@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 import { THUMBNAIL_IMAGES } from "@/constants/thumbnail.images";
 
@@ -16,18 +16,13 @@ const FullscreenThumbnail = () => {
           disableOnInteraction: false,
         }}
         navigation
-        modules={[Autoplay, Pagination]}
+        modules={[Autoplay, Navigation, Pagination]}
         className="thumbnail-slider"
       >
         {THUMBNAIL_IMAGES?.map(({ src, alt }) => (
           <SwiperSlide key={alt}>
             <div className="w-full h-screen relative">
-              <Image
-                alt={alt}
-                src={src}
-                className="object-cover w-full"
-                fill
-              />
+              <Image alt={alt} src={src} className="object-cover w-full" fill />
             </div>
           </SwiperSlide>
         ))}
