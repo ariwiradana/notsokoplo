@@ -65,7 +65,7 @@ const AdminGallery = () => {
         />
       </CustomModal>
       <Loading isLoading={isLoading} />
-      <div className="bg-white min-h-screen w-full flex items-center px-6 md:px-8 xl:px-0">
+      <div className="bg-white min-h-screen w-full flex items-center lg:px-6 px-4 md:px-8 xl:px-0 py-8">
         <Container>
           <div className="flex items-center gap-x-4 py-8 mb-4">
             <h5 className="text-center text-gray-800 font-semibold text-5xl font-montserrat">
@@ -78,19 +78,19 @@ const AdminGallery = () => {
 
           {data?.total != 0 && (
             <div className="relative overflow-x-auto shadow-md shadow-slate-200 sm:rounded-lg min-w-[50vw]">
-              <table className="w-full text-sm text-left text-gray-500">
+              <table className="w-full text-sm text-left text-gray-500 table-auto">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                   <tr>
-                    <th scope="col" className="px-6 py-3">
+                    <th scope="col" className="lg:px-6 px-4 py-3">
                       Event
                     </th>
-                    <th scope="col" className="px-6 py-3">
+                    <th scope="col" className="lg:px-6 px-4 py-3">
                       Image
                     </th>
-                    <th scope="col" className="px-6 py-3">
+                    <th scope="col" className="lg:px-6 px-4 py-3">
                       Date
                     </th>
-                    <th scope="col" className="px-6 py-3">
+                    <th scope="col" className="lg:px-6 px-4 py-3">
                       Action
                     </th>
                   </tr>
@@ -100,12 +100,12 @@ const AdminGallery = () => {
                     <tr className="bg-white border-b" key={col?._id}>
                       <th
                         scope="row"
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                        className="lg:px-6 px-4 py-4 font-medium text-gray-900"
                       >
                         {col?.title}
                       </th>
-                      <td className="px-6 py-4">
-                        <div className="w-16 h-16 rounded-lg overflow-hidden relative">
+                      <td className="lg:px-6 px-4 py-4">
+                        <div className="md:w-16 md:h-16 h-12 w-12 rounded-lg overflow-hidden relative">
                           <Image
                             alt={col?.title}
                             fill
@@ -114,10 +114,10 @@ const AdminGallery = () => {
                           />
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="lg:px-6 px-4 py-4">
                         {moment(col?.date).format("dddd, D MMMM YYYY")}
                       </td>
-                      <td className="px-6 py-4 flex items-center gap-x-2">
+                      <td className="lg:px-6 px-4 py-4 flex items-center gap-x-2">
                         <button
                           onClick={() => {
                             setDetail({
