@@ -1,7 +1,5 @@
 import React from "react";
 import Layout from "../molecules/layout";
-import Image from "next/image";
-import useLoader from "@/hooks/useLoader";
 import Loading from "../molecules/loading";
 import useGallery from "@/hooks/useGallery";
 import Seo from "./seo";
@@ -9,8 +7,7 @@ import useNavbar from "@/hooks/useNavbar";
 import Link from "next/link";
 
 const GalleryComponent = () => {
-  const { load } = useLoader();
-  const { images } = useGallery();
+  const { images, isLoading } = useGallery();
   const { position } = useNavbar();
 
   if (!images) return <></>;
@@ -18,7 +15,7 @@ const GalleryComponent = () => {
   return (
     <>
       <Seo title="Notsokoplo | Gallery" />
-      <Loading isLoading={load} />
+      <Loading isLoading={isLoading} />
       <Layout>
         <div
           class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500 min-h-screen ${

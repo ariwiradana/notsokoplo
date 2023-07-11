@@ -1,19 +1,25 @@
 import { THUMBNAIL_IMAGES } from "@/constants/thumbnail.images";
+import fetcher from "@/lib/fetcher";
 import React, { useEffect, useState } from "react";
+import useSWR from "swr";
 
 const useGallery = () => {
   const [images, setImages] = useState(null);
+  const { data, isLoading } = useSWR(`/api/gallery`, fetcher);
 
   useEffect(() => {
-    let groupImages = [];
-    const chunkSize = 3;
-    for (let i = 0; i < THUMBNAIL_IMAGES.length; i += chunkSize) {
-      const chunk = THUMBNAIL_IMAGES.slice(i, i + chunkSize);
-      groupImages.push(chunk);
+    if (data?.total != 0) {
+      let groupImages = [];
+      const chunkSize = 3;
+      for (let i = 0; i < data?.data?.length; i += chunkSize) {
+        const chunk = data?.data?.slice(i, i + chunkSize);
+        groupImages.push(chunk);
+      }
+      setImages(groupImages);
     }
-    setImages(groupImages);
-  }, []);
-  return { images };
+  }, [data]);
+
+  return { images, isLoading };
 };
 
 export default useGallery;

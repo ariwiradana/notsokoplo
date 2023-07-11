@@ -57,7 +57,7 @@ const Navbar = () => {
               <Image
                 alt="logo"
                 className="object-contain relative w-full h-full"
-                layout="fill"
+                fill
                 src="/logo/logo-nsk.png"
               />
             </Link>
