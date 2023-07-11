@@ -5,6 +5,7 @@ import useGallery from "@/hooks/useGallery";
 import Seo from "./seo";
 import useNavbar from "@/hooks/useNavbar";
 import Link from "next/link";
+import moment from "moment";
 
 const GalleryComponent = () => {
   const { images, isLoading } = useGallery();
@@ -40,7 +41,7 @@ const GalleryComponent = () => {
                         {title}
                       </h5>
                       <h5 className="font-raleway text-white font-light md:mt-0 lg:tracking-widest text-[10px] md:text-xs uppercase">
-                        {date}
+                        {moment(date).format("dddd, D MMMM YYYY")}
                       </h5>
                     </div>
                   </Link>
