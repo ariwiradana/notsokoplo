@@ -14,7 +14,7 @@ const Loading = ({ isLoading }) => {
   return (
     <div className="min-h-screen w-full bg-black inset-0 z-[999] relative flex justify-center items-center">
       <div>
-        <InfinitySpin width="200" color="#ffff" />
+        <InfinitySpin width="150" color="#ffff" />
       </div>
     </div>
   );
