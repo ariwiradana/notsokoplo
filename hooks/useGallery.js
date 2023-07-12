@@ -38,7 +38,7 @@ const useGallery = () => {
       const chunk = img?.slice(i, i + chunkSize);
       groupImages.push(chunk);
     }
-    setImages([...groupImages, ...images]);
+    setImages(groupImages);
   };
 
   useEffect(() => {
