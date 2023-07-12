@@ -8,8 +8,7 @@ import Link from "next/link";
 import moment from "moment";
 
 const GalleryComponent = () => {
-  const { images, isLoading, handlePagination, loadingBtn, data } =
-    useGallery();
+  const { images, isLoading } = useGallery();
   const { position } = useNavbar();
 
   if (!images) return <></>;

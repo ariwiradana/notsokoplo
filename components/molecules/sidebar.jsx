@@ -1,5 +1,4 @@
 import { NAVLINKS } from "@/constants/nav.links";
-import useNavbar from "@/hooks/useNavbar";
 import Link from "next/link";
 import React from "react";
 

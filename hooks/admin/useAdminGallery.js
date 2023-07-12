@@ -1,9 +1,8 @@
 import client from "@/lib/axios";
-import { formatBytes } from "@/lib/bytesConvert";
 import fetcher from "@/lib/fetcher";
 import { toBase64 } from "@/lib/toBase64";
 import moment from "moment";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import useSWR from "swr";
 
 const useAdminGallery = () => {

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 
 const useGallery = () => {
-  const [size] = useState(1);
+  const [size] = useState(5);
   const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
   const [loadingBtn, setLoadingBtn] = useState(false);
