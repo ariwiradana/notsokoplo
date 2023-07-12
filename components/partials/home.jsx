@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Layout from "../molecules/layout";
 import Seo from "./seo";
 import Loading from "../molecules/loading";
 import FullscreenThumbnail from "../molecules/fullscreen.thumbnail";
-import useLoader from "@/hooks/useLoader";
-import Gigs from "../molecules/gigs";
+import useSlideshow from "@/hooks/useSlideshow";
 
 const HomePage = () => {
-  const { load } = useLoader();
+  const { data, isLoading } = useSlideshow();
+
+  if (!data) return <></>;
 
   return (
     <>
       <Seo title="Notsokoplo" />
-      <Loading isLoading={load} />
+      <Loading isLoading={isLoading} />
       <Layout>
-        <FullscreenThumbnail />
+        <FullscreenThumbnail data={data} />
         <div className="h-screen bg-white mt-[100vh] relative z-10 py-32">
           {/* <Gigs /> */}
         </div>

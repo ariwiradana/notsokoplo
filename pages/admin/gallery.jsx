@@ -12,6 +12,7 @@ import moment from "moment";
 import Image from "next/image";
 import React from "react";
 import { FiEdit, FiTrash } from "react-icons/fi";
+import { HiPencil, HiTrash } from "react-icons/hi";
 
 const AdminGallery = () => {
   const {
@@ -78,8 +79,9 @@ const AdminGallery = () => {
         />
       </CustomModal>
       <Loading isLoading={isLoading} />
+
       <div className="bg-white min-h-screen w-full flex items-center lg:px-6 px-4 md:px-8 xl:px-0 py-8">
-        <Container>
+        <Container className="md:mt-24 mt-16">
           <div className="flex items-center gap-x-4 py-8 mb-4">
             <h5 className="text-center text-gray-800 font-semibold text-5xl font-montserrat">
               Gallery
@@ -94,7 +96,7 @@ const AdminGallery = () => {
 
           {data?.total != 0 && (
             <div className="relative overflow-x-auto shadow-md shadow-slate-200 sm:rounded-lg min-w-[50vw]">
-              <table className="w-full text-sm text-left text-gray-500 table-auto">
+              <table className="w-full text-sm text-left text-gray-500 table-fixed lg:table-auto">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                   <tr>
                     <th scope="col" className="lg:px-6 px-4 py-3">
@@ -139,27 +141,29 @@ const AdminGallery = () => {
                           {moment(col?.data?.date).format("dddd, D MMMM YYYY")}
                         </td>
                         <td className="lg:px-6 px-4 py-4">
-                          <button
-                            onClick={() => {
-                              setDetail({
-                                path: col?.data?.path,
-                                title: col?.data?.title,
-                                date: col?.data?.date,
-                                images: [],
-                              });
-                              setImageSize(0);
-                              setOpenModal(true);
-                            }}
-                            className="font-medium text-gray-600 hover:underline mr-1"
-                          >
-                            <FiEdit size={16} />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(col?.data?.path)}
-                            className="font-medium text-red-600 hover:underline ml-1"
-                          >
-                            <FiTrash size={16} />
-                          </button>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => {
+                                setDetail({
+                                  path: col?.data?.path,
+                                  title: col?.data?.title,
+                                  date: col?.data?.date,
+                                  images: [],
+                                });
+                                setImageSize(0);
+                                setOpenModal(true);
+                              }}
+                              className="font-medium text-gray-700 border border-gray-200 rounded-md bg-white p-1"
+                            >
+                              <HiPencil size={20} />
+                            </button>
+                            <button
+                              onClick={() => handleDelete(col?.data?.path)}
+                              className="font-medium text-gray-700 border border-gray-200 rounded-md bg-white p-1"
+                            >
+                              <HiTrash size={20} />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     );
@@ -194,24 +198,8 @@ const FormEditGallery = ({
   handleSubmit,
   imageSize,
 }) => {
-  console.log({ values });
   return (
     <>
-      {/* <div className="mt-4 w-full flex justify-center">
-        <div className="relative w-full h-56 rounded-lg overflow-hidden">
-          {imageSize != 0 && (
-            <p className="absolute bottom-2 px-2 py-1 rounded right-2 z-30 text-white bg-black bg-opacity-50 text-xs font-montserrat">
-              {formatBytes(imageSize)}
-            </p>
-          )}
-          <Image
-            alt="edit-images"
-            fill
-            className="object-cover"
-            src={values?.image}
-          />
-        </div>
-      </div> */}
       <form
         onSubmit={handleSubmit}
         ref={formRef}
@@ -278,35 +266,11 @@ const FormAddGallery = ({
 }) => {
   return (
     <>
-      {/* {values?.thumbnail && (
-        <div className="mt-4 w-full flex justify-center">
-          <div className="relative w-full h-56 rounded-lg overflow-hidden">
-            {imageSize != 0 && (
-              <p className="absolute bottom-2 px-2 py-1 rounded right-2 z-30 text-white bg-black bg-opacity-50 text-xs font-montserrat">
-                {formatBytes(imageSize)}
-              </p>
-            )}
-            <Image
-              alt="add-image"
-              fill
-              className="object-cover"
-              src={values?.thumbnail}
-            />
-          </div>
-        </div>
-      )} */}
       <form
         onSubmit={handleSubmit}
         ref={formRef}
         className="mt-4 flex flex-col gap-y-3"
       >
-        {/* <InputText
-          onChange={(e) => onChangeForm(e.target.files[0], "thumbnail")}
-          label="Thumbnail"
-          type="file"
-          id="edit-thumbnail"
-          full
-        /> */}
         <InputText
           onChange={(e) => onChangeForm(e.target.value, "title")}
           label="Event"

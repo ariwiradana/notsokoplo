@@ -5,7 +5,7 @@ import Image from "next/image";
 import { THUMBNAIL_IMAGES } from "@/constants/thumbnail.images";
 import useNavbar from "@/hooks/useNavbar";
 
-const FullscreenThumbnail = () => {
+const FullscreenThumbnail = ({ data }) => {
   const { position } = useNavbar();
 
   return (
@@ -33,8 +33,8 @@ const FullscreenThumbnail = () => {
             <source src="/video/thumbnail.mp4" type="video/mp4" />
           </video>
         </SwiperSlide> */}
-        {THUMBNAIL_IMAGES?.slice(0, 4)?.map(({ src, alt }) => (
-          <SwiperSlide className="overflow-hidden" key={alt}>
+        {data?.slice(0, 4)?.map(({ image, slug }) => (
+          <SwiperSlide className="overflow-hidden" key={slug}>
             <div
               style={{
                 marginTop: position * -0.3,
@@ -42,7 +42,12 @@ const FullscreenThumbnail = () => {
               }}
               className="w-full h-screen relative"
             >
-              <Image alt={alt} src={src} className="object-cover w-full" fill />
+              <Image
+                alt={slug}
+                src={image}
+                className="object-cover w-full"
+                fill
+              />
             </div>
           </SwiperSlide>
         ))}
