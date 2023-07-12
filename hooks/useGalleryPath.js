@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 
 const useGalleryPath = (params) => {
-  const [size] = useState(7);
+  const [size] = useState(9);
   const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
   const [loadingBtn, setLoadingBtn] = useState(false);
@@ -22,14 +22,16 @@ const useGalleryPath = (params) => {
   };
 
   const handleGroupImages = (img) => {
-    let groupImages = [];
-    const chunkSize = 3;
-    for (let i = 0; i < img?.length; i += chunkSize) {
-      console.log({ img });
-      const chunk = img?.slice(i, i + chunkSize);
-      groupImages.push(chunk);
-    }
-    setImages([...groupImages, ...images]);
+    let newImg = img || [];
+    // let groupImages = [];
+    // const chunkSize = 3;
+    // for (let i = 0; i < img?.length; i += chunkSize) {
+    //   console.log({ img });
+    //   const chunk = img?.slice(i, i + chunkSize);
+    //   groupImages.push(chunk);
+    // }
+    // setImages([...groupImages, ...images]);
+    setImages([...images, ...newImg]);
   };
 
   useEffect(() => {

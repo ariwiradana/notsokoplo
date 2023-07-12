@@ -2,6 +2,7 @@ import Button from "@/components/elements/button";
 import InputText from "@/components/elements/input";
 import CustomModal from "@/components/elements/modal";
 import Container from "@/components/molecules/container";
+import Lightbox from "@/components/molecules/lightbox";
 import CurcularProgressbar from "@/components/molecules/line.loading";
 import Loading from "@/components/molecules/loading";
 import Navbar from "@/components/molecules/navbar.admin";
@@ -44,6 +45,7 @@ const AdminGallery = () => {
     <>
       <Navbar />
       <Seo title="Notsokoplo | Admin" />
+
       <CustomModal
         title="Add Gallery"
         open={openModalAdd}

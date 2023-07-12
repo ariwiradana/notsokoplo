@@ -7,22 +7,38 @@ import moment from "moment";
 import { RotatingLines } from "react-loader-spinner";
 import useGalleryPath from "@/hooks/useGalleryPath";
 import { titleCase } from "@/lib/titleCase";
+import Lightbox from "../molecules/lightbox";
+import useLightbox from "@/hooks/useLightbox";
+import Image from "next/image";
 
 const GalleryPathComponent = ({ params }) => {
   const { images, isLoading, handlePagination, loadingBtn, data } =
     useGalleryPath(params);
   const { position } = useNavbar();
+  const {
+    open: openLightbox,
+    setOpen: setOpenLightbox,
+    indexImg,
+    setIndexImg,
+  } = useLightbox();
 
-  if (!images) return <></>;
+  // if (!images) return <></>;
 
   const title = data ? titleCase(data?.data[0]?.title) : "";
   const dates = data
     ? moment(data?.data[0]?.date).format("dddd, D MMMM YYYY")
     : "";
 
+  const imageData = images?.map((img) => img?.image);
+
   return (
     <>
       <Seo title={`${title} | Gallery`} />
+      <Lightbox
+        slide={indexImg}
+        open={openLightbox}
+        sources={imageData || []}
+      />
       <Layout>
         <div className="min-h-screen">
           <div
@@ -40,13 +56,17 @@ const GalleryPathComponent = ({ params }) => {
             </h6>
           </div>
 
-          <div
+          {/* <div
             class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500`}
           >
             {images?.map((image, index) => (
               <div class="grid grid-cols-1 gap-1" key={`row-${index}`}>
-                {image?.map(({ image, alt, title, date, path }) => (
+                {image?.map(({ image, alt }, imgIdx) => (
                   <div
+                    onClick={() => {
+                      setOpenLightbox(!openLightbox);
+                      setIndexImg(imgIdx + 1);
+                    }}
                     key={alt}
                     className="w-full bg-cover overflow-hidden relative group"
                   >
@@ -55,21 +75,47 @@ const GalleryPathComponent = ({ params }) => {
                       src={image}
                       alt={alt}
                     />
+                    {index}
                   </div>
                 ))}
               </div>
             ))}
+          </div> */}
+
+          <div
+            class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500`}
+          >
+            {images?.length != 0 &&
+              images?.map((el, index) => (
+                <div
+                  onClick={() => {
+                    setOpenLightbox(!openLightbox);
+                    setIndexImg(index + 1);
+                  }}
+                  className="w-full bg-cover overflow-hidden relative group border h-full min-h-[20vh] md:min-h-[30vh] lg:min-h-[40vh]"
+                  key={el?._id}
+                >
+                  <Image
+                    fill
+                    class="h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
+                    src={el?.image}
+                    alt={el?.alt}
+                  />
+                </div>
+              ))}
           </div>
 
-          <div className="flex justify-center py-4">
-            <RotatingLines
-              strokeColor="grey"
-              strokeWidth="5"
-              animationDuration="0.75"
-              width="20"
-              visible={isLoading}
-            />
-          </div>
+          {isLoading && (
+            <div className="flex justify-center py-4">
+              <RotatingLines
+                strokeColor="grey"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="20"
+                visible={isLoading}
+              />
+            </div>
+          )}
 
           {data?.total > images?.flat()?.length && !isLoading ? (
             <div className="flex justify-center py-4">
