@@ -1,10 +1,8 @@
 import React from "react";
 import Layout from "../molecules/layout";
 import Loading from "../molecules/loading";
-import useGallery from "@/hooks/useGallery";
 import Seo from "./seo";
 import useNavbar from "@/hooks/useNavbar";
-import Link from "next/link";
 import moment from "moment";
 import { RotatingLines } from "react-loader-spinner";
 import useGalleryPath from "@/hooks/useGalleryPath";

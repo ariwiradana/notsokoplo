@@ -2,6 +2,7 @@ import Button from "@/components/elements/button";
 import InputText from "@/components/elements/input";
 import CustomModal from "@/components/elements/modal";
 import Container from "@/components/molecules/container";
+import CurcularProgressbar from "@/components/molecules/line.loading";
 import Loading from "@/components/molecules/loading";
 import Navbar from "@/components/molecules/navbar.admin";
 import Seo from "@/components/partials/seo";
@@ -250,7 +251,7 @@ const FormEditGallery = ({
           value={moment(values?.date).format("YYYY-MM-DD")}
         />
         <div className="mt-2 w-full">
-          <Button loading={loading} type="submit" title="Update" full />
+          <Button type="submit" title="Update" full />
         </div>
       </form>
     </>

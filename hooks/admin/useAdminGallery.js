@@ -87,42 +87,52 @@ const useAdminGallery = () => {
     delete newDetail["images"];
     await client.put(`/api/gallery/${detail?.path}`, newDetail);
 
-    let uploaded = 0;
+    let newData = [];
     for (const img of detail?.images) {
+      const path = detail?.title?.toLowerCase().replace(/[^a-z0-9]/gi, "");
+      const alt = `alt-${detail?.title
+        ?.toLowerCase()
+        .replace(/[^a-z0-9]/gi, "")}`;
       const payload = {
-        image: img,
+        path,
+        alt,
         title: detail?.title,
         date: detail?.date,
+        image: img,
       };
-      await client.post(`/api/gallery`, payload);
-      uploaded += 1;
-      setCounter(uploaded + 1);
+      newData.push(payload);
     }
-    if (uploaded === detail?.images?.length) {
+
+    await client.post(`/api/gallery/multi`, newData).finally(() => {
       setOpenModal(false);
       setLoading(false);
       setDetail(null);
       mutate();
-    }
+      setCounter(0);
+    });
   };
 
   const handleSubmitAdd = async (event) => {
     setLoading(true);
     event.preventDefault();
 
-    let uploaded = 0;
+    let newData = [];
     for (const img of values?.images) {
+      const path = values?.title?.toLowerCase().replace(/[^a-z0-9]/gi, "");
+      const alt = `alt-${values?.title
+        ?.toLowerCase()
+        .replace(/[^a-z0-9]/gi, "")}`;
+
       const payload = {
+        path,
+        alt,
         title: values?.title,
         date: values?.date,
         image: img,
       };
-      await client.post(`/api/gallery`, payload);
-      uploaded += 1;
-      setCounter(uploaded + 1);
+      newData.push(payload);
     }
-
-    if (uploaded === values?.images?.length) {
+    await client.post(`/api/gallery/multi`, newData).finally(() => {
       setOpenModalAdd(false);
       setLoading(false);
       setValues({
@@ -131,7 +141,8 @@ const useAdminGallery = () => {
         date: moment().format("YYYY-MM-DD"),
       });
       mutate();
-    }
+      setCounter(0);
+    });
   };
 
   return {
@@ -146,6 +157,7 @@ const useAdminGallery = () => {
     openModalAdd,
     loading,
     imageSize,
+    counter,
     handleChange,
     setOpenModal,
     setDetail,
