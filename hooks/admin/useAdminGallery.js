@@ -7,11 +7,11 @@ import React, { useRef, useState } from "react";
 import useSWR from "swr";
 
 const useAdminGallery = () => {
+  const [counter, setCounter] = useState(0);
   const formRef = useRef("");
-
   const [values, setValues] = useState({
     title: "",
-    src: "",
+    images: [],
     date: moment().format("YYYY-MM-DD"),
   });
 
@@ -48,15 +48,21 @@ const useAdminGallery = () => {
   };
 
   const onChangeFormAdd = (value, id) => {
-    if (id == "image" && value) {
-      if (value?.size > 700000) {
-        alert(`Image size too big (${formatBytes(value?.size)})`);
-        setValues({ ...values, src: "" });
-      } else {
-        toBase64(value).then((base64) => {
-          setValues({ ...values, src: base64 });
-          setImageSize(value?.size);
-        });
+    if (id == "images" && value) {
+      let imageLeft = [];
+      let skipImage = 0;
+      Array.from(value).forEach(async (image) => {
+        if (image?.size < 700000) {
+          toBase64(image)
+            .then((base64Img) => imageLeft.push(base64Img))
+            .finally(() => setValues({ ...values, images: imageLeft }));
+        } else {
+          skipImage += 1;
+        }
+      });
+      if (skipImage != 0) {
+        alert(`(${skipImage}) Image size too big`);
+        setValues({ ...values, images: [] });
       }
     } else {
       setValues({ ...values, [id]: value });
@@ -80,21 +86,32 @@ const useAdminGallery = () => {
       });
   };
 
-  const handleSubmitAdd = (event) => {
+  const handleSubmitAdd = async (event) => {
     setLoading(true);
     event.preventDefault();
-    client
-      .post(`/api/gallery`, values)
-      .then((res) => mutate())
-      .finally(() => {
-        setOpenModalAdd(false);
-        setValues({
-          title: "",
-          src: "",
-          date: moment().format("YYYY-MM-DD"),
-        });
-        setLoading(false);
+
+    let uploaded = 0;
+    for (const img of values?.images) {
+      const payload = {
+        title: values?.title,
+        date: values?.date,
+        image: img,
+      };
+      await client.post(`/api/gallery`, payload);
+      uploaded += 1;
+      setCounter(uploaded + 1);
+    }
+
+    if (uploaded === values?.images?.length) {
+      setOpenModalAdd(false);
+      setLoading(false);
+      setValues({
+        title: "",
+        images: [],
+        date: moment().format("YYYY-MM-DD"),
       });
+      mutate();
+    }
   };
 
   return {

@@ -6,9 +6,11 @@ import Seo from "./seo";
 import useNavbar from "@/hooks/useNavbar";
 import Link from "next/link";
 import moment from "moment";
+import { RotatingLines } from "react-loader-spinner";
 
 const GalleryComponent = () => {
-  const { images, isLoading } = useGallery();
+  const { images, isLoading, handlePagination, loadingBtn, data } =
+    useGallery();
   const { position } = useNavbar();
 
   if (!images) return <></>;
@@ -25,7 +27,7 @@ const GalleryComponent = () => {
         >
           {images?.map((image, index) => (
             <div class="grid gap-1" key={`row-${index}`}>
-              {image?.map(({ src, alt, title, date, path }) => (
+              {image?.map(({ image, alt, title, date, path }) => (
                 <div
                   key={alt}
                   className="w-full bg-cover max-h-[30vh] md:max-h-full overflow-hidden relative group cursor-pointer"
@@ -33,10 +35,10 @@ const GalleryComponent = () => {
                   <Link href={`/gallery/${path}`}>
                     <img
                       class="h-full max-h-[30vh] md:max-h-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
-                      src={src}
+                      src={image}
                       alt={alt}
                     />
-                    <div className="absolute max-h-[30vh] md:max-h-full bottom-0 inset-x-0 p-3 md:px-4 md:py-3 lg:py-6 lg:px-8 items-center flex-col bg-black bg-opacity-70 delay-300 transition-all ease-in-out duration-500">
+                    <div className="absolute max-h-[30vh] opacity-0 group-hover:opacity-100 md:max-h-full bottom-0 inset-x-0 p-3 md:px-4 md:py-3 lg:py-6 lg:px-8 items-center flex-col bg-black bg-opacity-70 delay-100 transition-all ease-in-out duration-500">
                       <h5 className="font-montserrat text-white font-medium text-sm leading-5 md:text-lg lg:text-xl md:tracking-wide capitalize">
                         {title}
                       </h5>
@@ -50,6 +52,26 @@ const GalleryComponent = () => {
             </div>
           ))}
         </div>
+        {data?.total > images?.flat()?.length && (
+          <div className="flex justify-center py-4">
+            <button
+              onClick={handlePagination}
+              className="px-4 h-8 rounded font-raleway font-medium text-black border border-gray-400 text-[10px] tracking-wider uppercase"
+            >
+              {loadingBtn ? (
+                <RotatingLines
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="20"
+                  visible={true}
+                />
+              ) : (
+                "Show more"
+              )}
+            </button>
+          </div>
+        )}
       </Layout>
     </>
   );
