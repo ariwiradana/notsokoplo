@@ -41,7 +41,7 @@ const useAdminGallery = () => {
 
       Array.from(value).forEach(async (image) => {
         console.log({ image });
-        if (image?.size < 700000) {
+        if (image?.size < 500000) {
           toBase64(image)
             .then((base64Img) => imageLeft.push(base64Img))
             .finally(() => setDetail({ ...detail, images: imageLeft }));
@@ -63,7 +63,7 @@ const useAdminGallery = () => {
       let imageLeft = [];
       let skipImage = 0;
       Array.from(value).forEach(async (image) => {
-        if (image?.size < 700000) {
+        if (image?.size < 500000) {
           toBase64(image)
             .then((base64Img) => imageLeft.push(base64Img))
             .finally(() => setValues({ ...values, images: imageLeft }));
