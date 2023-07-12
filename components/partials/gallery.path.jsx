@@ -67,7 +67,7 @@ const GalleryPathComponent = ({ params }) => {
               strokeWidth="5"
               animationDuration="0.75"
               width="20"
-              visible={true}
+              visible={isLoading}
             />
           </div>
 
