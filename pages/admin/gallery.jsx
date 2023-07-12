@@ -173,7 +173,7 @@ const AdminGallery = () => {
               </table>
             </div>
           )}
-          {data?.total != 0 && (
+          {/* {data?.total != 0 && (
             <div className="flex justify-center mt-8">
               <Pagination
                 page={page}
@@ -182,7 +182,7 @@ const AdminGallery = () => {
                 variant="outlined"
               />
             </div>
-          )}
+          )} */}
         </Container>
       </div>
     </>

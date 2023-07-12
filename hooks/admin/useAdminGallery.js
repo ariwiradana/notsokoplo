@@ -21,10 +21,7 @@ const useAdminGallery = () => {
   const [page, setPage] = useState(1);
   const [size] = useState(5);
   const [loading, setLoading] = useState(false);
-  const { data, isLoading, mutate } = useSWR(
-    `/api/gallery?page=${page}&size=${size}`,
-    fetcher
-  );
+  const { data, isLoading, mutate } = useSWR(`/api/gallery`, fetcher);
 
   const handleChange = (event, value) => {
     setPage(value);
