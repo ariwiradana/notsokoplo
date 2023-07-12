@@ -3,6 +3,7 @@ import InputText from "@/components/elements/input";
 import CustomModal from "@/components/elements/modal";
 import Container from "@/components/molecules/container";
 import Loading from "@/components/molecules/loading";
+import Navbar from "@/components/molecules/navbar.admin";
 import Seo from "@/components/partials/seo";
 import useAdminGallery from "@/hooks/admin/useAdminGallery";
 import { formatBytes } from "@/lib/bytesConvert";
@@ -39,6 +40,7 @@ const AdminGallery = () => {
 
   return (
     <>
+      <Navbar />
       <Seo title="Notsokoplo | Admin" />
       <CustomModal
         title="Add Gallery"
