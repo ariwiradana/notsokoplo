@@ -14,9 +14,10 @@ const GalleryPathComponent = ({ params }) => {
   const { images, isLoading, handlePagination, loadingBtn, data } =
     useGalleryPath(params);
   const { position } = useNavbar();
-  const title = titleCase(params?.replaceAll("-", " "));
 
   if (!images) return <></>;
+
+  const title = data ? titleCase(data?.data[0]?.title) : "";
 
   return (
     <>
@@ -38,7 +39,7 @@ const GalleryPathComponent = ({ params }) => {
               {image?.map(({ image, alt, title, date, path }) => (
                 <div
                   key={alt}
-                  className="w-full bg-cover md:max-h-full overflow-hidden relative group cursor-pointer"
+                  className="w-full bg-cover md:max-h-full overflow-hidden relative group"
                 >
                   <img
                     class="h-full md:max-h-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"

@@ -31,6 +31,10 @@ const useAdminGallery = () => {
     setPage(value);
   };
 
+  const handleDelete = async (path) => {
+    client.delete(`/api/gallery/${path}`).finally(() => mutate());
+  };
+
   const onChangeForm = (value, id) => {
     if (id == "images" && value) {
       let imageLeft = [];
@@ -152,6 +156,7 @@ const useAdminGallery = () => {
     handleSubmitAdd,
     setOpenModalAdd,
     setImageSize,
+    handleDelete,
   };
 };
 

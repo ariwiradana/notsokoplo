@@ -34,9 +34,8 @@ const AdminGallery = () => {
     handleSubmitAdd,
     setOpenModalAdd,
     setImageSize,
+    handleDelete,
   } = useAdminGallery();
-
-  console.log({ detail });
 
   return (
     <>
@@ -153,7 +152,10 @@ const AdminGallery = () => {
                           >
                             <FiEdit size={16} />
                           </button>
-                          <button className="font-medium text-red-600 hover:underline ml-1">
+                          <button
+                            onClick={() => handleDelete(col?.data?.path)}
+                            className="font-medium text-red-600 hover:underline ml-1"
+                          >
                             <FiTrash size={16} />
                           </button>
                         </td>
