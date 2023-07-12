@@ -36,13 +36,19 @@ const AdminGallery = () => {
     setImageSize,
   } = useAdminGallery();
 
+  console.log({ detail });
+
   return (
     <>
       <Seo title="Notsokoplo | Admin" />
       <CustomModal
         title="Add Gallery"
         open={openModalAdd}
-        onClose={() => setOpenModalAdd(false)}
+        onClose={() => {
+          if (!loading) {
+            setOpenModalAdd(false);
+          }
+        }}
       >
         <FormAddGallery
           imageSize={imageSize}
@@ -56,7 +62,11 @@ const AdminGallery = () => {
       <CustomModal
         title="Edit Gallery"
         open={openModal}
-        onClose={() => setOpenModal(false)}
+        onClose={() => {
+          if (!loading) {
+            setOpenModal(false);
+          }
+        }}
       >
         <FormEditGallery
           imageSize={imageSize}
@@ -74,7 +84,10 @@ const AdminGallery = () => {
               Gallery
             </h5>
             <div>
-              <Button onClick={() => setOpenModalAdd(true)} title="Upload Images" />
+              <Button
+                onClick={() => setOpenModalAdd(true)}
+                title="Upload Images"
+              />
             </div>
           </div>
 
@@ -87,7 +100,7 @@ const AdminGallery = () => {
                       Event
                     </th>
                     <th scope="col" className="lg:px-6 px-4 py-3">
-                      Image
+                      Thumbnail
                     </th>
                     <th scope="col" className="lg:px-6 px-4 py-3">
                       Date
@@ -98,49 +111,55 @@ const AdminGallery = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data?.data?.map((col) => (
-                    <tr className="bg-white border-b" key={col?._id}>
-                      <th
-                        scope="row"
-                        className="lg:px-6 px-4 py-4 font-medium text-gray-900"
-                      >
-                        {col?.title}
-                      </th>
-                      <td className="lg:px-6 px-4 py-4">
-                        <div className="md:w-16 md:h-16 h-12 w-12 rounded-lg overflow-hidden relative">
-                          <Image
-                            alt={col?.title}
-                            fill
-                            src={col?.image}
-                            className="object-cover"
-                          />
-                        </div>
-                      </td>
-                      <td className="lg:px-6 px-4 py-4">
-                        {moment(col?.date).format("dddd, D MMMM YYYY")}
-                      </td>
-                      <td className="lg:px-6 px-4 py-4">
-                        <button
-                          onClick={() => {
-                            setDetail({
-                              path: col?.path,
-                              title: col?.title,
-                              src: col?.src,
-                              date: col?.date,
-                            });
-                            setImageSize(0);
-                            setOpenModal(true);
-                          }}
-                          className="font-medium text-gray-600 hover:underline mr-1"
-                        >
-                          <FiEdit size={16} />
-                        </button>
-                        <button className="font-medium text-red-600 hover:underline ml-1">
-                          <FiTrash size={16} />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  {data?.data?.map((col) => {
+                    return (
+                      <tr className="bg-white border-b" key={col?.data?._id}>
+                        <th scope="row" className="lg:px-6 px-4 py-4">
+                          <div className="flex flex-col">
+                            <p className="font-medium text-gray-900">
+                              {col?.data?.title}
+                            </p>
+                            <p className="font-normal text-xs">
+                              ({col?.total}) images
+                            </p>
+                          </div>
+                        </th>
+                        <td className="lg:px-6 px-4 py-4">
+                          <div className="md:w-16 md:h-16 h-12 w-12 rounded-lg overflow-hidden relative">
+                            <Image
+                              alt={col?.data?.title}
+                              fill
+                              src={col?.data?.image}
+                              className="object-cover"
+                            />
+                          </div>
+                        </td>
+                        <td className="lg:px-6 px-4 py-4">
+                          {moment(col?.data?.date).format("dddd, D MMMM YYYY")}
+                        </td>
+                        <td className="lg:px-6 px-4 py-4">
+                          <button
+                            onClick={() => {
+                              setDetail({
+                                path: col?.data?.path,
+                                title: col?.data?.title,
+                                date: col?.data?.date,
+                                images: [],
+                              });
+                              setImageSize(0);
+                              setOpenModal(true);
+                            }}
+                            className="font-medium text-gray-600 hover:underline mr-1"
+                          >
+                            <FiEdit size={16} />
+                          </button>
+                          <button className="font-medium text-red-600 hover:underline ml-1">
+                            <FiTrash size={16} />
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -171,9 +190,10 @@ const FormEditGallery = ({
   handleSubmit,
   imageSize,
 }) => {
+  console.log({ values });
   return (
     <>
-      <div className="mt-4 w-full flex justify-center">
+      {/* <div className="mt-4 w-full flex justify-center">
         <div className="relative w-full h-56 rounded-lg overflow-hidden">
           {imageSize != 0 && (
             <p className="absolute bottom-2 px-2 py-1 rounded right-2 z-30 text-white bg-black bg-opacity-50 text-xs font-montserrat">
@@ -184,10 +204,10 @@ const FormEditGallery = ({
             alt="edit-images"
             fill
             className="object-cover"
-            src={values?.src}
+            src={values?.image}
           />
         </div>
-      </div>
+      </div> */}
       <form
         onSubmit={handleSubmit}
         ref={formRef}
@@ -197,16 +217,38 @@ const FormEditGallery = ({
           onChange={(e) => onChangeForm(e.target.value, "title")}
           label="Event"
           id="edit-title"
+          disabled
           full
           value={values?.title}
         />
         <InputText
-          onChange={(e) => onChangeForm(e.target.files[0], "image")}
-          label="Image"
+          multiple
+          onChange={(e) => onChangeForm(e.target.files, "images")}
+          label="Add More Image"
           type="file"
           id="edit-image"
           full
         />
+        {values?.images && values?.images?.length != 0 ? (
+          <div className="grid grid-cols-6 gap-1">
+            {values?.images?.map((img, idx) => (
+              <div
+                className="w-full h-16 rounded overflow-hidden aspect-square relative"
+                key={`image-${idx}`}
+              >
+                <Image
+                  alt="add-image"
+                  fill
+                  className="object-cover"
+                  src={img}
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <></>
+        )}
+
         <InputText
           onChange={(e) => onChangeForm(e.target.value, "date")}
           label="Date"
@@ -297,7 +339,9 @@ const FormAddGallery = ({
         </div>
         <div className="mt-2 w-full">
           <Button
-            disabled={!values?.title || !values?.date || values?.images?.length == 0}
+            disabled={
+              !values?.title || !values?.date || values?.images?.length == 0
+            }
             type="submit"
             loading={loading}
             title="Save"

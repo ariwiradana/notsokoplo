@@ -32,15 +32,23 @@ const useAdminGallery = () => {
   };
 
   const onChangeForm = (value, id) => {
-    if (id == "image" && value) {
-      if (value?.size > 700000) {
-        alert(`Image size too big (${formatBytes(value?.size)})`);
-        setValues({ ...values, src: "" });
-      } else {
-        toBase64(value).then((base64) => {
-          setDetail({ ...detail, src: base64 });
-          setImageSize(value?.size);
-        });
+    if (id == "images" && value) {
+      let imageLeft = [];
+      let skipImage = 0;
+
+      Array.from(value).forEach(async (image) => {
+        console.log({ image });
+        if (image?.size < 700000) {
+          toBase64(image)
+            .then((base64Img) => imageLeft.push(base64Img))
+            .finally(() => setDetail({ ...detail, images: imageLeft }));
+        } else {
+          skipImage += 1;
+        }
+      });
+      if (skipImage != 0) {
+        alert(`(${skipImage}) Image size too big`);
+        setDetail({ ...detail, images: [] });
       }
     } else {
       setDetail({ ...detail, [id]: value });
@@ -69,21 +77,30 @@ const useAdminGallery = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     setLoading(true);
     event.preventDefault();
-    client
-      .put(`/api/gallery/${detail?.path}`, detail)
-      .then((res) => mutate())
-      .finally(() => {
-        setOpenModal(false);
-        setLoading(false);
-        setDetail({
-          title: "",
-          src: "",
-          date: moment().format("YYYY-MM-DD"),
-        });
-      });
+    const newDetail = { ...detail };
+    delete newDetail["images"];
+    await client.put(`/api/gallery/${detail?.path}`, newDetail);
+
+    let uploaded = 0;
+    for (const img of detail?.images) {
+      const payload = {
+        image: img,
+        title: detail?.title,
+        date: detail?.date,
+      };
+      await client.post(`/api/gallery`, payload);
+      uploaded += 1;
+      setCounter(uploaded + 1);
+    }
+    if (uploaded === detail?.images?.length) {
+      setOpenModal(false);
+      setLoading(false);
+      setDetail(null);
+      mutate();
+    }
   };
 
   const handleSubmitAdd = async (event) => {

@@ -4,21 +4,23 @@ import fetcher from "@/lib/fetcher";
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 
-const useGallery = () => {
-  const [size] = useState(1);
+const useGalleryPath = (params) => {
+  const [size] = useState(7);
   const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
   const [loadingBtn, setLoadingBtn] = useState(false);
 
-  const { data, isLoading } = useSWR(`/api/gallery`, fetcher);
+  const { data, isLoading } = useSWR(
+    `/api/gallery/${params}?page=${page}&size=${size}`,
+    fetcher
+  );
 
   const handlePagination = () => {
     setLoadingBtn(true);
     client
-      .get(`/api/gallery?page=${page + 1}&size=${size}`)
+      .get(`/api/gallery/${params}?page=${page + 1}&size=${size}`)
       .then((res) => {
-        const newData = res?.data?.data?.map((item) => item?.data);
-        handleGroupImages(newData);
+        handleGroupImages(res?.data?.data);
       })
       .finally(() => {
         setLoadingBtn(false);
@@ -34,6 +36,7 @@ const useGallery = () => {
     let groupImages = [];
     const chunkSize = 3;
     for (let i = 0; i < img?.length; i += chunkSize) {
+      console.log({ img });
       const chunk = img?.slice(i, i + chunkSize);
       groupImages.push(chunk);
     }
@@ -42,12 +45,11 @@ const useGallery = () => {
 
   useEffect(() => {
     if (data?.total != 0) {
-      const newData = data?.data?.map((item) => item?.data);
-      handleGroupImages(newData);
+      handleGroupImages(data?.data);
     }
   }, [data]);
 
   return { images, isLoading, page, handlePagination, loadingBtn, data };
 };
 
-export default useGallery;
+export default useGalleryPath;
