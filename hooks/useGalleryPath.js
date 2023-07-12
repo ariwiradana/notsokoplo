@@ -16,14 +16,16 @@ const useGalleryPath = (params) => {
   );
 
   const handlePagination = () => {
+    let newPage = page + 1;
     setLoadingBtn(true);
     client
-      .get(`/api/gallery/${params}?page=${page + 1}&size=${size}`)
+      .get(`/api/gallery/${params}?page=${newPage}&size=${size}`)
       .then((res) => {
         handleGroupImages(res?.data?.data);
       })
       .finally(() => {
         setLoadingBtn(false);
+        setPage(newPage);
       });
     window.scroll({
       top: document.body.offsetHeight,
