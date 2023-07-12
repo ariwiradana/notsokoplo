@@ -31,7 +31,7 @@ const GalleryPathComponent = ({ params }) => {
           }`}
         >
           <h1
-            className={`text-gray-800 relative z-20 transition-all ease-in-out duration-500 text-center font-semibold text-xl md:text-2xl lg:text-3xl font-montserrat`}
+            className={`text-gray-800 relative z-20 transition-all ease-in-out duration-500 text-center font-semibold text-xl md:text-2xl lg:text-4xl font-montserrat`}
           >
             {title}
           </h1>
