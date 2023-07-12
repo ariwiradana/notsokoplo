@@ -8,6 +8,7 @@ const useGalleryPath = (params) => {
   const [size] = useState(9);
   const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
+  const [imageBase64, setImageBase64] = useState([]);
   const [loadingBtn, setLoadingBtn] = useState(false);
 
   const { data, isLoading } = useSWR(
@@ -31,7 +32,9 @@ const useGalleryPath = (params) => {
     //   groupImages.push(chunk);
     // }
     // setImages([...groupImages, ...images]);
+    const newBase64 = newImg?.map((img) => img?.image);
     setImages([...images, ...newImg]);
+    setImageBase64([...imageBase64, ...newBase64]);
   };
 
   useEffect(() => {
@@ -41,7 +44,15 @@ const useGalleryPath = (params) => {
     }
   }, [data]);
 
-  return { images, isLoading, page, handlePagination, loadingBtn, data };
+  return {
+    images,
+    isLoading,
+    page,
+    handlePagination,
+    loadingBtn,
+    data,
+    imageBase64,
+  };
 };
 
 export default useGalleryPath;

@@ -12,7 +12,7 @@ import useLightbox from "@/hooks/useLightbox";
 import Image from "next/image";
 
 const GalleryPathComponent = ({ params }) => {
-  const { images, isLoading, handlePagination, loadingBtn, data } =
+  const { images, isLoading, handlePagination, loadingBtn, data, imageBase64 } =
     useGalleryPath(params);
   const { position } = useNavbar();
   const {
@@ -22,23 +22,15 @@ const GalleryPathComponent = ({ params }) => {
     setIndexImg,
   } = useLightbox();
 
-  // if (!images) return <></>;
-
   const title = data ? titleCase(data?.data[0]?.title) : "";
   const dates = data
     ? moment(data?.data[0]?.date).format("dddd, D MMMM YYYY")
     : "";
 
-  const imageData = images?.map((img) => img?.image);
-
   return (
     <>
-      <Seo title={`${title} | Gallery`} />
-      <Lightbox
-        slide={indexImg}
-        open={openLightbox}
-        sources={imageData || []}
-      />
+      <Seo title={`${title || "Gallery"}`} />
+      <Lightbox slide={indexImg} open={openLightbox} sources={imageBase64} />
       <Layout>
         <div className="min-h-screen">
           <div
