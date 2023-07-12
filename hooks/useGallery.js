@@ -13,15 +13,18 @@ const useGallery = () => {
   const { data, isLoading } = useSWR(`/api/gallery`, fetcher);
 
   const handlePagination = () => {
+    let newPage = page;
+
     setLoadingBtn(true);
     client
-      .get(`/api/gallery?page=${page + 1}&size=${size}`)
+      .get(`/api/gallery?page=${newPage + 1}&size=${size}`)
       .then((res) => {
         const newData = res?.data?.data?.map((item) => item?.data);
         handleGroupImages(newData);
       })
       .finally(() => {
         setLoadingBtn(false);
+        setPage(newPage + 1);
       });
     window.scroll({
       top: document.body.offsetHeight,
