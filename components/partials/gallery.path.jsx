@@ -42,7 +42,7 @@ const GalleryPathComponent = ({ params }) => {
                   className="w-full bg-cover md:max-h-full overflow-hidden relative group"
                 >
                   <img
-                    class="h-full md:max-h-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
+                    class="h-full md:max-h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
                     src={image}
                     alt={alt}
                   />
