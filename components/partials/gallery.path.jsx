@@ -16,65 +16,84 @@ const GalleryPathComponent = ({ params }) => {
   if (!images) return <></>;
 
   const title = data ? titleCase(data?.data[0]?.title) : "";
-  const dates = data ? moment(data?.data[0]?.date).format("dddd, D MMMM YYYY") : "";
+  const dates = data
+    ? moment(data?.data[0]?.date).format("dddd, D MMMM YYYY")
+    : "";
 
   return (
     <>
       <Seo title={`${title} | Gallery`} />
-      <Loading isLoading={isLoading} />
       <Layout>
-        <div
-          className={`py-8 lg:py-24 ${
-            position > 10 ? "md:mt-16 mt-12" : "md:mt-24 mt-16"
-          }`}
-        >
-          <h1
-            className={`text-gray-800 relative z-20 transition-all ease-in-out duration-500 text-center font-semibold text-xl md:text-2xl lg:text-4xl font-montserrat`}
+        <div className="min-h-screen">
+          <div
+            className={`py-8 lg:py-24 ${
+              position > 10 ? "md:mt-16 mt-12" : "md:mt-24 mt-16"
+            }`}
           >
-            {title}
-          </h1>
-          <h6 className="text-center font-montserrat uppercase text-sm lg:text-base lg:mt-1">{dates}</h6>
-        </div>
-        <div
-          class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500 min-h-screen`}
-        >
-          {images?.map((image, index) => (
-            <div class="grid grid-cols-1 gap-1" key={`row-${index}`}>
-              {image?.map(({ image, alt, title, date, path }) => (
-                <div
-                  key={alt}
-                  className="w-full bg-cover overflow-hidden relative group"
-                >
-                  <img
-                    class="h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
-                    src={image}
-                    alt={alt}
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-        {data?.total > images?.flat()?.length && (
-          <div className="flex justify-center py-4">
-            <button
-              onClick={handlePagination}
-              className="px-4 h-8 rounded font-raleway font-medium text-black border border-gray-400 text-[10px] tracking-wider uppercase"
+            <h1
+              className={`text-gray-800 relative z-20 transition-all ease-in-out duration-500 text-center font-semibold text-xl md:text-2xl lg:text-4xl font-montserrat`}
             >
-              {loadingBtn ? (
-                <RotatingLines
-                  strokeColor="grey"
-                  strokeWidth="5"
-                  animationDuration="0.75"
-                  width="20"
-                  visible={true}
-                />
-              ) : (
-                "Show more"
-              )}
-            </button>
+              {title}
+            </h1>
+            <h6 className="text-center font-montserrat uppercase text-sm lg:text-base lg:mt-1">
+              {dates}
+            </h6>
           </div>
-        )}
+
+          <div
+            class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500`}
+          >
+            {images?.map((image, index) => (
+              <div class="grid grid-cols-1 gap-1" key={`row-${index}`}>
+                {image?.map(({ image, alt, title, date, path }) => (
+                  <div
+                    key={alt}
+                    className="w-full bg-cover overflow-hidden relative group"
+                  >
+                    <img
+                      class="h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
+                      src={image}
+                      alt={alt}
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center">
+            <RotatingLines
+              strokeColor="grey"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="20"
+              visible={true}
+            />
+          </div>
+
+          {data?.total > images?.flat()?.length && !isLoading ? (
+            <div className="flex justify-center py-4">
+              <button
+                onClick={handlePagination}
+                className="px-4 h-8 rounded font-raleway font-medium text-black border border-gray-400 text-[10px] tracking-wider uppercase"
+              >
+                {loadingBtn ? (
+                  <RotatingLines
+                    strokeColor="grey"
+                    strokeWidth="5"
+                    animationDuration="0.75"
+                    width="20"
+                    visible={true}
+                  />
+                ) : (
+                  "Show more"
+                )}
+              </button>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
       </Layout>
     </>
   );
