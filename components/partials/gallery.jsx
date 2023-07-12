@@ -24,7 +24,7 @@ const GalleryComponent = () => {
           }`}
         >
           {images?.map((image, index) => (
-            <div class="grid gap-1" key={`row-${index}`}>
+            <div className="grid gap-1" key={`row-${index}`}>
               {image?.map(({ image, alt, title, date, path }) => (
                 <div
                   key={alt}
@@ -32,7 +32,7 @@ const GalleryComponent = () => {
                 >
                   <Link href={`/gallery/${path}`}>
                     <img
-                      class="h-full w-full md:max-h-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
+                      className="h-full w-full md:max-h-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
                       src={image}
                       alt={alt}
                     />

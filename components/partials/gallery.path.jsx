@@ -27,10 +27,11 @@ const GalleryPathComponent = ({ params }) => {
     ? moment(data?.data[0]?.date).format("dddd, D MMMM YYYY")
     : "";
 
+  console.log({ imageBase64 });
+
   return (
     <>
       <Seo title={`${title || "Gallery"}`} />
-      <Lightbox slide={indexImg} open={openLightbox} sources={imageBase64} />
       <Layout>
         <div className="min-h-screen">
           <div
@@ -52,7 +53,7 @@ const GalleryPathComponent = ({ params }) => {
             class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500`}
           >
             {images?.map((image, index) => (
-              <div class="grid grid-cols-1 gap-1" key={`row-${index}`}>
+              <div className="grid grid-cols-1 gap-1" key={`row-${index}`}>
                 {image?.map(({ image, alt }, imgIdx) => (
                   <div
                     onClick={() => {
@@ -63,7 +64,7 @@ const GalleryPathComponent = ({ params }) => {
                     className="w-full bg-cover overflow-hidden relative group"
                   >
                     <img
-                      class="h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
+                      className="h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
                       src={image}
                       alt={alt}
                     />
@@ -89,7 +90,7 @@ const GalleryPathComponent = ({ params }) => {
                 >
                   <Image
                     fill
-                    class="h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
+                    className="h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
                     src={el?.image}
                     alt={el?.alt}
                   />
@@ -133,6 +134,8 @@ const GalleryPathComponent = ({ params }) => {
           )}
         </div>
       </Layout>
+
+      <Lightbox slide={indexImg} open={openLightbox} sources={imageBase64} />
     </>
   );
 };
