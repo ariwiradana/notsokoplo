@@ -29,11 +29,11 @@ const GalleryComponent = () => {
               {image?.map(({ image, alt, title, date, path }) => (
                 <div
                   key={alt}
-                  className="w-full bg-cover max-h-[30vh] md:max-h-full overflow-hidden relative group cursor-pointer"
+                  className="w-full bg-cover md:max-h-full overflow-hidden relative group cursor-pointer"
                 >
                   <Link href={`/gallery/${path}`}>
                     <img
-                      class="h-full max-h-[30vh] w-full md:max-h-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
+                      class="h-full w-full md:max-h-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
                       src={image}
                       alt={alt}
                     />

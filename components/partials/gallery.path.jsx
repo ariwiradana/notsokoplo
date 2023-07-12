@@ -18,19 +18,25 @@ const GalleryPathComponent = ({ params }) => {
   if (!images) return <></>;
 
   const title = data ? titleCase(data?.data[0]?.title) : "";
+  const dates = data ? moment(data?.data[0]?.date).format("dddd, D MMMM YYYY") : "";
 
   return (
     <>
       <Seo title={`${title} | Gallery`} />
       <Loading isLoading={isLoading} />
       <Layout>
-        <h1
-          className={`text-gray-800 relative z-20 py-8 lg:py-24 transition-all ease-in-out duration-500 text-center font-semibold text-xl md:text-2xl lg:text-3xl font-montserrat ${
+        <div
+          className={`py-8 lg:py-24 ${
             position > 10 ? "md:mt-16 mt-12" : "md:mt-24 mt-16"
           }`}
         >
-          {title}
-        </h1>
+          <h1
+            className={`text-gray-800 relative z-20 transition-all ease-in-out duration-500 text-center font-semibold text-xl md:text-2xl lg:text-3xl font-montserrat`}
+          >
+            {title}
+          </h1>
+          <h6 className="text-center font-montserrat uppercase text-sm lg:text-base lg:mt-1">{dates}</h6>
+        </div>
         <div
           class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500 min-h-screen`}
         >
@@ -39,10 +45,10 @@ const GalleryPathComponent = ({ params }) => {
               {image?.map(({ image, alt, title, date, path }) => (
                 <div
                   key={alt}
-                  className="w-full bg-cover md:max-h-full overflow-hidden relative group"
+                  className="w-full bg-cover overflow-hidden relative group"
                 >
                   <img
-                    class="h-full md:max-h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
+                    class="h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
                     src={image}
                     alt={alt}
                   />
