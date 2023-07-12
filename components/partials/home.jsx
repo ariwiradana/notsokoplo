@@ -8,14 +8,12 @@ import useSlideshow from "@/hooks/useSlideshow";
 const HomePage = () => {
   const { data, isLoading } = useSlideshow();
 
-  if (!data) return <></>;
-
   return (
     <>
       <Seo title="Notsokoplo" />
       <Loading isLoading={isLoading} />
       <Layout>
-        <FullscreenThumbnail data={data} />
+        {data && <FullscreenThumbnail data={data} />}
         <div className="h-screen bg-white mt-[100vh] relative z-10 py-32">
           {/* <Gigs /> */}
         </div>
