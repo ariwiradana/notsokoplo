@@ -61,7 +61,7 @@ const GalleryPathComponent = ({ params }) => {
             ))}
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex justify-center py-4">
             <RotatingLines
               strokeColor="grey"
               strokeWidth="5"
