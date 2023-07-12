@@ -18,20 +18,7 @@ const useGalleryPath = (params) => {
   const handlePagination = () => {
     let newPage = page + 1;
     setLoadingBtn(true);
-    client
-      .get(`/api/gallery/${params}?page=${newPage}&size=${size}`)
-      .then((res) => {
-        handleGroupImages(res?.data?.data);
-      })
-      .finally(() => {
-        setLoadingBtn(false);
-        setPage(newPage);
-      });
-    window.scroll({
-      top: document.body.offsetHeight,
-      left: 0,
-      behavior: "smooth",
-    });
+    setPage(newPage);
   };
 
   const handleGroupImages = (img) => {
@@ -48,6 +35,7 @@ const useGalleryPath = (params) => {
   useEffect(() => {
     if (data?.total != 0) {
       handleGroupImages(data?.data);
+      setLoadingBtn(false);
     }
   }, [data]);
 
