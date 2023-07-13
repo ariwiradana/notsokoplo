@@ -1,7 +1,5 @@
-import { THUMBNAIL_IMAGES } from "@/constants/thumbnail.images";
-import client from "@/lib/axios";
 import fetcher from "@/lib/fetcher";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 const useGalleryPath = (params) => {
