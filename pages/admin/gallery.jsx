@@ -1,19 +1,14 @@
 import Button from "@/components/elements/button";
 import InputText from "@/components/elements/input";
 import CustomModal from "@/components/elements/modal";
-import Container from "@/components/molecules/container";
-import Lightbox from "@/components/molecules/lightbox";
-import CurcularProgressbar from "@/components/molecules/line.loading";
-import Loading from "@/components/molecules/loading";
+import Container from "@/components/elements/container";
+import Loading from "@/components/elements/loading";
 import Navbar from "@/components/molecules/navbar.admin";
 import Seo from "@/components/partials/seo";
 import useAdminGallery from "@/hooks/admin/useAdminGallery";
-import { formatBytes } from "@/lib/bytesConvert";
-import { Pagination } from "@mui/material";
 import moment from "moment";
 import Image from "next/image";
 import React from "react";
-import { FiEdit, FiTrash } from "react-icons/fi";
 import { HiPencil, HiTrash } from "react-icons/hi";
 
 const AdminGallery = () => {

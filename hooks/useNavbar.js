@@ -1,6 +1,8 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 const useNavbar = () => {
+  const { pathname } = useRouter();
   const [position, setPosition] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -25,7 +27,7 @@ const useNavbar = () => {
     }
   }, [showSidebar]);
 
-  return { position, showSidebar, setShowSidebar };
+  return { position, showSidebar, setShowSidebar, pathname };
 };
 
 export default useNavbar;

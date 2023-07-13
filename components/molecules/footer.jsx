@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "./container";
+import Container from "../elements/container";
 import { NAVICONS } from "@/constants/nav.icons";
 import Link from "next/link";
 import { FiChevronUp } from "react-icons/fi";
@@ -9,8 +9,8 @@ const Footer = () => {
     <div className="bg-gray-100 relative z-10">
       <Container className="grid grid-cols-1 md:grid-cols-3 gap-y-4 py-4 px-6 md:px-8 2xl:px-0">
         <div className="order-2 md:order-1 flex items-center justify-center md:justify-start">
-          <h5 className="text-gray-400 font-raleway font-light uppercase text-xs">
-            @Notsokoplo <span> 2021</span>
+          <h5 className="text-gray-400 font-raleway font-light text-xs">
+            @notsokoplo <span> 2023</span>
           </h5>
         </div>
         <div className="flex justify-center gap-x-5 md:gap-x-8 order-1">
@@ -24,7 +24,7 @@ const Footer = () => {
           className="hidden md:flex items-center gap-x-1 justify-end order-3"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <h5 className="text-gray-400 font-raleway font-light uppercase text-xs">
+          <h5 className="text-gray-400 font-raleway font-light text-xs">
             Top
           </h5>
           <FiChevronUp className="text-gray-400" />

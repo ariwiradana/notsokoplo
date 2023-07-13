@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../molecules/layout";
-import Loading from "../molecules/loading";
+import Loading from "../elements/loading";
 import useGallery from "@/hooks/useGallery";
 import Seo from "./seo";
 import useNavbar from "@/hooks/useNavbar";

@@ -1,13 +1,13 @@
 import React from "react";
 import Layout from "../molecules/layout";
-import Loading from "../molecules/loading";
+import Loading from "../elements/loading";
 import Seo from "./seo";
 import useNavbar from "@/hooks/useNavbar";
 import moment from "moment";
 import { RotatingLines } from "react-loader-spinner";
 import useGalleryPath from "@/hooks/useGalleryPath";
 import { titleCase } from "@/lib/titleCase";
-import Lightbox from "../molecules/lightbox";
+import Lightbox from "../elements/lightbox";
 import useLightbox from "@/hooks/useLightbox";
 import Image from "next/image";
 
@@ -114,7 +114,7 @@ const GalleryPathComponent = ({ params }) => {
             <div className="flex justify-center py-4">
               <button
                 onClick={handlePagination}
-                className="px-4 h-8 rounded font-raleway font-medium text-black border border-gray-400 text-[10px] tracking-wider uppercase"
+                className="px-4 h-8 rounded-sm font-raleway font-medium text-black border border-gray-400 text-[10px] tracking-wider uppercase"
               >
                 {loadingBtn ? (
                   <RotatingLines
@@ -125,7 +125,7 @@ const GalleryPathComponent = ({ params }) => {
                     visible={true}
                   />
                 ) : (
-                  "Show more"
+                  "Load More"
                 )}
               </button>
             </div>

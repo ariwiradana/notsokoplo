@@ -1,7 +1,7 @@
 import { NAVLINKSADMIN } from "@/constants/nav.links";
 import Link from "next/link";
 import React from "react";
-import Container from "./container";
+import Container from "../elements/container";
 import useNavbar from "@/hooks/useNavbar";
 import Image from "next/image";
 import { HiOutlineMenuAlt2, HiX } from "react-icons/hi";
@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`bg-black fixed inset-x-0 top-0 px-6 md:px-8 2xl:px-0 transition-all ease-in-out duration-500 delay-150 z-50 ${
+        className={`bg-black fixed inset-x-0 top-0 px-6 md:px-8 2xl:px-0 transition-all ease-in-out duration-500 delay-150 z-10 ${
           position > 10 ? "md:h-16 h-12" : "md:h-24 h-16"
         }`}
       >

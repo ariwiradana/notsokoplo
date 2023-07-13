@@ -6,7 +6,7 @@ const Button = ({ title, full, loading, disabled, ...props }, ref) => {
     <button
       ref={ref}
       {...props}
-      className={`bg-gray-900 rounded-lg relative text-white font-medium font-raleway flex justify-center items-center text-sm h-10 px-4 ${
+      className={`bg-gray-900 rounded-md font-medium tracking-wide relative text-white font-raleway flex justify-center items-center text-sm h-10 px-4 ${
         full ? "w-full" : "w-auto"
       } ${
         disabled || loading

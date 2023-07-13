@@ -1,10 +1,12 @@
 import React from "react";
-import Container from "./container";
+import Container from "../elements/container";
 
 const Gigs = () => {
   return (
     <Container>
-      <h2 className="text-4xl font-semibold text-black text-center font-montserrat uppercase">Upcoming Gigs</h2>
+      <h2 className="text-4xl font-semibold text-black text-center font-montserrat uppercase">
+        Upcoming Gigs
+      </h2>
     </Container>
   );
 };

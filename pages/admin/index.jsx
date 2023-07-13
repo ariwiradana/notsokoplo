@@ -1,8 +1,8 @@
 import Button from "@/components/elements/button";
 import InputText from "@/components/elements/input";
 import CustomModal from "@/components/elements/modal";
-import Container from "@/components/molecules/container";
-import Loading from "@/components/molecules/loading";
+import Container from "@/components/elements/container";
+import Loading from "@/components/elements/loading";
 import Navbar from "@/components/molecules/navbar.admin";
 import Seo from "@/components/partials/seo";
 import useAdminSlideshow from "@/hooks/admin/useAdminSlideshow";
@@ -26,6 +26,7 @@ const Admin = () => {
     openModalDelete,
     setOpenModalDelete,
   } = useAdminSlideshow();
+
   return (
     <>
       <Navbar />
@@ -36,7 +37,9 @@ const Admin = () => {
         title="Delete Slideshow Image"
         open={openModalDelete}
         onClose={() => {
-          if (!loading) setOpenModalDelete();
+          if (!loading) {
+            setOpenModalDelete(false);
+          }
         }}
       >
         <FormDeleteSlideshow
