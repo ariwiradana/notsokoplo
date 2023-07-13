@@ -39,26 +39,22 @@ const useAdminSlideshow = () => {
     setLoading(true);
     event.preventDefault();
 
-    let uploaded = 0;
-    for (const img of values?.images) {
-      const payload = {
-        image: img,
-      };
-      console.log({ payload });
-      await client.post(`/api/slideshow`, payload);
-      uploaded += 1;
-    }
+    const payload = values?.images?.map((image) => {
+      return { image };
+    });
 
-    if (uploaded === values?.images?.length) {
-      setOpenModal(false);
-      setLoading(false);
-      setValues(null);
-      mutate();
-    }
+    await client
+      .post(`/api/slideshow`, payload)
+      .then(() => {
+        setOpenModal(false);
+        setLoading(false);
+        setValues(null);
+      })
+      .finally(() => mutate());
   };
 
   const handleDelete = async (e, _id) => {
-    setLoading(true)
+    setLoading(true);
     e.preventDefault();
     client.delete(`/api/slideshow/${_id}`).finally(() => {
       mutate();
