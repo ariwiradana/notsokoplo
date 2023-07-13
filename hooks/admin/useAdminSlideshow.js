@@ -58,10 +58,12 @@ const useAdminSlideshow = () => {
   };
 
   const handleDelete = async (e, _id) => {
+    setLoading(true)
     e.preventDefault();
     client.delete(`/api/slideshow/${_id}`).finally(() => {
       mutate();
       setOpenModalDelete(false);
+      setLoading(false);
     });
   };
 

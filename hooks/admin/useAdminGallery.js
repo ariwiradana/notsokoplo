@@ -30,10 +30,12 @@ const useAdminGallery = () => {
   };
 
   const handleDelete = async (e, path) => {
+    setLoading(true);
     e.preventDefault();
     client.delete(`/api/gallery/${path}`).finally(() => {
       setOpenModalDelete(false);
       mutate();
+      setLoading(false);
     });
   };
 
