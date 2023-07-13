@@ -21,12 +21,29 @@ const Admin = () => {
     handleSubmitAdd,
     loading,
     handleDelete,
+    id,
+    setId,
+    openModalDelete,
+    setOpenModalDelete,
   } = useAdminSlideshow();
   return (
     <>
       <Navbar />
       <Loading isLoading={isLoading} />
       <Seo title="Notsokoplo | Admin" />
+
+      <CustomModal
+        title="Delete Slideshow Image"
+        open={openModalDelete}
+        onClose={setOpenModalDelete}
+      >
+        <FormDeleteSlideshow
+          id={id}
+          onSubmit={handleDelete}
+          loading={loading}
+        />
+      </CustomModal>
+
       <CustomModal
         title="Add Slideshow Image"
         open={openModal}
@@ -82,7 +99,10 @@ const Admin = () => {
                           </div>
                           <div className="absolute bottom-4 right-4 lg:bottom-5 lg:right-5">
                             <button
-                              onClick={() => handleDelete(_id)}
+                              onClick={() => {
+                                setOpenModalDelete(true);
+                                setId(_id);
+                              }}
                               className="font-medium text-gray-700 border bg-white rounded-md p-1"
                             >
                               <HiTrash size={20} />
@@ -103,6 +123,19 @@ const Admin = () => {
 };
 
 export default Admin;
+
+const FormDeleteSlideshow = ({ loading, onSubmit, id }) => {
+  return (
+    <form onSubmit={(e) => onSubmit(e, id)}>
+      <p className="text-sm font-montserrat text-gray-500">
+        Apakah gak salah pencet delete foto ini ?
+      </p>
+      <div className="mt-6 w-full">
+        <Button type="submit" loading={loading} title="Delete" full />
+      </div>
+    </form>
+  );
+};
 
 const FormAddSlideshow = ({ onChangeFormAdd, values, loading, onSubmit }) => {
   return (

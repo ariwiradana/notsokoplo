@@ -29,6 +29,8 @@ const AdminGallery = () => {
     loading,
     values,
     imageSize,
+    openModalDelete,
+    path,
     handleChange,
     handleSubmit,
     setOpenModal,
@@ -39,6 +41,8 @@ const AdminGallery = () => {
     setOpenModalAdd,
     setImageSize,
     handleDelete,
+    setOpenModalDelete,
+    setPath,
   } = useAdminGallery();
 
   return (
@@ -46,6 +50,24 @@ const AdminGallery = () => {
       <Navbar />
       <Seo title="Notsokoplo | Admin" />
 
+      {/* Modal Delete Gallery */}
+      <CustomModal
+        title="Delete Gallery"
+        open={openModalDelete}
+        onClose={() => {
+          if (!loading) {
+            setOpenModalDelete(false);
+          }
+        }}
+      >
+        <FormDeleteGallery
+          path={path}
+          loading={loading}
+          onSubmit={handleDelete}
+        />
+      </CustomModal>
+
+      {/* Modal Add Gallery */}
       <CustomModal
         title="Add Gallery"
         open={openModalAdd}
@@ -64,6 +86,8 @@ const AdminGallery = () => {
           values={values}
         />
       </CustomModal>
+
+      {/* Modal Edit Gallery */}
       <CustomModal
         title="Edit Gallery"
         open={openModal}
@@ -161,7 +185,10 @@ const AdminGallery = () => {
                               <HiPencil size={20} />
                             </button>
                             <button
-                              onClick={() => handleDelete(col?.data?.path)}
+                              onClick={() => {
+                                setOpenModalDelete(true);
+                                setPath(col?.data?.path);
+                              }}
                               className="font-medium text-gray-700 border border-gray-200 rounded-md bg-white p-1"
                             >
                               <HiTrash size={20} />
@@ -259,6 +286,20 @@ const FormEditGallery = ({
     </>
   );
 };
+
+const FormDeleteGallery = ({ loading, onSubmit, path }) => {
+  return (
+    <form onSubmit={(e) => onSubmit(e, path)}>
+      <p className="text-sm font-montserrat text-gray-500">
+        Apakah gak salah pencet delete event ini ?
+      </p>
+      <div className="mt-6 w-full">
+        <Button type="submit" loading={loading} title="Delete" full />
+      </div>
+    </form>
+  );
+};
+
 const FormAddGallery = ({
   formRef,
   onChangeForm,

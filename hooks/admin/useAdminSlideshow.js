@@ -6,8 +6,10 @@ import useSWR from "swr";
 
 const useAdminSlideshow = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
   const [loading, setLoading] = useState(false);
   const [values, setValues] = useState(null);
+  const [id, setId] = useState(null);
 
   const { data, isLoading, mutate } = useSWR("/api/slideshow", fetcher);
 
@@ -55,22 +57,30 @@ const useAdminSlideshow = () => {
     }
   };
 
-  const handleDelete = async (_id) => {
-    client.delete(`/api/slideshow/${_id}`).finally(() => mutate());
+  const handleDelete = async (e, _id) => {
+    e.preventDefault();
+    client.delete(`/api/slideshow/${_id}`).finally(() => {
+      mutate();
+      setOpenModalDelete(false);
+    });
   };
 
   return {
     data,
     isLoading,
     values,
-    mutate,
     openModal,
     loading,
+    openModalDelete,
+    id,
+    mutate,
     setOpenModal,
     setValues,
     onChangeFormAdd,
     handleSubmitAdd,
     handleDelete,
+    setOpenModalDelete,
+    setId,
   };
 };
 

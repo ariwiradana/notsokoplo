@@ -7,6 +7,7 @@ import useSWR from "swr";
 
 const useAdminGallery = () => {
   const [counter, setCounter] = useState(0);
+  const [path, setPath] = useState(null);
   const formRef = useRef("");
   const [values, setValues] = useState({
     title: "",
@@ -18,6 +19,7 @@ const useAdminGallery = () => {
   const [detail, setDetail] = useState(null);
   const [openModalAdd, setOpenModalAdd] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
   const [page, setPage] = useState(1);
   const [size] = useState(5);
   const [loading, setLoading] = useState(false);
@@ -27,12 +29,16 @@ const useAdminGallery = () => {
     setPage(value);
   };
 
-  const handleDelete = async (path) => {
-    client.delete(`/api/gallery/${path}`).finally(() => mutate());
+  const handleDelete = async (e, path) => {
+    e.preventDefault();
+    client.delete(`/api/gallery/${path}`).finally(() => {
+      setOpenModalDelete(false);
+      mutate();
+    });
   };
 
-  const onChangeForm = (value, id) => {
-    if (id == "images" && value) {
+  const onChangeForm = (value, path) => {
+    if (path == "images" && value) {
       let imageLeft = [];
       let skipImage = 0;
 
@@ -51,12 +57,12 @@ const useAdminGallery = () => {
         setDetail({ ...detail, images: [] });
       }
     } else {
-      setDetail({ ...detail, [id]: value });
+      setDetail({ ...detail, [path]: value });
     }
   };
 
-  const onChangeFormAdd = (value, id) => {
-    if (id == "images" && value) {
+  const onChangeFormAdd = (value, path) => {
+    if (path == "images" && value) {
       let imageLeft = [];
       let skipImage = 0;
       Array.from(value).forEach(async (image) => {
@@ -73,7 +79,7 @@ const useAdminGallery = () => {
         setValues({ ...values, images: [] });
       }
     } else {
-      setValues({ ...values, [id]: value });
+      setValues({ ...values, [path]: value });
     }
   };
 
@@ -155,6 +161,8 @@ const useAdminGallery = () => {
     loading,
     imageSize,
     counter,
+    openModalDelete,
+    path,
     handleChange,
     setOpenModal,
     setDetail,
@@ -165,6 +173,8 @@ const useAdminGallery = () => {
     setOpenModalAdd,
     setImageSize,
     handleDelete,
+    setOpenModalDelete,
+    setPath,
   };
 };
 
