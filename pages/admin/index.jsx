@@ -52,7 +52,11 @@ const Admin = () => {
       <CustomModal
         title="Add Slideshow Image"
         open={openModal}
-        onClose={setOpenModal}
+        onClose={() => {
+          if (!loading) {
+            setOpenModal(false);
+          }
+        }}
       >
         <FormAddSlideshow
           onSubmit={handleSubmitAdd}
