@@ -35,7 +35,9 @@ const Admin = () => {
       <CustomModal
         title="Delete Slideshow Image"
         open={openModalDelete}
-        onClose={setOpenModalDelete}
+        onClose={() => {
+          if (!loading) setOpenModalDelete();
+        }}
       >
         <FormDeleteSlideshow
           id={id}
