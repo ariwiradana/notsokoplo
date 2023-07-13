@@ -85,7 +85,7 @@ const GalleryPathComponent = ({ params }) => {
                     setOpenLightbox(!openLightbox);
                     setIndexImg(index + 1);
                   }}
-                  className="w-full bg-cover overflow-hidden relative group border h-full min-h-[20vh] md:min-h-[30vh] lg:min-h-[40vh]"
+                  className="w-full bg-cover overflow-hidden relative group border h-full min-h-[45vh] md:min-h-[40vh] lg:min-h-[40vh]"
                   key={el?._id}
                 >
                   <Image
