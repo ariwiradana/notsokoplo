@@ -4,8 +4,7 @@ import Seo from "./seo";
 import Loading from "../elements/loading";
 import FullscreenThumbnail from "../molecules/fullscreen.thumbnail";
 import useSlideshow from "@/hooks/useSlideshow";
-import LinearProgressBar from "../elements/line.loading";
-import Player from "../molecules/player";
+import Gigs from "../molecules/gigs";
 
 const HomePage = () => {
   const { data, isLoading } = useSlideshow();
@@ -16,9 +15,8 @@ const HomePage = () => {
       <Loading isLoading={isLoading} />
       <Layout>
         {data && <FullscreenThumbnail data={data} />}
-        <div className="h-screen bg-white mt-[100vh] relative z-10 py-32">
-          {/* <Gigs /> */}
-          <LinearProgressBar progress={50} />
+        <div className="min-h-screen bg-white relative z-10 mt-[100vh]">
+          <Gigs />
         </div>
         {/* <Player /> */}
       </Layout>

@@ -7,5 +7,6 @@ export const NAVLINKS = [
 
 export const NAVLINKSADMIN = [
   { title: "Slideshow", path: "/admin" },
+  { title: "Gigs", path: "/admin/gigs" },
   { title: "Gallery", path: "/admin/gallery" },
 ];

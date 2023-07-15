@@ -31,7 +31,7 @@ const Admin = () => {
     <>
       <Navbar />
       <Loading isLoading={isLoading} />
-      <Seo title="Notsokoplo | Admin" />
+      <Seo title="Notsokoplo | Slideshow" />
 
       <CustomModal
         title="Delete Slideshow Image"

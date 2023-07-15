@@ -14,8 +14,6 @@ import { HiPencil, HiTrash } from "react-icons/hi";
 const AdminGallery = () => {
   const {
     data,
-    page,
-    size,
     isLoading,
     openModal,
     detail,
@@ -26,7 +24,6 @@ const AdminGallery = () => {
     imageSize,
     openModalDelete,
     path,
-    handleChange,
     handleSubmit,
     setOpenModal,
     setDetail,
@@ -43,7 +40,7 @@ const AdminGallery = () => {
   return (
     <>
       <Navbar />
-      <Seo title="Notsokoplo | Admin" />
+      <Seo title="Notsokoplo | Gallery" />
 
       {/* Modal Delete Gallery */}
       <CustomModal
@@ -118,13 +115,16 @@ const AdminGallery = () => {
 
           {data?.total != 0 && (
             <div className="relative overflow-x-auto shadow-md shadow-slate-200 sm:rounded-lg min-w-[50vw]">
-              <table className="w-full text-sm text-left text-gray-500 table-fixed lg:table-auto">
+              <table className="w-full text-sm text-left text-gray-500 table-auto">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                   <tr>
                     <th scope="col" className="lg:px-6 px-4 py-3">
                       Event
                     </th>
-                    <th scope="col" className="lg:px-6 px-4 py-3">
+                    <th
+                      scope="col"
+                      className="lg:px-6 px-4 py-3 hidden md:block"
+                    >
                       Thumbnail
                     </th>
                     <th scope="col" className="lg:px-6 px-4 py-3">
@@ -141,7 +141,7 @@ const AdminGallery = () => {
                       <tr className="bg-white border-b" key={col?.data?._id}>
                         <th scope="row" className="lg:px-6 px-4 py-4">
                           <div className="flex flex-col">
-                            <p className="font-medium text-gray-900">
+                            <p className="font-medium text-gray-900 min-w-[50px] leading-5">
                               {col?.data?.title}
                             </p>
                             <p className="font-normal text-xs">
@@ -149,7 +149,7 @@ const AdminGallery = () => {
                             </p>
                           </div>
                         </th>
-                        <td className="lg:px-6 px-4 py-4">
+                        <td className="lg:px-6 px-4 py-4 hidden md:block">
                           <div className="md:w-16 md:h-16 h-12 w-12 rounded-lg overflow-hidden relative">
                             <Image
                               alt={col?.data?.title}
@@ -163,31 +163,35 @@ const AdminGallery = () => {
                           {moment(col?.data?.date).format("dddd, D MMMM YYYY")}
                         </td>
                         <td className="lg:px-6 px-4 py-4">
-                          <div className="flex gap-2">
-                            <button
-                              onClick={() => {
-                                setDetail({
-                                  path: col?.data?.path,
-                                  title: col?.data?.title,
-                                  date: col?.data?.date,
-                                  images: [],
-                                });
-                                setImageSize(0);
-                                setOpenModal(true);
-                              }}
-                              className="font-medium text-gray-700 border border-gray-200 rounded-md bg-white p-1"
-                            >
-                              <HiPencil size={20} />
-                            </button>
-                            <button
-                              onClick={() => {
-                                setOpenModalDelete(true);
-                                setPath(col?.data?.path);
-                              }}
-                              className="font-medium text-gray-700 border border-gray-200 rounded-md bg-white p-1"
-                            >
-                              <HiTrash size={20} />
-                            </button>
+                          <div className="flex flex-col md:flex-row gap-2 items-center md:items-start">
+                            <div>
+                              <button
+                                onClick={() => {
+                                  setDetail({
+                                    path: col?.data?.path,
+                                    title: col?.data?.title,
+                                    date: col?.data?.date,
+                                    images: [],
+                                  });
+                                  setImageSize(0);
+                                  setOpenModal(true);
+                                }}
+                                className="font-medium text-gray-700 border border-gray-200 rounded-md bg-white p-1"
+                              >
+                                <HiPencil size={20} />
+                              </button>
+                            </div>
+                            <div>
+                              <button
+                                onClick={() => {
+                                  setOpenModalDelete(true);
+                                  setPath(col?.data?.path);
+                                }}
+                                className="font-medium text-gray-700 border border-gray-200 rounded-md bg-white p-1"
+                              >
+                                <HiTrash size={20} />
+                              </button>
+                            </div>
                           </div>
                         </td>
                       </tr>
@@ -246,6 +250,7 @@ const FormEditGallery = ({
           id="edit-image"
           full
         />
+
         {values?.images && values?.images?.length != 0 ? (
           <div className="grid grid-cols-6 gap-1">
             {values?.images?.map((img, idx) => (
