@@ -133,7 +133,10 @@ const useAdminGallery = () => {
         mutate();
         setCounter(0);
       })
-      .catch((error) => toast.error(error?.message));
+      .catch((error) => {
+        toast.error(error?.message);
+        setLoading(false);
+      });
   };
 
   const handleSubmitAdd = async (event) => {
@@ -169,7 +172,10 @@ const useAdminGallery = () => {
         mutate();
         setCounter(0);
       })
-      .catch((error) => toast.error(error?.message));
+      .catch((error) => {
+        toast.error(error?.message);
+        setLoading(false);
+      });
   };
 
   return {
