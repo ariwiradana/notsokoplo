@@ -3,6 +3,7 @@ import fetcher from "@/lib/fetcher";
 import { toBase64 } from "@/lib/toBase64";
 import moment from "moment";
 import { useRef, useState } from "react";
+import { toast } from "react-toastify";
 import useSWR from "swr";
 
 const useAdminGallery = () => {
@@ -32,11 +33,14 @@ const useAdminGallery = () => {
   const handleDelete = async (e, path) => {
     setLoading(true);
     e.preventDefault();
-    client.delete(`/api/gallery/${path}`).finally(() => {
-      setOpenModalDelete(false);
-      mutate();
-      setLoading(false);
-    });
+    client
+      .delete(`/api/gallery/${path}`)
+      .catch((error) => toast.error(error?.response?.data?.message))
+      .finally(() => {
+        setOpenModalDelete(false);
+        mutate();
+        setLoading(false);
+      });
   };
 
   const onChangeForm = (value, path) => {
@@ -108,13 +112,16 @@ const useAdminGallery = () => {
       newData.push(payload);
     }
 
-    await client.post(`/api/gallery/multi`, newData).finally(() => {
-      setOpenModal(false);
-      setLoading(false);
-      setDetail(null);
-      mutate();
-      setCounter(0);
-    });
+    await client
+      .post(`/api/gallery/multi`, newData)
+      .catch((error) => toast.error(error?.response?.data?.message))
+      .finally(() => {
+        setOpenModal(false);
+        setLoading(false);
+        setDetail(null);
+        mutate();
+        setCounter(0);
+      });
   };
 
   const handleSubmitAdd = async (event) => {
@@ -137,17 +144,20 @@ const useAdminGallery = () => {
       };
       newData.push(payload);
     }
-    await client.post(`/api/gallery/multi`, newData).finally(() => {
-      setOpenModalAdd(false);
-      setLoading(false);
-      setValues({
-        title: "",
-        images: [],
-        date: moment().format("YYYY-MM-DD"),
+    await client
+      .post(`/api/gallery/multi`, newData)
+      .catch((error) => toast.error(error?.response?.data?.message))
+      .finally(() => {
+        setOpenModalAdd(false);
+        setLoading(false);
+        setValues({
+          title: "",
+          images: [],
+          date: moment().format("YYYY-MM-DD"),
+        });
+        mutate();
+        setCounter(0);
       });
-      mutate();
-      setCounter(0);
-    });
   };
 
   return {

@@ -2,6 +2,7 @@ import client from "@/lib/axios";
 import fetcher from "@/lib/fetcher";
 import { toBase64 } from "@/lib/toBase64";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import useSWR from "swr";
 
 const useAdminSlideshow = () => {
@@ -50,17 +51,21 @@ const useAdminSlideshow = () => {
         setLoading(false);
         setValues(null);
       })
+      .catch((error) => toast.error(error?.response?.data?.message))
       .finally(() => mutate());
   };
 
   const handleDelete = async (e, _id) => {
     setLoading(true);
     e.preventDefault();
-    client.delete(`/api/slideshow/${_id}`).finally(() => {
-      mutate();
-      setOpenModalDelete(false);
-      setLoading(false);
-    });
+    client
+      .delete(`/api/slideshow/${_id}`)
+      .catch((error) => toast.error(error?.response?.data?.message))
+      .finally(() => {
+        mutate();
+        setOpenModalDelete(false);
+        setLoading(false);
+      });
   };
 
   return {

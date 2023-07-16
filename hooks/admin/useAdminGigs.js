@@ -44,6 +44,7 @@ const useAdminGigs = () => {
 
         setPage(1);
       })
+      .catch((error) => toast.error(error?.response?.data?.message))
       .finally(() => {
         mutate();
         setValues(initValues);
@@ -60,6 +61,7 @@ const useAdminGigs = () => {
         setOpenModalEdit(false);
         setLoading(false);
       })
+      .catch((error) => toast.error(error?.response?.data?.message))
       .finally(() => {
         mutate();
         setValues(initValues);
@@ -69,11 +71,14 @@ const useAdminGigs = () => {
   const handleDelete = async (e, _id) => {
     setLoading(true);
     e.preventDefault();
-    client.delete(`/api/gigs/${_id}`).finally(() => {
-      mutate();
-      setOpenModalDelete(false);
-      setLoading(false);
-    });
+    client
+      .delete(`/api/gigs/${_id}`)
+      .catch((error) => toast.error(error?.response?.data?.message))
+      .finally(() => {
+        mutate();
+        setOpenModalDelete(false);
+        setLoading(false);
+      });
   };
 
   return {
