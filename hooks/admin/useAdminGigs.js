@@ -41,14 +41,11 @@ const useAdminGigs = () => {
       .then(() => {
         setOpenModal(false);
         setLoading(false);
-
+        mutate();
+        setValues(initValues);
         setPage(1);
       })
       .catch((error) => toast.error(error?.response?.data?.message))
-      .finally(() => {
-        mutate();
-        setValues(initValues);
-      });
   };
 
   const handleSubmitEdit = async (event) => {
@@ -60,12 +57,10 @@ const useAdminGigs = () => {
       .then(() => {
         setOpenModalEdit(false);
         setLoading(false);
-      })
-      .catch((error) => toast.error(error?.response?.data?.message))
-      .finally(() => {
         mutate();
         setValues(initValues);
-      });
+      })
+      .catch((error) => toast.error(error?.response?.data?.message));
   };
 
   const handleDelete = async (e, _id) => {
@@ -73,12 +68,12 @@ const useAdminGigs = () => {
     e.preventDefault();
     client
       .delete(`/api/gigs/${_id}`)
-      .catch((error) => toast.error(error?.response?.data?.message))
-      .finally(() => {
+      .then(() => {
         mutate();
         setOpenModalDelete(false);
         setLoading(false);
-      });
+      })
+      .catch((error) => toast.error(error?.response?.data?.message));
   };
 
   return {

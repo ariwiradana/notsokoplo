@@ -50,9 +50,9 @@ const useAdminSlideshow = () => {
         setOpenModal(false);
         setLoading(false);
         setValues(null);
+        mutate();
       })
-      .catch((error) => toast.error(error?.response?.data?.message))
-      .finally(() => mutate());
+      .catch((error) => toast.error(error?.response?.data?.message));
   };
 
   const handleDelete = async (e, _id) => {
@@ -60,12 +60,12 @@ const useAdminSlideshow = () => {
     e.preventDefault();
     client
       .delete(`/api/slideshow/${_id}`)
-      .catch((error) => toast.error(error?.response?.data?.message))
-      .finally(() => {
+      .then(() => {
         mutate();
         setOpenModalDelete(false);
         setLoading(false);
-      });
+      })
+      .catch((error) => toast.error(error?.response?.data?.message));
   };
 
   return {
