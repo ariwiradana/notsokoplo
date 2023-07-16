@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 const useGalleryPath = (params) => {
-  const [size] = useState(9);
+  const [size] = useState(18);
   const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
   const [imageBase64, setImageBase64] = useState([]);
