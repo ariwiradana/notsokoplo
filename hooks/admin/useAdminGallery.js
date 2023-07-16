@@ -49,8 +49,8 @@ const useAdminGallery = () => {
       let imageLeft = [];
       let skipImage = 0;
 
-      if (value?.length > 10) {
-        toast.warning("Photos cannot be more than 10");
+      if (value?.length > 20) {
+        toast.warning("Photos cannot be more than 20");
         document.getElementById("edit-image").value = "";
         setDetail({ ...detail, images: [] });
       } else {
@@ -77,8 +77,8 @@ const useAdminGallery = () => {
     if (path == "images" && value) {
       let imageLeft = [];
       let skipImage = 0;
-      if (value?.length > 10) {
-        toast.warning("Photos cannot be more than 10");
+      if (value?.length > 20) {
+        toast.warning("Photos cannot be more than 20");
         document.getElementById("add-images").value = "";
         setValues({ ...values, images: [] });
       } else {
