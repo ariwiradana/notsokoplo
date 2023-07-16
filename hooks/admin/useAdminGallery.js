@@ -169,7 +169,7 @@ const useAdminGallery = () => {
         mutate();
         setCounter(0);
       })
-      .catch((error) => toast.error(error?.response?.data?.message));
+      .catch((error) => toast.error(JSON.stringify(error)));
   };
 
   return {
