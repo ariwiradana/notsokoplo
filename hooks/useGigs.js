@@ -1,4 +1,5 @@
 import fetcher from "@/lib/fetcher";
+import { useEffect } from "react";
 import useSWR from "swr";
 
 const useGigs = () => {
