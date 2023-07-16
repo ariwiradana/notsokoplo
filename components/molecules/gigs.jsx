@@ -9,14 +9,14 @@ const Gigs = () => {
 
   return (
     <div
-      className="py-16 md:py-20 lg:py-24 h-full"
-      style={{ backgroundImage: `url('/images/paper.jpeg')` }}
+      className="py-10 md:py-20 lg:py-24 h-full"
+      style={{ backgroundImage: `url('/images/pattern.jpeg')` }}
     >
       <Container className="md:px-8 px-4">
         <div className="flex justify-center">
-          <h2 className="text-gray-900 flex items-center gap-x-2 bg-white text-xl py-2 px-4 md:text-3xl text-center font-montserrat uppercase">
+          <h2 className="text-white flex items-center gap-x-2 text-xl py-2 px-4 md:text-3xl text-center font-montserrat uppercase">
             Upcoming{" "}
-            <span className="font-bold text-4xl md:text-5xl">Gigs</span>
+            <span className="font-semibold text-4xl md:text-5xl">Gigs</span>
           </h2>
         </div>
         {isLoadingGigs && (
@@ -30,9 +30,13 @@ const Gigs = () => {
             />
           </div>
         )}
-        <div className="grid md:grid-cols-2 justify-center mt-16 w-full gap-8 lg:max-w-[60vw] mx-auto">
+        <div className="grid md:grid-cols-2 justify-center mt-8 md:mt-16 w-full gap-8 lg:max-w-[60vw] mx-auto">
           {gigs?.data?.map((gig) => (
-            <div className="p-4 border rounded bg-white" key={gig?._id}>
+            <div
+              className="p-4 border rounded bg-white"
+              key={gig?._id}
+              style={{ backgroundImage: `url('/images/paper.jpeg')` }}
+            >
               <h5 className="text-sm font-montserrat bg-gray-900 px-2 py-1 text-white inline">
                 {moment(gig?.date).format("YYYY/MM/DD")}
               </h5>
