@@ -28,7 +28,7 @@ const useAdminSlideshow = () => {
         }
       });
       if (skipImage != 0) {
-        alert(`(${skipImage}) Image size too big`);
+        toast.warning(`(${skipImage}) Image size too big`);
         setValues(null);
       }
     } else {

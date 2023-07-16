@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 
-const InputText = ({ full, id, label, ...props }, ref) => {
+const InputText = ({ full, id, label, value, ...props }, ref) => {
   return (
     <div>
       <label
@@ -10,6 +10,7 @@ const InputText = ({ full, id, label, ...props }, ref) => {
         {label}
       </label>
       <input
+        value={value}
         ref={ref}
         {...props}
         id={id}

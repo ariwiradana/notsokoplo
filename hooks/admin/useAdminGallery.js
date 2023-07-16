@@ -13,6 +13,7 @@ const useAdminGallery = () => {
   const [values, setValues] = useState({
     title: "",
     images: [],
+    filenames: "",
     date: moment().format("YYYY-MM-DD"),
   });
 
@@ -43,46 +44,57 @@ const useAdminGallery = () => {
       });
   };
 
-  const onChangeForm = (value, path) => {
+  const onChangeForm = (e, value, path) => {
     if (path == "images" && value) {
       let imageLeft = [];
       let skipImage = 0;
 
-      Array.from(value).forEach(async (image) => {
-        console.log({ image });
-        if (image?.size < 500000) {
-          toBase64(image)
-            .then((base64Img) => imageLeft.push(base64Img))
-            .finally(() => setDetail({ ...detail, images: imageLeft }));
-        } else {
-          skipImage += 1;
-        }
-      });
-      if (skipImage != 0) {
-        alert(`(${skipImage}) Image size too big`);
+      if (value?.length >= 15) {
+        toast.warning("Photos cannot be more than 15");
+        document.getElementById("edit-image").value = "";
         setDetail({ ...detail, images: [] });
+      } else {
+        Array.from(value).forEach(async (image) => {
+          if (image?.size < 500000) {
+            toBase64(image)
+              .then((base64Img) => imageLeft.push(base64Img))
+              .finally(() => setDetail({ ...detail, images: imageLeft }));
+          } else {
+            skipImage += 1;
+          }
+        });
+        if (skipImage != 0) {
+          toast.warning(`(${skipImage}) Image size too big`);
+          setDetail({ ...detail, images: [] });
+        }
       }
     } else {
       setDetail({ ...detail, [path]: value });
     }
   };
 
-  const onChangeFormAdd = (value, path) => {
+  const onChangeFormAdd = (e, value, path) => {
     if (path == "images" && value) {
       let imageLeft = [];
       let skipImage = 0;
-      Array.from(value).forEach(async (image) => {
-        if (image?.size < 500000) {
-          toBase64(image)
-            .then((base64Img) => imageLeft.push(base64Img))
-            .finally(() => setValues({ ...values, images: imageLeft }));
-        } else {
-          skipImage += 1;
-        }
-      });
-      if (skipImage != 0) {
-        alert(`(${skipImage}) Image size too big`);
+      if (value?.length >= 15) {
+        toast.warning("Photos cannot be more than 15");
+        document.getElementById("add-images").value = "";
         setValues({ ...values, images: [] });
+      } else {
+        Array.from(value).forEach(async (image) => {
+          if (image?.size < 500000) {
+            toBase64(image)
+              .then((base64Img) => imageLeft.push(base64Img))
+              .finally(() => setValues({ ...values, images: imageLeft }));
+          } else {
+            skipImage += 1;
+          }
+        });
+        if (skipImage != 0) {
+          toast.warning(`(${skipImage}) Image size too big`);
+          document.getElementById("add-images").value = "";
+        }
       }
     } else {
       setValues({ ...values, [path]: value });

@@ -235,7 +235,7 @@ const FormEditGallery = ({
         className="mt-4 flex flex-col gap-y-3"
       >
         <InputText
-          onChange={(e) => onChangeForm(e.target.value, "title")}
+          onChange={(e) => onChangeForm(e, e.target.value, "title")}
           label="Event"
           id="edit-title"
           disabled
@@ -244,7 +244,7 @@ const FormEditGallery = ({
         />
         <InputText
           multiple
-          onChange={(e) => onChangeForm(e.target.files, "images")}
+          onChange={(e) => onChangeForm(e, e.target.files, "images")}
           label="Add More Image"
           type="file"
           id="edit-image"
@@ -272,7 +272,7 @@ const FormEditGallery = ({
         )}
 
         <InputText
-          onChange={(e) => onChangeForm(e.target.value, "date")}
+          onChange={(e) => onChangeForm(e, e.target.value, "date")}
           label="Date"
           type="date"
           id="edit-date"
@@ -316,27 +316,27 @@ const FormAddGallery = ({
         className="mt-4 flex flex-col gap-y-3"
       >
         <InputText
-          onChange={(e) => onChangeForm(e.target.value, "title")}
+          onChange={(e) => onChangeForm(e, e.target.value, "title")}
           label="Event"
-          id="edit-title"
+          id="add-title"
           full
           value={values?.title}
         />
         <InputText
-          onChange={(e) => onChangeForm(e.target.value, "date")}
+          onChange={(e) => onChangeForm(e, e.target.value, "date")}
           label="Date"
           type="date"
-          id="edit-date"
+          id="add-date"
           full
           value={moment(values?.date).format("YYYY-MM-DD")}
         />
 
         <InputText
           multiple
-          onChange={(e) => onChangeForm(e.target.files, "images")}
+          onChange={(e) => onChangeForm(e, e.target.files, "images")}
           label="Images"
           type="file"
-          id="edit-images"
+          id="add-images"
           full
         />
         <div className="grid grid-cols-6 gap-1">
