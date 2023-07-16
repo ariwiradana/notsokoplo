@@ -49,7 +49,7 @@ const useAdminGallery = () => {
       let imageLeft = [];
       let skipImage = 0;
 
-      if (value?.length >= 15) {
+      if (value?.length > 15) {
         toast.warning("Photos cannot be more than 15");
         document.getElementById("edit-image").value = "";
         setDetail({ ...detail, images: [] });
@@ -77,7 +77,7 @@ const useAdminGallery = () => {
     if (path == "images" && value) {
       let imageLeft = [];
       let skipImage = 0;
-      if (value?.length >= 15) {
+      if (value?.length > 15) {
         toast.warning("Photos cannot be more than 15");
         document.getElementById("add-images").value = "";
         setValues({ ...values, images: [] });
