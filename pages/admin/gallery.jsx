@@ -280,7 +280,7 @@ const FormEditGallery = ({
           value={moment(values?.date).format("YYYY-MM-DD")}
         />
         <div className="mt-2 w-full">
-          <Button type="submit" title="Update" full />
+          <Button loading={loading} type="submit" title="Update" full />
         </div>
       </form>
     </>
