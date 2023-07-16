@@ -40,7 +40,7 @@ const FullscreenThumbnail = ({ data }) => {
                 marginTop: position * -0.3,
                 transform: `scale(${position * 0.0001 + 1})`,
               }}
-              className="w-full h-screen relative"
+              className="w-full h-[103vh] relative"
             >
               <Image
                 alt={slug}
