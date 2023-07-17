@@ -10,12 +10,12 @@ const useGallery = () => {
   const [images, setImages] = useState([]);
   const [loadingBtn, setLoadingBtn] = useState(false);
 
-  const { data, isLoading } = useSWR(`/api/gallery`, fetcher);
+  const { data, isLoading } = useSWR(`/api/gallery/thumbnail?page=${page}&size=${size}`, fetcher);
 
   const handlePagination = () => {
     setLoadingBtn(true);
     client
-      .get(`/api/gallery?page=${page + 1}&size=${size}`)
+      .get(`/api/gallery/thumbnail?page=${page + 1}&size=${size}`)
       .then((res) => {
         const newData = res?.data?.data?.map((item) => item?.data);
         handleGroupImages(newData);

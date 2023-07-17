@@ -10,6 +10,7 @@ import moment from "moment";
 import Image from "next/image";
 import React from "react";
 import { HiPencil, HiTrash } from "react-icons/hi";
+import { Pagination } from "@mui/material";
 
 const AdminGallery = () => {
   const {
@@ -22,9 +23,12 @@ const AdminGallery = () => {
     loading,
     values,
     imageSize,
+    size,
     openModalDelete,
     path,
     counter,
+    page,
+    handleChange,
     handleSubmit,
     setOpenModal,
     setDetail,
@@ -141,29 +145,26 @@ const AdminGallery = () => {
                 <tbody>
                   {data?.data?.map((col) => {
                     return (
-                      <tr className="bg-white border-b" key={col?.data?._id}>
+                      <tr className="bg-white border-b" key={col?._id}>
                         <th scope="row" className="lg:px-6 px-4 py-4">
                           <div className="flex flex-col">
                             <p className="font-medium text-gray-900 min-w-[50px] leading-5">
-                              {col?.data?.title}
-                            </p>
-                            <p className="font-normal text-xs">
-                              ({col?.total}) images
+                              {col?.title}
                             </p>
                           </div>
                         </th>
                         <td className="lg:px-6 px-4 py-4 hidden md:block">
                           <div className="md:w-16 md:h-16 h-12 w-12 rounded-lg overflow-hidden relative">
                             <Image
-                              alt={col?.data?.title}
+                              alt={col?.title}
                               fill
-                              src={col?.data?.image}
+                              src={col?.image}
                               className="object-cover"
                             />
                           </div>
                         </td>
                         <td className="lg:px-6 px-4 py-4">
-                          {moment(col?.data?.date).format("dddd, D MMMM YYYY")}
+                          {moment(col?.date).format("dddd, D MMMM YYYY")}
                         </td>
                         <td className="lg:px-6 px-4 py-4">
                           <div className="flex flex-col md:flex-row gap-2 items-center md:items-start">
@@ -171,9 +172,9 @@ const AdminGallery = () => {
                               <button
                                 onClick={() => {
                                   setDetail({
-                                    path: col?.data?.path,
-                                    title: col?.data?.title,
-                                    date: col?.data?.date,
+                                    path: col?.path,
+                                    title: col?.title,
+                                    date: col?.date,
                                     images: [],
                                   });
                                   setImageSize(0);
@@ -188,7 +189,7 @@ const AdminGallery = () => {
                               <button
                                 onClick={() => {
                                   setOpenModalDelete(true);
-                                  setPath(col?.data?.path);
+                                  setPath(col?.path);
                                 }}
                                 className="font-medium text-gray-700 border border-gray-200 rounded-md bg-white p-1"
                               >
@@ -204,7 +205,7 @@ const AdminGallery = () => {
               </table>
             </div>
           )}
-          {/* {data?.total != 0 && (
+          {data?.total > size && (
             <div className="flex justify-center mt-8">
               <Pagination
                 page={page}
@@ -213,7 +214,7 @@ const AdminGallery = () => {
                 variant="outlined"
               />
             </div>
-          )} */}
+          )}
         </Container>
       </div>
     </>

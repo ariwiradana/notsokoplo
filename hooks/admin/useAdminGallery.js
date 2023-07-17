@@ -25,7 +25,10 @@ const useAdminGallery = () => {
   const [page, setPage] = useState(1);
   const [size] = useState(5);
   const [loading, setLoading] = useState(false);
-  const { data, isLoading, mutate } = useSWR(`/api/gallery`, fetcher);
+  const { data, isLoading, mutate } = useSWR(
+    `/api/gallery/thumbnail?page=${page}&size=${size}`,
+    fetcher
+  );
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -110,7 +113,7 @@ const useAdminGallery = () => {
       };
 
       await client
-        .post(`/api/gallery/multi`, payload)
+        .post(`/api/gallery`, payload)
         .then(() => {
           setCounter(index + 1);
         })
@@ -133,6 +136,21 @@ const useAdminGallery = () => {
     const alt = `alt-${values?.title
       ?.toLowerCase()
       .replace(/[^a-z0-9]/gi, "")}`;
+
+    const ThumbnailPayload = {
+      path,
+      alt,
+      title: values?.title,
+      date: values?.date,
+      image: values?.images[0],
+    };
+
+    try {
+      await client.post(`/api/gallery/thumbnail`, ThumbnailPayload);
+    } catch (error) {
+      toast.error(error?.message);
+      setLoading(false);
+    }
 
     for (const [index, img] of values?.images.entries()) {
       const payload = {
