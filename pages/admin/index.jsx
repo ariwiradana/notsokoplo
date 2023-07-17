@@ -27,6 +27,8 @@ const Admin = () => {
     setOpenModalDelete,
   } = useAdminSlideshow();
 
+  console.log({ data });
+
   return (
     <>
       <Navbar />
