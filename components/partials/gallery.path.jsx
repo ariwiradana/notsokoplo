@@ -67,9 +67,6 @@ const GalleryPathComponent = ({ params }) => {
                     src={el?.image}
                     alt={el?.alt}
                   />
-                  <p className="absolute inset-0 flex justify-center items-center text-white">
-                    {index + 1}
-                  </p>
                 </div>
               ))}
           </div>
