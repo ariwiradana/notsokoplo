@@ -54,7 +54,7 @@ const GalleryComponent = () => {
               strokeWidth="5"
               animationDuration="0.75"
               width="20"
-              visible={loadingBtn}
+              visible={isLoading}
             />
           </div>
         )}
@@ -65,7 +65,7 @@ const GalleryComponent = () => {
               onClick={handlePagination}
               className="px-4 h-8 rounded-sm font-raleway font-medium text-black border border-gray-400 text-[10px] tracking-wider uppercase"
             >
-              {isLoading ? (
+              {loadingBtn ? (
                 <RotatingLines
                   strokeColor="grey"
                   strokeWidth="5"
