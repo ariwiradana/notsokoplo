@@ -42,7 +42,7 @@ const Gigs = () => {
               style={{ backgroundImage: `url('/images/paper.jpeg')` }}
             >
               <h5 className="text-sm font-montserrat bg-gray-900 px-2 py-1 text-white inline">
-                {moment(gig?.date).format("dddd, D MMMM YYYY")}
+                {moment(gig?.date).format("D MMMM YYYY")}
               </h5>
               <h2 className="text-gray-900 font-semibold font-montserrat text-2xl mb-2 mt-4 line-clamp-1">
                 {gig?.event}
