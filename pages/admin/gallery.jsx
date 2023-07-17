@@ -24,6 +24,7 @@ const AdminGallery = () => {
     imageSize,
     openModalDelete,
     path,
+    counter,
     handleSubmit,
     setOpenModal,
     setDetail,
@@ -70,6 +71,7 @@ const AdminGallery = () => {
         }}
       >
         <FormAddGallery
+          counter={counter}
           imageSize={imageSize}
           loading={loading}
           onChangeForm={onChangeFormAdd}
@@ -90,6 +92,7 @@ const AdminGallery = () => {
         }}
       >
         <FormEditGallery
+          counter={counter}
           imageSize={imageSize}
           loading={loading}
           onChangeForm={onChangeForm}
@@ -226,6 +229,7 @@ const FormEditGallery = ({
   values,
   handleSubmit,
   imageSize,
+  counter,
 }) => {
   return (
     <>
@@ -282,6 +286,13 @@ const FormEditGallery = ({
         <div className="mt-2 w-full">
           <Button loading={loading} type="submit" title="Update" full />
         </div>
+        {loading && counter != 0 ? (
+          <p className="text-center text-xs font-montserrat text-gray-600">
+            Uploaded ({counter}) of {values?.images?.length}
+          </p>
+        ) : (
+          ""
+        )}
       </form>
     </>
   );
@@ -307,6 +318,7 @@ const FormAddGallery = ({
   values,
   handleSubmit,
   imageSize,
+  counter,
 }) => {
   return (
     <>
@@ -360,6 +372,13 @@ const FormAddGallery = ({
             full
           />
         </div>
+        {loading && counter != 0 ? (
+          <p className="text-center text-xs font-montserrat text-gray-600">
+            Uploaded ({counter}) of {values?.images?.length}
+          </p>
+        ) : (
+          ""
+        )}
       </form>
     </>
   );

@@ -49,24 +49,18 @@ const useAdminGallery = () => {
       let imageLeft = [];
       let skipImage = 0;
 
-      if (value?.length > 20) {
-        toast.warning("Photos cannot be more than 20");
-        document.getElementById("edit-image").value = "";
-        setDetail({ ...detail, images: [] });
-      } else {
-        Array.from(value).forEach(async (image) => {
-          if (image?.size < 500000) {
-            toBase64(image)
-              .then((base64Img) => imageLeft.push(base64Img))
-              .finally(() => setDetail({ ...detail, images: imageLeft }));
-          } else {
-            skipImage += 1;
-          }
-        });
-        if (skipImage != 0) {
-          toast.warning(`(${skipImage}) Image size too big`);
-          setDetail({ ...detail, images: [] });
+      Array.from(value).forEach(async (image) => {
+        if (image?.size < 500000) {
+          toBase64(image)
+            .then((base64Img) => imageLeft.push(base64Img))
+            .finally(() => setDetail({ ...detail, images: imageLeft }));
+        } else {
+          skipImage += 1;
         }
+      });
+      if (skipImage != 0) {
+        toast.warning(`(${skipImage}) Image size too big`);
+        setDetail({ ...detail, images: [] });
       }
     } else {
       setDetail({ ...detail, [path]: value });
@@ -77,24 +71,18 @@ const useAdminGallery = () => {
     if (path == "images" && value) {
       let imageLeft = [];
       let skipImage = 0;
-      if (value?.length > 20) {
-        toast.warning("Photos cannot be more than 20");
-        document.getElementById("add-images").value = "";
-        setValues({ ...values, images: [] });
-      } else {
-        Array.from(value).forEach(async (image) => {
-          if (image?.size < 500000) {
-            toBase64(image)
-              .then((base64Img) => imageLeft.push(base64Img))
-              .finally(() => setValues({ ...values, images: imageLeft }));
-          } else {
-            skipImage += 1;
-          }
-        });
-        if (skipImage != 0) {
-          toast.warning(`(${skipImage}) Image size too big`);
-          document.getElementById("add-images").value = "";
+      Array.from(value).forEach(async (image) => {
+        if (image?.size < 500000) {
+          toBase64(image)
+            .then((base64Img) => imageLeft.push(base64Img))
+            .finally(() => setValues({ ...values, images: imageLeft }));
+        } else {
+          skipImage += 1;
         }
+      });
+      if (skipImage != 0) {
+        toast.warning(`(${skipImage}) Image size too big`);
+        document.getElementById("add-images").value = "";
       }
     } else {
       setValues({ ...values, [path]: value });
@@ -108,12 +96,11 @@ const useAdminGallery = () => {
     delete newDetail["images"];
     await client.put(`/api/gallery/${detail?.path}`, newDetail);
 
-    let newData = [];
-    for (const img of detail?.images) {
-      const path = detail?.title?.toLowerCase().replace(/[^a-z0-9]/gi, "");
-      const alt = `alt-${detail?.title
-        ?.toLowerCase()
-        .replace(/[^a-z0-9]/gi, "")}`;
+    const path = detail?.title?.toLowerCase().replace(/[^a-z0-9]/gi, "");
+    const alt = `alt-${detail?.title
+      ?.toLowerCase()
+      .replace(/[^a-z0-9]/gi, "")}`;
+    for (const [index, img] of detail?.images.entries()) {
       const payload = {
         path,
         alt,
@@ -121,35 +108,33 @@ const useAdminGallery = () => {
         date: detail?.date,
         image: img,
       };
-      newData.push(payload);
-    }
 
-    await client
-      .post(`/api/gallery/multi`, newData)
-      .then(() => {
-        setOpenModal(false);
-        setLoading(false);
-        setDetail(null);
-        mutate();
-        setCounter(0);
-      })
-      .catch((error) => {
-        toast.error(error?.message);
-        setLoading(false);
-      });
+      await client
+        .post(`/api/gallery/multi`, payload)
+        .then(() => {
+          setCounter(index + 1);
+        })
+        .catch((error) => {
+          toast.error(error?.message);
+          setLoading(false);
+        });
+    }
+    setOpenModal(false);
+    setLoading(false);
+    setDetail(null);
+    mutate();
   };
 
   const handleSubmitAdd = async (event) => {
     setLoading(true);
     event.preventDefault();
 
-    let newData = [];
-    for (const img of values?.images) {
-      const path = values?.title?.toLowerCase().replace(/[^a-z0-9]/gi, "");
-      const alt = `alt-${values?.title
-        ?.toLowerCase()
-        .replace(/[^a-z0-9]/gi, "")}`;
+    const path = values?.title?.toLowerCase().replace(/[^a-z0-9]/gi, "");
+    const alt = `alt-${values?.title
+      ?.toLowerCase()
+      .replace(/[^a-z0-9]/gi, "")}`;
 
+    for (const [index, img] of values?.images.entries()) {
       const payload = {
         path,
         alt,
@@ -157,25 +142,26 @@ const useAdminGallery = () => {
         date: values?.date,
         image: img,
       };
-      newData.push(payload);
-    }
-    await client
-      .post(`/api/gallery/multi`, newData)
-      .then(() => {
-        setOpenModalAdd(false);
-        setLoading(false);
-        setValues({
-          title: "",
-          images: [],
-          date: moment().format("YYYY-MM-DD"),
+
+      await client
+        .post(`/api/gallery`, payload)
+        .then(() => {
+          setCounter(index + 1);
+        })
+        .catch((error) => {
+          toast.error(error?.message);
+          setLoading(false);
         });
-        mutate();
-        setCounter(0);
-      })
-      .catch((error) => {
-        toast.error(error?.message);
-        setLoading(false);
-      });
+    }
+    mutate();
+    setOpenModalAdd(false);
+    setLoading(false);
+    setValues({
+      title: "",
+      images: [],
+      date: moment().format("YYYY-MM-DD"),
+    });
+    setCounter(0);
   };
 
   return {
