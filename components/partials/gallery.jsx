@@ -7,26 +7,27 @@ import useNavbar from "@/hooks/useNavbar";
 import Link from "next/link";
 import moment from "moment";
 import Image from "next/image";
+import { RotatingLines } from "react-loader-spinner";
 
 const GalleryComponent = () => {
-  const { isLoading, data } = useGallery();
+  const { isLoading, data, handlePagination, images, loadingBtn } =
+    useGallery();
   const { position } = useNavbar();
 
   return (
     <>
       <Seo title="Notsokoplo | Gallery" />
-      <Loading isLoading={isLoading} />
       <Layout>
         <div
           className={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500 ${
             position > 10 ? "md:mt-16 mt-12" : "md:mt-24 mt-16"
           }`}
         >
-          {data?.data?.map((el) => (
+          {images?.map((el) => (
             <Link
               href={`/gallery/${el?.path}`}
               className="w-full bg-cover group overflow-hidden relative group border h-full min-h-[35vh] md:min-h-[40vh] lg:min-h-[40vh]"
-              key={el?._id}
+              key={`${el?._id}-${el?.path}`}
             >
               <Image
                 fill
@@ -45,6 +46,41 @@ const GalleryComponent = () => {
             </Link>
           ))}
         </div>
+
+        {isLoading && (
+          <div className="flex justify-center py-4">
+            <RotatingLines
+              strokeColor="grey"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="20"
+              visible={loadingBtn}
+            />
+          </div>
+        )}
+
+        {data?.total > images?.length ? (
+          <div className="flex justify-center py-4">
+            <button
+              onClick={handlePagination}
+              className="px-4 h-8 rounded-sm font-raleway font-medium text-black border border-gray-400 text-[10px] tracking-wider uppercase"
+            >
+              {isLoading ? (
+                <RotatingLines
+                  strokeColor="grey"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="20"
+                  visible={true}
+                />
+              ) : (
+                "Load More"
+              )}
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
       </Layout>
     </>
   );

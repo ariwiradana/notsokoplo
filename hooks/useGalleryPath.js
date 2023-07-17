@@ -22,14 +22,6 @@ const useGalleryPath = (params) => {
 
   const handleGroupImages = (img) => {
     let newImg = img || [];
-    // let groupImages = [];
-    // const chunkSize = 3;
-    // for (let i = 0; i < img?.length; i += chunkSize) {
-    //   console.log({ img });
-    //   const chunk = img?.slice(i, i + chunkSize);
-    //   groupImages.push(chunk);
-    // }
-    // setImages([...groupImages, ...images]);
     const newBase64 = newImg?.map((img) => img?.image);
     setImages([...images, ...newImg]);
     setImageBase64([...imageBase64, ...newBase64]);

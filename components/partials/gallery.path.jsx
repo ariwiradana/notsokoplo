@@ -26,8 +26,6 @@ const GalleryPathComponent = ({ params }) => {
     ? moment(data?.data[0]?.date).format("dddd, D MMMM YYYY")
     : "";
 
-  console.log({ imageBase64 });
-
   return (
     <>
       <Seo title={`${title || "Gallery"}`} />
@@ -59,7 +57,7 @@ const GalleryPathComponent = ({ params }) => {
                     setIndexImg(index + 1);
                   }}
                   className="w-full bg-cover overflow-hidden relative group border h-full min-h-[35vh] md:min-h-[40vh] lg:min-h-[40vh]"
-                  key={el?._id}
+                  key={`${el?._id}-${el?.path}`}
                 >
                   <Image
                     fill
