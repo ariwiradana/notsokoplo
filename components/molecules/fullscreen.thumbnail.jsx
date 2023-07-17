@@ -2,7 +2,6 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
-import { THUMBNAIL_IMAGES } from "@/constants/thumbnail.images";
 import useNavbar from "@/hooks/useNavbar";
 
 const FullscreenThumbnail = ({ data }) => {
@@ -33,8 +32,8 @@ const FullscreenThumbnail = ({ data }) => {
             <source src="/video/thumbnail.mp4" type="video/mp4" />
           </video>
         </SwiperSlide> */}
-        {data?.slice(0, 4)?.map(({ image, slug }) => (
-          <SwiperSlide className="overflow-hidden" key={slug}>
+        {data?.slice(0, 4)?.map(({ image, _id }) => (
+          <SwiperSlide className="overflow-hidden" key={_id}>
             <div
               style={{
                 marginTop: position * -0.3,
@@ -43,7 +42,7 @@ const FullscreenThumbnail = ({ data }) => {
               className="w-full h-[103vh] relative"
             >
               <Image
-                alt={slug}
+                alt={_id}
                 src={image}
                 className="object-cover w-full"
                 fill

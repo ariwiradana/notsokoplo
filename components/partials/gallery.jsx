@@ -18,7 +18,7 @@ const GalleryComponent = () => {
       <Loading isLoading={isLoading} />
       <Layout>
         {/* <div
-          class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500 min-h-screen ${
+          className={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500 min-h-screen ${
             position > 10 ? "md:mt-16 mt-12" : "md:mt-24 mt-16"
           }`}
         >
@@ -50,7 +50,7 @@ const GalleryComponent = () => {
           ))}
         </div> */}
         <div
-          class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500 ${
+          className={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500 ${
             position > 10 ? "md:mt-16 mt-12" : "md:mt-24 mt-16"
           }`}
         >

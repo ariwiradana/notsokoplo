@@ -1,15 +1,14 @@
 import React from "react";
 import Layout from "../molecules/layout";
-import Loading from "../elements/loading";
 import Seo from "./seo";
 import useNavbar from "@/hooks/useNavbar";
 import moment from "moment";
 import { RotatingLines } from "react-loader-spinner";
 import useGalleryPath from "@/hooks/useGalleryPath";
 import { titleCase } from "@/lib/titleCase";
-import Lightbox from "../elements/lightbox";
 import useLightbox from "@/hooks/useLightbox";
 import Image from "next/image";
+import LightboxComponent from "../elements/lightbox";
 
 const GalleryPathComponent = ({ params }) => {
   const { images, isLoading, handlePagination, loadingBtn, data, imageBase64 } =
@@ -49,34 +48,8 @@ const GalleryPathComponent = ({ params }) => {
             </h6>
           </div>
 
-          {/* <div
-            class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500`}
-          >
-            {images?.map((image, index) => (
-              <div className="grid grid-cols-1 gap-1" key={`row-${index}`}>
-                {image?.map(({ image, alt }, imgIdx) => (
-                  <div
-                    onClick={() => {
-                      setOpenLightbox(!openLightbox);
-                      setIndexImg(imgIdx + 1);
-                    }}
-                    key={alt}
-                    className="w-full bg-cover overflow-hidden relative group"
-                  >
-                    <img
-                      className="h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
-                      src={image}
-                      alt={alt}
-                    />
-                    {index}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div> */}
-
           <div
-            class={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500`}
+            className={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500`}
           >
             {images?.length != 0 &&
               images?.map((el, index) => (
@@ -94,6 +67,9 @@ const GalleryPathComponent = ({ params }) => {
                     src={el?.image}
                     alt={el?.alt}
                   />
+                  <p className="absolute inset-0 flex justify-center items-center text-white">
+                    {index + 1}
+                  </p>
                 </div>
               ))}
           </div>
@@ -135,7 +111,11 @@ const GalleryPathComponent = ({ params }) => {
         </div>
       </Layout>
 
-      <Lightbox slide={indexImg} open={openLightbox} sources={imageBase64} />
+      <LightboxComponent
+        slide={indexImg}
+        open={openLightbox}
+        sources={imageBase64}
+      />
     </>
   );
 };

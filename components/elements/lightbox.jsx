@@ -1,12 +1,17 @@
 import FsLightbox from "fslightbox-react";
-import React, { useState } from "react";
+import React from "react";
 
-const Lightbox = ({ sources, open, slide }) => {
+const LightboxComponent = ({ sources, open, slide }) => {
   return (
     <>
-      <FsLightbox slide={slide} toggler={open} sources={sources} />
+      <FsLightbox
+        slide={slide}
+        key={sources?.length}
+        toggler={open}
+        sources={sources}
+      />
     </>
   );
 };
 
-export default Lightbox;
+export default LightboxComponent;
