@@ -75,7 +75,11 @@ const GalleryPathComponent = ({ params }) => {
           </div>
 
           {isLoading && (
-            <div className="flex justify-center py-4 mt-24">
+            <div
+              className={`flex justify-center py-4 ${
+                images?.length == 0 && "mt-24"
+              }`}
+            >
               <RotatingLines
                 strokeColor="grey"
                 strokeWidth="5"

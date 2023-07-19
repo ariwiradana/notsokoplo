@@ -97,31 +97,35 @@ const useAdminGallery = () => {
     event.preventDefault();
     const newDetail = { ...detail };
     delete newDetail["images"];
-    await client.put(`/api/gallery/${detail?.path}`, newDetail);
+    await client.put(`/api/gallery/thumbnail/${detail?.path}`, newDetail);
 
     const path = detail?.title?.toLowerCase().replace(/[^a-z0-9]/gi, "");
     const alt = `alt-${detail?.title
       ?.toLowerCase()
       .replace(/[^a-z0-9]/gi, "")}`;
-    for (const [index, img] of detail?.images.entries()) {
-      const payload = {
-        path,
-        alt,
-        title: detail?.title,
-        date: detail?.date,
-        image: img,
-      };
 
-      await client
-        .post(`/api/gallery`, payload)
-        .then(() => {
-          setCounter(index + 1);
-        })
-        .catch((error) => {
-          toast.error(error?.message);
-          setLoading(false);
-        });
+    if (detail?.images?.length != 0) {
+      for (const [index, img] of detail?.images.entries()) {
+        const payload = {
+          path,
+          alt,
+          title: detail?.title,
+          date: detail?.date,
+          image: img,
+        };
+
+        await client
+          .post(`/api/gallery`, payload)
+          .then(() => {
+            setCounter(index + 1);
+          })
+          .catch((error) => {
+            toast.error(error?.message);
+            setLoading(false);
+          });
+      }
     }
+
     setOpenModal(false);
     setLoading(false);
     setDetail(null);
