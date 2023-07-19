@@ -31,20 +31,22 @@ const GalleryPathComponent = ({ params }) => {
       <Seo title={`${title || "Gallery"}`} />
       <Layout>
         <div className="min-h-screen">
-          <div
-            className={`py-8 lg:py-24 ${
-              position > 10 ? "md:mt-16 mt-12" : "md:mt-24 mt-16"
-            }`}
-          >
-            <h1
-              className={`text-gray-800 relative z-20 transition-all ease-in-out duration-500 text-center font-semibold text-xl md:text-2xl lg:text-4xl font-montserrat`}
+          {images?.length != 0 && (
+            <div
+              className={`py-8 lg:py-24 ${
+                position > 10 ? "md:mt-16 mt-12" : "md:mt-24 mt-16"
+              }`}
             >
-              {title}
-            </h1>
-            <h6 className="text-center font-montserrat uppercase text-sm lg:text-base lg:mt-1">
-              {dates}
-            </h6>
-          </div>
+              <h1
+                className={`text-gray-800 relative z-20 transition-all ease-in-out duration-500 text-center font-semibold text-xl md:text-2xl lg:text-4xl font-montserrat`}
+              >
+                {title}
+              </h1>
+              <h6 className="text-center font-montserrat uppercase text-sm lg:text-base lg:mt-1">
+                {dates}
+              </h6>
+            </div>
+          )}
 
           <div
             className={`grid grid-cols-2 md:grid-cols-3 gap-1 p-1 transition-all ease-in-out duration-500`}
@@ -70,7 +72,7 @@ const GalleryPathComponent = ({ params }) => {
           </div>
 
           {isLoading && (
-            <div className="flex justify-center py-4">
+            <div className="flex justify-center py-4 mt-20">
               <RotatingLines
                 strokeColor="grey"
                 strokeWidth="5"
