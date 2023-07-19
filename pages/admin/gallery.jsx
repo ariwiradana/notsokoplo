@@ -170,6 +170,7 @@ const AdminGallery = () => {
                           <div className="flex flex-col md:flex-row gap-2 items-center md:items-start">
                             <div>
                               <button
+                                aria-label={`action-edit-${col?._id}`}
                                 onClick={() => {
                                   setDetail({
                                     path: col?.path,
@@ -187,6 +188,7 @@ const AdminGallery = () => {
                             </div>
                             <div>
                               <button
+                                aria-label={`action-delete-${col?._id}`}
                                 onClick={() => {
                                   setOpenModalDelete(true);
                                   setPath(col?.path);

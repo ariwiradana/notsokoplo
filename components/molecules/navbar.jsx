@@ -63,8 +63,8 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="flex gap-x-5 lg:gap-x-8 justify-end items-center transition-all ease-in-out">
-            {NAVICONS.map(({ icon, path }) => (
-              <Link target="_blank" key={path} href={path}>
+            {NAVICONS.map(({ icon, path, label }) => (
+              <Link aria-label={label} target="_blank" key={path} href={path}>
                 {icon}
               </Link>
             ))}

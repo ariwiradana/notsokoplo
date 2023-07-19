@@ -31,6 +31,9 @@ const GalleryComponent = () => {
                 key={`${el?._id}-${el?.path}`}
               >
                 <Image
+                  priority
+                  loading="eager"
+                  quality={50}
                   fill
                   className="h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
                   src={el?.image}

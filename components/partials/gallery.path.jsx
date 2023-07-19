@@ -37,14 +37,14 @@ const GalleryPathComponent = ({ params }) => {
                 position > 10 ? "md:mt-16 mt-12" : "md:mt-24 mt-16"
               }`}
             >
-              <h1
+              <h2
                 className={`text-gray-800 relative z-20 transition-all ease-in-out duration-500 text-center font-semibold text-xl md:text-2xl lg:text-4xl font-montserrat`}
               >
                 {title}
-              </h1>
-              <h6 className="text-center font-montserrat uppercase text-sm lg:text-base lg:mt-1">
+              </h2>
+              <h3 className="text-center font-montserrat uppercase text-sm lg:text-base lg:mt-1">
                 {dates}
-              </h6>
+              </h3>
             </div>
           )}
 
@@ -62,6 +62,9 @@ const GalleryPathComponent = ({ params }) => {
                   key={`${el?._id}-${el?.path}`}
                 >
                   <Image
+                    priority
+                    loading="eager"
+                    quality={80}
                     fill
                     className="h-full w-full max-w-full group-hover:grayscale object-cover transform group-hover:scale-110 transition-all ease-in-out duration-500"
                     src={el?.image}
@@ -72,7 +75,7 @@ const GalleryPathComponent = ({ params }) => {
           </div>
 
           {isLoading && (
-            <div className="flex justify-center py-4 mt-20">
+            <div className="flex justify-center py-4 mt-24">
               <RotatingLines
                 strokeColor="grey"
                 strokeWidth="5"

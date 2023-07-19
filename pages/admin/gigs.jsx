@@ -138,6 +138,7 @@ const AdminGigs = () => {
                         <div className="flex flex-col md:flex-row gap-2 items-center md:items-start">
                           <div>
                             <button
+                              aria-label={`action-edit-${gig?._id}`}
                               onClick={() => {
                                 setOpenModalEdit(true);
                                 setValues({
@@ -154,6 +155,7 @@ const AdminGigs = () => {
                           </div>
                           <div>
                             <button
+                              aria-label={`action-delete-${gig?._id}`}
                               onClick={() => {
                                 setId(gig?._id);
                                 setOpenModalDelete(true);

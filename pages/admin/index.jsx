@@ -102,6 +102,9 @@ const Admin = () => {
                         <div className="relative" key={_id}>
                           <div className="bg-cover w-full h-44 md:h-56 rounded-lg overflow-hidden relative">
                             <Image
+                              priority={true}
+                              loading="eager"
+                              quality={20}
                               alt={_id}
                               fill
                               src={image}
@@ -110,6 +113,7 @@ const Admin = () => {
                           </div>
                           <div className="absolute bottom-4 right-4 lg:bottom-5 lg:right-5">
                             <button
+                              aria-label={`button-${_id}`}
                               onClick={() => {
                                 setOpenModalDelete(true);
                                 setId(_id);
