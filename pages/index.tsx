@@ -179,7 +179,7 @@ const Home = ({ data }: { data: Show[] }) => {
                     className="lg:p-6 p-3 flex gap-x-2 justify-center items-center text-2xl lg:text-3xl group text-white hover:bg-white transition-all ease-in-out duration-500"
                   >
                     <div className="group-hover:text-dark">{social.icon}</div>
-                    <p className="text-sm lg:block font-medium mt-1 group-hover:text-dark hidden group-hover:lg:block">
+                    <p className="text-sm font-medium mt-1 group-hover:text-dark hidden lg:group-hover:block">
                       {social.title}
                     </p>
                   </Link>
