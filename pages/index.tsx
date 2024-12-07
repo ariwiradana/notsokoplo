@@ -42,8 +42,6 @@ const Home = ({ data }: { data: Show[] }) => {
           modules={[EffectFade, Autoplay]}
           className="relative"
         >
-          <div className="absolute inset-0 z-10 bg-gradient-to-l from-dark/0 via-transparent to-dark"></div>
-          <div className="absolute inset-0 z-10 bg-gradient-to-r from-dark/0 via-transparent to-dark"></div>
           <div className="absolute inset-0 z-10 bg-gradient-to-b from-dark/0 via-transparent to-dark"></div>
           <SwiperSlide className="w-full">
             <div className="h-dvh relative w-full">
@@ -84,7 +82,7 @@ const Home = ({ data }: { data: Show[] }) => {
       <div className="mt-[100dvh] relative bg-gradient-to-b from-dark/95 to-dark backdrop-blur-sm">
         <div className="max-w-screen-lg mx-auto">
           <div className="flex flex-wrap lg:flex-nowrap lg:justify-between lg:gap-24 py-16 lg:py-32 relative z-10 px-6">
-            <h2 className="uppercase font-bold text-5xl lg:whitespace-nowrap text-white">
+            <h2 className="uppercase font-bold text-4xl lg:text-5xl lg:whitespace-nowrap text-white">
               Upcoming Shows
             </h2>
             <p className="text-white text-lg lg:text-right mt-2 lg:mt-0">
@@ -108,7 +106,7 @@ const Home = ({ data }: { data: Show[] }) => {
                     }`}
                   >
                     <td className="p-6">
-                      <div className="flex items-center gap-x-3 mb-1">
+                      <div className="flex gap-x-3 mb-1 md:hidden">
                         <p className="text-white text-2xl font-bold">
                           <span>{show.event} </span>
                           {show.category === "private" && (
@@ -117,6 +115,7 @@ const Home = ({ data }: { data: Show[] }) => {
                             </span>
                           )}
                         </p>
+                        <GoArrowUpRight className="text-3xl text-white" />
                       </div>
                       <div>
                         <p className="text-white text-xl">
