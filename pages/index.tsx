@@ -36,7 +36,7 @@ const Home = () => {
   return (
     <section className={`${josefin.className} bg-dark`}>
       <div
-        className="fixed h-[60dvh] lg:h-dvh inset-0 transform w-full"
+        className="fixed h-[80svh] lg:h-dvh inset-0 transform w-full"
         style={{ transform: `translateY(-${translateY}px)` }}
       >
         <Swiper
@@ -48,7 +48,7 @@ const Home = () => {
           <div className="absolute inset-0 z-10 bg-gradient-to-b from-dark/0 via-transparent to-dark"></div>
           {images?.map((img: ImageType) => (
             <SwiperSlide className="w-full" key={img.url}>
-              <div className="h-[60dvh] lg:h-dvh relative w-full">
+              <div className="h-[80svh] lg:h-dvh relative w-full">
                 <Image
                   priority
                   fill
@@ -62,7 +62,7 @@ const Home = () => {
           ))}
         </Swiper>
       </div>
-      <div className="mt-[60dvh] lg:mt-[100dvh] relative bg-gradient-to-b from-dark/95 to-dark backdrop-blur-sm">
+      <div className="mt-[70dvh] lg:mt-[100dvh] relative bg-gradient-to-b from-dark/95 to-dark backdrop-blur-sm">
         <div className="max-w-screen-lg mx-auto">
           <div className="flex flex-wrap lg:flex-nowrap lg:justify-between lg:gap-24 py-16 lg:py-32 relative z-10 px-6">
             <h2 className="uppercase font-bold text-4xl lg:text-5xl lg:whitespace-nowrap text-white">
