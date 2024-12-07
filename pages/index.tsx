@@ -6,18 +6,21 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
-import { doc } from "@/lib/google-sheet";
 import { Show } from "@/types/Show";
 import { Socials } from "@/constants/Social";
 import moment from "moment";
 import { GoArrowUpRight } from "react-icons/go";
+import useSWR from "swr";
+import fetcher from "@/lib/axios";
+import { Image as ImageType } from "@/types/Image";
 
 const josefin = Josefin_Sans({ subsets: ["latin"] });
 
-const Home = ({ data }: { data: Show[] }) => {
+const Home = () => {
   const [translateY, setTranslateY] = useState(0);
-
-  console.log({ data });
+  const { data } = useSWR("/api/shows", fetcher);
+  const { data: images } = useSWR("/api/images", fetcher);
+  console.log({ images });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,7 +36,7 @@ const Home = ({ data }: { data: Show[] }) => {
   return (
     <section className={`${josefin.className} bg-dark`}>
       <div
-        className="fixed h-dvh inset-0 transform w-full"
+        className="fixed h-[60dvh] lg:h-dvh inset-0 transform w-full"
         style={{ transform: `translateY(-${translateY}px)` }}
       >
         <Swiper
@@ -43,43 +46,23 @@ const Home = ({ data }: { data: Show[] }) => {
           className="relative"
         >
           <div className="absolute inset-0 z-10 bg-gradient-to-b from-dark/0 via-transparent to-dark"></div>
-          <SwiperSlide className="w-full">
-            <div className="h-dvh relative w-full">
-              <Image
-                priority
-                fill
-                className="object-cover"
-                alt="hero"
-                src="/images/hero.jpg"
-                sizes="100vw"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="w-full">
-            <div className="h-dvh relative w-full">
-              <Image
-                fill
-                className="object-cover"
-                alt="hero2"
-                src="/images/hero2.jpg"
-                sizes="100vw"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="w-full">
-            <div className="h-dvh relative w-full">
-              <Image
-                fill
-                className="object-cover"
-                alt="hero3"
-                src="/images/hero3.jpg"
-                sizes="100vw"
-              />
-            </div>
-          </SwiperSlide>
+          {images?.map((img: ImageType) => (
+            <SwiperSlide className="w-full" key={img.url}>
+              <div className="h-[60dvh] lg:h-dvh relative w-full">
+                <Image
+                  priority
+                  fill
+                  className="object-cover"
+                  alt="hero"
+                  src={img.url}
+                  sizes="100vw"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
-      <div className="mt-[100dvh] relative bg-gradient-to-b from-dark/95 to-dark backdrop-blur-sm">
+      <div className="mt-[60dvh] lg:mt-[100dvh] relative bg-gradient-to-b from-dark/95 to-dark backdrop-blur-sm">
         <div className="max-w-screen-lg mx-auto">
           <div className="flex flex-wrap lg:flex-nowrap lg:justify-between lg:gap-24 py-16 lg:py-32 relative z-10 px-6">
             <h2 className="uppercase font-bold text-4xl lg:text-5xl lg:whitespace-nowrap text-white">
@@ -92,7 +75,7 @@ const Home = ({ data }: { data: Show[] }) => {
           </div>
           <table className="table table-auto w-full">
             <tbody>
-              {data.map((show: Show, index: number) => {
+              {data?.map((show: Show, index: number) => {
                 const formats = ["YYYY-MM-DD", "DD/MM/YYYY"];
                 const isExpired = moment(show.date, formats, true).isBefore(
                   moment().subtract(1, "days")
@@ -191,25 +174,5 @@ const Home = ({ data }: { data: Show[] }) => {
     </section>
   );
 };
-
-export async function getServerSideProps() {
-  await doc.loadInfo();
-  const sheet = doc.sheetsByIndex[0];
-  const rows = await sheet.getRows();
-
-  const data = rows.map((row) => ({
-    event: row["_rawData"][0] || null,
-    date: row["_rawData"][1] || null,
-    address: row["_rawData"][2] || "-",
-    link: row["_rawData"][3] || null,
-    category: row["_rawData"][4] || null,
-  }));
-
-  return {
-    props: {
-      data,
-    },
-  };
-}
 
 export default Home;
