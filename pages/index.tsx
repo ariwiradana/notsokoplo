@@ -9,8 +9,8 @@ import fetcher from "@/lib/axios";
 import useSWR from "swr";
 import BioComponent from "@/components/layout/bio";
 import MusicComponent from "@/components/layout/music";
-import ShowsComponent from "@/components/layout/events";
 import NavbarToggle from "@/components/layout/navbar.toggle";
+import EventComponent from "@/components/layout/events";
 
 const Home = () => {
   const { data: events, isLoading: isLoadingEvents } = useSWR(
@@ -36,7 +36,7 @@ const Home = () => {
       <HeroComponent />
       <MusicComponent data={music} />
       <BioComponent data={images} />
-      <ShowsComponent data={events} />
+      <EventComponent data={events} />
       <Footer />
     </section>
   );

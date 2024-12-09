@@ -1,5 +1,5 @@
 import React from "react";
-import { PropagateLoader } from "react-spinners";
+import { ScaleLoader } from "react-spinners";
 
 interface LoadingProps {
   show?: boolean;
@@ -12,7 +12,7 @@ const Loading = ({ show = true }: LoadingProps) => {
         show ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
     >
-      <PropagateLoader color="white" size={10} />
+      <ScaleLoader color="white" height={24} width={8} />
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import { montserrat } from "@/constants/fonts";
 import { NavData } from "@/constants/navdata";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { TbMenu } from "react-icons/tb";
 
@@ -18,6 +17,13 @@ const NavbarToggle = () => {
     };
   }, []);
 
+  const scrollToDiv = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <nav
       className={`${montserrat.className} ${
@@ -27,9 +33,12 @@ const NavbarToggle = () => {
       <ul className="flex items-center justify-between lg:justify-center w-full gap-x-16">
         {NavData.map((nav) => (
           <li className="hidden lg:inline" key={`nav-toggle-${nav.path}`}>
-            <Link className="uppercase font-bold text-sm" href={nav.path}>
+            <button
+              onClick={() => scrollToDiv(nav.path)}
+              className="uppercase font-bold text-sm"
+            >
               {nav.title}
-            </Link>
+            </button>
           </li>
         ))}
         <li className="lg:hidden mt-4">

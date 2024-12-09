@@ -9,11 +9,18 @@ interface NavbarProps {
 }
 
 const Navbar = ({ fixed = true }: NavbarProps) => {
+  const scrollToDiv = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <nav
       className={`${
         montserrat.className
-      } w-full flex justify-between py-6 md:py-12 max-w-screen-xl mx-auto px-4 md:px-12 md:px-4 ${
+      } w-full flex justify-between py-6 md:py-12 max-w-screen-xl mx-auto px-4 md:px-12 lg:px-4 ${
         fixed && "absolute inset-x-0 z-50"
       }`}
     >
@@ -24,14 +31,20 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
           </button>
         </li>
         <li className="hidden md:inline">
-          <Link className="uppercase font-bold text-sm" href="/">
-            Home
-          </Link>
+          <button
+            onClick={() => scrollToDiv("music")}
+            className="uppercase font-bold text-sm"
+          >
+            Music
+          </button>
         </li>
         <li className="hidden md:inline">
-          <Link className="uppercase font-bold text-sm" href="/">
-            Music
-          </Link>
+          <button
+            onClick={() => scrollToDiv("biography")}
+            className="uppercase font-bold text-sm"
+          >
+            Biography
+          </button>
         </li>
         <li>
           <Link href="/">
@@ -47,14 +60,20 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
           </Link>
         </li>
         <li className="hidden md:inline">
-          <Link className="uppercase font-bold text-sm" href="/">
+          <button
+            onClick={() => scrollToDiv("events")}
+            className="uppercase font-bold text-sm"
+          >
             Events
-          </Link>
+          </button>
         </li>
         <li className="hidden md:inline">
-          <Link className="uppercase font-bold text-sm" href="/">
+          <button
+            onClick={() => scrollToDiv("contact")}
+            className="uppercase font-bold text-sm"
+          >
             Contact
-          </Link>
+          </button>
         </li>
       </ul>
     </nav>

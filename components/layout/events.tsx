@@ -13,20 +13,20 @@ interface PageProps {
 
 const EventComponent = ({ data }: PageProps) => {
   return (
-    <div className="relative bg-dark" id="event">
+    <div className="relative bg-dark" id="events">
       <div className="pt-16 lg:pt-28 max-w-screen-lg mx-auto">
         <div className="px-4 md:px-12 lg:px-0">
           <div
             className={`flex flex-col md:flex-row items-center justify-between mb-12 gap-4 ${montserrat.className}`}
           >
             <h2
-              className={`font-semibold text-center text-3xl md:text-4xl text-white whitespace-nowrap`}
+              className={`font-semibold text-center text-3xl md:text-4xl lg:text-5xl text-white whitespace-nowrap`}
             >
               Events
             </h2>
             <p className="md:max-w-[50%] text-center md:text-right text-white/80 text-sm lg:text-base">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-              ipsum dignissimos perspiciatis totam ducimus incidunt?
+              Discover our upcoming events and join for an unforgettable
+              experience. Don&apos;t miss the chance to vibe to the music live!
             </p>
             <div className="h-10 md:h-16 w-[1px] bg-white/30"></div>
           </div>

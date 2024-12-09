@@ -1,17 +1,26 @@
 import { montserrat } from "@/constants/fonts";
 import { Music } from "@/types/music";
 import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { IoMdPlay } from "react-icons/io";
 import Button from "../ui/button";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { ScaleLoader } from "react-spinners";
 interface PageProps {
   data: Music[];
 }
 
 const MusicComponent = ({ data }: PageProps) => {
+  const [sliced, setSliced] = useState<number>(3);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleMoreMusic = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setSliced((prevState) => prevState + 3);
+      setIsLoading(false);
+    }, 1000);
+  };
+
   return (
     <div className={`relative bg-dark ${montserrat.className} z-10`} id="music">
       <div className="max-w-screen-xl mx-auto py-16 lg:py-28 px-4 md:px-12 lg:px-4">
@@ -19,68 +28,53 @@ const MusicComponent = ({ data }: PageProps) => {
           className={`flex flex-col md:flex-row items-center justify-between mb-12 gap-4 ${montserrat.className}`}
         >
           <h2
-            className={`font-semibold text-center text-3xl md:text-4xl text-white whitespace-nowrap`}
+            className={`font-semibold text-center text-3xl md:text-4xl lg:text-5xl text-white whitespace-nowrap`}
           >
-            Latest Music
+            Released Music
           </h2>
           <p className="md:max-w-[50%] text-center md:text-right text-white/80 text-sm lg:text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-            ipsum dignissimos perspiciatis totam ducimus incidunt?
+            Dive into our newest tracks, created to bring joy to your day.
+            Listen now and let the music elevate your mood!
           </p>
           <div className="h-10 md:h-16 w-[1px] bg-white/30"></div>
         </div>
-        <Swiper
-          speed={2000}
-          autoplay
-          breakpoints={{
-            0: {
-              slidesPerView: 1,
-            },
-            480: {
-              slidesPerView: 1,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
-          }}
-          spaceBetween={24}
-          modules={[Autoplay]}
-        >
-          {data?.slice(0, 3).map((music) => (
-            <SwiperSlide key={music.title}>
-              <div className="text-center">
-                <div className="w-full aspect-square relative shadow-lg">
-                  <Image
-                    sizes="600px"
-                    priority
-                    src={music.cover}
-                    fill
-                    className="object-cover"
-                    alt={music.title}
-                  />
-                </div>
-                <h2 className="text-2xl font-semibold text-white mt-6">
-                  {music.title}
-                </h2>
-                <h5 className="mt-2 text-white/70">{music.artist}</h5>
-                <div className="flex justify-center mt-6">
-                  <Button title="Listen" icon={<IoMdPlay />} />
-                </div>
+        <div className="grid md:grid-cols-3 gap-x-6 gap-y-12">
+          {data?.slice(0, sliced).map((music) => (
+            <div key={music.title} className="text-center">
+              <div className="w-full aspect-square relative shadow-lg">
+                <Image
+                  sizes="600px"
+                  src={music.cover}
+                  fill
+                  className="object-cover"
+                  alt={music.title}
+                />
               </div>
-            </SwiperSlide>
+              <h2 className="text-2xl font-semibold text-white mt-6">
+                {music.title}
+              </h2>
+              <h5 className="mt-2 text-white/70">{music.artist}</h5>
+              <div className="flex justify-center mt-6">
+                <Button title="Listen" icon={<IoMdPlay />} />
+              </div>
+            </div>
           ))}
-        </Swiper>
-        <div className="flex justify-center mt-12 lg:mt-16">
-          <Link
-            className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
-            href="/music"
-          >
-            <span>View More</span>
-          </Link>
         </div>
+
+        {data.length > sliced && (
+          <div className="flex justify-center mt-12 lg:mt-16">
+            {isLoading ? (
+              <ScaleLoader color="white" height={24} width={8} />
+            ) : (
+              <button
+                onClick={handleMoreMusic}
+                className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
+              >
+                <span>View More</span>
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
