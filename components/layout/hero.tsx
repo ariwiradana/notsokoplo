@@ -1,40 +1,21 @@
-import fetcher from "@/lib/axios";
-import { Image as ImageType } from "@/types/image";
-import Image from "next/image";
 import React from "react";
-import { Autoplay, EffectFade } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import useSWR from "swr";
 
-const Hero = () => {
-  const { data: images } = useSWR("/api/images", fetcher);
-
+const HeroComponent = () => {
   return (
-    <div className="h-[80svh] lg:h-dvh w-full">
-      <Swiper
-        autoplay
-        effect={"fade"}
-        modules={[EffectFade, Autoplay]}
-        className="relative"
-      >
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-dark/0 via-transparent to-dark"></div>
-        {images?.map((img: ImageType) => (
-          <SwiperSlide className="w-full" key={img.url}>
-            <div className="h-[80svh] lg:h-dvh relative w-full">
-              <Image
-                priority
-                fill
-                className="object-cover"
-                alt="hero"
-                src={img.url}
-                sizes="100vw"
-              />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div className="h-svh w-full relative z-10">
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <video
+          className="min-w-full min-h-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 object-cover"
+          src="https://res.cloudinary.com/dta5qasmt/video/upload/v1733733277/videos/gyglwq60isxvfs0hwnf4.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        ></video>
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-[30%] via-transparent to-dark z-10"></div>
     </div>
   );
 };
 
-export default Hero;
+export default HeroComponent;

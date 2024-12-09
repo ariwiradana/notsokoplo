@@ -2,31 +2,41 @@ import React from "react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import Navbar from "@/components/layout/navbar";
-import Shows from "@/components/layout/shows";
 import Footer from "@/components/layout/footer";
-import Hero from "@/components/layout/hero";
+import HeroComponent from "@/components/layout/hero";
+import Loading from "@/components/ui/loading";
+import fetcher from "@/lib/axios";
+import useSWR from "swr";
+import BioComponent from "@/components/layout/bio";
+import MusicComponent from "@/components/layout/music";
+import ShowsComponent from "@/components/layout/shows";
 
 const Home = () => {
+  const { data: shows, isLoading: isLoadingShows } = useSWR(
+    "/api/shows",
+    fetcher
+  );
+  const { data: music, isLoading: isLoadingMusic } = useSWR(
+    "/api/music",
+    fetcher
+  );
+
+  // const { data: images, isLoading: isLoadingImages } = useSWR(
+  //   "/api/images",
+  //   fetcher
+  // );
+
+  if (isLoadingShows || isLoadingMusic) return <Loading />;
+
   return (
-    <div>
+    <section className="bg-dark">
       <Navbar />
-      <Hero />
-      <div className="relative bg-gradient-to-b from-dark/95 to-dark backdrop-blur-sm">
-        <div className="max-w-screen-lg mx-auto">
-          <div className="flex flex-wrap lg:flex-nowrap lg:justify-between lg:gap-24 py-16 lg:py-32 relative z-10 px-6">
-            <h2 className="uppercase font-bold text-4xl lg:text-5xl lg:whitespace-nowrap text-white">
-              Upcoming Shows
-            </h2>
-            <p className="text-white text-lg lg:text-right mt-2 lg:mt-0">
-              Exciting performances ahead! Stay tuned for details on our
-              upcoming shows!
-            </p>
-          </div>
-          <Shows />
-          <Footer />
-        </div>
-      </div>
-    </div>
+      <HeroComponent />
+      <MusicComponent data={music} />
+      <BioComponent />
+      <ShowsComponent data={shows} />
+      <Footer />
+    </section>
   );
 };
 

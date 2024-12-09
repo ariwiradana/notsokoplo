@@ -6,28 +6,31 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prod": "next build && next start"
   },
   "dependencies": {
     "axios": "^1.7.9",
     "google-auth-library": "^9.15.0",
     "google-spreadsheet": "^4.1.4",
     "moment": "^2.30.1",
+    "next": "14.2.20",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.20",
+    "react-fast-marquee": "^1.6.5",
     "react-icons": "^5.4.0",
+    "react-spinners": "^0.15.0",
     "swiper": "^11.1.15",
     "swr": "^2.2.5"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.20",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.20"
+    "typescript": "^5"
   }
 }

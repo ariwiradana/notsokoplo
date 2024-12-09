@@ -1,11 +1,12 @@
+import { montserrat } from "@/constants/fonts";
 import { Socials } from "@/constants/social";
 import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
   return (
-    <div className="py-20">
-      <div className="flex justify-center w-full bg-dark">
+    <div className={`py-20 ${montserrat.className} relative z-10 bg-dark`}>
+      <div className="flex justify-center w-full">
         <div className="flex items-center border border-white/30 divide-white/30 divide-x transition-all ease-in-out duration-500">
           {Socials.map((social) => (
             <Link
