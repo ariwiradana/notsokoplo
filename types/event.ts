@@ -1,4 +1,4 @@
-export interface Show {
+export interface Event {
   event: string;
   date: string;
   address: string;

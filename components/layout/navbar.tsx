@@ -1,5 +1,4 @@
 import { montserrat } from "@/constants/fonts";
-import { NavData } from "@/constants/navdata";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -14,30 +13,49 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
     <nav
       className={`${
         montserrat.className
-      } w-full flex justify-between py-12 max-w-screen-xl mx-auto px-6 md:px-12 lg:px-4 ${
+      } w-full flex justify-between py-6 md:py-12 max-w-screen-xl mx-auto px-4 md:px-12 md:px-4 ${
         fixed && "absolute inset-x-0 z-50"
       }`}
     >
-      <ul className="flex items-center gap-x-8">
-        {NavData.map((nav) => (
-          <li key={nav.path} className="hidden lg:inline">
-            <Link className="uppercase font-bold text-sm" href={nav.path}>
-              {nav.title}
-            </Link>
-          </li>
-        ))}
-        <li className="lg:hidden">
-          <button className="text-4xl">
+      <ul className="flex items-center justify-between md:justify-center w-full gap-x-16">
+        <li className="md:hidden">
+          <button className="text-2xl">
             <TbMenu />
           </button>
         </li>
-      </ul>
-      <ul>
-        <Link href="/">
-          <div className="relative w-20 lg:w-32 aspect-square">
-            <Image sizes="200px" src="/logo.png" fill className="object-contain" alt="logo" />
-          </div>
-        </Link>
+        <li className="hidden md:inline">
+          <Link className="uppercase font-bold text-sm" href="/">
+            Home
+          </Link>
+        </li>
+        <li className="hidden md:inline">
+          <Link className="uppercase font-bold text-sm" href="/">
+            Music
+          </Link>
+        </li>
+        <li>
+          <Link href="/">
+            <div className="relative w-16 aspect-square">
+              <Image
+                sizes="200px"
+                src="/logo.png"
+                fill
+                className="object-contain"
+                alt="logo"
+              />
+            </div>
+          </Link>
+        </li>
+        <li className="hidden md:inline">
+          <Link className="uppercase font-bold text-sm" href="/">
+            Events
+          </Link>
+        </li>
+        <li className="hidden md:inline">
+          <Link className="uppercase font-bold text-sm" href="/">
+            Contact
+          </Link>
+        </li>
       </ul>
     </nav>
   );

@@ -1,11 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { doc } from "@/lib/google-sheet";
-import { Show } from "@/types/show";
+import { Event } from "@/types/event";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Show[]>
+  res: NextApiResponse<Event[]>
 ) {
   await doc.loadInfo();
   const sheet = doc.sheetsById[0];

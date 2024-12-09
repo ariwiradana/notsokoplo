@@ -1,5 +1,6 @@
 import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
+import NavbarToggle from "@/components/layout/navbar.toggle";
 import Button from "@/components/ui/button";
 import Loading from "@/components/ui/loading";
 import fetcher from "@/lib/axios";
@@ -15,8 +16,9 @@ const MusicPage = () => {
   return (
     <section className="bg-dark">
       <Navbar fixed={false} />
+      <NavbarToggle />
       <div className="max-w-screen-xl mx-auto">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-12 lg:gap-16 px-6 md:px-12 lg:px-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 px-4 md:px-12 lg:px-4">
           {data?.map((music) => (
             <div key={music.title} className="text-center">
               <div className="w-full aspect-square relative shadow-lg">

@@ -12,7 +12,7 @@ const Loading = ({ show = true }: LoadingProps) => {
         show ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
     >
-      <PropagateLoader color="white" size={15} />
+      <PropagateLoader color="white" size={10} />
     </div>
   );
 };

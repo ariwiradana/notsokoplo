@@ -2,7 +2,7 @@ import React from "react";
 
 const HeroComponent = () => {
   return (
-    <div className="h-svh w-full relative z-10">
+    <div className="h-svh w-full relative z-10" id="home">
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video
           className="min-w-full min-h-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 object-cover"
