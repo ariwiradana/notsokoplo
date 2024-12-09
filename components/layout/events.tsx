@@ -14,7 +14,7 @@ interface PageProps {
 const EventComponent = ({ data }: PageProps) => {
   return (
     <div className="relative bg-dark" id="events">
-      <div className="pt-16 lg:pt-28 max-w-screen-lg mx-auto">
+      <div className="py-16 lg:py-28 max-w-screen-lg mx-auto">
         <div className="px-4 md:px-12 lg:px-0">
           <div
             className={`flex flex-col md:flex-row items-center justify-between mb-12 gap-4 ${montserrat.className}`}
@@ -22,7 +22,7 @@ const EventComponent = ({ data }: PageProps) => {
             <h2
               className={`font-semibold text-center text-3xl md:text-4xl lg:text-5xl text-white whitespace-nowrap`}
             >
-              Events
+              Upcoming Events
             </h2>
             <p className="md:max-w-[50%] text-center md:text-right text-white/80 text-sm lg:text-base">
               Discover our upcoming events and join for an unforgettable
@@ -46,7 +46,7 @@ const EventComponent = ({ data }: PageProps) => {
                     className={`border-b border-b-white/5 transition-all ease-in-out duration-500 ${montserrat.className}`}
                   >
                     <td className="p-6 md:px-12 align-top hidden lg:inline">
-                      <p className="text-white text-sm font-bold uppercase mt-1 whitespace-nowrap">
+                      <p className="text-white text-sm lg:text-base font-bold uppercase mt-1 whitespace-nowrap">
                         {moment(event.date, formats, true).format("MMM DD")}
                         <span className="ml-3">
                           {moment(event.date, formats, true).format("ddd")}
