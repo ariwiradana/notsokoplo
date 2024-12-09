@@ -19,7 +19,6 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
       handleActiveId(id);
-      handleToggleSidebar();
     }
   };
 

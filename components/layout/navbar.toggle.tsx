@@ -30,7 +30,6 @@ const NavbarToggle = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
       handleActiveId(id);
-      handleToggleSidebar();
     }
   };
 

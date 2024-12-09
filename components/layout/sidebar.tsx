@@ -17,11 +17,10 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    const body = document.body;
     if (openSidebar) {
-      body.style.overflowY = "hidden";
+      document.body.classList.add("no-scroll");
     } else {
-      body.style.overflowY = "auto";
+      document.body.classList.remove("no-scroll");
     }
   }, [openSidebar]);
 
