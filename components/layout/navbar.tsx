@@ -1,25 +1,25 @@
 import { montserrat } from "@/constants/fonts";
-import { NavData } from "@/constants/navdata";
-import { Socials } from "@/constants/social";
+import useSidebar from "@/store/useSidebar";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import { TbMenu } from "react-icons/tb";
+import React from "react";
+import { TbMenu, TbX } from "react-icons/tb";
+import Sidebar from "./sidebar";
 
 interface NavbarProps {
   fixed?: boolean;
 }
 
 const Navbar = ({ fixed = true }: NavbarProps) => {
-  const [activeId, setActiveId] = useState<string>("");
-  const [openSidebar, setOpenSidebar] = useState<boolean>(false);
+  const { openSidebar, handleActiveId, handleToggleSidebar, scrollPosition } =
+    useSidebar();
 
   const scrollToDiv = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
-      setActiveId(id);
-      setOpenSidebar(false);
+      handleActiveId(id);
+      handleToggleSidebar();
     }
   };
 
@@ -33,11 +33,8 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
     >
       <ul className="flex items-center justify-between md:justify-center w-full gap-x-16">
         <li className="md:hidden">
-          <button
-            className="text-2xl p-3"
-            onClick={() => setOpenSidebar((prevState) => !prevState)}
-          >
-            <TbMenu />
+          <button className="text-2xl p-3" onClick={handleToggleSidebar}>
+            {openSidebar ? <TbX /> : <TbMenu />}
           </button>
         </li>
         <li className="hidden md:inline">
@@ -86,35 +83,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
           </button>
         </li>
       </ul>
-      <ul
-        onClick={(e) => e.stopPropagation()}
-        className={`overflow-hidden flex flex-col gap-4 w-full transition-all duration-500 ease-in-out ${
-          openSidebar ? "h-screen mt-6" : "h-0"
-        }`}
-      >
-        {NavData.map((nav) => (
-          <li
-            key={`nav-${nav.path}`}
-            className="text-center font-semibold text-2xl"
-          >
-            <button
-              onClick={() => scrollToDiv(nav.path)}
-              className={`${
-                activeId === nav.path ? "text-white" : "text-white/60"
-              }`}
-            >
-              {nav.title}
-            </button>
-          </li>
-        ))}
-        <li className="flex justify-center gap-6 text-2xl mt-8">
-          {Socials.map((social) => (
-            <Link target="_blank" key={social.title} href={social.link}>
-              <div className="group-hover:text-dark">{social.icon}</div>
-            </Link>
-          ))}
-        </li>
-      </ul>
+      {scrollPosition < 300 && <Sidebar />}
     </nav>
   );
 };
