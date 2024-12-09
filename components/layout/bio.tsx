@@ -29,7 +29,7 @@ const BioComponent = ({ data }: PageProps) => {
                 src={image.url}
                 sizes="60vw"
                 fill
-                className="object-cover"
+                className="object-cover rounded-t md:rounded-r"
                 alt={`image-${index}`}
               />
             </div>
@@ -66,7 +66,7 @@ const BioComponent = ({ data }: PageProps) => {
         <div
           className={`md:max-w-[60%] lg:max-w-[50%] ${montserrat.className}`}
         >
-          <div className="p-8 lg:p-16 bg-white relative z-20">
+          <div className="p-8 lg:p-16 bg-white md:rounded relative z-20">
             <h2 className={`font-bold text-4xl md:text-5xl text-dark`}>
               Biography
             </h2>

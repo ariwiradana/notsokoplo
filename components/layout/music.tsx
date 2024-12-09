@@ -38,15 +38,15 @@ const MusicComponent = ({ data }: PageProps) => {
           </p>
           <div className="h-10 md:h-16 w-[1px] bg-white/30"></div>
         </div>
-        <div className="grid md:grid-cols-3 gap-x-6 gap-y-12">
+        <div className="grid md:grid-cols-3 gap-4 lg:gap-6">
           {data?.slice(0, sliced).map((music) => (
-            <div key={music.title} className="text-center">
+            <div key={music.title} className="text-center bg-white/[0.03] rounded p-8">
               <div className="w-full aspect-square relative shadow-lg">
                 <Image
                   sizes="600px"
                   src={music.cover}
                   fill
-                  className="object-cover"
+                  className="object-cover rounded"
                   alt={music.title}
                 />
               </div>
