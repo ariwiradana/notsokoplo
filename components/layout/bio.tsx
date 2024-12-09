@@ -10,7 +10,7 @@ const BioComponent = () => {
   return (
     <div className="w-full min-h-dvh flex flex-col items-center relative">
       <div className="fixed inset-0">
-        <Image src="/hero.png" fill className="object-cover" alt="bio-bg" />
+        <Image src="/hero.png" sizes="100vw" fill className="object-cover" alt="bio-bg" />
       </div>
     </div>
   );

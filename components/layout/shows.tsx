@@ -16,7 +16,7 @@ const ShowsComponent = ({ data }: PageProps) => {
     <div className="relative bg-dark">
       <div className="pt-16 lg:pt-28 max-w-screen-xl mx-auto">
         <h2
-          className={`uppercase text-center font-semibold text-3xl lg:text-5xl text-white mb-16 ${montserrat.className}`}
+          className={`uppercase text-center font-semibold text-3xl lg:text-5xl text-white mb-8 lg:mb-16 ${montserrat.className}`}
         >
           Shows
         </h2>

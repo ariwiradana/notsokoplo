@@ -16,11 +16,12 @@ const MusicPage = () => {
     <section className="bg-dark">
       <Navbar fixed={false} />
       <div className="max-w-screen-xl mx-auto">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-16 px-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-12 lg:gap-16 px-6 md:px-12 lg:px-4">
           {data?.map((music) => (
             <div key={music.title} className="text-center">
               <div className="w-full aspect-square relative shadow-lg">
                 <Image
+                  sizes="600px"
                   src={music.cover}
                   fill
                   className="object-cover"

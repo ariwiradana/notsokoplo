@@ -14,7 +14,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
     <nav
       className={`${
         montserrat.className
-      } w-full flex justify-between py-12 max-w-screen-xl mx-auto px-6 ${
+      } w-full flex justify-between py-12 max-w-screen-xl mx-auto px-6 md:px-12 lg:px-4 ${
         fixed && "absolute inset-x-0 z-50"
       }`}
     >
@@ -35,7 +35,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
       <ul>
         <Link href="/">
           <div className="relative w-20 lg:w-32 aspect-square">
-            <Image src="/logo.png" fill className="object-contain" alt="logo" />
+            <Image sizes="200px" src="/logo.png" fill className="object-contain" alt="logo" />
           </div>
         </Link>
       </ul>
