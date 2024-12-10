@@ -20,7 +20,7 @@ const EventComponent = ({ data, images }: PageProps) => {
       <div className="py-16 lg:py-28 max-w-screen-xl mx-auto">
         <div className="px-4 md:px-12 lg:px-0">
           <div
-            className={`flex flex-col md:flex-row items-center justify-between mb-12 gap-4 ${montserrat.className}`}
+            className={`flex flex-col md:flex-row items-center justify-between mb-12 gap-4 md:gap-12 ${montserrat.className}`}
           >
             <h2
               className={`font-bold text-center text-3xl md:text-4xl lg:text-6xl text-white whitespace-nowrap uppercase`}
