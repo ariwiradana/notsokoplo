@@ -6,8 +6,8 @@ interface StoreState {
 }
 
 const useLoading = create<StoreState>((set) => ({
-  isLoading: false,
-  handleIsLoading: () => set((state) => ({ isLoading: state.isLoading })),
+  isLoading: true,
+  handleIsLoading: () => set((state) => ({ isLoading: !state.isLoading })),
 }));
 
 export default useLoading;
