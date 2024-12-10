@@ -30,18 +30,18 @@ const MusicComponent = ({ data }: PageProps) => {
       <MusicPlayer />
       <div className="max-w-screen-xl mx-auto py-16 lg:py-28 px-4 md:px-12 lg:px-4">
         <div
-          className={`flex flex-col md:flex-row items-center justify-between mb-12 gap-4 md:gap-12 ${montserrat.className}`}
+          className={`flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-12 gap-4 md:gap-12 ${montserrat.className}`}
         >
           <h2
-            className={`font-bold text-center md:text-left text-4xl md:text-5xl lg:text-6xl text-white uppercase`}
+            className={`font-bold text-left text-4xl md:text-5xl lg:text-6xl text-white uppercase`}
           >
             Music/Remixes
           </h2>
-          <p className="md:max-w-[50%] text-center md:text-right text-white/80 text-sm lg:text-base">
+          <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base">
             Dive into our newest tracks, created to bring joy to your day.
             Listen now!
           </p>
-          <div className="h-10 md:h-16 w-[1px] bg-white/30"></div>
+          <div className="h-16 md:h-24 w-[1px] bg-white/10"></div>
         </div>
         <div className="grid md:grid-cols-3 gap-x-6 gap-y-12">
           {data?.slice(0, sliced).map((music) => (

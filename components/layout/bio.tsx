@@ -74,7 +74,7 @@ const BioComponent = ({ data }: PageProps) => {
             >
               Biography
             </h2>
-            <div className="h-10 md:h-12 w-[1px] bg-dark/30 my-4"></div>
+            <div className="h-10 md:h-12 w-[1px] bg-dark/20 my-4"></div>
             <p className="text-dark font-medium leading-8 text-justify">
               Not So Koplo is an energetic music group hailing from Denpasar,
               Bali, formed on February 26, 2020. Known for their creative blend
