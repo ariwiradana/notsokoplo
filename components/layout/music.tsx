@@ -33,7 +33,7 @@ const MusicComponent = ({ data }: PageProps) => {
           className={`flex flex-col md:flex-row items-center justify-between mb-12 gap-4 ${montserrat.className}`}
         >
           <h2
-            className={`font-semibold text-center text-3xl md:text-4xl lg:text-5xl text-white whitespace-nowrap`}
+            className={`font-bold text-center text-3xl md:text-4xl lg:text-6xl text-white whitespace-nowrap uppercase`}
           >
             Music/Remixes
           </h2>

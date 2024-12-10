@@ -23,7 +23,7 @@ const BioComponent = ({ data }: PageProps) => {
         modules={[Autoplay, EffectFade]}
       >
         <div className="absolute inset-0 lg:bg-gradient-to-r md:w-[90%] lg:w-[80%] from-transparent via-dark/30 to-[80%] to-dark z-10"></div>
-        {data?.map((image, index) => (
+        {data?.slice(2).map((image, index) => (
           <SwiperSlide key={`bio-image-${index + 1}`}>
             <div className="relative h-[70svh] md:h-[60svh] lg:h-[130svh] lg:w-[80%]">
               <Image
@@ -69,7 +69,9 @@ const BioComponent = ({ data }: PageProps) => {
         </div>
         <div className={`lg:max-w-[50%] ${montserrat.className}`}>
           <div className="px-6 py-10 md:px-12 md:py-16 lg:p-16 bg-white backdrop-blur-lg md:rounded relative z-20">
-            <h2 className={`font-bold text-4xl md:text-5xl text-dark`}>
+            <h2
+              className={`font-bold text-4xl md:text-5xl text-dark uppercase`}
+            >
               Biography
             </h2>
             <div className="h-10 md:h-12 w-[1px] bg-dark/30 my-4"></div>

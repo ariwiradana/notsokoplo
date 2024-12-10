@@ -52,7 +52,7 @@ const Home = () => {
       <NavbarToggle />
       <Navbar />
       <HeroComponent />
-      <EventComponent data={events} />
+      <EventComponent images={images} data={events} />
       <BioComponent data={images} />
       <MusicComponent data={music} />
       {/* <Contact /> */}

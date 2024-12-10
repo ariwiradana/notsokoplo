@@ -6,21 +6,24 @@ import React from "react";
 import { GoArrowUpRight } from "react-icons/go";
 import Button from "../ui/button";
 import { IoTicketSharp } from "react-icons/io5";
+import { Image as ImageType } from "@/types/image";
+import Image from "next/image";
 
 interface PageProps {
   data: Event[];
+  images: ImageType[];
 }
 
-const EventComponent = ({ data }: PageProps) => {
+const EventComponent = ({ data, images }: PageProps) => {
   return (
     <div className="relative bg-dark" id="events">
-      <div className="py-16 lg:py-28 max-w-screen-lg mx-auto">
+      <div className="py-16 lg:py-28 max-w-screen-xl mx-auto">
         <div className="px-4 md:px-12 lg:px-0">
           <div
             className={`flex flex-col md:flex-row items-center justify-between mb-12 gap-4 ${montserrat.className}`}
           >
             <h2
-              className={`font-semibold text-center text-3xl md:text-4xl lg:text-5xl text-white whitespace-nowrap`}
+              className={`font-bold text-center text-3xl md:text-4xl lg:text-6xl text-white whitespace-nowrap uppercase`}
             >
               Upcoming Events
             </h2>
@@ -31,73 +34,82 @@ const EventComponent = ({ data }: PageProps) => {
             <div className="h-10 md:h-16 w-[1px] bg-white/30"></div>
           </div>
         </div>
-        <table className="table table-auto w-full">
-          <tbody>
-            {data?.map((event: Event, index: number) => {
-              const formats = ["YYYY-MM-DD", "DD/MM/YYYY"];
-              const isExpired = moment(event.date, formats, true).isBefore(
-                moment().subtract(1, "days")
-              );
-
-              if (!isExpired)
-                return (
-                  <tr
-                    key={`${event.event}-${index}`}
-                    className={`border-b border-b-white/5 last:border-b-transparent transition-all ease-in-out duration-500 ${montserrat.className}`}
-                  >
-                    <td className="p-6 md:px-12 align-top hidden lg:table-cell">
-                      <p className="text-white text-base md:text-lg font-bold uppercase mt-1 whitespace-nowrap">
-                        {moment(event.date, formats, true).format("MMM DD")}
-                        <span className="ml-3">
-                          {moment(event.date, formats, true).format("ddd")}
-                        </span>
-                      </p>
-                    </td>
-                    <td className="p-6 md:px-12 align-middle">
-                      <p className="text-white text-base font-bold uppercase whitespace-nowrap lg:hidden mb-2">
-                        {moment(event.date, formats, true).format("MMM DD")}
-                        <span className="ml-3">
-                          {moment(event.date, formats, true).format("ddd")}
-                        </span>
-                      </p>
-                      <div className="flex items-center gap-x-3">
-                        <p
-                          className={`text-white text-xl md:text-2xl font-medium`}
-                        >
-                          <span>{event.event} </span>
-                          {event.category === "private" && (
-                            <span className="text-white/80 text-base font-light capitalize">
-                              ({event.category})
-                            </span>
-                          )}
-                        </p>
-                        <GoArrowUpRight className="text-3xl text-white hidden lg:block" />
-                      </div>
-                      <p className="text-white/70 text-base md:text-lg mt-2 flex">
-                        <span>{event.address}</span>
-                      </p>
-                      {event.link && (
-                        <div className="flex lg:hidden mt-3">
-                          <Link target="_blank" href={event.link}>
-                            <Button title="Detail" icon={<IoTicketSharp />} />
-                          </Link>
-                        </div>
-                      )}
-                    </td>
-                    <td className="align-middle p-6 md:px-12 hidden lg:table-cell">
-                      <div className="flex gap-x-2">
-                        {event.link && (
-                          <Link target="_blank" href={event.link}>
-                            <Button title="Detail" icon={<IoTicketSharp />} />
-                          </Link>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
+        <div className="flex items-stretch">
+          <div className="min-w-[5%] w-[5%] md:w-[30%] md:min-w-[30%] relative flex flex-col gap-6 items-stretch">
+            {images?.slice(0, 2).map((image, index) => (
+              <div
+                className="w-full h-full relative"
+                key={`event-image-${index}`}
+              >
+                <Image
+                  src={image.url}
+                  fill
+                  className="object-cover"
+                  alt={`event-image-${index}`}
+                />
+              </div>
+            ))}
+          </div>
+          <table className="table table-auto bg-dark z-10 border-t border-t-white/5">
+            <tbody>
+              {data?.map((event: Event, index: number) => {
+                const formats = ["YYYY-MM-DD", "DD/MM/YYYY"];
+                const isExpired = moment(event.date, formats, true).isBefore(
+                  moment().subtract(1, "days")
                 );
-            })}
-          </tbody>
-        </table>
+
+                if (!isExpired)
+                  return (
+                    <tr
+                      key={`${event.event}-${index}`}
+                      className={`border-b border-b-white/5 transition-all ease-in-out duration-500 ${montserrat.className}`}
+                    >
+                      <td className="p-6 md:px-12 align-middle">
+                        <p className="text-white text-base font-bold uppercase whitespace-nowrap mb-2">
+                          {moment(event.date, formats, true).format("MMM DD")}
+                          <span className="ml-3">
+                            {moment(event.date, formats, true).format("ddd")}
+                          </span>
+                        </p>
+                        <div className="flex items-center gap-x-3">
+                          <p
+                            className={`text-white text-xl md:text-2xl font-medium`}
+                          >
+                            <span>{event.event} </span>
+                            {event.category === "private" && (
+                              <span className="text-white/80 text-base font-light capitalize">
+                                ({event.category})
+                              </span>
+                            )}
+                          </p>
+                          <GoArrowUpRight className="text-3xl text-white hidden lg:block" />
+                        </div>
+                        <p className="text-white/70 text-base md:text-lg mt-2 flex">
+                          <span>{event.address}</span>
+                        </p>
+                        {event.link && (
+                          <div className="flex lg:hidden mt-3">
+                            <Link target="_blank" href={event.link}>
+                              <Button title="Detail" icon={<IoTicketSharp />} />
+                            </Link>
+                          </div>
+                        )}
+                      </td>
+                      <td className="align-middle p-6 md:px-12 hidden lg:table-cell">
+                        <div className="flex gap-x-2">
+                          {event.link && (
+                            <Link target="_blank" href={event.link}>
+                              <Button title="Detail" icon={<IoTicketSharp />} />
+                            </Link>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
