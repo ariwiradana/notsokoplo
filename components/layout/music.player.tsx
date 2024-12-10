@@ -35,8 +35,8 @@ const MusicPlayer = () => {
       }`}
     >
       {music?.preview && <audio ref={audioRef} src={music?.preview} />}
-      <div className="flex justify-center md:justify-start md:items-center gap-x-4 md:gap-x-8 text-white text-2xl">
-        <div className="mt-2 md:mt-0 flex">
+      <div className="flex justify-center md:justify-start items-center gap-x-4 md:gap-x-8 text-white text-2xl">
+        <div className="flex">
           <button
             onClick={() => {
               handleIsOpenPlayer(false);
@@ -47,7 +47,7 @@ const MusicPlayer = () => {
             <TbX className="text-[26px]" />
           </button>
         </div>
-        <div className="mt-2 md:mt-0 flex">
+        <div className="flex">
           <button onClick={() => handleIsPlaying(!isPlaying)}>
             {isPlaying ? <TbPlayerPauseFilled /> : <TbPlayerPlayFilled />}
           </button>
@@ -70,7 +70,7 @@ const MusicPlayer = () => {
                 - {music?.artist}
               </span>{" "}
             </h4>
-            <p className="text-sm md:text-base font-normal text-white/80 md:hidden">
+            <p className="text-sm md:text-base font-normal text-white/80 md:hidden line-clamp-1">
               {music?.artist}
             </p>
           </div>
