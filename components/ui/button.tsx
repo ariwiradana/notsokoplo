@@ -11,7 +11,7 @@ const Button = ({ title, icon, ...props }: ButtonProps) => {
       className="px-5 py-2 rounded-full border-2 text-white border-white flex items-center gap-x-3 hover:bg-primary hover:border-primary transition-all ease-in-out duration-500 font-medium"
     >
       {icon}
-      <span>{title}</span>
+      <span className="whitespace-nowrap">{title}</span>
     </button>
   );
 };

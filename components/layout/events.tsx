@@ -97,7 +97,7 @@ const EventComponent = ({ data, images }: PageProps) => {
                         )}
                       </td>
                       <td className="align-middle p-6 md:px-12 hidden lg:table-cell">
-                        <div className="flex gap-x-2">
+                        <div className="flex gap-x-4">
                           {event.link && (
                             <Link target="_blank" href={event.link}>
                               <Button title="Detail" icon={<IoTicketSharp />} />
