@@ -59,17 +59,19 @@ const MusicComponent = ({ data }: PageProps) => {
                 {music.title}
               </h2>
               <h5 className="mt-2 text-white/70">{music.artist}</h5>
-              <div className="flex justify-center mt-6">
-                <Button
-                  onClick={() => {
-                    handleIsOpenPlayer(true);
-                    handleIsPlaying(true);
-                    handleAddMusic(music);
-                  }}
-                  title="Listen"
-                  icon={<TbPlayerPlayFilled />}
-                />
-              </div>
+              {music.url && (
+                <div className="flex justify-center mt-6">
+                  <Button
+                    onClick={() => {
+                      handleIsOpenPlayer(true);
+                      handleIsPlaying(true);
+                      handleAddMusic(music);
+                    }}
+                    title="Listen"
+                    icon={<TbPlayerPlayFilled />}
+                  />
+                </div>
+              )}
             </div>
           ))}
         </div>
