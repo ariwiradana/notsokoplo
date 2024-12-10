@@ -41,10 +41,10 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
         </li>
         <li className="hidden md:inline">
           <button
-            onClick={() => scrollToDiv("music")}
+            onClick={() => scrollToDiv("events")}
             className="uppercase font-bold text-sm"
           >
-            Music
+            Events
           </button>
         </li>
         <li className="hidden md:inline">
@@ -70,10 +70,10 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
         </li>
         <li className="hidden md:inline">
           <button
-            onClick={() => scrollToDiv("events")}
+            onClick={() => scrollToDiv("music")}
             className="uppercase font-bold text-sm"
           >
-            Events
+            Music
           </button>
         </li>
         <li className="hidden md:inline">

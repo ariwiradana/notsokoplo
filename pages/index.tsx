@@ -12,6 +12,7 @@ import MusicComponent from "@/components/layout/music";
 import NavbarToggle from "@/components/layout/navbar.toggle";
 import EventComponent from "@/components/layout/events";
 import Seo from "@/components/layout/seo";
+import useLoading from "@/store/useLoading";
 // import Contact from "@/components/layout/contact";
 
 const Home = () => {
@@ -29,7 +30,10 @@ const Home = () => {
     fetcher
   );
 
-  if (isLoadingEvents || isLoadingMusic || isLoadingImages) return <Loading />;
+  const { isLoading } = useLoading();
+
+  if (isLoadingEvents || isLoadingMusic || isLoadingImages || isLoading)
+    return <Loading />;
 
   return (
     <section className="bg-dark">
@@ -48,9 +52,9 @@ const Home = () => {
       <NavbarToggle />
       <Navbar />
       <HeroComponent />
-      <MusicComponent data={music} />
-      <BioComponent data={images} />
       <EventComponent data={events} />
+      <BioComponent data={images} />
+      <MusicComponent data={music} />
       {/* <Contact /> */}
       <Footer />
     </section>

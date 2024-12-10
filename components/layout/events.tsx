@@ -31,7 +31,7 @@ const EventComponent = ({ data }: PageProps) => {
             <div className="h-10 md:h-16 w-[1px] bg-white/30"></div>
           </div>
         </div>
-        <table className="table table-auto w-full border-t border-t-white/5">
+        <table className="table table-auto w-full">
           <tbody>
             {data?.map((event: Event, index: number) => {
               const formats = ["YYYY-MM-DD", "DD/MM/YYYY"];
@@ -43,10 +43,10 @@ const EventComponent = ({ data }: PageProps) => {
                 return (
                   <tr
                     key={`${event.event}-${index}`}
-                    className={`border-b border-b-white/5 transition-all ease-in-out duration-500 ${montserrat.className}`}
+                    className={`border-b border-b-white/5 last:border-b-transparent transition-all ease-in-out duration-500 ${montserrat.className}`}
                   >
-                    <td className="p-6 md:px-12 align-top hidden lg:inline">
-                      <p className="text-white text-base font-bold uppercase mt-1 whitespace-nowrap">
+                    <td className="p-6 md:px-12 align-top hidden lg:table-cell">
+                      <p className="text-white text-base md:text-lg font-bold uppercase mt-1 whitespace-nowrap">
                         {moment(event.date, formats, true).format("MMM DD")}
                         <span className="ml-3">
                           {moment(event.date, formats, true).format("ddd")}
@@ -61,7 +61,9 @@ const EventComponent = ({ data }: PageProps) => {
                         </span>
                       </p>
                       <div className="flex items-center gap-x-3">
-                        <p className={`text-white text-xl`}>
+                        <p
+                          className={`text-white text-xl md:text-2xl font-medium`}
+                        >
                           <span>{event.event} </span>
                           {event.category === "private" && (
                             <span className="text-white/80 text-base font-light capitalize">
@@ -71,7 +73,7 @@ const EventComponent = ({ data }: PageProps) => {
                         </p>
                         <GoArrowUpRight className="text-3xl text-white hidden lg:block" />
                       </div>
-                      <p className="text-white/70 text-base mt-2 flex">
+                      <p className="text-white/70 text-base md:text-lg mt-2 flex">
                         <span>{event.address}</span>
                       </p>
                       {event.link && (
@@ -82,7 +84,7 @@ const EventComponent = ({ data }: PageProps) => {
                         </div>
                       )}
                     </td>
-                    <td className="p-6 md:px-12 align-middle hidden lg:inline">
+                    <td className="align-middle p-6 md:px-12 hidden lg:table-cell">
                       <div className="flex gap-x-2">
                         {event.link && (
                           <Link target="_blank" href={event.link}>
