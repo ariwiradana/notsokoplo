@@ -11,7 +11,7 @@ import BioComponent from "@/components/layout/bio";
 import MusicComponent from "@/components/layout/music";
 import NavbarToggle from "@/components/layout/navbar.toggle";
 import EventComponent from "@/components/layout/events";
-import Contact from "@/components/layout/contact";
+// import Contact from "@/components/layout/contact";
 
 const Home = () => {
   const { data: events, isLoading: isLoadingEvents } = useSWR(
@@ -38,7 +38,7 @@ const Home = () => {
       <MusicComponent data={music} />
       <BioComponent data={images} />
       <EventComponent data={events} />
-      <Contact />
+      {/* <Contact /> */}
       <Footer />
     </section>
   );
