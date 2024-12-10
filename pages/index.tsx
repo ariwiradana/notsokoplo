@@ -11,6 +11,7 @@ import BioComponent from "@/components/layout/bio";
 import MusicComponent from "@/components/layout/music";
 import NavbarToggle from "@/components/layout/navbar.toggle";
 import EventComponent from "@/components/layout/events";
+import Seo from "@/components/layout/seo";
 // import Contact from "@/components/layout/contact";
 
 const Home = () => {
@@ -32,6 +33,18 @@ const Home = () => {
 
   return (
     <section className="bg-dark">
+      <Seo
+        title="No So Koplo Official Website"
+        description=" Not So Koplo is an energetic music group hailing from Denpasar,
+              Bali, formed on February 26, 2020. Known for their creative blend
+              of genres, they center their sound around Koplo—a popular
+              Indonesian dangdut subgenre—while adding a unique twist to every
+              remix they produce. The duo is made up of long-time friends Dwiki
+              Krisnanda (MC/Crowd Control) and Ari Wiradana (DJ & Producer), who
+              first met during their college years."
+        image="/logo.png"
+        keywords="notsokoplo, not so koplo, koplo bali, dj, feel koplo, bagus wirata"
+      />
       <NavbarToggle />
       <Navbar />
       <HeroComponent />
