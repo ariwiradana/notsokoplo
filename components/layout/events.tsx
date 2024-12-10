@@ -23,7 +23,7 @@ const EventComponent = ({ data, images }: PageProps) => {
             className={`flex flex-col md:flex-row items-center justify-between mb-12 gap-4 md:gap-12 ${montserrat.className}`}
           >
             <h2
-              className={`font-bold text-center text-3xl md:text-4xl lg:text-6xl text-white whitespace-nowrap uppercase`}
+              className={`font-bold text-center md:text-left text-4xl md:text-5xl lg:text-6xl text-white uppercase`}
             >
               Upcoming Events
             </h2>
@@ -42,6 +42,7 @@ const EventComponent = ({ data, images }: PageProps) => {
                 key={`event-image-${index}`}
               >
                 <Image
+                  sizes="30vw"
                   src={image.url}
                   fill
                   className="object-cover"

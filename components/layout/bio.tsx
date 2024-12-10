@@ -70,7 +70,7 @@ const BioComponent = ({ data }: PageProps) => {
         <div className={`lg:max-w-[50%] ${montserrat.className}`}>
           <div className="px-6 py-10 md:px-12 md:py-16 lg:p-16 bg-white backdrop-blur-lg md:rounded relative z-20">
             <h2
-              className={`font-bold text-4xl md:text-5xl text-dark uppercase`}
+              className={`font-bold text-4xl md:text-5xl lg:text-6xl text-dark uppercase`}
             >
               Biography
             </h2>
@@ -78,8 +78,8 @@ const BioComponent = ({ data }: PageProps) => {
             <p className="text-dark font-medium leading-8 text-justify">
               Not So Koplo is an energetic music group hailing from Denpasar,
               Bali, formed on February 26, 2020. Known for their creative blend
-              of genres, they center their sound around Koplo—a popular
-              Indonesian dangdut subgenre—while adding a unique twist to every
+              of genres, they center their sound around Koplo, a popular
+              Indonesian dangdut subgenre while adding a unique twist to every
               remix they produce. The duo is made up of long-time friends Dwiki
               Krisnanda (MC/Crowd Control) and Ari Wiradana (DJ & Producer), who
               first met during their college years.
