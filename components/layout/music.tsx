@@ -2,9 +2,11 @@ import { montserrat } from "@/constants/fonts";
 import { Music } from "@/types/music";
 import Image from "next/image";
 import React, { useState } from "react";
-import { IoMdPlay } from "react-icons/io";
 import Button from "../ui/button";
 import { ScaleLoader } from "react-spinners";
+import MusicPlayer from "./music.player";
+import useMusicPlayer from "@/store/useMusicPlayer";
+import { TbPlayerPlayFilled } from "react-icons/tb";
 interface PageProps {
   data: Music[];
 }
@@ -12,6 +14,8 @@ interface PageProps {
 const MusicComponent = ({ data }: PageProps) => {
   const [sliced, setSliced] = useState<number>(3);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { handleIsPlaying, handleIsOpenPlayer, handleAddMusic } =
+    useMusicPlayer();
 
   const handleMoreMusic = () => {
     setIsLoading(true);
@@ -23,6 +27,7 @@ const MusicComponent = ({ data }: PageProps) => {
 
   return (
     <div className={`relative bg-dark ${montserrat.className} z-10`} id="music">
+      <MusicPlayer />
       <div className="max-w-screen-xl mx-auto py-16 lg:py-28 px-4 md:px-12 lg:px-4">
         <div
           className={`flex flex-col md:flex-row items-center justify-between mb-12 gap-4 ${montserrat.className}`}
@@ -55,7 +60,15 @@ const MusicComponent = ({ data }: PageProps) => {
               </h2>
               <h5 className="mt-2 text-white/70">{music.artist}</h5>
               <div className="flex justify-center mt-6">
-                <Button title="Listen" icon={<IoMdPlay />} />
+                <Button
+                  onClick={() => {
+                    handleIsOpenPlayer(true);
+                    handleIsPlaying(true);
+                    handleAddMusic(music);
+                  }}
+                  title="Listen"
+                  icon={<TbPlayerPlayFilled />}
+                />
               </div>
             </div>
           ))}

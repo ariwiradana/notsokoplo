@@ -1,12 +1,15 @@
 import React from "react";
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
   icon?: JSX.Element;
 }
-const Button = ({ title, icon }: ButtonProps) => {
+const Button = ({ title, icon, ...props }: ButtonProps) => {
   return (
-    <button className="px-5 py-2 rounded-full border-2 border-white flex items-center gap-x-3 hover:bg-primary hover:border-primary transition-all ease-in-out duration-500 font-medium">
+    <button
+      {...props}
+      className="px-5 py-2 rounded-full border-2 border-white flex items-center gap-x-3 hover:bg-primary hover:border-primary transition-all ease-in-out duration-500 font-medium"
+    >
       {icon}
       <span>{title}</span>
     </button>

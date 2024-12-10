@@ -14,7 +14,7 @@ const BioComponent = ({ data }: PageProps) => {
   const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
 
   return (
-    <div className="relative" id="biography">
+    <div className="relative z-0" id="biography">
       <Swiper
         className="relative"
         speed={2000}
@@ -22,7 +22,7 @@ const BioComponent = ({ data }: PageProps) => {
         autoplay
         modules={[Autoplay, EffectFade]}
       >
-        <div className="absolute inset-0 lg:bg-gradient-to-r md:w-[90%] lg:w-[80%] from-transparent via-dark/30 to-[80%] to-dark z-20"></div>
+        <div className="absolute inset-0 lg:bg-gradient-to-r md:w-[90%] lg:w-[80%] from-transparent via-dark/30 to-[80%] to-dark z-10"></div>
         {data?.map((image, index) => (
           <SwiperSlide key={`bio-image-${index + 1}`}>
             <div className="relative h-[70svh] md:h-[60svh] lg:h-[130svh] lg:w-[80%]">
@@ -37,7 +37,7 @@ const BioComponent = ({ data }: PageProps) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="lg:absolute inset-0 z-20 flex flex-col lg:flex-row items-end justify-end md:mb-6 md:mr-6 lg:mb-12 lg:mr-12">
+      <div className="lg:absolute inset-0 z-10 flex flex-col lg:flex-row items-end justify-end md:mb-6 md:mr-6 lg:mb-12 lg:mr-12">
         <div className="lg:w-[50%] w-full lg:mb-6">
           <Marquee
             direction="right"
