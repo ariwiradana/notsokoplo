@@ -1,4 +1,5 @@
 import { montserrat } from "@/constants/fonts";
+import Image from "next/image";
 // import Image from "next/image";
 import React from "react";
 
@@ -23,14 +24,14 @@ const Contact = () => {
           </p>
           <div className="h-10 md:h-16 w-[1px] bg-dark/30"></div>
         </div>
-        {/* <div className="relative w-full aspect-video">
+        <div className="relative">
           <Image
-            src="/contact.jpeg"
-            fill
+            width={300}
+            height={0}
+            src="/contact.jpg"
             alt="contact-image"
-            className="object-cover"
           />
-        </div> */}
+        </div>
       </div>
     </div>
   );

@@ -71,8 +71,8 @@ const EventComponent = ({ data }: PageProps) => {
                         </p>
                         <GoArrowUpRight className="text-3xl text-white hidden lg:block" />
                       </div>
-                      <p className="text-white/70 text-base mt-2">
-                        {event.address}
+                      <p className="text-white/70 text-base mt-2 flex">
+                        <span>{event.address}</span>
                       </p>
                       {event.link && (
                         <div className="flex lg:hidden mt-3">
@@ -83,13 +83,13 @@ const EventComponent = ({ data }: PageProps) => {
                       )}
                     </td>
                     <td className="p-6 md:px-12 align-middle hidden lg:inline">
-                      {event.link && (
-                        <div className="flex">
+                      <div className="flex gap-x-2">
+                        {event.link && (
                           <Link target="_blank" href={event.link}>
-                            <Button title="Tickets" icon={<IoTicketSharp />} />
+                            <Button title="Detail" icon={<IoTicketSharp />} />
                           </Link>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </td>
                   </tr>
                 );
