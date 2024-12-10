@@ -42,7 +42,7 @@ const EventComponent = ({ data, images }: PageProps) => {
                 key={`event-image-${index}`}
               >
                 <Image
-                  sizes="30vw"
+                  sizes="60vw"
                   src={image.url}
                   fill
                   className="object-cover"
