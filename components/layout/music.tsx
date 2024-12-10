@@ -3,7 +3,7 @@ import { Music } from "@/types/music";
 import Image from "next/image";
 import React, { useState } from "react";
 import Button from "../ui/button";
-import { PropagateLoader } from "react-spinners";
+import { SquareLoader } from "react-spinners";
 import MusicPlayer from "./music.player";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import { TbPlayerPlayFilled } from "react-icons/tb";
@@ -79,7 +79,7 @@ const MusicComponent = ({ data }: PageProps) => {
         {data.length > sliced && (
           <div className="flex justify-center mt-12 lg:mt-16">
             {isLoading ? (
-              <PropagateLoader color="white" size={10} />
+              <SquareLoader color="white" size={30} />
             ) : (
               <button
                 onClick={handleMoreMusic}

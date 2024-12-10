@@ -1,13 +1,16 @@
 import useLoading from "@/store/useLoading";
 import React from "react";
+import { SquareLoader } from "react-spinners";
 
 const HeroComponent = () => {
-  const { handleIsLoading } = useLoading();
+  const { handleIsLoading, isLoading } = useLoading();
+
   return (
     <div
       className="h-svh w-full relative z-10 flex items-center justify-center"
       id="home"
     >
+      <SquareLoader loading={isLoading} color="white" />
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video
           onCanPlay={handleIsLoading}
@@ -20,7 +23,9 @@ const HeroComponent = () => {
         ></video>
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-[30%] via-transparent to-dark z-10"></div>
+      {!isLoading && (
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-[30%] via-transparent to-dark z-10"></div>
+      )}
     </div>
   );
 };
