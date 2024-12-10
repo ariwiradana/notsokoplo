@@ -77,7 +77,7 @@ const EventComponent = ({ data }: PageProps) => {
                       {event.link && (
                         <div className="flex lg:hidden mt-3">
                           <Link target="_blank" href={event.link}>
-                            <Button title="Tickets" icon={<IoTicketSharp />} />
+                            <Button title="Detail" icon={<IoTicketSharp />} />
                           </Link>
                         </div>
                       )}
