@@ -47,7 +47,7 @@ const BioComponent = ({ data }: PageProps) => {
               <div key={`marquee-${item}`} className="flex items-center">
                 <div className="w-2 h-2 rounded-full bg-white"></div>
                 <h4
-                  className={`stroke-2 font-bold text-4xl lg:text-6xl uppercase mx-6 ${montserrat.className}`}
+                  className={`stroke-2 font-bold text-4xl lg:text-6xl uppercase mx-6 text-white ${montserrat.className}`}
                 >
                   {item % 2 === 0 ? "Not So Koplo" : "Biography"}
                 </h4>
@@ -59,7 +59,7 @@ const BioComponent = ({ data }: PageProps) => {
               <div className="flex items-center" key={`marquee-2-${item}`}>
                 <div className="w-2 h-2 rounded-full bg-white"></div>
                 <h4
-                  className={`stroke-2 font-bold text-4xl lg:text-6xl uppercase mx-6 ${montserrat.className}`}
+                  className={`stroke-2 font-bold text-4xl lg:text-6xl uppercase mx-6 text-white ${montserrat.className}`}
                 >
                   {item % 2 === 0 ? "Not So Koplo" : "Biography"}
                 </h4>

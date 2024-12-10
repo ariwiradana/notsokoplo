@@ -7,7 +7,7 @@ interface StoreState {
   music: Music | null;
   handleIsPlaying: (isPlaying: boolean) => void;
   handleIsOpenPlayer: (isOpen: boolean) => void;
-  handleAddMusic: (music: Music) => void;
+  handleAddMusic: (music: Music | null) => void;
 }
 
 const useMusicPlayer = create<StoreState>((set) => ({

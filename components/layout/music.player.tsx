@@ -1,7 +1,7 @@
 import { montserrat } from "@/constants/fonts";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   TbPlayerPauseFilled,
   TbPlayerPlayFilled,
@@ -13,22 +13,37 @@ const MusicPlayer = () => {
   const {
     handleIsPlaying,
     handleIsOpenPlayer,
-    isPlaying,
+    handleAddMusic,
     isOpenPlayer,
+    isPlaying,
     music,
   } = useMusicPlayer();
 
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (audioRef.current && music) {
+      if (isPlaying) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [isPlaying, music]);
+
   return (
     <div
-      className={`fixed inset-x-0 py-6 px-4 md:px-12 bg-gradient-to-b from-dark/60 via-dark/80 to-dark backdrop-blur-sm flex flex-col-reverse md:flex-row justify-between gap-y-6 gap-x-24 md:items-center transition-all ease-in-out duration-500 z-50 ${
+      className={`fixed inset-x-0 py-6 px-4 md:px-12 bg-dark/80 backdrop-blur-sm flex flex-col-reverse md:flex-row justify-between gap-y-6 gap-x-24 md:items-center transition-all ease-in-out duration-500 z-50 ${
         isOpenPlayer ? "bottom-0 visible" : "-bottom-full invisible"
       }`}
     >
+      {music?.url && <audio ref={audioRef} src={music?.url} />}
       <div className="flex justify-center md:justify-start items-center gap-x-8 text-white text-2xl">
         <button
           onClick={() => {
             handleIsOpenPlayer(false);
             handleIsPlaying(false);
+            handleAddMusic(null);
           }}
         >
           <TbX className="text-[26px]" />
@@ -40,8 +55,14 @@ const MusicPlayer = () => {
           <TbPlayerTrackNextFilled />
         </button>
       </div>
-      <div className="w-full h-[3px] bg-white/50 rounded-full relative">
-        <div className="absolute inset-0 bg-white rounded-full w-[40%]"></div>
+      <div className="w-full">
+        <input
+          type="range"
+          className="w-full accent-white h-1"
+          min={0}
+          max={100}
+          value={20}
+        />
       </div>
       <div className="flex md:items-center gap-x-4 md:gap-x-6">
         <div className="relative min-w-10 w-10 h-10 min-h-10 aspect-square mt-1">
@@ -54,7 +75,7 @@ const MusicPlayer = () => {
         </div>
         <div>
           <h4
-            className={`${montserrat.className} font-semibold text-lg whitespace-nowrap`}
+            className={`${montserrat.className} font-semibold text-lg whitespace-nowrap text-white`}
           >
             {music?.title}{" "}
             <span className="text-base font-normal text-white/80 whitespace-nowrap mt-[2px] hidden md:inline">
