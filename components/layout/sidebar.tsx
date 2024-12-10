@@ -26,23 +26,16 @@ const Sidebar = () => {
 
   return (
     <ul
-      className={`overflow-hidden flex flex-col gap-4 w-full transition-all duration-500 ease-in-out ${
+      className={`overflow-hidden flex flex-col gap-4 w-full transition-all duration-500 ease-in-out relative z-50 ${
         openSidebar ? "h-svh mt-6" : "h-0"
       }`}
     >
       {NavData.map((nav) => (
         <li
           key={`sidebar-${nav.path}`}
-          className="text-center font-semibold text-2xl"
+          className="text-center font-semibold text-2xl text-white"
         >
-          <button
-            onClick={() => scrollToDiv(nav.path)}
-            // className={`${
-            //   activeId === nav.path ? "text-white" : "text-white/60"
-            // }`}
-          >
-            {nav.title}
-          </button>
+          <button onClick={() => scrollToDiv(nav.path)}>{nav.title}</button>
         </li>
       ))}
       <li className="flex justify-center gap-6 text-2xl mt-8">
