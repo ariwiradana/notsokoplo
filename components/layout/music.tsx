@@ -67,7 +67,7 @@ const MusicComponent = ({ data }: PageProps) => {
                       handleIsPlaying(true);
                       handleAddMusic(music);
                     }}
-                    title="Listen"
+                    title="Preview"
                     icon={<TbPlayerPlayFilled />}
                   />
                 </div>
