@@ -54,7 +54,10 @@ const NavbarToggle = () => {
           </li>
         ))}
         <li className="lg:hidden">
-          <button onClick={handleToggleSidebar} className="text-2xl p-3">
+          <button
+            onClick={handleToggleSidebar}
+            className="text-2xl p-3 text-white"
+          >
             {openSidebar ? <TbX /> : <TbMenu />}
           </button>
         </li>

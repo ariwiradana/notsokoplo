@@ -32,7 +32,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
     >
       <ul className="flex items-center justify-between md:justify-center w-full gap-x-16">
         <li className="md:hidden">
-          <button className="text-2xl p-3" onClick={handleToggleSidebar}>
+          <button className="text-2xl p-3 text-white" onClick={handleToggleSidebar}>
             {openSidebar ? <TbX /> : <TbMenu />}
           </button>
         </li>
