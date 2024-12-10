@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <div
       className={`relative bg-white ${montserrat.className} z-10`}
-      id="music"
+      id="contact"
     >
       <div className="max-w-screen-lg mx-auto py-16 lg:py-28 px-4 md:px-12 lg:px-0">
         <div

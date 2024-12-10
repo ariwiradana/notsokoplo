@@ -30,7 +30,7 @@ const MusicComponent = ({ data }: PageProps) => {
           <h2
             className={`font-semibold text-center text-3xl md:text-4xl lg:text-5xl text-white whitespace-nowrap`}
           >
-            Released Music
+            Music/Remixes
           </h2>
           <p className="md:max-w-[50%] text-center md:text-right text-white/80 text-sm lg:text-base">
             Dive into our newest tracks, created to bring joy to your day.
@@ -38,9 +38,9 @@ const MusicComponent = ({ data }: PageProps) => {
           </p>
           <div className="h-10 md:h-16 w-[1px] bg-white/30"></div>
         </div>
-        <div className="grid md:grid-cols-3 gap-4 lg:gap-6">
+        <div className="grid md:grid-cols-3 gap-x-6 gap-y-12">
           {data?.slice(0, sliced).map((music) => (
-            <div key={music.title} className="text-center bg-white/[0.03] rounded p-8">
+            <div key={music.title} className="text-center">
               <div className="w-full aspect-square relative shadow-lg">
                 <Image
                   sizes="600px"

@@ -46,7 +46,7 @@ const EventComponent = ({ data }: PageProps) => {
                     className={`border-b border-b-white/5 transition-all ease-in-out duration-500 ${montserrat.className}`}
                   >
                     <td className="p-6 md:px-12 align-top hidden lg:inline">
-                      <p className="text-white text-sm lg:text-base font-bold uppercase mt-1 whitespace-nowrap">
+                      <p className="text-white text-base font-bold uppercase mt-1 whitespace-nowrap">
                         {moment(event.date, formats, true).format("MMM DD")}
                         <span className="ml-3">
                           {moment(event.date, formats, true).format("ddd")}
@@ -54,7 +54,7 @@ const EventComponent = ({ data }: PageProps) => {
                       </p>
                     </td>
                     <td className="p-6 md:px-12 align-middle">
-                      <p className="text-white text-sm font-bold uppercase whitespace-nowrap lg:hidden mb-2">
+                      <p className="text-white text-base font-bold uppercase whitespace-nowrap lg:hidden mb-2">
                         {moment(event.date, formats, true).format("MMM DD")}
                         <span className="ml-3">
                           {moment(event.date, formats, true).format("ddd")}
