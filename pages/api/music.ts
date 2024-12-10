@@ -15,7 +15,9 @@ export default async function handler(
     title: row["_rawData"][0] || null,
     artist: row["_rawData"][1] || null,
     cover: row["_rawData"][2] || "",
-    url: row["_rawData"][3] || null,
+    preview: row["_rawData"][3] || "",
+    soundcloud: row["_rawData"][4] || "",
+    youtube: row["_rawData"][5] || "",
   }));
 
   res.status(200).json(data);

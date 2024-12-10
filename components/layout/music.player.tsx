@@ -1,6 +1,7 @@
 import { montserrat } from "@/constants/fonts";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import { FaSoundcloud, FaYoutube } from "react-icons/fa6";
 import { TbPlayerPauseFilled, TbPlayerPlayFilled, TbX } from "react-icons/tb";
@@ -33,20 +34,24 @@ const MusicPlayer = () => {
         isOpenPlayer ? "bottom-0 visible" : "-bottom-full invisible"
       }`}
     >
-      {music?.url && <audio ref={audioRef} src={music?.url} />}
-      <div className="flex justify-center md:justify-start items-center gap-x-8 text-white text-2xl">
-        <button
-          onClick={() => {
-            handleIsOpenPlayer(false);
-            handleIsPlaying(false);
-            handleAddMusic(null);
-          }}
-        >
-          <TbX className="text-[26px]" />
-        </button>
-        <button onClick={() => handleIsPlaying(!isPlaying)}>
-          {isPlaying ? <TbPlayerPauseFilled /> : <TbPlayerPlayFilled />}
-        </button>
+      {music?.preview && <audio ref={audioRef} src={music?.preview} />}
+      <div className="flex justify-center md:justify-start md:items-center gap-x-4 md:gap-x-8 text-white text-2xl">
+        <div className="mt-2 md:mt-0 flex">
+          <button
+            onClick={() => {
+              handleIsOpenPlayer(false);
+              handleIsPlaying(false);
+              handleAddMusic(null);
+            }}
+          >
+            <TbX className="text-[26px]" />
+          </button>
+        </div>
+        <div className="mt-2 md:mt-0 flex">
+          <button onClick={() => handleIsPlaying(!isPlaying)}>
+            {isPlaying ? <TbPlayerPauseFilled /> : <TbPlayerPlayFilled />}
+          </button>
+        </div>
         <div className="flex md:items-center gap-x-4 md:gap-x-6">
           <div className="relative min-w-10 w-10 h-10 min-h-10 aspect-square mt-1">
             <Image
@@ -72,18 +77,34 @@ const MusicPlayer = () => {
         </div>
       </div>
 
-      <div
-        className={`${montserrat.className} text-sm font-medium flex gap-x-4`}
-      >
-        <button className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center">
-          <FaSoundcloud className="text-lg" />
-          <span>SoundCloud</span>
-        </button>
-        <button className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center">
-          <FaYoutube className="text-lg" />
-          <span>Youtube</span>
-        </button>
-      </div>
+      {music?.soundcloud || music?.youtube ? (
+        <div
+          className={`${montserrat.className} text-sm font-medium flex gap-x-4`}
+        >
+          {music?.soundcloud && (
+            <Link
+              href={music.soundcloud}
+              target="_blank"
+              className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center"
+            >
+              <FaSoundcloud className="text-lg" />
+              <span>SoundCloud</span>
+            </Link>
+          )}
+          {music?.youtube && (
+            <Link
+              href={music.youtube}
+              target="_blank"
+              className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center"
+            >
+              <FaYoutube className="text-lg" />
+              <span>Youtube</span>
+            </Link>
+          )}
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

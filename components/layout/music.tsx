@@ -59,7 +59,7 @@ const MusicComponent = ({ data }: PageProps) => {
                 {music.title}
               </h2>
               <h5 className="mt-2 text-white/70">{music.artist}</h5>
-              {music.url && (
+              {music.preview && (
                 <div className="flex justify-center mt-6">
                   <Button
                     onClick={() => {
