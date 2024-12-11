@@ -14,6 +14,7 @@ import Seo from "@/components/layout/seo";
 import useDisableInspect from "@/hooks/useDisableInspect";
 import Loading from "@/components/ui/loading";
 import TabNav from "@/components/layout/tab";
+import Fab from "@/components/layout/fab";
 // import Contact from "@/components/layout/contact";
 
 const HomePage = () => {
@@ -52,6 +53,7 @@ const HomePage = () => {
         <Loading />
       ) : (
         <section className="bg-dark relative">
+          <Fab />
           <NavbarToggle />
           <Navbar />
           <HeroComponent />

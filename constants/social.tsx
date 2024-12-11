@@ -4,16 +4,10 @@ import {
   FaSoundcloud,
   FaTiktok,
   FaTwitter,
-  FaWhatsapp,
   FaYoutube,
 } from "react-icons/fa6";
 
 export const Socials: Social[] = [
-  // {
-  //   title: "WhatsApp",
-  //   link: "https://api.whatsapp.com/send?phone=6285792851799",
-  //   icon: <FaWhatsapp />,
-  // },
   {
     title: "Instagram",
     link: "https://www.instagram.com/notsokoplo__",

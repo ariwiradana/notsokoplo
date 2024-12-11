@@ -5,7 +5,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className={`py-20 ${montserrat.className} relative bg-dark z-0`}>
+    <div className={`pb-24 ${montserrat.className} relative bg-dark z-0`}>
       <p className="text-center mb-4 font-medium text-white text-sm md:text-base">
         Find Us On :
       </p>
@@ -18,7 +18,7 @@ const Footer = () => {
               target="_blank"
               key={social.title}
               href={social.link}
-              className="md:p-6 p-3 flex gap-x-2 justify-center items-center text-2xl lg:text-3xl group text-white hover:bg-white transition-all ease-in-out duration-500"
+              className="md:p-6 p-4 flex gap-x-2 justify-center items-center text-2xl md:text-3xl group text-white hover:bg-white transition-all ease-in-out duration-500"
             >
               <div className="group-hover:text-dark">{social.icon}</div>
               <p className="text-sm font-medium mt-1 group-hover:text-dark hidden md:group-hover:block">
