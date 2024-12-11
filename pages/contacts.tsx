@@ -37,7 +37,7 @@ const HomePage = () => {
   return (
     <>
       <Seo
-        url="https://notsokoplo.com/"
+        url="https://notsokoplo.com/contacts"
         title="No So Koplo Official Website"
         description="Not So Koplo is an energetic music group hailing from Denpasar,
               Bali, formed on February 26, 2020. Known for their creative blend
