@@ -1,18 +1,20 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 const ProfilePage = () => {
   const router = useRouter();
+  const hasDownloaded = useRef(false);
 
   useEffect(() => {
-    if (!localStorage.getItem("fileDownloaded")) {
+    if (!hasDownloaded.current) {
       const link = document.createElement("a");
       link.href = "/pdf/NOT SO KOPLO PROFILE.pdf";
       link.download = "NOT SO KOPLO PROFILE.pdf";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      localStorage.setItem("fileDownloaded", "true");
+
+      hasDownloaded.current = true;
       router.push("/");
     }
   }, [router]);
