@@ -69,7 +69,7 @@ const MusicPlayer = () => {
             <Image
               src={music?.cover || ""}
               fill
-              className="object-cover rounded"
+              className="object-cover"
               alt={`player-${music?.title}`}
             />
           </div>
