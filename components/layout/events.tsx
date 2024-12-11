@@ -22,11 +22,11 @@ const EventComponent = ({ data, images }: PageProps) => {
           <div
             className={`flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-12 gap-4 md:gap-12 ${montserrat.className}`}
           >
-            <h2
+            <h1
               className={`font-bold text-left text-4xl md:text-5xl lg:text-6xl text-white uppercase`}
             >
               Upcoming Events
-            </h2>
+            </h1>
             <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base">
               Discover our upcoming events and join for an unforgettable
               experience. Don&apos;t miss the chance to vibe to the music live!
@@ -91,6 +91,7 @@ const EventComponent = ({ data, images }: PageProps) => {
                         {event.link && (
                           <div className="flex lg:hidden mt-3">
                             <Link
+                              rel="noopener noreferrer"
                               aria-label="Action Detail Mobile"
                               target="_blank"
                               href={event.link}
@@ -108,6 +109,7 @@ const EventComponent = ({ data, images }: PageProps) => {
                         <div className="flex gap-x-4">
                           {event.link && (
                             <Link
+                              rel="noopener noreferrer"
                               aria-label="Action Detail"
                               target="_blank"
                               href={event.link}

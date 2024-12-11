@@ -13,6 +13,7 @@ const Footer = () => {
         <div className="flex items-center border border-white/30 divide-white/30 divide-x transition-all ease-in-out duration-500">
           {Socials.map((social) => (
             <Link
+              rel="noopener noreferrer"
               aria-label={`Social ${social.title}`}
               target="_blank"
               key={social.title}

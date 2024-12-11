@@ -46,6 +46,7 @@ const Sidebar = () => {
       <li className="flex justify-center gap-6 text-2xl mt-8">
         {Socials.map((social) => (
           <Link
+            rel="noopener noreferrer"
             aria-label={`Sidebar ${social.title}`}
             target="_blank"
             key={social.title}

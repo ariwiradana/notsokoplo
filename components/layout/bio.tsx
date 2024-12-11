@@ -69,11 +69,11 @@ const BioComponent = ({ data }: PageProps) => {
         </div>
         <div className={`lg:max-w-[50%] ${montserrat.className}`}>
           <div className="px-6 py-10 md:px-12 md:py-16 lg:p-16 bg-white backdrop-blur-lg md:rounded relative z-20">
-            <h4
+            <h1
               className={`font-bold text-4xl md:text-5xl lg:text-6xl text-dark uppercase`}
             >
-              Biography
-            </h4>
+              Not So Koplo Biography
+            </h1>
             <div className="h-10 md:h-12 w-[1px] bg-dark/20 my-4"></div>
             <p className="text-dark font-medium leading-8 text-justify">
               Not So Koplo is an energetic music group hailing from Denpasar,

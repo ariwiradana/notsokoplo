@@ -32,11 +32,11 @@ const MusicComponent = ({ data }: PageProps) => {
         <div
           className={`flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-12 gap-4 md:gap-12 ${montserrat.className}`}
         >
-          <h2
+          <h1
             className={`font-bold text-left text-4xl md:text-5xl lg:text-6xl text-white uppercase`}
           >
             Music/Remixes
-          </h2>
+          </h1>
           <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base">
             Dive into our newest tracks, created to bring joy to your day.
             Listen now!
