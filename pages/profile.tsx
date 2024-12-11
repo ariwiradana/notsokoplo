@@ -24,7 +24,7 @@ const ProfilePage = () => {
     <>
       <Seo
         url="https://notsokoplo.com/profile"
-        title="Profile | No So Koplo Official Website"
+        title="Profile | No So Koplo"
         description="Learn more about Not So Koplo's profile."
         image="https://res.cloudinary.com/dta5qasmt/image/upload/v1733887530/image_seo_gvzx3b.jpg"
         keywords="notsokoplo, not so koplo, profile"
