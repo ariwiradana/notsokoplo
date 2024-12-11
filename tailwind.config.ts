@@ -12,6 +12,9 @@ export default {
         dark: "#171717",
         primary: "#FC5120",
       },
+      fontSize: {
+        responsive: "clamp(1rem, 5vw, 3rem)", // Add your custom clamp
+      },
     },
   },
   plugins: [],

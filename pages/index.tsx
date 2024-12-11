@@ -12,9 +12,10 @@ import MusicComponent from "@/components/layout/music";
 import NavbarToggle from "@/components/layout/navbar.toggle";
 import EventComponent from "@/components/layout/events";
 import Seo from "@/components/layout/seo";
+import useDisableInspect from "@/hooks/useDisableInspect";
 // import Contact from "@/components/layout/contact";
 
-const Home = () => {
+const HomePage = () => {
   const { data: events, isLoading: isLoadingEvents } = useSWR(
     "/api/events",
     fetcher
@@ -28,6 +29,8 @@ const Home = () => {
     "/api/images",
     fetcher
   );
+
+  useDisableInspect();
 
   if (isLoadingEvents || isLoadingMusic || isLoadingImages) return <Loading />;
 
@@ -57,4 +60,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
