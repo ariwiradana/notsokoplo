@@ -40,7 +40,7 @@ const NavbarToggle = () => {
     <nav
       className={`${montserrat.className} ${
         scrollPosition > 300 ? "top-0" : "-top-20"
-      } hidden fixed inset-x-0 z-50 bg-dark/80 backdrop-blur-sm w-full md:flex flex-col justify-center items-center md:h-12 md:px-12 lg:px-4 transition-all ease-in-out duration-500`}
+      } hidden fixed inset-x-0 z-50 bg-dark w-full md:flex flex-col justify-center items-center md:h-12 md:px-12 lg:px-4 transition-all ease-in-out duration-500`}
     >
       <ul
         onClick={(e) => e.stopPropagation()}
