@@ -12,8 +12,8 @@ export default {
         dark: "#0F0F0F",
         primary: "#FC5120",
       },
-      fontSize: {
-        responsive: "clamp(1rem, 5vw, 3rem)", // Add your custom clamp
+      fontFamily: {
+        montserrat: ["Montserrat", "sans-serif"],
       },
     },
   },
