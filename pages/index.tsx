@@ -39,7 +39,7 @@ const HomePage = () => {
       <Seo
         url="https://notsokoplo.com/"
         title="No So Koplo Official Website"
-        description=" Not So Koplo is an energetic music group hailing from Denpasar,
+        description="Not So Koplo is an energetic music group hailing from Denpasar,
               Bali, formed on February 26, 2020. Known for their creative blend
               of genres, they center their sound around Koplo—a popular
               Indonesian dangdut subgenre—while adding a unique twist to every
