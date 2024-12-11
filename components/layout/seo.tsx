@@ -15,6 +15,7 @@ const Seo: FC<SEOProps> = ({ title, description, keywords, image, url }) => {
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
       <meta name="author" content="Not So Koplo" />
       <meta name="robots" content="index, follow" />
       <meta
@@ -22,10 +23,6 @@ const Seo: FC<SEOProps> = ({ title, description, keywords, image, url }) => {
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
 
-      {/* Canonical Tag */}
-      <link rel="canonical" href={url} />
-
-      <meta name="keywords" content={keywords} />
       <meta property="og:title" content={title} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
@@ -40,7 +37,7 @@ const Seo: FC<SEOProps> = ({ title, description, keywords, image, url }) => {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
 
-      <meta name="keywords" content="keyword1, keyword2, keyword3" />
+      <link rel="canonical" href={url} />
       <link rel="apple-touch-icon" href="/logo.png" />
       <link rel="icon" href="/logo.png" />
       <script type="application/ld+json">
