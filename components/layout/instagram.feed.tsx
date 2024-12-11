@@ -9,7 +9,7 @@ const InstagramFeedComponent = () => {
     >
       <div className="pt-16 lg:pb-8 lg:pt-28">
         <div
-          className={`flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-12 gap-4 md:gap-12 max-w-screen-xl mx-auto px-4 md:px-0 ${montserrat.className}`}
+          className={`flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-12 gap-4 md:gap-12 max-w-screen-xl mx-auto px-4 md:px-12 lg:px-4 ${montserrat.className}`}
         >
           <h1
             className={`font-bold text-left text-4xl md:text-5xl lg:text-6xl text-white uppercase`}
