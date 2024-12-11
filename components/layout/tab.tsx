@@ -23,7 +23,7 @@ const TabNav = () => {
     >
       <ul className="flex items-center justify-center gap-6 p-4 flex-wrap">
         {NavData.map((nav) => (
-          <li key={`nav-toggle-${nav.path}`}>
+          <li key={`tab-nav-${nav.path}`}>
             <button
               aria-label={`Navigate to ${nav.title}`}
               onClick={() =>
