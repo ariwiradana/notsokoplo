@@ -1,4 +1,5 @@
 import { montserrat } from "@/constants/fonts";
+import { WAText } from "@/constants/whatsapp.text";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { IoLogoWhatsapp } from "react-icons/io5";
@@ -21,7 +22,7 @@ const Fab = () => {
     };
   }, []);
 
-  const text = `Halo Not So Koplo!\nSaya (Nama kamu) dari EO/Instansi/Agency/Perusahaan (nama Brand). Kami tertarik untuk kerja sama dengan Not So Koplo. Bisa diinfokan rate card dengan detail sebagai berikut:\n\nNama Acara:\nScope Acara: Internal/Konser/Festival\nWaktu: (tanggal)\nLokasi:\n\nTerima Kasih!`;
+  
 
   return (
     <div
@@ -32,7 +33,7 @@ const Fab = () => {
       <div className={montserrat.className}>
         <Link
           href={`https://api.whatsapp.com/send?phone=6285792851799&text=${encodeURIComponent(
-            text
+            WAText
           )}`}
           rel="noopener"
           target="_blank"

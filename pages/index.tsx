@@ -14,8 +14,9 @@ import Seo from "@/components/layout/seo";
 import useDisableInspect from "@/hooks/useDisableInspect";
 import Loading from "@/components/ui/loading";
 import TabNav from "@/components/layout/tab";
-import Fab from "@/components/layout/fab";
+import Fab from "@/components/ui/fab";
 import MusicPlayer from "@/components/layout/music.player";
+import InstagramFeedComponent from "@/components/layout/instagram.feed";
 // import Contact from "@/components/layout/contact";
 
 const HomePage = () => {
@@ -57,13 +58,14 @@ const HomePage = () => {
           <Fab />
           <NavbarToggle />
           <Navbar />
+          <MusicPlayer />
           <HeroComponent />
           <TabNav />
           <EventComponent images={images} data={events} />
           <BioComponent data={images} />
           <MusicComponent data={music} />
-          <MusicPlayer />
-          {/* <Contact /> */}
+          <InstagramFeedComponent />
+          {/* <VideoComponent data={videos} /> */}
           <Footer />
         </section>
       )}

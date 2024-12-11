@@ -2,15 +2,18 @@ import { montserrat } from "@/constants/fonts";
 import { Socials } from "@/constants/social";
 import Link from "next/link";
 import React from "react";
+import YouTubeEmbed from "../ui/youtube.embed";
+import { Video } from "@/types/video";
 
-const Footer = () => {
+interface PageProps {
+  data: Video[];
+}
+
+const VideoComponent = ({ data }: PageProps) => {
   return (
-    <div className={`py-20 ${montserrat.className} relative bg-dark z-0`}>
-      <p className="text-center mb-4 font-medium text-white text-sm md:text-base">
-        Find Us On :
-      </p>
-      <div className="flex justify-center w-full">
-        <div className="flex items-center border border-white/30 divide-white/30 divide-x transition-all ease-in-out duration-500">
+    <div className={`${montserrat.className} bg-black px-4`} id="contact">
+      <div className={`flex justify-center`}>
+        <div className="flex items-center transition-all ease-in-out duration-500">
           {Socials.map((social) => (
             <Link
               rel="noopener"
@@ -28,8 +31,13 @@ const Footer = () => {
           ))}
         </div>
       </div>
+      <div className="max-w-screen-xl mx-auto grid gap-4">
+        {data?.map((video) => (
+          <YouTubeEmbed key={video.url} videoId={video.url} />
+        ))}
+      </div>
     </div>
   );
 };
 
-export default Footer;
+export default VideoComponent;

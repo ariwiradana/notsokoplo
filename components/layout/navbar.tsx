@@ -70,13 +70,13 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
           </button>
         </li>
         <li className="hidden md:inline">
-          <Link
-            href="/contact"
-            aria-label={`Link Nav Contact`}
+          <button
+            aria-label={`Button Nav Photos`}
+            onClick={() => scrollToDiv("photos")}
             className="uppercase font-bold text-sm"
           >
-            Contact
-          </Link>
+            Photos
+          </button>
         </li>
       </ul>
       {scrollPosition < 300 && <Sidebar />}

@@ -4,5 +4,5 @@ export const NavData: Nav[] = [
   { path: "events", title: "Events" },
   { path: "biography", title: "Biography" },
   { path: "music", title: "Music" },
-  { path: "contact", title: "Contact" },
+  { path: "photos", title: "Photos" },
 ];

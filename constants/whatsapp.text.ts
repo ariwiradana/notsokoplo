@@ -1,0 +1,1 @@
+export const WAText = `Halo Not So Koplo!\nSaya (Nama kamu) dari EO/Instansi/Agency/Perusahaan (nama Brand). Kami tertarik untuk kerja sama dengan Not So Koplo. Bisa diinfokan rate card dengan detail sebagai berikut:\n\nNama Acara:\nScope Acara: Internal/Konser/Festival\nWaktu: (tanggal)\nLokasi:\n\nTerima Kasih!`;

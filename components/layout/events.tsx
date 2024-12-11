@@ -169,11 +169,11 @@ const EventComponent = ({ data, images }: PageProps) => {
               <SquareLoader color="white" size={30} />
             ) : (
               <button
-                aria-label="Button View More Event"
+                aria-label="Button Load More Event"
                 onClick={handleMoreEvent}
                 className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
               >
-                <span>View More</span>
+                <span>Load More</span>
               </button>
             )}
           </div>

@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        dark: "#171717",
+        dark: "#0F0F0F",
         primary: "#FC5120",
       },
       fontSize: {

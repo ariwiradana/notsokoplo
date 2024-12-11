@@ -81,11 +81,11 @@ const MusicComponent = ({ data }: PageProps) => {
               <SquareLoader color="white" size={30} />
             ) : (
               <button
-                aria-label="Button View More"
+                aria-label="Button Load More"
                 onClick={handleMoreMusic}
                 className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
               >
-                <span>View More</span>
+                <span>Load More</span>
               </button>
             )}
           </div>
