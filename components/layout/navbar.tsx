@@ -3,7 +3,6 @@ import useSidebar from "@/store/useSidebar";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { TbMenu, TbX } from "react-icons/tb";
 import Sidebar from "./sidebar";
 
 interface NavbarProps {
@@ -11,8 +10,7 @@ interface NavbarProps {
 }
 
 const Navbar = ({ fixed = true }: NavbarProps) => {
-  const { openSidebar, handleActiveId, handleToggleSidebar, scrollPosition } =
-    useSidebar();
+  const { openSidebar, handleActiveId, scrollPosition } = useSidebar();
 
   const scrollToDiv = (id: string) => {
     const element = document.getElementById(id);
@@ -31,15 +29,6 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
       }`}
     >
       <ul className="flex items-center justify-between md:justify-center w-full gap-x-16">
-        <li className="md:hidden">
-          <button
-            aria-label={`Button Toggle Sidebar Desktop`}
-            className="text-2xl p-3 text-white"
-            onClick={handleToggleSidebar}
-          >
-            {openSidebar ? <TbX /> : <TbMenu />}
-          </button>
-        </li>
         <li className="hidden md:inline">
           <button
             aria-label={`Button Nav Events`}

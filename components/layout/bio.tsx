@@ -5,8 +5,6 @@ import React from "react";
 import Marquee from "react-fast-marquee";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import ButtonPrimary from "../ui/button.primary";
-import { IoCloudDownload } from "react-icons/io5";
 
 interface PageProps {
   data: ImageType[];
@@ -98,17 +96,6 @@ const BiographyComponent = ({ data }: PageProps) => {
               by seamlessly blending genres, turning every performance into a
               high-energy, genre-bending experience.
             </p>
-            <a
-              href="/pdf/NOT SO KOPLO PROFILE.pdf"
-              download="NOT SO KOPLO PROFILE.pdf"
-              aria-label="Download Presskit"
-              className="mt-6 md:mt-10 flex justify-end"
-            >
-              <ButtonPrimary
-                title="Download Presskit"
-                icon={<IoCloudDownload />}
-              />
-            </a>
           </div>
         </div>
       </div>

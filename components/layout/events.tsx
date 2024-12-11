@@ -2,12 +2,13 @@ import { montserrat } from "@/constants/fonts";
 import { Event } from "@/types/event";
 import moment from "moment";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { GoArrowUpRight } from "react-icons/go";
 import Button from "../ui/button";
 import { IoTicketSharp } from "react-icons/io5";
 import { Image as ImageType } from "@/types/image";
 import Image from "next/image";
+import { SquareLoader } from "react-spinners";
 
 interface PageProps {
   data: Event[];
@@ -15,6 +16,35 @@ interface PageProps {
 }
 
 const EventComponent = ({ data, images }: PageProps) => {
+  const [sliced, setSliced] = useState<number>(4);
+  const [imageSliced, setImageSliced] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const filteredData = data?.filter((event) => {
+    const isExpired = moment(
+      event.date,
+      ["YYYY-MM-DD", "DD/MM/YYYY"],
+      true
+    ).isBefore(moment().subtract(1, "days"));
+    if (!isExpired) {
+      return event;
+    }
+  });
+
+  const handleMoreEvent = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setSliced((prevState) => prevState + 4);
+
+      console.log(filteredData.length - sliced);
+
+      if (filteredData.length - sliced > 4) {
+        setImageSliced((prevState) => prevState + 1);
+      }
+      setIsLoading(false);
+    }, 1000);
+  };
+
   return (
     <div className="relative bg-dark" id="events">
       <div className="py-16 lg:py-28 max-w-screen-xl mx-auto">
@@ -36,7 +66,7 @@ const EventComponent = ({ data, images }: PageProps) => {
         </div>
         <div className="flex items-stretch">
           <div className="min-w-4 w-4 md:w-[30%] md:min-w-[30%] relative flex flex-col gap-6 items-stretch">
-            {images?.slice(0, 2).map((image, index) => (
+            {images?.slice(0, imageSliced).map((image, index) => (
               <div
                 className="w-full h-full relative"
                 key={`event-image-${index}`}
@@ -53,82 +83,99 @@ const EventComponent = ({ data, images }: PageProps) => {
           </div>
           <table className="table table-auto bg-dark z-10 border-t border-t-white/5">
             <tbody>
-              {data?.map((event: Event, index: number) => {
-                const formats = ["YYYY-MM-DD", "DD/MM/YYYY"];
-                const isExpired = moment(event.date, formats, true).isBefore(
-                  moment().subtract(1, "days")
-                );
-
-                if (!isExpired)
-                  return (
-                    <tr
-                      key={`${event.event}-${index}`}
-                      className={`border-b border-b-white/5 transition-all ease-in-out duration-500 ${montserrat.className}`}
-                    >
-                      <td className="p-6 md:px-12 align-middle">
-                        <p className="text-white text-base font-bold uppercase whitespace-nowrap mb-2">
-                          {moment(event.date, formats, true).format("MMM DD")}
-                          <span className="ml-3">
-                            {moment(event.date, formats, true).format("ddd")}
-                          </span>
-                        </p>
-                        <div className="flex items-center gap-x-3">
-                          <p
-                            className={`text-white text-xl md:text-2xl font-medium`}
-                          >
-                            <span>{event.event} </span>
-                            {event.category === "private" && (
-                              <span className="text-white/80 text-base font-light capitalize">
-                                ({event.category})
-                              </span>
-                            )}
-                          </p>
-                          <GoArrowUpRight className="text-3xl text-white hidden lg:block" />
-                        </div>
-                        <p className="text-white/70 text-base md:text-lg mt-2 flex">
-                          <span>{event.address}</span>
-                        </p>
-                        {event.link && (
-                          <div className="flex lg:hidden mt-3">
-                            <Link
-                              rel="noopener"
-                              aria-label="Action Detail Mobile"
-                              target="_blank"
-                              href={event.link}
-                            >
-                              <Button
-                                aria-label="Button Detail Mobile"
-                                title="Detail"
-                                icon={<IoTicketSharp />}
-                              />
-                            </Link>
-                          </div>
-                        )}
-                      </td>
-                      <td className="align-middle p-6 md:px-12 hidden lg:table-cell">
-                        <div className="flex gap-x-4">
-                          {event.link && (
-                            <Link
-                              rel="noopener"
-                              aria-label="Action Detail"
-                              target="_blank"
-                              href={event.link}
-                            >
-                              <Button
-                                aria-label="Button Detail"
-                                title="Detail"
-                                icon={<IoTicketSharp />}
-                              />
-                            </Link>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
+              {filteredData
+                ?.slice(0, sliced)
+                .map((event: Event, index: number) => {
+                  const formats = ["YYYY-MM-DD", "DD/MM/YYYY"];
+                  const isExpired = moment(event.date, formats, true).isBefore(
+                    moment().subtract(1, "days")
                   );
-              })}
+
+                  if (!isExpired)
+                    return (
+                      <tr
+                        key={`${event.event}-${index}`}
+                        className={`border-b border-b-white/5 transition-all ease-in-out duration-500 ${montserrat.className}`}
+                      >
+                        <td className="p-6 md:px-12 align-middle">
+                          <p className="text-white text-base font-bold uppercase whitespace-nowrap mb-2">
+                            {moment(event.date, formats, true).format("MMM DD")}
+                            <span className="ml-3">
+                              {moment(event.date, formats, true).format("ddd")}
+                            </span>
+                          </p>
+                          <div className="flex items-center gap-x-3">
+                            <p
+                              className={`text-white text-xl md:text-2xl font-medium`}
+                            >
+                              <span>{event.event} </span>
+                              {event.category === "private" && (
+                                <span className="text-white/80 text-base font-light capitalize">
+                                  ({event.category})
+                                </span>
+                              )}
+                            </p>
+                            <GoArrowUpRight className="text-3xl text-white hidden lg:block" />
+                          </div>
+                          <p className="text-white/70 text-base md:text-lg mt-2 flex">
+                            <span>{event.address}</span>
+                          </p>
+                          {event.link && (
+                            <div className="flex lg:hidden mt-3">
+                              <Link
+                                rel="noopener"
+                                aria-label="Action Detail Mobile"
+                                target="_blank"
+                                href={event.link}
+                              >
+                                <Button
+                                  aria-label="Button Detail Mobile"
+                                  title="Detail"
+                                  icon={<IoTicketSharp />}
+                                />
+                              </Link>
+                            </div>
+                          )}
+                        </td>
+                        <td className="align-middle p-6 md:px-12 hidden lg:table-cell">
+                          <div className="flex gap-x-4">
+                            {event.link && (
+                              <Link
+                                rel="noopener"
+                                aria-label="Action Detail"
+                                target="_blank"
+                                href={event.link}
+                              >
+                                <Button
+                                  aria-label="Button Detail"
+                                  title="Detail"
+                                  icon={<IoTicketSharp />}
+                                />
+                              </Link>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                })}
             </tbody>
           </table>
         </div>
+        {filteredData?.length > sliced && (
+          <div className="flex justify-center mt-12 lg:mt-16">
+            {isLoading ? (
+              <SquareLoader color="white" size={30} />
+            ) : (
+              <button
+                aria-label="Button View More Event"
+                onClick={handleMoreEvent}
+                className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
+              >
+                <span>View More</span>
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

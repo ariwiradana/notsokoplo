@@ -1,4 +1,5 @@
 import useLoading from "@/store/useLoading";
+import Image from "next/image";
 import React from "react";
 import { SquareLoader } from "react-spinners";
 
@@ -7,7 +8,7 @@ const HeroComponent = () => {
 
   return (
     <div
-      className="h-svh w-full relative z-10 flex items-center justify-center"
+      className="h-[90lvh] md:h-lvh w-full relative z-10 flex items-center justify-center"
       id="home"
     >
       {isLoading && <SquareLoader color="white" />}
@@ -24,7 +25,17 @@ const HeroComponent = () => {
           <source src="https://res.cloudinary.com/dta5qasmt/video/upload/v1733882455/NSK_Bali_Countdown_2023_1_fhfgd4.mp4" />
         </video>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-[30%] via-transparent to-dark z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-[30%] via-transparent to-dark z-10 flex items-end justify-center">
+        <div className="relative w-20 aspect-square md:hidden mb-4">
+          <Image
+            sizes="200px"
+            src="/logo.png"
+            fill
+            className="object-contain"
+            alt="logo Mobile"
+          />
+        </div>
+      </div>
     </div>
   );
 };

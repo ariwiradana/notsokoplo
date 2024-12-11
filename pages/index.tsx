@@ -13,6 +13,7 @@ import EventComponent from "@/components/layout/events";
 import Seo from "@/components/layout/seo";
 import useDisableInspect from "@/hooks/useDisableInspect";
 import Loading from "@/components/ui/loading";
+import TabNav from "@/components/layout/tab";
 // import Contact from "@/components/layout/contact";
 
 const HomePage = () => {
@@ -50,10 +51,11 @@ const HomePage = () => {
       {isLoadingEvents || isLoadingImages || isLoadingMusic ? (
         <Loading />
       ) : (
-        <section className="bg-dark">
+        <section className="bg-dark relative">
           <NavbarToggle />
           <Navbar />
           <HeroComponent />
+          <TabNav />
           <EventComponent images={images} data={events} />
           <BioComponent data={images} />
           <MusicComponent data={music} />
