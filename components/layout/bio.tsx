@@ -97,13 +97,6 @@ const BiographyComponent = ({ data }: PageProps) => {
               apart from typical Koplo acts. Their DJ sets captivate audiences
               by seamlessly blending genres, turning every performance into a
               high-energy, genre-bending experience.
-              <br />
-              <br />
-              Lagu berjudul Bitterlove - Ardhito P r a m o n o merupakan lagu
-              remix pertama Not So Koplo. Mereka berhasil mencuri perhatian
-              publik dari remix lagu berjudul Celengan Rindu ciptaan Fiersa
-              Besari disusul dengan lagu remix lain melalui kanal musik digital
-              YouTube dan Soundcloud.
             </p>
             <a
               href="/pdf/NOT SO KOPLO PROFILE.pdf"
