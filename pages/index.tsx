@@ -44,7 +44,7 @@ const HomePage = () => {
               remix they produce. The duo is made up of long-time friends Dwiki
               Krisnanda (MC/Crowd Control) and Ari Wiradana (DJ & Producer), who
               first met during their college years."
-        image="https://res.cloudinary.com/dta5qasmt/image/upload/v1733891027/image_home_xmgpr1.jpg"
+        image="https://res.cloudinary.com/dta5qasmt/image/upload/v1733887530/image_seo_gvzx3b.jpg"
         keywords="notsokoplo, not so koplo, dj, remix, koplo, bali, indonesia, denpasar, biography, music, portfolio, feel koplo, bagus wirata"
       />
       {isLoadingEvents || isLoadingImages || isLoadingMusic ? (

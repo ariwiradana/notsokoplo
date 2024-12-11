@@ -26,7 +26,7 @@ const ProfilePage = () => {
         url="https://notsokoplo.com/profile"
         title="Profile | No So Koplo Official Website"
         description="Learn more about Not So Koplo's profile."
-        image="https://res.cloudinary.com/dta5qasmt/image/upload/v1733890373/image_profile_wz9y4s.jpg"
+        image="https://res.cloudinary.com/dta5qasmt/image/upload/v1733887530/image_seo_gvzx3b.jpg"
         keywords="notsokoplo, not so koplo, profile"
       />
       <section className="bg-dark"></section>
