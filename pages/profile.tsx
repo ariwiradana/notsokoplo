@@ -29,6 +29,7 @@ const ProfilePage = () => {
         image="https://res.cloudinary.com/dta5qasmt/image/upload/v1733890373/image_profile_wz9y4s.jpg"
         keywords="notsokoplo, not so koplo, profile"
       />
+      <section className="bg-dark"></section>
     </>
   );
 };

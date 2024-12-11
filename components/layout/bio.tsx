@@ -5,12 +5,14 @@ import React from "react";
 import Marquee from "react-fast-marquee";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import ButtonPrimary from "../ui/button.primary";
+import { IoCloudDownload } from "react-icons/io5";
 
 interface PageProps {
   data: ImageType[];
 }
 
-const BioComponent = ({ data }: PageProps) => {
+const BiographyComponent = ({ data }: PageProps) => {
   const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
 
   return (
@@ -69,12 +71,14 @@ const BioComponent = ({ data }: PageProps) => {
         </div>
         <div className={`lg:max-w-[50%] ${montserrat.className}`}>
           <div className="px-6 py-10 md:px-12 md:py-16 lg:p-16 bg-white backdrop-blur-lg md:rounded relative z-20">
-            <h1
-              className={`font-bold text-4xl md:text-5xl lg:text-6xl text-dark uppercase`}
-            >
-              Not So Koplo Biography
-            </h1>
-            <div className="h-10 md:h-12 w-[1px] bg-dark/20 my-4"></div>
+            <div className="flex items-center justify-between mb-4">
+              <h1
+                className={`font-bold text-4xl md:text-5xl lg:text-6xl text-dark uppercase`}
+              >
+                Not So Koplo Biography
+              </h1>
+              <div className="h-16 md:h-24 w-[1px] bg-dark/20 my-4"></div>
+            </div>
             <p className="text-dark font-medium leading-8 text-justify">
               Not So Koplo is an energetic music group hailing from Denpasar,
               Bali, formed on February 26, 2020. Known for their creative blend
@@ -93,12 +97,18 @@ const BioComponent = ({ data }: PageProps) => {
               apart from typical Koplo acts. Their DJ sets captivate audiences
               by seamlessly blending genres, turning every performance into a
               high-energy, genre-bending experience.
-              <br />
-              <br />
-              With their bold approach to remixing and electrifying stage
-              presence, Not So Koplo has quickly gained a following, bringing a
-              fresh sound to Bali&apos;s music scene and beyond.
             </p>
+            <a
+              href="/pdf/NOT SO KOPLO PROFILE.pdf"
+              download="NOT SO KOPLO PROFILE.pdf"
+              aria-label="Download Presskit"
+              className="mt-6 md:mt-10 flex justify-end"
+            >
+              <ButtonPrimary
+                title="Download Presskit"
+                icon={<IoCloudDownload />}
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -106,4 +116,4 @@ const BioComponent = ({ data }: PageProps) => {
   );
 };
 
-export default BioComponent;
+export default BiographyComponent;
