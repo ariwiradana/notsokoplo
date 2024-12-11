@@ -1,5 +1,4 @@
-import { useRouter } from "next/router";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { Socials } from "@/constants/social";
 import Head from "next/head";
 
@@ -8,17 +7,10 @@ interface SEOProps {
   description: string;
   keywords: string;
   image: string;
+  url: string;
 }
 
-const Seo: FC<SEOProps> = ({ title, description, keywords, image }) => {
-  const router = useRouter();
-  const [url, setUrl] = useState<string>("");
-
-  useEffect(() => {
-    const fullUrl = `${window.location.origin}${router.asPath}`;
-    setUrl(fullUrl);
-  }, [router]);
-
+const Seo: FC<SEOProps> = ({ title, description, keywords, image, url }) => {
   return (
     <Head>
       <title>{title}</title>
@@ -31,7 +23,7 @@ const Seo: FC<SEOProps> = ({ title, description, keywords, image }) => {
       />
 
       {/* Canonical Tag */}
-      <link rel="canonical" href={url || `${window.location.origin}/`} />
+      <link rel="canonical" href={url} />
 
       <meta name="keywords" content={keywords} />
       <meta property="og:title" content={title} />
@@ -56,7 +48,7 @@ const Seo: FC<SEOProps> = ({ title, description, keywords, image }) => {
           "@context": "https://schema.org",
           "@type": "WebSite",
           name: "Not So Koplo Official",
-          url: url || `${window.location.origin}/`,
+          url,
           sameAs: Socials.map((social) => social.link),
         })}
       </script>
