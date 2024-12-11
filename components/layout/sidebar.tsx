@@ -41,7 +41,9 @@ const Sidebar = () => {
       <li className="flex justify-center gap-6 text-2xl mt-8">
         {Socials.map((social) => (
           <Link target="_blank" key={social.title} href={social.link}>
-            <div className="group-hover:text-dark">{social.icon}</div>
+            <div className="group-hover:text-dark text-white">
+              {social.icon}
+            </div>
           </Link>
         ))}
       </li>

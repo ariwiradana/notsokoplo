@@ -13,7 +13,7 @@ const HeroComponent = () => {
       <SquareLoader loading={isLoading} color="white" />
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video
-          onCanPlay={handleIsLoading}
+          onLoadedData={handleIsLoading}
           className="min-w-full min-h-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 object-cover"
           src="https://res.cloudinary.com/dta5qasmt/video/upload/v1733733277/videos/gyglwq60isxvfs0hwnf4.mp4"
           autoPlay
