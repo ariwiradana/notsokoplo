@@ -19,11 +19,6 @@ export const Socials: Social[] = [
     icon: <FaTiktok />,
   },
   {
-    title: "Twitter",
-    link: "https://x.com/notsokoplo",
-    icon: <FaTwitter />,
-  },
-  {
     title: "SoundCloud",
     link: "https://soundcloud.com/notsokoplo",
     icon: <FaSoundcloud />,

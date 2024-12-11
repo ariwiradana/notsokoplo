@@ -162,7 +162,9 @@ const EventComponent = ({ data, images }: PageProps) => {
           </table>
         </div>
         {filteredData?.length > sliced && (
-          <div className="flex justify-center mt-12 lg:mt-16">
+          <div
+            className={`flex justify-center mt-12 lg:mt-16 ${montserrat.className}`}
+          >
             {isLoading ? (
               <SquareLoader color="white" size={30} />
             ) : (
