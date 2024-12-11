@@ -7,7 +7,7 @@ const ProfilePage = () => {
   useEffect(() => {
     if (!localStorage.getItem("fileDownloaded")) {
       const link = document.createElement("a");
-      link.href = "/pdf/profile.pdf";
+      link.href = "/pdf/NOT SO KOPLO PROFILE.pdf";
       link.download = "NOT SO KOPLO PROFILE.pdf";
       document.body.appendChild(link);
       link.click();
