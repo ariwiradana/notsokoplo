@@ -4,7 +4,6 @@ import Image from "next/image";
 import React, { useState } from "react";
 import Button from "../ui/button";
 import { SquareLoader } from "react-spinners";
-import MusicPlayer from "./music.player";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 interface PageProps {
@@ -26,8 +25,7 @@ const MusicComponent = ({ data }: PageProps) => {
   };
 
   return (
-    <div className={`relative bg-dark ${montserrat.className} z-10`} id="music">
-      <MusicPlayer />
+    <div className={`relative bg-dark ${montserrat.className} z-0`} id="music">
       <div className="max-w-screen-xl mx-auto py-16 lg:py-28 px-4 md:px-12 lg:px-4">
         <div
           className={`flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-12 gap-4 md:gap-12 ${montserrat.className}`}

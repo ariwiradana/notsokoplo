@@ -29,7 +29,7 @@ const MusicPlayer = () => {
 
   return (
     <div
-      className={`fixed inset-x-0 p-6 md:px-12 bg-dark/80 backdrop-blur-sm flex flex-col md:flex-row justify-between gap-y-6 gap-x-24 md:items-center transition-all ease-in-out duration-500 z-50 ${
+      className={`fixed inset-x-0 p-6 md:px-12 bg-dark/90 backdrop-blur-sm flex flex-col md:flex-row justify-between gap-y-6 gap-x-24 md:items-center transition-all ease-in-out duration-500 z-50 ${
         isOpenPlayer ? "bottom-0 visible" : "-bottom-full invisible"
       }`}
     >

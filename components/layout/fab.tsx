@@ -25,7 +25,7 @@ const Fab = () => {
 
   return (
     <div
-      className={`fixed right-6 md:right-8 flex justify-center z-50 transition-all ease-in-out duration-500 ${
+      className={`fixed right-6 md:right-8 flex justify-center transition-all ease-in-out duration-500 z-40 ${
         isShown ? "bottom-6 md:bottom-8" : "-bottom-full"
       }`}
     >

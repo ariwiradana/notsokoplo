@@ -15,6 +15,7 @@ import useDisableInspect from "@/hooks/useDisableInspect";
 import Loading from "@/components/ui/loading";
 import TabNav from "@/components/layout/tab";
 import Fab from "@/components/layout/fab";
+import MusicPlayer from "@/components/layout/music.player";
 // import Contact from "@/components/layout/contact";
 
 const HomePage = () => {
@@ -61,6 +62,7 @@ const HomePage = () => {
           <EventComponent images={images} data={events} />
           <BioComponent data={images} />
           <MusicComponent data={music} />
+          <MusicPlayer />
           {/* <Contact /> */}
           <Footer />
         </section>
