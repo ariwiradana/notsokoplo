@@ -27,7 +27,7 @@ const BiographyComponent = ({ data }: PageProps) => {
         <div className="absolute inset-0 lg:bg-gradient-to-r md:w-[90%] lg:w-[80%] from-transparent via-dark/30 to-[80%] to-dark z-10"></div>
         {data?.slice(2).map((image, index) => (
           <SwiperSlide key={`bio-image-${index + 1}`}>
-            <div className="relative h-[70svh] md:h-[60svh] lg:h-[130svh] lg:w-[80%]">
+            <div className="relative h-[70svh] md:h-[60svh] lg:h-[110svh] lg:w-[80%]">
               <Image
                 src={image.url}
                 sizes="100vw"
@@ -71,7 +71,7 @@ const BiographyComponent = ({ data }: PageProps) => {
         </div>
         <div className={`lg:max-w-[50%] ${montserrat.className}`}>
           <div className="px-6 py-10 md:px-12 md:py-16 lg:p-16 bg-white backdrop-blur-lg relative z-20">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-4 gap-x-6">
               <h1
                 className={`font-bold text-4xl md:text-5xl lg:text-6xl text-dark uppercase`}
               >
