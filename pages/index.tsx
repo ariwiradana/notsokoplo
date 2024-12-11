@@ -35,8 +35,9 @@ const HomePage = () => {
   if (isLoadingEvents || isLoadingMusic || isLoadingImages) return <Loading />;
 
   return (
-    <section className="bg-dark">
+    <>
       <Seo
+        url="https://notsokoplo.com"
         title="No So Koplo Official Website"
         description=" Not So Koplo is an energetic music group hailing from Denpasar,
               Bali, formed on February 26, 2020. Known for their creative blend
@@ -45,18 +46,20 @@ const HomePage = () => {
               remix they produce. The duo is made up of long-time friends Dwiki
               Krisnanda (MC/Crowd Control) and Ari Wiradana (DJ & Producer), who
               first met during their college years."
-        image="/logo.png"
+        image="https://res.cloudinary.com/dta5qasmt/image/upload/v1733887530/image_seo_gvzx3b.jpg"
         keywords="notsokoplo, not so koplo, koplo bali, dj, feel koplo, bagus wirata"
       />
-      <NavbarToggle />
-      <Navbar />
-      <HeroComponent />
-      <EventComponent images={images} data={events} />
-      <BioComponent data={images} />
-      <MusicComponent data={music} />
-      {/* <Contact /> */}
-      <Footer />
-    </section>
+      <section className="bg-dark">
+        <NavbarToggle />
+        <Navbar />
+        <HeroComponent />
+        <EventComponent images={images} data={events} />
+        <BioComponent data={images} />
+        <MusicComponent data={music} />
+        {/* <Contact /> */}
+        <Footer />
+      </section>
+    </>
   );
 };
 

@@ -1,25 +1,15 @@
-import { Socials } from "@/constants/social";
+import { FC } from "react";
 import Head from "next/head";
-import { FC, useEffect, useState } from "react";
 
 interface SEOProps {
   title: string;
   description: string;
   keywords: string;
   image: string;
+  url: string;
 }
 
-const Seo: FC<SEOProps> = ({ title, description, keywords, image }) => {
-  const [url, setUrl] = useState<string>("");
-
-  useEffect(() => {
-    setUrl(
-      `${window.location.hostname}${
-        window.location.port ? `:${window.location.port}` : ""
-      }${window.location.pathname}`
-    );
-  }, []);
-
+const Seo: FC<SEOProps> = ({ title, description, keywords, image, url }) => {
   return (
     <Head>
       <title>{title}</title>
@@ -34,6 +24,7 @@ const Seo: FC<SEOProps> = ({ title, description, keywords, image }) => {
       <link rel="canonical" href={url} />
       <meta name="keywords" content={keywords} />
 
+      {/* Open Graph Tags */}
       <meta property="og:title" content={title} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
@@ -43,23 +34,13 @@ const Seo: FC<SEOProps> = ({ title, description, keywords, image }) => {
       <meta property="og:image:height" content="630" />
       <meta property="og:description" content={description} />
 
+      {/* Twitter Cards */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
 
-      <meta name="keywords" content="keyword1, keyword2, keyword3" />
-      <link rel="apple-touch-icon" href="/logo.png" />
       <link rel="icon" href="/logo.png" />
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "Not So Koplo Official",
-          url: url,
-          sameAs: Socials.map((social) => social.link),
-        })}
-      </script>
     </Head>
   );
 };
