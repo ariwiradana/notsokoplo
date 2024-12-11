@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { TbMenu, TbX } from "react-icons/tb";
 import Sidebar from "./sidebar";
 import useSidebar from "@/store/useSidebar";
+import { useRouter } from "next/router";
 
 const NavbarToggle = () => {
   const {
@@ -33,6 +34,8 @@ const NavbarToggle = () => {
     }
   };
 
+  const router = useRouter();
+
   return (
     <nav
       className={`${montserrat.className} ${
@@ -46,8 +49,12 @@ const NavbarToggle = () => {
         {NavData.map((nav) => (
           <li className="hidden md:inline" key={`nav-toggle-${nav.path}`}>
             <button
-              aria-label={`Button to ${nav.title}`}
-              onClick={() => scrollToDiv(nav.path)}
+              aria-label={`Navigate to ${nav.title}`}
+              onClick={() =>
+                nav.path === "contact"
+                  ? router.push("/contact")
+                  : scrollToDiv(nav.path)
+              }
               className="uppercase font-bold text-sm"
             >
               {nav.title}

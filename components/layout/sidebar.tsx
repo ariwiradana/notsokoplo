@@ -2,6 +2,7 @@ import { NavData } from "@/constants/navdata";
 import { Socials } from "@/constants/social";
 import useSidebar from "@/store/useSidebar";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
 const Sidebar = () => {
@@ -24,6 +25,8 @@ const Sidebar = () => {
     }
   }, [openSidebar]);
 
+  const router = useRouter();
+
   return (
     <ul
       className={`overflow-hidden flex flex-col gap-4 w-full transition-all duration-500 ease-in-out relative z-50 ${
@@ -36,8 +39,12 @@ const Sidebar = () => {
           className="text-center font-semibold text-2xl text-white"
         >
           <button
-            aria-label={`Button Sidebar ${nav.title}`}
-            onClick={() => scrollToDiv(nav.path)}
+            aria-label={`Sidebar Navigate to ${nav.title}`}
+            onClick={() =>
+              nav.path === "contact"
+                ? router.push("/contact")
+                : scrollToDiv(nav.path)
+            }
           >
             {nav.title}
           </button>
