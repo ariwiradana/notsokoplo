@@ -46,6 +46,7 @@ const NavbarToggle = () => {
         {NavData.map((nav) => (
           <li className="hidden md:inline" key={`nav-toggle-${nav.path}`}>
             <button
+              aria-label={`Button to ${nav.title}`}
               onClick={() => scrollToDiv(nav.path)}
               className="uppercase font-bold text-sm"
             >
@@ -55,6 +56,7 @@ const NavbarToggle = () => {
         ))}
         <li className="md:hidden">
           <button
+            aria-label={`Button Toggle Sidebar`}
             onClick={handleToggleSidebar}
             className="text-2xl p-3 text-white"
           >

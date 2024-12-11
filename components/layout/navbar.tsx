@@ -33,6 +33,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
       <ul className="flex items-center justify-between md:justify-center w-full gap-x-16">
         <li className="md:hidden">
           <button
+            aria-label={`Button Toggle Sidebar Desktop`}
             className="text-2xl p-3 text-white"
             onClick={handleToggleSidebar}
           >
@@ -41,6 +42,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
         </li>
         <li className="hidden md:inline">
           <button
+            aria-label={`Button Nav Events`}
             onClick={() => scrollToDiv("events")}
             className="uppercase font-bold text-sm"
           >
@@ -49,6 +51,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
         </li>
         <li className="hidden md:inline">
           <button
+            aria-label={`Button Nav Biography`}
             onClick={() => scrollToDiv("biography")}
             className="uppercase font-bold text-sm"
           >
@@ -56,7 +59,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
           </button>
         </li>
         <li className="hidden md:inline">
-          <Link href="/">
+          <Link href="/" aria-label="Nav Logo">
             <div className="relative w-16 aspect-square">
               <Image
                 sizes="200px"
@@ -70,6 +73,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
         </li>
         <li className="hidden md:inline">
           <button
+            aria-label={`Button Nav Music`}
             onClick={() => scrollToDiv("music")}
             className="uppercase font-bold text-sm"
           >
@@ -78,6 +82,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
         </li>
         <li className="hidden md:inline">
           <button
+            aria-label={`Button Nav Contact`}
             onClick={() => scrollToDiv("contact")}
             className="uppercase font-bold text-sm"
           >

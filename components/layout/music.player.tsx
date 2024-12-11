@@ -46,6 +46,7 @@ const MusicPlayer = () => {
       <div className="flex justify-center md:justify-start items-center gap-x-4 md:gap-x-8 text-white text-2xl">
         <div className="flex">
           <button
+            aria-label="Action Close Music"
             onClick={() => {
               handleIsOpenPlayer(false);
               handleIsPlaying(false);
@@ -56,7 +57,10 @@ const MusicPlayer = () => {
           </button>
         </div>
         <div className="flex">
-          <button onClick={() => handleIsPlaying(!isPlaying)}>
+          <button
+            aria-label="Action Play Pause Music"
+            onClick={() => handleIsPlaying(!isPlaying)}
+          >
             {isPlaying ? <TbPlayerPauseFilled /> : <TbPlayerPlayFilled />}
           </button>
         </div>
@@ -94,6 +98,7 @@ const MusicPlayer = () => {
           </p>
           {music?.soundcloud && (
             <button
+              aria-label="Action SoundCloud Music"
               onClick={() => {
                 window.open(music?.soundcloud);
                 handleIsPlaying(false);
@@ -106,6 +111,7 @@ const MusicPlayer = () => {
           )}
           {music?.youtube && (
             <button
+              aria-label="Action Youtube Music"
               onClick={() => {
                 window.open(music?.youtube);
                 handleIsPlaying(false);

@@ -55,13 +55,14 @@ const MusicComponent = ({ data }: PageProps) => {
                   alt={music.title}
                 />
               </div>
-              <h2 className="text-2xl font-semibold text-white mt-6">
+              <h5 className="text-2xl font-semibold text-white mt-6">
                 {music.title}
-              </h2>
-              <h5 className="mt-2 text-white/70">{music.artist}</h5>
+              </h5>
+              <h6 className="mt-2 text-white/70">{music.artist}</h6>
               {music.preview && (
                 <div className="flex justify-center mt-6">
                   <Button
+                    aria-label={`Button Preview ${music.title}`}
                     onClick={() => {
                       handleIsOpenPlayer(true);
                       handleIsPlaying(true);
@@ -82,6 +83,7 @@ const MusicComponent = ({ data }: PageProps) => {
               <SquareLoader color="white" size={30} />
             ) : (
               <button
+                aria-label="Button View More"
                 onClick={handleMoreMusic}
                 className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
               >

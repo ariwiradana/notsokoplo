@@ -90,8 +90,16 @@ const EventComponent = ({ data, images }: PageProps) => {
                         </p>
                         {event.link && (
                           <div className="flex lg:hidden mt-3">
-                            <Link target="_blank" href={event.link}>
-                              <Button title="Detail" icon={<IoTicketSharp />} />
+                            <Link
+                              aria-label="Action Detail Mobile"
+                              target="_blank"
+                              href={event.link}
+                            >
+                              <Button
+                                aria-label="Button Detail Mobile"
+                                title="Detail"
+                                icon={<IoTicketSharp />}
+                              />
                             </Link>
                           </div>
                         )}
@@ -99,8 +107,16 @@ const EventComponent = ({ data, images }: PageProps) => {
                       <td className="align-middle p-6 md:px-12 hidden lg:table-cell">
                         <div className="flex gap-x-4">
                           {event.link && (
-                            <Link target="_blank" href={event.link}>
-                              <Button title="Detail" icon={<IoTicketSharp />} />
+                            <Link
+                              aria-label="Action Detail"
+                              target="_blank"
+                              href={event.link}
+                            >
+                              <Button
+                                aria-label="Button Detail"
+                                title="Detail"
+                                icon={<IoTicketSharp />}
+                              />
                             </Link>
                           )}
                         </div>

@@ -35,12 +35,22 @@ const Sidebar = () => {
           key={`sidebar-${nav.path}`}
           className="text-center font-semibold text-2xl text-white"
         >
-          <button onClick={() => scrollToDiv(nav.path)}>{nav.title}</button>
+          <button
+            aria-label={`Button Sidebar ${nav.title}`}
+            onClick={() => scrollToDiv(nav.path)}
+          >
+            {nav.title}
+          </button>
         </li>
       ))}
       <li className="flex justify-center gap-6 text-2xl mt-8">
         {Socials.map((social) => (
-          <Link target="_blank" key={social.title} href={social.link}>
+          <Link
+            aria-label={`Sidebar ${social.title}`}
+            target="_blank"
+            key={social.title}
+            href={social.link}
+          >
             <div className="group-hover:text-dark text-white">
               {social.icon}
             </div>
