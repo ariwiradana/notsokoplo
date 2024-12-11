@@ -17,7 +17,7 @@ const TabNav = () => {
   const router = useRouter();
 
   return (
-    <div className="w-full sticky inset-x-0 top-0 bg-dark/80 backdrop-blur-sm z-20 md:hidden">
+    <div className="w-full sticky inset-x-0 top-0 bg-dark z-20 md:hidden">
       <ul className="flex items-center justify-center gap-6 p-4 flex-wrap">
         {NavData.map((nav) => (
           <li key={`nav-toggle-${nav.path}`}>

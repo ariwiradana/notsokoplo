@@ -8,7 +8,7 @@ const HeroComponent = () => {
 
   return (
     <div
-      className="h-[90lvh] md:h-lvh w-full relative z-10 flex items-center justify-center"
+      className="h-[90svh] md:h-svh w-full relative z-10 flex items-center justify-center"
       id="home"
     >
       {isLoading && <SquareLoader color="white" />}
