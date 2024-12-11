@@ -1,3 +1,4 @@
+import { montserrat } from "@/constants/fonts";
 import { NavData } from "@/constants/navdata";
 import useSidebar from "@/store/useSidebar";
 import { useRouter } from "next/router";
@@ -17,7 +18,9 @@ const TabNav = () => {
   const router = useRouter();
 
   return (
-    <div className="w-full sticky inset-x-0 top-0 bg-dark z-20 md:hidden">
+    <div
+      className={`w-full sticky inset-x-0 top-0 bg-dark z-20 md:hidden ${montserrat.className}`}
+    >
       <ul className="flex items-center justify-center gap-6 p-4 flex-wrap">
         {NavData.map((nav) => (
           <li key={`nav-toggle-${nav.path}`}>
