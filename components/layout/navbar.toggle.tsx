@@ -37,14 +37,14 @@ const NavbarToggle = () => {
     <nav
       className={`${montserrat.className} ${
         scrollPosition > 300 ? "top-0" : "-top-20"
-      } fixed inset-x-0 z-50 bg-dark/80 backdrop-blur-sm w-full flex flex-col justify-center items-center lg:h-12 md:px-12 lg:px-4 transition-all ease-in-out duration-500`}
+      } fixed inset-x-0 z-50 bg-dark/80 backdrop-blur-sm w-full flex flex-col justify-center items-center md:h-12 md:px-12 lg:px-4 transition-all ease-in-out duration-500`}
     >
       <ul
         onClick={(e) => e.stopPropagation()}
-        className="flex justify-between lg:justify-center w-full gap-x-16"
+        className="flex justify-between md:justify-center w-full gap-x-16"
       >
         {NavData.map((nav) => (
-          <li className="hidden lg:inline" key={`nav-toggle-${nav.path}`}>
+          <li className="hidden md:inline" key={`nav-toggle-${nav.path}`}>
             <button
               onClick={() => scrollToDiv(nav.path)}
               className="uppercase font-bold text-sm"
@@ -53,7 +53,7 @@ const NavbarToggle = () => {
             </button>
           </li>
         ))}
-        <li className="lg:hidden">
+        <li className="md:hidden">
           <button
             onClick={handleToggleSidebar}
             className="text-2xl p-3 text-white"
