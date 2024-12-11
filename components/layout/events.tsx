@@ -91,7 +91,7 @@ const EventComponent = ({ data, images }: PageProps) => {
                         {event.link && (
                           <div className="flex lg:hidden mt-3">
                             <Link
-                              rel="noopener noreferrer"
+                              rel="noopener"
                               aria-label="Action Detail Mobile"
                               target="_blank"
                               href={event.link}
@@ -109,7 +109,7 @@ const EventComponent = ({ data, images }: PageProps) => {
                         <div className="flex gap-x-4">
                           {event.link && (
                             <Link
-                              rel="noopener noreferrer"
+                              rel="noopener"
                               aria-label="Action Detail"
                               target="_blank"
                               href={event.link}

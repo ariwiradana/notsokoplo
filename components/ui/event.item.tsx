@@ -57,7 +57,7 @@ const EventItem = ({ event }: { event: Event }) => {
         </h2>
         {event.link && (
           <Link
-            rel="noopener noreferrer"
+            rel="noopener"
             aria-label={`Action ${event.event}`}
             className="py-3 px-4 bg-white text-dark relative z-40"
             href={event.link}
