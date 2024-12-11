@@ -32,7 +32,7 @@ const BiographyComponent = ({ data }: PageProps) => {
                 src={image.url}
                 sizes="100vw"
                 fill
-                className="object-cover rounded-t md:rounded-r"
+                className="object-cover"
                 alt={`image-${index}`}
               />
             </div>
@@ -70,7 +70,7 @@ const BiographyComponent = ({ data }: PageProps) => {
           </Marquee>
         </div>
         <div className={`lg:max-w-[50%] ${montserrat.className}`}>
-          <div className="px-6 py-10 md:px-12 md:py-16 lg:p-16 bg-white backdrop-blur-lg md:rounded relative z-20">
+          <div className="px-6 py-10 md:px-12 md:py-16 lg:p-16 bg-white backdrop-blur-lg relative z-20">
             <div className="flex items-center justify-between mb-4">
               <h1
                 className={`font-bold text-4xl md:text-5xl lg:text-6xl text-dark uppercase`}
@@ -79,7 +79,7 @@ const BiographyComponent = ({ data }: PageProps) => {
               </h1>
               <div className="h-16 md:h-24 w-[1px] bg-dark/20 my-4"></div>
             </div>
-            <p className="text-dark font-medium leading-8 text-justify">
+            <p className="text-dark leading-8 text-justify text-sm">
               Not So Koplo is an energetic music group hailing from Denpasar,
               Bali, formed on February 26, 2020. Known for their creative blend
               of genres, they center their sound around Koplo, a popular
@@ -97,6 +97,13 @@ const BiographyComponent = ({ data }: PageProps) => {
               apart from typical Koplo acts. Their DJ sets captivate audiences
               by seamlessly blending genres, turning every performance into a
               high-energy, genre-bending experience.
+              <br />
+              <br />
+              Lagu berjudul Bitterlove - Ardhito P r a m o n o merupakan lagu
+              remix pertama Not So Koplo. Mereka berhasil mencuri perhatian
+              publik dari remix lagu berjudul Celengan Rindu ciptaan Fiersa
+              Besari disusul dengan lagu remix lain melalui kanal musik digital
+              YouTube dan Soundcloud.
             </p>
             <a
               href="/pdf/NOT SO KOPLO PROFILE.pdf"

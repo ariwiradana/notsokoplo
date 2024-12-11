@@ -51,7 +51,7 @@ const MusicComponent = ({ data }: PageProps) => {
                   sizes="600px"
                   src={music.cover}
                   fill
-                  className="object-cover rounded"
+                  className="object-cover"
                   alt={music.title}
                 />
               </div>
