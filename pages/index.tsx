@@ -17,7 +17,6 @@ import TabNav from "@/components/layout/tab";
 import Fab from "@/components/ui/fab";
 import MusicPlayer from "@/components/layout/music.player";
 import InstagramFeedComponent from "@/components/layout/instagram.feed";
-// import Contact from "@/components/layout/contact";
 
 const HomePage = () => {
   const { data: events, isLoading: isLoadingEvents } = useSWR(
@@ -34,13 +33,13 @@ const HomePage = () => {
     fetcher
   );
 
-  // useDisableInspect();
+  useDisableInspect();
 
   return (
     <>
       <Seo
         url="https://notsokoplo.com/"
-        title="No So Koplo"
+        title="No So Koplo | Official Website"
         description="Not So Koplo is an energetic music group hailing from Denpasar,
               Bali, formed on February 26, 2020. Known for their creative blend
               of genres, they center their sound around Koplo, a popular
