@@ -5,7 +5,7 @@ const InstagramFeedComponent = () => {
   return (
     <div
       id="gallery"
-      className={`relative bg-black ${montserrat.className} z-0`}
+      className={`relative bg-black overflow-x-hidden ${montserrat.className} z-0`}
     >
       <div className="pt-16 lg:pb-8 lg:pt-28">
         <div
