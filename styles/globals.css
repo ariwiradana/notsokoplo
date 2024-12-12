@@ -31,6 +31,6 @@ body {
   @apply overflow-hidden;
 }
 
-#eapps-instagram-feed-1 .eapps-instagram-feed-posts-grid-load-more {
+.eapps-instagram-feed-posts-grid-load-more {
   @apply bg-transparent text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 capitalize font-montserrat mt-12 lg:mt-16 !important;
 }
