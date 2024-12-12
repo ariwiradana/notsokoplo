@@ -71,11 +71,11 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
         </li>
         <li className="hidden md:inline">
           <button
-            aria-label={`Button Nav Photos`}
-            onClick={() => scrollToDiv("photos")}
+            aria-label={`Button Nav Gallery`}
+            onClick={() => scrollToDiv("gallery")}
             className="uppercase font-bold text-sm"
           >
-            Photos
+            Gallery
           </button>
         </li>
       </ul>

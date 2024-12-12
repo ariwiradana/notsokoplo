@@ -4,7 +4,7 @@ import React from "react";
 const InstagramFeedComponent = () => {
   return (
     <div
-      id="photos"
+      id="gallery"
       className={`relative bg-black ${montserrat.className} z-0`}
     >
       <div className="pt-16 lg:pb-8 lg:pt-28">
