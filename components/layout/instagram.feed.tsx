@@ -26,7 +26,7 @@ const InstagramFeedComponent = () => {
           style={{
             zIndex: 0,
           }}
-          className="elfsight-app-ab9ace17-1150-405a-bfd7-3df4abcc1b7a mb-16 relative"
+          className="elfsight-app-dc7b977e-154a-4103-846e-63aa9d1d3613 mb-16 relative"
           data-elfsight-app-lazy
         ></div>
         <div className="w-full h-16 lg:h-28 absolute bottom-0 bg-black z-[999]"></div>
