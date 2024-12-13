@@ -38,8 +38,25 @@ const Seo: FC<SEOProps> = ({ title, description, keywords, image, url }) => {
       <meta name="twitter:image" content={image} />
 
       <link rel="canonical" href={url} />
-      <link rel="apple-touch-icon" href="/logo.png" />
-      <link rel="icon" href="/logo.png" />
+
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/favicon-180x180.png"
+      />
+      <link
+        rel="icon"
+        href="/favicon-32x32.png"
+        sizes="32x32"
+        type="image/png"
+      />
+      <link
+        rel="icon"
+        href="/favicon-16x16.png"
+        sizes="16x16"
+        type="image/png"
+      />
+
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
