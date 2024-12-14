@@ -65,14 +65,16 @@ const MusicPlayer = () => {
           </button>
         </div>
         <div className="flex md:items-center gap-x-4 md:gap-x-6">
-          <div className="relative min-w-12 w-12 h-12 min-h-12 md:min-w-14 md:w-14 md:h-14 md:min-h-14 aspect-square">
-            <Image
-              src={music?.cover || ""}
-              fill
-              className="object-cover"
-              alt={`player-${music?.title}`}
-            />
-          </div>
+          {music?.cover && (
+            <div className="relative min-w-12 w-12 h-12 min-h-12 md:min-w-14 md:w-14 md:h-14 md:min-h-14 aspect-square">
+              <Image
+                src={music?.cover}
+                fill
+                className="object-cover"
+                alt={`player-${music?.title}`}
+              />
+            </div>
+          )}
           <div>
             <h4
               className={`${montserrat.className} font-semibold text-lg md:text-xl whitespace-nowrap text-white line-clamp-1`}
