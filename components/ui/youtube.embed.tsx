@@ -1,19 +1,23 @@
 // components/YouTubeEmbed.js
+import { Video } from "@/types/video";
 import React from "react";
 
 interface YouTubeEmbedProps {
-  videoId: string;
+  videos: Video[];
 }
 
-const YouTubeEmbed = ({ videoId = "" }: YouTubeEmbedProps) => {
+const YouTubeEmbed = ({ videos = [] }: YouTubeEmbedProps) => {
+  const videoIds = videos.map((video) => video.url);
   return (
     <div
       className="w-full"
       style={{ position: "relative", paddingBottom: "56.25%", height: 0 }}
     >
       <iframe
-        src={`https://www.youtube.com/embed/${videoId}?modestbranding=1&showinfo=0&rel=0&cc_load_policy=0`}
-        title={videoId}
+        src={`https://www.youtube.com/embed?playlist=${videoIds.join(
+          ","
+        )}&modestbranding=1&showinfo=0&rel=0&cc_load_policy=0`}
+        title="Video Not So Koplo"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen

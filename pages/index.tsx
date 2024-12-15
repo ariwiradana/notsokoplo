@@ -16,7 +16,7 @@ import Loading from "@/components/ui/loading";
 import TabNav from "@/components/layout/tab";
 import Fab from "@/components/ui/fab";
 import MusicPlayer from "@/components/layout/music.player";
-import InstagramFeedComponent from "@/components/layout/instagram.feed";
+import GalleryComponent from "@/components/layout/gallery";
 
 const HomePage = () => {
   const { data: events, isLoading: isLoadingEvents } = useSWR(
@@ -30,6 +30,11 @@ const HomePage = () => {
 
   const { data: images, isLoading: isLoadingImages } = useSWR(
     "/api/images",
+    fetcher
+  );
+
+  const { data: videos, isLoading: isLoadingVideos } = useSWR(
+    "/api/videos",
     fetcher
   );
 
@@ -50,7 +55,10 @@ const HomePage = () => {
         image="https://res.cloudinary.com/dta5qasmt/image/upload/v1733887530/image_seo_gvzx3b.jpg"
         keywords="notsokoplo, not so koplo, dj, remix, koplo, bali, indonesia, denpasar, biography, music, portfolio, feel koplo, bagus wirata"
       />
-      {isLoadingEvents || isLoadingImages || isLoadingMusic ? (
+      {isLoadingEvents ||
+      isLoadingImages ||
+      isLoadingMusic ||
+      isLoadingVideos ? (
         <Loading />
       ) : (
         <section className="bg-dark relative">
@@ -63,7 +71,7 @@ const HomePage = () => {
           <EventComponent images={images} data={events} />
           <BioComponent data={images} />
           <MusicComponent data={music} />
-          <InstagramFeedComponent />
+          <GalleryComponent videos={videos} />
           {/* <VideoComponent data={videos} /> */}
           <Footer />
         </section>
