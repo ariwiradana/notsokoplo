@@ -30,7 +30,7 @@ const BiographyComponent = ({ data }: PageProps) => {
                 src={image.url}
                 sizes="100vw"
                 fill
-                className="object-cover"
+                className="object-cover bg-white/5"
                 alt={`image-${index}`}
               />
             </div>

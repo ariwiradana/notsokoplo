@@ -20,9 +20,9 @@ const HeroComponent = () => {
           muted
           loop
           playsInline
-          poster="/images/hero-poster.webp"
+          poster="https://res.cloudinary.com/dta5qasmt/image/upload/v1733898698/hero_poster_quw6nz.png"
         >
-          <source src="/videos/NSK Bali Countdown 2023.mp4" />
+          <source src="https://res.cloudinary.com/dta5qasmt/video/upload/v1734280593/NSK_Bali_Countdown_2023_qby1rn.mp4" />
         </video>
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-[30%] via-transparent to-dark z-10 flex items-end justify-center">

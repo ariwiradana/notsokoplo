@@ -75,7 +75,7 @@ const EventComponent = ({ data, images }: PageProps) => {
                   sizes="60vw"
                   src={image.url}
                   fill
-                  className="object-cover"
+                  className="object-cover bg-white/5"
                   alt={`event-image-${index}`}
                 />
               </div>
