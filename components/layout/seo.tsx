@@ -18,10 +18,8 @@ const Seo: FC<SEOProps> = ({ title, description, keywords, image, url }) => {
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Not So Koplo" />
       <meta name="robots" content="index, follow" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      />
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"/>
+
 
       <meta property="og:title" content={title} />
       <meta property="og:type" content="website" />
