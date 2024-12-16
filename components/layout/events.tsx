@@ -38,7 +38,7 @@ const EventComponent = ({ data, images }: PageProps) => {
 
       console.log(filteredData.length - sliced);
 
-      if (filteredData.length - sliced > 4) {
+      if (filteredData.length - sliced > 2) {
         setImageSliced((prevState) => prevState + 1);
       }
       setIsLoading(false);
