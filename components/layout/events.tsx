@@ -8,7 +8,6 @@ import Button from "../ui/button";
 import { IoTicketSharp } from "react-icons/io5";
 import { Image as ImageType } from "@/types/image";
 import Image from "next/image";
-import { SquareLoader } from "react-spinners";
 
 interface PageProps {
   data: Event[];
@@ -16,9 +15,8 @@ interface PageProps {
 }
 
 const EventComponent = ({ data, images }: PageProps) => {
-  const [sliced, setSliced] = useState<number>(4);
-  const [imageSliced, setImageSliced] = useState<number>(1);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [sliced] = useState<number>(4);
+  const [imageSliced] = useState<number>(2);
 
   const filteredData = data?.filter((event) => {
     const isExpired = moment(
@@ -30,20 +28,6 @@ const EventComponent = ({ data, images }: PageProps) => {
       return event;
     }
   });
-
-  const handleMoreEvent = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setSliced((prevState) => prevState + 4);
-
-      console.log(filteredData.length - sliced);
-
-      if (filteredData.length - sliced > 2) {
-        setImageSliced((prevState) => prevState + 1);
-      }
-      setIsLoading(false);
-    }, 1000);
-  };
 
   return (
     <div className="relative bg-dark" id="events">
@@ -161,23 +145,17 @@ const EventComponent = ({ data, images }: PageProps) => {
             </tbody>
           </table>
         </div>
-        {filteredData?.length > sliced && (
-          <div
-            className={`flex justify-center mt-12 lg:mt-16 ${montserrat.className}`}
+        <div
+          className={`flex justify-center mt-12 lg:mt-16 ${montserrat.className}`}
+        >
+          <Link
+            aria-label="Button Load More Event"
+            href="/events"
+            className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
           >
-            {isLoading ? (
-              <SquareLoader color="white" size={30} />
-            ) : (
-              <button
-                aria-label="Button Load More Event"
-                onClick={handleMoreEvent}
-                className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
-              >
-                <span>Load More</span>
-              </button>
-            )}
-          </div>
-        )}
+            <span>Show All</span>
+          </Link>
+        </div>
       </div>
     </div>
   );

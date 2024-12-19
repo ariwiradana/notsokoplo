@@ -1,20 +1,9 @@
 import { montserrat } from "@/constants/fonts";
 import { NavData } from "@/constants/navdata";
-import useSidebar from "@/store/useSidebar";
 import { useRouter } from "next/router";
 import React from "react";
 
 const TabNav = () => {
-  const { handleActiveId } = useSidebar();
-
-  const scrollToDiv = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      handleActiveId(id);
-    }
-  };
-
   const router = useRouter();
 
   return (
@@ -26,11 +15,7 @@ const TabNav = () => {
           <li key={`tab-nav-${nav.path}`}>
             <button
               aria-label={`Navigate to ${nav.title}`}
-              onClick={() =>
-                nav.path === "contact"
-                  ? router.push("/contact")
-                  : scrollToDiv(nav.path)
-              }
+              onClick={() => router.push(`/#${nav.path}`)}
               className="uppercase font-bold text-sm text-white"
             >
               {nav.title}

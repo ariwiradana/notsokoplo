@@ -4,15 +4,17 @@ import React, { useEffect } from "react";
 import { TbMenu, TbX } from "react-icons/tb";
 import Sidebar from "./sidebar";
 import useSidebar from "@/store/useSidebar";
+import { useRouter } from "next/router";
 
 const NavbarToggle = () => {
   const {
     openSidebar,
     scrollPosition,
-    handleActiveId,
     handleToggleSidebar,
     handleScrollPosition,
   } = useSidebar();
+
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,18 +22,19 @@ const NavbarToggle = () => {
     };
     window.addEventListener("scroll", handleScroll);
 
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const scrollToDiv = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      handleActiveId(id);
-    }
-  };
 
   return (
     <nav
@@ -47,7 +50,7 @@ const NavbarToggle = () => {
           <li className="hidden md:inline" key={`nav-toggle-${nav.path}`}>
             <button
               aria-label={`Navigate to ${nav.title}`}
-              onClick={() => scrollToDiv(nav.path)}
+              onClick={() => router.push(`/#${nav.path}`)}
               className="uppercase font-bold text-sm"
             >
               {nav.title}

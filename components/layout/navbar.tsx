@@ -2,37 +2,43 @@ import { montserrat } from "@/constants/fonts";
 import useSidebar from "@/store/useSidebar";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "./sidebar";
+import { useRouter } from "next/router";
 
 interface NavbarProps {
   fixed?: boolean;
 }
 
 const Navbar = ({ fixed = true }: NavbarProps) => {
-  const { openSidebar, handleActiveId, scrollPosition } = useSidebar();
+  const { openSidebar, scrollPosition } = useSidebar();
 
-  const scrollToDiv = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      handleActiveId(id);
+  const router = useRouter();
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
-  };
+  }, []);
 
   return (
     <nav
       className={`${montserrat.className} ${
         openSidebar ? "bg-dark/80" : "bg-transparent"
-      } w-full flex justify-between flex-col md:py-12 max-w-screen-xl mx-auto md:px-12 lg:px-4 ${
-        fixed && "absolute inset-x-0 z-50"
+      } w-full flex justify-between flex-col md:py-12 max-w-screen-xl mx-auto md:px-12 lg:px-4 z-50 ${
+        fixed ? "absolute inset-x-0" : "border-b border-b-white/5"
       }`}
     >
       <ul className="flex items-center justify-between md:justify-center w-full gap-x-16">
         <li className="hidden md:inline">
           <button
             aria-label={`Button Nav Events`}
-            onClick={() => scrollToDiv("events")}
+            onClick={() => router.push("/#events")}
             className="uppercase font-bold text-sm"
           >
             Events
@@ -41,7 +47,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
         <li className="hidden md:inline">
           <button
             aria-label={`Button Nav Biography`}
-            onClick={() => scrollToDiv("biography")}
+            onClick={() => router.push("/#biography")}
             className="uppercase font-bold text-sm"
           >
             Biography
@@ -63,7 +69,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
         <li className="hidden md:inline">
           <button
             aria-label={`Button Nav Music`}
-            onClick={() => scrollToDiv("music")}
+            onClick={() => router.push("/#music")}
             className="uppercase font-bold text-sm"
           >
             Music
@@ -72,7 +78,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
         <li className="hidden md:inline">
           <button
             aria-label={`Button Nav Gallery`}
-            onClick={() => scrollToDiv("gallery")}
+            onClick={() => router.push("/#gallery")}
             className="uppercase font-bold text-sm"
           >
             Gallery
