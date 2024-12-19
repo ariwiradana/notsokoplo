@@ -24,7 +24,7 @@ const MobileNav = () => {
     <div
       className={`top-0 w-full fixed inset-x-0 bg-dark z-20 md:hidden transition-all ease-in-out duration-500 border-b border-b-white/5 ${montserrat.className}`}
     >
-      <ul className="flex items-center justify-between gap-6 p-4 flex-wrap">
+      <ul className="flex items-center justify-center gap-6 p-4 flex-wrap">
         {NavData.map((nav) => (
           <li key={`tab-nav-${nav.path}`}>
             <button

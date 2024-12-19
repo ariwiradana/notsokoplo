@@ -80,7 +80,7 @@ const Events = () => {
           <div className="pb-16 lg:pb-28 pt-16 md:pt-2 max-w-screen-xl mx-auto">
             <Link
               href="/"
-              className={`flex items-center gap-x-3 text-lg max-w-screen-xl mx-auto py-4 px-4 md:px-12 lg:px-0 ${montserrat.className}`}
+              className={`flex items-center gap-x-3 text-lg max-w-screen-xl mx-auto py-4 px-4 md:px-12 lg:px-0 text-white ${montserrat.className}`}
             >
               <BsArrowLeft />
               <span className="text-base">Back</span>
