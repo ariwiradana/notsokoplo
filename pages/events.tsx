@@ -31,7 +31,7 @@ const Events = () => {
   );
 
   const [sliced, setSliced] = useState<number>(6);
-  const [imageSliced, setImageSliced] = useState<number>(1);
+  const [imageSliced, setImageSliced] = useState<number>(2);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const filteredData = events?.filter((event: Event) => {
@@ -50,9 +50,7 @@ const Events = () => {
     setTimeout(() => {
       setSliced((prevState) => prevState + 6);
 
-      console.log(filteredData.length - sliced);
-
-      if (filteredData.length - sliced > 1) {
+      if (filteredData.length - sliced > 2) {
         setImageSliced((prevState) => prevState + 1);
       }
       setIsLoading(false);
