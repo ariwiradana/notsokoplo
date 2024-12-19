@@ -75,7 +75,7 @@ const MusicComponent = ({ data }: PageProps) => {
           ))}
         </div>
 
-        {data.length > sliced && (
+        {data?.length > sliced && (
           <div className="flex justify-center mt-12 lg:mt-16">
             {isLoading ? (
               <SquareLoader color="white" size={30} />
