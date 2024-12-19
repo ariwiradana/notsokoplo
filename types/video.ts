@@ -1,4 +1,4 @@
 export interface Video {
   url: string;
-  type: "cloudinary" | "youtube" | null;
+  type: "landscape" | "potrait" | null;
 }

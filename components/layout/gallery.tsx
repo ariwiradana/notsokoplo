@@ -2,12 +2,19 @@ import { montserrat } from "@/constants/fonts";
 import { Video } from "@/types/video";
 import React from "react";
 import YouTubeEmbed from "../ui/youtube.embed";
+import YouTubeEmbedPotrait from "../ui/youtube.embed.potrait";
 
 interface GalleryComponentProps {
   videos: Video[];
 }
 
 const GalleryComponent = ({ videos }: GalleryComponentProps) => {
+  const landscapeVideos =
+    videos?.filter((video) => video.type === "landscape") || [];
+  const potraitVideos =
+    videos?.filter((video) => video.type === "potrait") || [];
+
+  console.log({ videos });
   return (
     <div
       id="gallery"
@@ -29,9 +36,15 @@ const GalleryComponent = ({ videos }: GalleryComponentProps) => {
           <div className="h-16 md:h-24 w-[1px] bg-white/20"></div>
         </div>
 
-        {videos.length > 0 && (
+        {landscapeVideos.length > 0 && (
           <div className="max-w-screen-xl mx-auto lg:mb-28">
-            <YouTubeEmbed videos={videos} />
+            <YouTubeEmbed videos={landscapeVideos} />
+          </div>
+        )}
+
+        {potraitVideos.length > 0 && (
+          <div className="max-w-screen-xl mx-auto grid mb-6 md:grid-cols-3 lg:grid-cols-4 lg:mb-28 gap-6">
+            <YouTubeEmbedPotrait videos={potraitVideos} />
           </div>
         )}
 
