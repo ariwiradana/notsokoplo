@@ -38,7 +38,7 @@ const HomePage = () => {
     fetcher
   );
 
-  // useDisableInspect();
+  useDisableInspect();
 
   return (
     <>
