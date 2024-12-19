@@ -64,9 +64,9 @@ const Events = () => {
       <Seo
         url="https://notsokoplo.com/events"
         title="Events | No So Koplo Official Website"
-        description=""
+        description="Check out the latest upcoming DJ events and live performances by Not So Koplo in Bali. Stay updated with our event schedule and book Not So Koplo for your next music gig, party, or festival in Bali. Don't miss out on the best DJ performances in Bali's music scene!"
+        keywords="Not So Koplo events, DJ events Bali, Bali music events, Upcoming DJ events Bali, Not So Koplo live performances, Bali live DJ schedule, DJ gigs in Bali, Electronic music events Bali, DJ event calendar, Music gigs Bali, DJ Not So Koplo event bookings, Bali nightlife events, Bali DJ party events, Bali music festival DJ, Book DJ for events Bali, Not So Koplo upcoming events, DJ performance dates Bali"
         image="https://res.cloudinary.com/dta5qasmt/image/upload/v1733887530/image_seo_gvzx3b.jpg"
-        keywords="notsokoplo, not so koplo, event, jadwal"
       />
       <NavbarToggle />
       <MobileNav />
@@ -115,7 +115,7 @@ const Events = () => {
                         src={image.url}
                         fill
                         className="object-cover bg-white/5"
-                        alt={`event-image-${index}`}
+                        alt={`Event Image Notsokoplo ${index + 1}`}
                       />
                     </div>
                   ))}

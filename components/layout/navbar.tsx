@@ -61,7 +61,7 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
                 src="/logo.png"
                 fill
                 className="object-contain"
-                alt="logo"
+                alt="Logo Navbar Notsokoplo"
               />
             </div>
           </Link>

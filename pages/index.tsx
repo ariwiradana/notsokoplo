@@ -45,15 +45,9 @@ const HomePage = () => {
       <Seo
         url="https://notsokoplo.com/"
         title="No So Koplo | Official Website"
-        description="Not So Koplo is an energetic music group hailing from Denpasar,
-              Bali, formed on February 26, 2020. Known for their creative blend
-              of genres, they center their sound around Koplo, a popular
-              Indonesian dangdut subgenre while adding a unique twist to every
-              remix they produce. The duo is made up of long-time friends Dwiki
-              Krisnanda (MC/Crowd Control) and Ari Wiradana (DJ & Producer), who
-              first met during their college years."
+        description="Not So Koplo is a Bali-based DJ specializing in live music gigs, remixes, and electronic music performances. Check out our event schedule, music tracks, gallery of photos and videos from past gigs, and follow us on social media for updates on upcoming events and performances. Book Not So Koplo for your next event in Bali!"
         image="https://res.cloudinary.com/dta5qasmt/image/upload/v1733887530/image_seo_gvzx3b.jpg"
-        keywords="notsokoplo, not so koplo, dj, remix, koplo, bali, indonesia, denpasar, biography, music, portfolio, feel koplo, bagus wirata"
+        keywords="DJ Not So Koplo, Not So Koplo music events, Not So Koplo gigs, DJ event schedule, DJ for hire Not So Koplo, Music remix DJ, Live DJ performances, DJ video gallery, DJ biography Not So Koplo, DJ gig gallery photos, Upcoming DJ events, Music event schedule, DJ Not So Koplo live schedule, DJ gig near me, Live DJ event booking, Event DJ schedule 2024, Electronic music gigs, DJ remix music, Not So Koplo remix tracks, DJ music downloads, Remix music artist, Best DJ remix tracks, DJ video performances, DJ photo gallery, Music event gallery, DJ event video highlights, Not So Koplo live event photos, Follow Not So Koplo on social media, DJ music updates, DJ event promotions, DJ behind the scenes videos, Connect with DJ Not So Koplo, Bali DJ gigs, DJ events in Bali, DJ based in Bali, Bali music events, Bali DJ remix, Live DJ performances Bali, DJ for hire Bali"
       />
       {isLoadingEvents ||
       isLoadingImages ||

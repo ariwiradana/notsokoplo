@@ -50,7 +50,7 @@ const MusicComponent = ({ data }: PageProps) => {
                   src={music.cover}
                   fill
                   className="object-cover bg-white/5"
-                  alt={music.title}
+                  alt={`Cover Image ${music.title} Notsokoplo`}
                 />
               </div>
               <h5 className="text-2xl font-semibold text-white mt-6">

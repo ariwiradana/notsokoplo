@@ -32,7 +32,7 @@ const HeroComponent = () => {
             src="/logo.png"
             fill
             className="object-contain"
-            alt="logo Mobile"
+            alt="Logo Notsokoplo Mobile"
           />
         </div>
       </div>

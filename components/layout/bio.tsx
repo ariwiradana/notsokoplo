@@ -31,7 +31,7 @@ const BiographyComponent = ({ data }: PageProps) => {
                 sizes="100vw"
                 fill
                 className="object-cover bg-white/5"
-                alt={`image-${index}`}
+                alt={`Notsokoplo Biography Image ${index + 1}`}
               />
             </div>
           </SwiperSlide>

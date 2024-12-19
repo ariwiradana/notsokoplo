@@ -60,7 +60,7 @@ const EventComponent = ({ data, images }: PageProps) => {
                   src={image.url}
                   fill
                   className="object-cover bg-white/5"
-                  alt={`event-image-${index}`}
+                  alt={`Notsokoplo Event Image ${index + 1}`}
                 />
               </div>
             ))}

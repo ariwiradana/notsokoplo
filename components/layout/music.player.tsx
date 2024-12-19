@@ -71,7 +71,7 @@ const MusicPlayer = () => {
                 src={music?.cover}
                 fill
                 className="object-cover bg-white/5"
-                alt={`player-${music?.title}`}
+                alt={`Cover Image Small ${music?.title} Notsokoplo`}
               />
             </div>
           )}
