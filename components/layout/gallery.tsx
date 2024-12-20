@@ -9,12 +9,24 @@ interface GalleryComponentProps {
 }
 
 const GalleryComponent = ({ videos }: GalleryComponentProps) => {
-  const landscapeVideos =
-    videos?.filter((video) => video.type === "landscape") || [];
-  const potraitVideos =
-    videos?.filter((video) => video.type === "potrait") || [];
+  const landscapeVideoYoutube =
+    videos?.filter(
+      (video) => video.orientation === "landscape" && video.type === "youtube"
+    ) || [];
+  const potraitVideoYoutube =
+    videos?.filter(
+      (video) => video.orientation === "potrait" && video.type === "youtube"
+    ) || [];
+  const landscapeVideoCloudinary =
+    videos?.filter(
+      (video) =>
+        video.orientation === "landscape" && video.type === "cloudinary"
+    ) || [];
+  const potraitVideoCloudinary =
+    videos?.filter(
+      (video) => video.orientation === "potrait" && video.type === "cloudinary"
+    ) || [];
 
-  console.log({ videos });
   return (
     <div
       id="gallery"
@@ -36,16 +48,24 @@ const GalleryComponent = ({ videos }: GalleryComponentProps) => {
           <div className="h-16 md:h-24 w-[1px] bg-white/20"></div>
         </div>
 
-        {landscapeVideos.length > 0 && (
+        {landscapeVideoYoutube || landscapeVideoCloudinary ? (
           <div className="max-w-screen-xl mx-auto lg:mb-28">
-            <YouTubeEmbed videos={landscapeVideos} />
+            {landscapeVideoYoutube.length > 0 && (
+              <YouTubeEmbed videos={landscapeVideoYoutube} />
+            )}
           </div>
+        ) : (
+          <></>
         )}
 
-        {potraitVideos.length > 0 && (
+        {potraitVideoYoutube || potraitVideoCloudinary ? (
           <div className="max-w-screen-xl mx-auto grid mb-6 md:grid-cols-3 lg:grid-cols-4 lg:mb-28 gap-6">
-            <YouTubeEmbedPotrait videos={potraitVideos} />
+            {potraitVideoYoutube.length > 0 && (
+              <YouTubeEmbedPotrait videos={landscapeVideoYoutube} />
+            )}
           </div>
+        ) : (
+          <></>
         )}
 
         <div

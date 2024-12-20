@@ -64,7 +64,7 @@ const Events = () => {
         title="Events | No So Koplo Official Website"
         description="Check out the latest upcoming DJ events and live performances by Not So Koplo in Bali. Stay updated with our event schedule and book Not So Koplo for your next music gig, party, or festival in Bali. Don't miss out on the best DJ performances in Bali's music scene!"
         keywords="Not So Koplo events, DJ events Bali, Bali music events, Upcoming DJ events Bali, Not So Koplo live performances, Bali live DJ schedule, DJ gigs in Bali, Electronic music events Bali, DJ event calendar, Music gigs Bali, DJ Not So Koplo event bookings, Bali nightlife events, Bali DJ party events, Bali music festival DJ, Book DJ for events Bali, Not So Koplo upcoming events, DJ performance dates Bali"
-        image="https://res.cloudinary.com/dta5qasmt/image/upload/v1733887530/image_seo_gvzx3b.jpg"
+        image="https://drive.google.com/uc?export=view&id=1ZnByq6GE4ng7845hqaVgt3NvXfcfZlMs"
       />
       <NavbarToggle />
       <MobileNav />

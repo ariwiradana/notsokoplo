@@ -1,4 +1,5 @@
 export interface Video {
   url: string;
-  type: "landscape" | "potrait" | null;
+  orientation: "landscape" | "potrait" | null;
+  type: "youtube" | "cloudinary" | null;
 }
