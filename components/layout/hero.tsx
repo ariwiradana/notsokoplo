@@ -20,7 +20,7 @@ const HeroComponent = () => {
           muted
           loop
           playsInline
-          poster="https://drive.google.com/uc?export=view&id=1xEvPF2FEBxFtUXz7Fu1CupLUTDZeGfQ6"
+          poster="https://res.cloudinary.com/dta5qasmt/image/upload/v1733898698/hero_poster_quw6nz.png"
         >
           <source src="https://res.cloudinary.com/dta5qasmt/video/upload/v1734280593/NSK_Bali_Countdown_2023_qby1rn.mp4" />
         </video>
