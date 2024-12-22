@@ -18,8 +18,10 @@ const Seo: FC<SEOProps> = ({ title, description, keywords, image, url }) => {
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Not So Koplo" />
       <meta name="robots" content="index, follow" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"/>
-
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=5"
+      />
 
       <meta property="og:title" content={title} />
       <meta property="og:type" content="website" />
@@ -37,23 +39,8 @@ const Seo: FC<SEOProps> = ({ title, description, keywords, image, url }) => {
 
       <link rel="canonical" href={url} />
 
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/favicon-180x180.png"
-      />
-      <link
-        rel="icon"
-        href="/favicon-32x32.png"
-        sizes="32x32"
-        type="image/png"
-      />
-      <link
-        rel="icon"
-        href="/favicon-16x16.png"
-        sizes="16x16"
-        type="image/png"
-      />
+      <link rel="apple-touch-icon" href="/favicon.png" />
+      <link rel="icon" href="/favicon.png" />
 
       <script type="application/ld+json">
         {JSON.stringify({
