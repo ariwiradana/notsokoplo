@@ -8,7 +8,7 @@ const HeroComponent = () => {
 
   return (
     <div
-      className="h-[90svh] md:h-svh w-full relative z-10 flex items-center justify-center"
+      className="h-[90svh] md:h-svh w-full relative z-10 flex items-center justify-center overflow-hidden"
       id="home"
     >
       {isLoading && <SquareLoader color="white" />}
@@ -20,9 +20,9 @@ const HeroComponent = () => {
           muted
           loop
           playsInline
-          poster="https://res.cloudinary.com/dta5qasmt/image/upload/v1733898698/hero_poster_quw6nz.png"
+          poster="https://www.dropbox.com/scl/fi/eks05styky39t83lwue5w/hero-poster.webp?rlkey=3z9vqd260ldm8h70agv84cygb&raw=1"
         >
-          <source src="https://res.cloudinary.com/dta5qasmt/video/upload/v1734280593/NSK_Bali_Countdown_2023_qby1rn.mp4" />
+          <source src="https://www.dropbox.com/scl/fi/fq4sxzz45wpa1e2jn40au/NSK-Bali-Countdown-2023.mp4?rlkey=9fylcmsd4o0d5hok87zc32nk3&raw=1" />
         </video>
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-[30%] via-transparent to-dark z-10 flex items-end justify-center">

@@ -59,7 +59,7 @@ const GalleryComponent = ({ videos }: GalleryComponentProps) => {
         )}
 
         {potraitVideoYoutube || potraitVideoCloudinary ? (
-          <div className="max-w-screen-xl mx-auto grid mb-6 md:grid-cols-3 lg:grid-cols-4 lg:mb-28 gap-6">
+          <div className="max-w-screen-xl mx-auto grid md:grid-cols-3 lg:grid-cols-4 lg:mb-28 gap-6">
             {potraitVideoYoutube.length > 0 && (
               <YouTubeEmbedPotrait videos={landscapeVideoYoutube} />
             )}

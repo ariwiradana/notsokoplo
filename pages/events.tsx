@@ -64,7 +64,7 @@ const Events = () => {
         title="Events | No So Koplo Official Website"
         description="Check out the latest upcoming DJ events and live performances by Not So Koplo in Bali. Stay updated with our event schedule and book Not So Koplo for your next music gig, party, or festival in Bali. Don't miss out on the best DJ performances in Bali's music scene!"
         keywords="Not So Koplo events, DJ events Bali, Bali music events, Upcoming DJ events Bali, Not So Koplo live performances, Bali live DJ schedule, DJ gigs in Bali, Electronic music events Bali, DJ event calendar, Music gigs Bali, DJ Not So Koplo event bookings, Bali nightlife events, Bali DJ party events, Bali music festival DJ, Book DJ for events Bali, Not So Koplo upcoming events, DJ performance dates Bali, Acara Not So Koplo, Acara DJ Bali, Acara musik Bali, Acara DJ mendatang Bali, Penampilan langsung Not So Koplo, Jadwal DJ langsung Bali, Gig DJ di Bali, Acara musik elektronik Bali, Kalender acara DJ, Gigs musik Bali, Pemesanan acara DJ Not So Koplo, Acara kehidupan malam Bali, Acara pesta DJ Bali, Festival musik Bali DJ, Pesan DJ untuk acara Bali, Acara mendatang Not So Koplo, Tanggal penampilan DJ Bali"
-        image="https://res.cloudinary.com/dta5qasmt/image/upload/v1733887530/image_seo_gvzx3b.jpg"
+        image="https://www.dropbox.com/scl/fi/u82pe9o6qvtb814230p5m/image_seo_gvzx3b.webp?rlkey=rucjwg266qcspkaxp9k31iav6&raw=1"
       />
       <NavbarToggle />
       <MobileNav />
@@ -77,7 +77,7 @@ const Events = () => {
 
           <div className="pb-16 lg:pb-28 pt-16 md:pt-2 max-w-screen-xl mx-auto">
             <Link
-              href="/"
+              href="/#events"
               className={`flex items-center gap-x-3 text-lg max-w-screen-xl mx-auto py-4 px-4 md:px-12 lg:px-0 text-white ${montserrat.className}`}
             >
               <BsArrowLeft />
