@@ -145,17 +145,19 @@ const EventComponent = ({ data, images }: PageProps) => {
             </tbody>
           </table>
         </div>
-        <div
-          className={`flex justify-center mt-12 lg:mt-16 ${montserrat.className}`}
-        >
-          <Link
-            aria-label="Button Load More Event"
-            href="/events"
-            className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
+        {filteredData.length > sliced && (
+          <div
+            className={`flex justify-center mt-12 lg:mt-16 ${montserrat.className}`}
           >
-            <span>Show All</span>
-          </Link>
-        </div>
+            <Link
+              aria-label="Button Load More Event"
+              href="/events"
+              className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
+            >
+              <span>Show All</span>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
