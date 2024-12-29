@@ -25,17 +25,19 @@ const HeroComponent = () => {
           <source src="https://www.dropbox.com/scl/fi/fq4sxzz45wpa1e2jn40au/NSK-Bali-Countdown-2023.mp4?rlkey=9fylcmsd4o0d5hok87zc32nk3&raw=1" />
         </video>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-[30%] via-transparent to-dark z-10 flex items-end justify-center">
-        <div className="relative w-20 aspect-square md:hidden mb-4">
-          <Image
-            sizes="200px"
-            src="/logo.png"
-            fill
-            className="object-contain"
-            alt="Logo Notsokoplo Mobile"
-          />
+      {!isLoading && (
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-[30%] via-transparent to-dark z-10 flex items-end justify-center">
+          <div className="relative w-20 aspect-square md:hidden mb-4">
+            <Image
+              sizes="200px"
+              src="/logo.png"
+              fill
+              className="object-contain"
+              alt="Logo Notsokoplo Mobile"
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
