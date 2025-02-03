@@ -76,7 +76,7 @@ const GalleryComponent = ({ videos }: GalleryComponentProps) => {
           className="elfsight-app-9b1d0fb8-a916-4fe6-942f-e2a0d4714b0e mb-16 relative"
           data-elfsight-app-lazy
         ></div>
-        <div className="w-full h-16 lg:h-28 absolute bottom-0 bg-black z-[999]"></div>
+        <div className="w-full h-16 lg:h-28 absolute bottom-0 lg:bottom-8 bg-black z-[999]"></div>
       </div>
     </div>
   );
