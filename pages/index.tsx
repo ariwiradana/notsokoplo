@@ -64,8 +64,8 @@ const HomePage = () => {
           <TabNav />
           <EventComponent images={images} data={events} />
           <BioComponent data={images} />
-          <MusicComponent data={music} />
           <GalleryComponent videos={videos} />
+          <MusicComponent data={music} />
           {/* <VideoComponent data={videos} /> */}
           <Footer />
         </section>
