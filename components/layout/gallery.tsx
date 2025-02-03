@@ -49,7 +49,7 @@ const GalleryComponent = ({ videos }: GalleryComponentProps) => {
         </div>
 
         {landscapeVideoYoutube || landscapeVideoCloudinary ? (
-          <div className="max-w-screen-xl mx-auto lg:mb-28">
+          <div className="max-w-screen-xl mx-auto mb-16 lg:mb-28">
             {landscapeVideoYoutube.length > 0 && (
               <YouTubeEmbed videos={landscapeVideoYoutube} />
             )}
