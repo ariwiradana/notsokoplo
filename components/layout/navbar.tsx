@@ -47,10 +47,10 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
         <li className="hidden md:inline">
           <button
             aria-label={`Button Nav Biography`}
-            onClick={() => router.push("/#biography")}
+            onClick={() => router.push("/#about")}
             className="uppercase font-bold text-sm"
           >
-            Biography
+            About
           </button>
         </li>
         <li className="hidden md:inline">
@@ -68,20 +68,20 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
         </li>
         <li className="hidden md:inline">
           <button
-            aria-label={`Button Nav Music`}
-            onClick={() => router.push("/#music")}
-            className="uppercase font-bold text-sm"
-          >
-            Music
-          </button>
-        </li>
-        <li className="hidden md:inline">
-          <button
             aria-label={`Button Nav Gallery`}
             onClick={() => router.push("/#gallery")}
             className="uppercase font-bold text-sm"
           >
             Gallery
+          </button>
+        </li>
+        <li className="hidden md:inline">
+          <button
+            aria-label={`Button Nav Music`}
+            onClick={() => router.push("/#music")}
+            className="uppercase font-bold text-sm"
+          >
+            Music
           </button>
         </li>
       </ul>

@@ -2,7 +2,7 @@ import { Nav } from "@/types/nav";
 
 export const NavData: Nav[] = [
   { path: "events", title: "Events" },
-  { path: "biography", title: "Biography" },
-  { path: "music", title: "Music" },
+  { path: "about", title: "About" },
   { path: "gallery", title: "Gallery" },
+  { path: "music", title: "Music" },
 ];

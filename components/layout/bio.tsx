@@ -10,11 +10,11 @@ interface PageProps {
   data: ImageType[];
 }
 
-const BiographyComponent = ({ data }: PageProps) => {
+const AboutComponent = ({ data }: PageProps) => {
   const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
 
   return (
-    <div className="relative z-0" id="biography">
+    <div className="relative z-0" id="about">
       <Swiper
         className="relative"
         speed={2000}
@@ -31,7 +31,7 @@ const BiographyComponent = ({ data }: PageProps) => {
                 sizes="100vw"
                 fill
                 className="object-cover bg-white/5"
-                alt={`Notsokoplo Biography Image ${index + 1}`}
+                alt={`Notsokoplo About Image ${index + 1}`}
               />
             </div>
           </SwiperSlide>
@@ -47,9 +47,9 @@ const BiographyComponent = ({ data }: PageProps) => {
               <div key={`marquee-${item}`} className="flex items-center">
                 <div className="w-2 h-2 rounded-full bg-white"></div>
                 <h4
-                  className={`stroke-2 font-bold text-4xl lg:text-6xl uppercase mx-6 text-white ${montserrat.className}`}
+                  className={`stroke-2 font-semibold text-4xl lg:text-6xl uppercase mx-6 text-white ${montserrat.className}`}
                 >
-                  {item % 2 === 0 ? "Not So Koplo" : "Biography"}
+                  {item % 2 === 0 ? "Not So Koplo" : "About"}
                 </h4>
               </div>
             ))}
@@ -59,9 +59,9 @@ const BiographyComponent = ({ data }: PageProps) => {
               <div className="flex items-center" key={`marquee-2-${item}`}>
                 <div className="w-2 h-2 rounded-full bg-white"></div>
                 <h4
-                  className={`stroke-2 font-bold text-4xl lg:text-6xl uppercase mx-6 text-white ${montserrat.className}`}
+                  className={`stroke-2 font-semibold text-4xl lg:text-6xl uppercase mx-6 text-white ${montserrat.className}`}
                 >
-                  {item % 2 === 0 ? "Not So Koplo" : "Biography"}
+                  {item % 2 === 0 ? "Not So Koplo" : "About"}
                 </h4>
               </div>
             ))}
@@ -71,13 +71,13 @@ const BiographyComponent = ({ data }: PageProps) => {
           <div className="px-6 py-10 md:px-12 md:py-16 lg:p-16 bg-white backdrop-blur-lg relative z-20">
             <div className="flex items-center justify-between mb-4 gap-x-6">
               <h1
-                className={`font-bold text-4xl md:text-5xl lg:text-6xl text-dark uppercase`}
+                className={`text-4xl font-semibold md:text-5xl lg:text-6xl text-dark uppercase`}
               >
-                Not So Koplo Biography
+                Not So Koplo
               </h1>
               <div className="h-16 md:h-24 w-[1px] bg-dark/20 my-4"></div>
             </div>
-            <p className="text-dark leading-8 text-justify text-sm">
+            <p className="text-dark leading-7 text-justify text-sm">
               Not So Koplo is an energetic music group hailing from Denpasar,
               Bali, formed on February 26, 2020. Known for their creative blend
               of genres, they center their sound around Koplo, a popular
@@ -103,4 +103,4 @@ const BiographyComponent = ({ data }: PageProps) => {
   );
 };
 
-export default BiographyComponent;
+export default AboutComponent;
