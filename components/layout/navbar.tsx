@@ -37,11 +37,11 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
       <ul className="flex items-center justify-between md:justify-center w-full gap-x-16">
         <li className="hidden md:inline">
           <button
-            aria-label={`Button Nav Events`}
-            onClick={() => router.push("/#events")}
+            aria-label={`Button Nav Schedules`}
+            onClick={() => router.push("/#schedules")}
             className="uppercase font-bold text-sm"
           >
-            Events
+            Schedules
           </button>
         </li>
         <li className="hidden md:inline">

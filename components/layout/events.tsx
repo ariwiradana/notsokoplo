@@ -14,7 +14,7 @@ interface PageProps {
   images: ImageType[];
 }
 
-const EventComponent = ({ data, images }: PageProps) => {
+const SchedulesComponent = ({ data, images }: PageProps) => {
   const [sliced] = useState<number>(4);
   const [imageSliced] = useState<number>(2);
 
@@ -31,7 +31,7 @@ const EventComponent = ({ data, images }: PageProps) => {
 
   if (filteredData.length > 0)
     return (
-      <div className="relative bg-dark" id="events">
+      <div className="relative bg-dark" id="schedules">
         <div className="py-16 lg:py-28 max-w-screen-xl mx-auto">
           <div className="px-4 md:px-12 lg:px-0">
             <div
@@ -40,10 +40,10 @@ const EventComponent = ({ data, images }: PageProps) => {
               <h1
                 className={`font-bold text-left text-4xl md:text-5xl lg:text-6xl text-white uppercase`}
               >
-                Upcoming Events
+                Upcoming Schedules
               </h1>
               <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base">
-                Discover our upcoming events and join for an unforgettable
+                Discover our upcoming schedules and join for an unforgettable
                 experience. Don&apos;t miss the chance to vibe to the music
                 live!
               </p>
@@ -122,7 +122,7 @@ const EventComponent = ({ data, images }: PageProps) => {
                                 >
                                   <Button
                                     aria-label="Button Detail Mobile"
-                                    title="Detail"
+                                    title="Info"
                                     icon={<IoTicketSharp />}
                                   />
                                 </Link>
@@ -140,7 +140,7 @@ const EventComponent = ({ data, images }: PageProps) => {
                                 >
                                   <Button
                                     aria-label="Button Detail"
-                                    title="Detail"
+                                    title="Info"
                                     icon={<IoTicketSharp />}
                                   />
                                 </Link>
@@ -171,4 +171,4 @@ const EventComponent = ({ data, images }: PageProps) => {
     );
 };
 
-export default EventComponent;
+export default SchedulesComponent;
