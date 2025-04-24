@@ -1,8 +1,9 @@
 import { montserrat } from "@/constants/fonts";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useRef } from "react";
-import { FaSoundcloud, FaYoutube } from "react-icons/fa6";
+import { FaLink, FaSoundcloud, FaYoutube } from "react-icons/fa6";
 import { TbPlayerPauseFilled, TbPlayerPlayFilled, TbX } from "react-icons/tb";
 
 const MusicPlayer = () => {
@@ -26,6 +27,8 @@ const MusicPlayer = () => {
       }
     }
   }, [isPlaying, music]);
+
+  console.log(music);
 
   return (
     <div
@@ -91,38 +94,54 @@ const MusicPlayer = () => {
         </div>
       </div>
 
-      {music?.soundcloud || music?.youtube ? (
+      {music?.soundcloud || music?.youtube || music?.url ? (
         <div
-          className={`${montserrat.className} text-sm font-medium flex items-center gap-x-4`}
+          className={`${montserrat.className} text-sm font-medium flex items-center gap-x-3`}
         >
           <p className="whitespace-nowrap font-medium text-white hidden md:block">
-            Full Version :
+            {music?.url ? "Full Version :" : "Listen on :"}
           </p>
           {music?.soundcloud && (
-            <button
+            <Link
+              target="_blank"
+              href={music.soundcloud}
               aria-label="Action SoundCloud Music"
               onClick={() => {
-                window.open(music?.soundcloud);
                 handleIsPlaying(false);
               }}
               className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center"
             >
               <FaSoundcloud className="text-lg" />
               <span>SoundCloud</span>
-            </button>
+            </Link>
           )}
           {music?.youtube && (
-            <button
+            <Link
               aria-label="Action Youtube Music"
+              target="_blank"
+              href={music.youtube}
               onClick={() => {
-                window.open(music?.youtube);
                 handleIsPlaying(false);
               }}
               className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center"
             >
               <FaYoutube className="text-lg" />
               <span>Youtube</span>
-            </button>
+            </Link>
+          )}
+          {music?.url && (
+            <Link
+              target="_blank"
+              href={music.url}
+              aria-label="Action URL Music"
+              onClick={() => {
+                handleIsPlaying(false);
+              }}
+              className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center"
+            >
+              <FaLink className="text-lg" />
+              <span>Listen Now</span>
+            </Link>
           )}
         </div>
       ) : (

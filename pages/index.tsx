@@ -17,6 +17,7 @@ import TabNav from "@/components/layout/tab";
 import Fab from "@/components/ui/fab";
 import MusicPlayer from "@/components/layout/music.player";
 import GalleryComponent from "@/components/layout/gallery";
+import Popup from "@/components/layout/popup";
 
 const HomePage = () => {
   const { data: events, isLoading: isLoadingEvents } = useSWR(
@@ -38,6 +39,10 @@ const HomePage = () => {
     fetcher
   );
 
+  const { data: popup } = useSWR("/api/popup", fetcher);
+
+  const popupURL = popup?.length > 0 ? popup[0].url : null;
+
   useDisableInspect();
 
   return (
@@ -56,6 +61,7 @@ const HomePage = () => {
         <Loading />
       ) : (
         <section className="bg-dark relative">
+          <Popup url={popupURL} />
           <Fab />
           <NavbarToggle />
           <Navbar />
@@ -66,7 +72,6 @@ const HomePage = () => {
           <BioComponent data={images} />
           <GalleryComponent videos={videos} />
           <MusicComponent data={music} />
-          {/* <VideoComponent data={videos} /> */}
           <Footer />
         </section>
       )}

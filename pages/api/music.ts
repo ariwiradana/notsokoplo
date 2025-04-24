@@ -18,6 +18,8 @@ export default async function handler(
     preview: row["_rawData"][3] || "",
     soundcloud: row["_rawData"][4] || "",
     youtube: row["_rawData"][5] || "",
+    url: row["_rawData"][6] || "",
+    caption: row["_rawData"][7] || "",
   }));
 
   res.status(200).json(data);

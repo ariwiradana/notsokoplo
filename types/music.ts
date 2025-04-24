@@ -5,4 +5,6 @@ export interface Music {
   preview: string;
   soundcloud: string;
   youtube: string;
+  caption?: string;
+  url: string;
 }

@@ -44,7 +44,7 @@ const MusicComponent = ({ data }: PageProps) => {
         <div className="grid md:grid-cols-3 gap-x-6 gap-y-12">
           {data?.slice(0, sliced).map((music) => (
             <div key={music.title} className="text-center">
-              <div className="w-full aspect-square relative shadow-lg">
+              <div className="w-full aspect-square relative shadow-lg mb-6">
                 <Image
                   sizes="600px"
                   src={music.cover}
@@ -53,7 +53,14 @@ const MusicComponent = ({ data }: PageProps) => {
                   alt={`Cover Image ${music.title} Notsokoplo`}
                 />
               </div>
-              <h5 className="text-2xl font-semibold text-white mt-6">
+              {music.caption && (
+                <div className="mb-3">
+                  <p className="bg-primary text-white inline px-3 py-1 rounded-full text-sm">
+                    {music.caption}
+                  </p>
+                </div>
+              )}
+              <h5 className="text-2xl font-semibold text-white">
                 {music.title}
               </h5>
               <h6 className="mt-2 text-white/70">{music.artist}</h6>
