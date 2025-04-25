@@ -13,7 +13,7 @@ const HeroComponent = (release: Release | null) => {
 
   return (
     <div
-      className="h-[90vh] md:h-screen w-full relative z-10 flex items-center justify-center overflow-hidden"
+      className="h-[90svh] md:h-svh w-full relative z-10 flex items-center justify-center overflow-hidden"
       id="home"
     >
       {release && (
