@@ -140,7 +140,7 @@ const MusicPlayer = () => {
               className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center"
             >
               <FaLink className="text-lg" />
-              <span>Listen Now</span>
+              <span>Stream Now</span>
             </Link>
           )}
         </div>
