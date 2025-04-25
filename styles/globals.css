@@ -38,3 +38,30 @@ body {
 .eapps-instagram-feed-header.es-header {
   @apply p-0;
 }
+
+@layer base {
+  @font-face {
+    font-family: "TanPearl";
+    src: url("/fonts/tan-pearl.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "HighSummit";
+    src: url("/fonts/high-summit.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Edensor";
+    src: url("/fonts/edensor.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Bigilla";
+    src: url("/fonts/bigilla.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+  }
+}

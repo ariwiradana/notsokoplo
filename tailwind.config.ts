@@ -14,6 +14,10 @@ export default {
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
+        "tan-pearl": ["TanPearl", "sans-serif"],
+        "high-summit": ["HighSummit", "sans-serif"],
+        edensor: ["Edensor", "sans-serif"],
+        bigilla: ["Bigilla", "sans-serif"],
       },
     },
   },

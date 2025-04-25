@@ -7,7 +7,7 @@ interface Props {
   url: string;
 }
 
-const Popup: NextPage<Props> = ({ url = "" }) => {
+const ReleaseHighlight: NextPage<Props> = ({ url = "" }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -55,4 +55,4 @@ const Popup: NextPage<Props> = ({ url = "" }) => {
   );
 };
 
-export default Popup;
+export default ReleaseHighlight;

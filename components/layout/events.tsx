@@ -40,7 +40,7 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
               <h1
                 className={`font-bold text-left text-4xl md:text-5xl lg:text-6xl text-white uppercase`}
               >
-                Upcoming Schedules
+                Schedules
               </h1>
               <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base">
                 Discover our upcoming schedules and join for an unforgettable
@@ -86,7 +86,7 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
                           className={`border-b border-b-white/5 transition-all ease-in-out duration-500 ${montserrat.className}`}
                         >
                           <td className="p-6 md:px-12 align-middle">
-                            <p className="text-white text-base font-bold uppercase whitespace-nowrap mb-2">
+                            <p className="text-white text-base tracking-[1px] uppercase whitespace-nowrap mb-2">
                               {moment(event.date, formats, true).format(
                                 "MMM DD"
                               )}
@@ -97,9 +97,7 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
                               </span>
                             </p>
                             <div className="flex items-center gap-x-3">
-                              <p
-                                className={`text-white text-xl md:text-2xl font-medium`}
-                              >
+                              <p className={`text-white text-xl md:text-2xl`}>
                                 <span>{event.event} </span>
                                 {event.category === "private" && (
                                   <span className="text-white/80 text-base font-light capitalize">
@@ -118,7 +116,7 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
                                   rel="noopener"
                                   aria-label="Action Detail Mobile"
                                   target="_blank"
-                                  href={event.link}
+                                  href={event.link || ""}
                                 >
                                   <Button
                                     aria-label="Button Detail Mobile"

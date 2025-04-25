@@ -17,7 +17,7 @@ import TabNav from "@/components/layout/tab";
 import Fab from "@/components/ui/fab";
 import MusicPlayer from "@/components/layout/music.player";
 import GalleryComponent from "@/components/layout/gallery";
-import Popup from "@/components/layout/popup";
+import { Release } from "@/types/release";
 
 const HomePage = () => {
   const { data: events, isLoading: isLoadingEvents } = useSWR(
@@ -39,9 +39,9 @@ const HomePage = () => {
     fetcher
   );
 
-  const { data: popup } = useSWR("/api/popup", fetcher);
+  const { data: release } = useSWR("/api/release", fetcher);
 
-  const popupURL = popup?.length > 0 ? popup[0].url : null;
+  const releaseData: Release | null = release?.length > 0 ? release[0] : null;
 
   useDisableInspect();
 
@@ -61,12 +61,19 @@ const HomePage = () => {
         <Loading />
       ) : (
         <section className="bg-dark relative">
-          <Popup url={popupURL} />
           <Fab />
           <NavbarToggle />
           <Navbar />
           <MusicPlayer />
-          <HeroComponent />
+          <HeroComponent
+            artist={releaseData?.artist as string}
+            caption={releaseData?.caption as string}
+            cover={releaseData?.cover as string}
+            title={releaseData?.title as string}
+            url={releaseData?.url as string}
+            video={releaseData?.video as string}
+            poster={releaseData?.poster as string}
+          />
           <TabNav />
           <EventComponent images={images} data={events} />
           <BioComponent data={images} />

@@ -104,7 +104,7 @@ const MusicPlayer = () => {
           {music?.soundcloud && (
             <Link
               target="_blank"
-              href={music.soundcloud}
+              href={music.soundcloud || ""}
               aria-label="Action SoundCloud Music"
               onClick={() => {
                 handleIsPlaying(false);
@@ -119,7 +119,7 @@ const MusicPlayer = () => {
             <Link
               aria-label="Action Youtube Music"
               target="_blank"
-              href={music.youtube}
+              href={music.youtube || ""}
               onClick={() => {
                 handleIsPlaying(false);
               }}
@@ -132,7 +132,7 @@ const MusicPlayer = () => {
           {music?.url && (
             <Link
               target="_blank"
-              href={music.url}
+              href={music.url || ""}
               aria-label="Action URL Music"
               onClick={() => {
                 handleIsPlaying(false);

@@ -55,7 +55,7 @@ const MusicComponent = ({ data }: PageProps) => {
               </div>
               {music.caption && (
                 <div className="mb-3">
-                  <p className="bg-primary text-white inline px-3 py-1 rounded-full text-sm">
+                  <p className="bg-primary text-white inline px-3 py-[3px] rounded-full text-sm">
                     {music.caption}
                   </p>
                 </div>
