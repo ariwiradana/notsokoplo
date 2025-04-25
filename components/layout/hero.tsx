@@ -13,7 +13,7 @@ const HeroComponent = (release: Release | null) => {
 
   return (
     <div
-      className="h-[90svh] md:h-svh w-full relative z-10 flex items-center justify-center overflow-hidden"
+      className="h-[90vh] md:h-screen w-full relative z-10 flex items-center justify-center overflow-hidden"
       id="home"
     >
       {release && (
@@ -40,7 +40,7 @@ const HeroComponent = (release: Release | null) => {
               className="mt-4"
               target="_blank"
               aria-label="URL Stream New Release"
-              href={release.url as string || ""}
+              href={(release.url as string) || ""}
             >
               <Button icon={<TbPlayerPlayFilled />} title="Stream Now" />
             </Link>
@@ -55,17 +55,9 @@ const HeroComponent = (release: Release | null) => {
           muted
           loop
           playsInline
-          poster={
-            release?.poster ||
-            "https://www.dropbox.com/scl/fi/eks05styky39t83lwue5w/hero-poster.webp?rlkey=3z9vqd260ldm8h70agv84cygb&raw=1"
-          }
+          poster={release?.poster as string}
         >
-          <source
-            src={
-              release?.video ||
-              "https://www.dropbox.com/scl/fi/fq4sxzz45wpa1e2jn40au/NSK-Bali-Countdown-2023.mp4?rlkey=9fylcmsd4o0d5hok87zc32nk3&raw=1"
-            }
-          />
+          <source src={release?.video as string} />
         </video>
       </div>
 
