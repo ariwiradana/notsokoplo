@@ -29,7 +29,7 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
     }
   });
 
-  if (filteredData.length > 0)
+  if (filteredData?.length > 0)
     return (
       <div className="relative bg-dark" id="schedules">
         <div className="py-16 lg:py-28 max-w-screen-xl mx-auto">
@@ -134,7 +134,7 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
                                   rel="noopener"
                                   aria-label="Action Detail"
                                   target="_blank"
-                                  href={event.link}
+                                  href={event.link || ""}
                                 >
                                   <Button
                                     aria-label="Button Detail"

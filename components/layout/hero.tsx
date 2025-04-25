@@ -28,7 +28,7 @@ const HeroComponent = (release: Release | null) => {
               className="text-white font-bold text-center text-5xl md:text-6xl lg:text-8xl uppercase mt-6 relative"
             >
               {release.title}{" "}
-              <span className="text-xl md:text-2xl font-semibold text-white/50">
+              <span className="text-xl md:text-2xl font-semibold text-white/60">
                 {release.caption}
               </span>
             </h1>
@@ -40,7 +40,7 @@ const HeroComponent = (release: Release | null) => {
               className="mt-4"
               target="_blank"
               aria-label="URL Stream New Release"
-              href={release.url as string}
+              href={release.url as string || ""}
             >
               <Button icon={<TbPlayerPlayFilled />} title="Stream Now" />
             </Link>

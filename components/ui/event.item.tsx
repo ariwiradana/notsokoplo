@@ -60,7 +60,7 @@ const EventItem = ({ event }: { event: Event }) => {
             rel="noopener"
             aria-label={`Action ${event.event}`}
             className="py-3 px-4 bg-white text-dark relative z-40"
-            href={event.link}
+            href={event.link || ""}
             target="_blank"
           >
             Tickets

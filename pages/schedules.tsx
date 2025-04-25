@@ -169,7 +169,7 @@ const Events = () => {
                                     rel="noopener"
                                     aria-label="Action Detail Mobile"
                                     target="_blank"
-                                    href={event.link}
+                                    href={event.link || ""}
                                   >
                                     <Button
                                       aria-label="Button Detail Mobile"
@@ -187,7 +187,7 @@ const Events = () => {
                                     rel="noopener"
                                     aria-label="Action Detail"
                                     target="_blank"
-                                    href={event.link}
+                                    href={event.link || ""}
                                   >
                                     <Button
                                       aria-label="Button Detail"
