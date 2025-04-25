@@ -1,6 +1,5 @@
 import useLoading from "@/store/useLoading";
 import React from "react";
-import { SquareLoader } from "react-spinners";
 import Button from "../ui/button";
 import { montserrat } from "@/constants/fonts";
 import Link from "next/link";
@@ -8,7 +7,7 @@ import { TbPlayerPlayFilled } from "react-icons/tb";
 import { Release } from "@/types/release";
 
 const HeroComponent = (release: Release | null) => {
-  const { handleIsLoading, isLoading } = useLoading();
+  const { handleIsLoading } = useLoading();
 
   console.log(release);
 
@@ -48,7 +47,6 @@ const HeroComponent = (release: Release | null) => {
           </div>
         </>
       )}
-      {isLoading && <SquareLoader color="white" />}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video
           onLoadedData={handleIsLoading}
