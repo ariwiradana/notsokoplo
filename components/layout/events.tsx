@@ -40,7 +40,7 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
               <h1
                 className={`font-bold text-left text-4xl md:text-5xl lg:text-6xl text-white uppercase`}
               >
-                Schedules
+                Upcoming Schedules
               </h1>
               <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base">
                 Discover our upcoming schedules and join for an unforgettable

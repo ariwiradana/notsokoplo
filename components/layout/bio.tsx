@@ -45,9 +45,9 @@ const AboutComponent = ({ data }: PageProps) => {
           >
             {numbers.map((item) => (
               <div key={`marquee-${item}`} className="flex items-center">
-                <div className="w-1 h-1 rounded-full bg-white"></div>
+                <div className="w-2 h-2 rounded-full bg-white"></div>
                 <h4
-                  className={`stroke-2 text-4xl lg:text-5xl uppercase mx-6 text-white font-medium ${montserrat.className}`}
+                  className={`stroke-2 text-3xl lg:text-4xl uppercase mx-6 text-white font-semibold ${montserrat.className}`}
                 >
                   {item % 2 === 0 ? "Not So Koplo" : "About"}
                 </h4>
@@ -57,9 +57,9 @@ const AboutComponent = ({ data }: PageProps) => {
           <Marquee className="overflow-hidden bg-primary py-2 lg:py-0">
             {numbers.map((item) => (
               <div className="flex items-center" key={`marquee-2-${item}`}>
-                <div className="w-1 h-1 rounded-full bg-white"></div>
+                <div className="w-2 h-2 rounded-full bg-white"></div>
                 <h4
-                  className={`stroke-2 text-4xl lg:text-5xl uppercase mx-6 text-white font-medium ${montserrat.className}`}
+                  className={`stroke-2 text-3xl lg:text-4xl uppercase mx-6 text-white font-semibold ${montserrat.className}`}
                 >
                   {item % 2 === 0 ? "Not So Koplo" : "About"}
                 </h4>
@@ -71,13 +71,10 @@ const AboutComponent = ({ data }: PageProps) => {
           <div className="px-6 py-10 md:px-12 md:py-16 lg:p-16 bg-white backdrop-blur-lg relative z-20">
             <div className="flex justify-between items-center mb-4 gap-x-6">
               <h1
-                className={`font-semibold text-3xl md:text-4xl lg:text-5xl text-dark uppercase`}
+                className={`font-bold text-4xl md:text-5xl lg:text-6xl text-dark uppercase`}
               >
                 Not So Koplo
               </h1>
-              <p className="text-sm text-dark/20 uppercase tracking-[4px]">
-                About
-              </p>
               <div className="h-8 md:h-12 w-[1px] bg-dark/10 my-4"></div>
             </div>
             <p className="text-dark leading-7 text-justify text-xs lg:text-sm">

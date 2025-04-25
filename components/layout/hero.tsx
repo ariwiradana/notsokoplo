@@ -20,7 +20,7 @@ const HeroComponent = (release: Release | null) => {
       {release && (
         <>
           <div
-            className={`absolute inset-0 flex flex-col justify-end items-center bg-dark/50 px-4 md:px-12 py-16 lg:p-32 z-20 ${montserrat.className}`}
+            className={`absolute inset-0 flex flex-col justify-end items-center bg-gradient-to-b from-transparent via-dark/40 to-dark/60 px-4 md:px-12 py-16 lg:p-32 z-20 ${montserrat.className}`}
           >
             <h1
               style={{
