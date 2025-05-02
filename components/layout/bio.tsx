@@ -12,6 +12,7 @@ interface PageProps {
 
 const AboutComponent = ({ data }: PageProps) => {
   const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
+  const images = data.filter((img) => img.section === "profile");
 
   return (
     <div className="relative z-0" id="about">
@@ -22,15 +23,15 @@ const AboutComponent = ({ data }: PageProps) => {
         autoplay
         modules={[Autoplay, EffectFade]}
       >
-        <div className="absolute inset-0 lg:bg-gradient-to-r md:w-[90%] lg:w-[80%] from-transparent via-dark/30 to-[80%] to-dark z-10"></div>
-        {data?.slice(2).map((image, index) => (
+        <div className="absolute inset-0 lg:bg-gradient-to-r md:w-[90%] lg:w-[80%] from-transparent via-dark/10 via-[55%] to-[90%] to-dark z-10"></div>
+        {images.map((image, index) => (
           <SwiperSlide key={`bio-image-${index + 1}`}>
             <div className="relative h-[70svh] md:h-[60svh] lg:h-[110svh] lg:w-[80%]">
               <Image
                 src={image.url}
                 sizes="100vw"
                 fill
-                className="object-cover bg-white/5"
+                className="object-cover lg:object-right bg-white/5"
                 alt={`Notsokoplo About Image ${index + 1}`}
               />
             </div>
@@ -38,7 +39,7 @@ const AboutComponent = ({ data }: PageProps) => {
         ))}
       </Swiper>
       <div className="lg:absolute inset-0 z-10 flex flex-col lg:flex-row items-end justify-end md:mb-6 md:mr-6 lg:mb-12 lg:mr-12">
-        <div className="lg:w-[50%] w-full lg:mb-6">
+        <div className="lg:w-[55%] w-full lg:mb-6">
           <Marquee
             direction="right"
             className="overflow-hidden bg-primary py-2 lg:py-0"
@@ -67,7 +68,7 @@ const AboutComponent = ({ data }: PageProps) => {
             ))}
           </Marquee>
         </div>
-        <div className={`lg:max-w-[50%] ${montserrat.className}`}>
+        <div className={`lg:max-w-[45%] ${montserrat.className}`}>
           <div className="px-6 py-10 md:px-12 md:py-16 lg:p-16 bg-white backdrop-blur-lg relative z-20">
             <div className="flex justify-between items-center mb-4 gap-x-6">
               <h1

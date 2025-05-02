@@ -13,6 +13,7 @@ export default async function handler(
 
   const data = rows.map((row) => ({
     url: row["_rawData"][0] || null,
+    section: row["_rawData"][1] || null,
   }));
 
   res.status(200).json(data);

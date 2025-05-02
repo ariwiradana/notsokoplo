@@ -15,8 +15,8 @@ interface PageProps {
 }
 
 const SchedulesComponent = ({ data, images }: PageProps) => {
-  const [sliced] = useState<number>(4);
-  const [imageSliced] = useState<number>(2);
+  const [sliced, setSliced] = useState<number | null>(4);
+  const [isAllShown, setIsAllShown] = useState(false);
 
   const filteredData = data?.filter((event) => {
     const isExpired = moment(
@@ -28,6 +28,10 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
       return event;
     }
   });
+
+  const sectionImages: ImageType[] = images?.filter(
+    (img) => img.section === "schedule"
+  );
 
   if (filteredData?.length > 0)
     return (
@@ -51,8 +55,8 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
             </div>
           </div>
           <div className="flex items-stretch">
-            <div className="min-w-4 w-4 md:w-[30%] md:min-w-[30%] relative flex flex-col gap-6 items-stretch">
-              {images?.slice(0, imageSliced).map((image, index) => (
+            <div className="min-w-4 w-4 md:w-[30%] md:min-w-[30%] relative flex flex-col gap-1 items-stretch gap-2">
+              {sectionImages.map((image, index) => (
                 <div
                   className="w-full h-full relative"
                   key={`event-image-${index}`}
@@ -69,9 +73,11 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
             </div>
             <table className="table table-auto bg-dark z-10 border-t border-t-white/5">
               <tbody>
-                {filteredData
-                  ?.slice(0, sliced)
-                  .map((event: Event, index: number) => {
+                {filteredData &&
+                  (sliced != null
+                    ? filteredData.slice(0, sliced)
+                    : filteredData
+                  ).map((event: Event, index: number) => {
                     const formats = ["YYYY-MM-DD", "DD/MM/YYYY"];
                     const isExpired = moment(
                       event.date,
@@ -151,17 +157,19 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
               </tbody>
             </table>
           </div>
-          {filteredData.length > sliced && (
+          {!isAllShown && (
             <div
               className={`flex justify-center mt-12 lg:mt-16 ${montserrat.className}`}
             >
-              <Link
-                aria-label="Button Load More Event"
-                href="/events"
+              <button
+                onClick={() => {
+                  setIsAllShown(true);
+                  setSliced(null);
+                }}
                 className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
               >
                 <span>Show All</span>
-              </Link>
+              </button>
             </div>
           )}
         </div>
