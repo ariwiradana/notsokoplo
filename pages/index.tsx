@@ -49,7 +49,7 @@ const HomePage = () => {
     <>
       <Seo
         url="https://notsokoplo.com/"
-        title="Not So Koplo | Gigs, Joget!"
+        title="Not So Koplo | Musik Serius Buat Joget Gak Serius"
         description="Not So Koplo adalah duo DJ asal Bali yang siap bikin lo joget lewat remix gokil dan penampilan live penuh energi. Cek jadwal acara, dengerin musik kami, dan lihat momen seru dari gigs sebelumnya. Siap party bareng kami? Yuk follow dan booking sekarang!"
         image="https://www.dropbox.com/scl/fi/u82pe9o6qvtb814230p5m/image_seo_gvzx3b.webp?rlkey=rucjwg266qcspkaxp9k31iav6&raw=1"
         keywords="Not So Koplo, DJ Bali, duo DJ Indonesia, remix DJ Bali, DJ gigs Bali, jadwal acara DJ, DJ for event in Bali, live DJ performance, DJ party, DJ untuk acara, DJ elektronik Indonesia, music remix, Bali DJ live, hire DJ Bali, musik remix Indonesia, electronic gigs Bali, remix artist, Bali event DJ, DJ lokal Bali, DJ event highlights, DJ photo gallery, remix show, DJ crowd Bali, panggung DJ, DJ terkenal Indonesia, DJ EDM Bali, DJ for weddings Bali, DJ party Bali, live gigs Bali"
