@@ -25,10 +25,10 @@ const HeroComponent = (release: Release | null) => {
               style={{
                 lineHeight: "0.8em",
               }}
-              className="text-white font-bold text-center text-5xl md:text-6xl lg:text-8xl uppercase mt-6 relative"
+              className="text-white font-semibold text-center text-5xl md:text-6xl lg:text-8xl uppercase mt-6 relative"
             >
               {release.title}{" "}
-              <span className="text-xl md:text-2xl font-semibold text-white/60">
+              <span className="text-xl md:text-2xl font-medium text-white/60">
                 {release.caption}
               </span>
             </h1>

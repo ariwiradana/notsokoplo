@@ -87,11 +87,14 @@ const AboutComponent = ({ data }: PageProps) => {
               kaki gak mau diam. Musik kami berangkat dari Koplo, tapi kami suka
               nambahin bumbu lain kayak EDM, hip hop, dan pop. Hasilnya?
               Remix-remix unik yang bisa bikin suasana makin hidup — entah di
-              party, festival, atau acara apapun yang butuh energi. Di balik
-              nama ini, ada kami berdua: Dwiki Krisnanda (MC/Crowd Control) &
-              Ari Wiradana (DJ & Producer) — dua orang random yang pertama
-              ketemu pas kuliah, lalu nyatu karena satu hal: musik dan semangat
-              buat ngasih vibe yang beda di tiap panggung. <br />
+              party, festival, atau acara apapun yang butuh energi.
+              <br />
+              <br />
+              Di balik nama ini, ada kami berdua: Dwiki Krisnanda (MC/Crowd
+              Control) & Ari Wiradana (DJ & Producer) — dua orang random yang
+              pertama ketemu pas kuliah, lalu nyatu karena satu hal: musik dan
+              semangat buat ngasih vibe yang beda di tiap panggung.
+              <br />
               <br />
               Kenapa “Not So Koplo”? Karena walaupun kami cinta Koplo, kami gak
               mau berhenti di situ aja. Kami suka eksplorasi, nyampur genre, dan
