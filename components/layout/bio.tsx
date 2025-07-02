@@ -12,10 +12,10 @@ interface PageProps {
 
 const AboutComponent = ({ data }: PageProps) => {
   const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
-  const images = data.filter((img) => img.section === "profile");
+  const images = data?.filter((img) => img.section === "profile");
 
   return (
-    <div className="relative z-0" id="about">
+    <div className="relative z-0" id="tentang">
       <Swiper
         className="relative"
         speed={2000}
@@ -50,7 +50,7 @@ const AboutComponent = ({ data }: PageProps) => {
                 <h4
                   className={`stroke-2 text-3xl lg:text-4xl uppercase mx-6 text-white font-semibold ${montserrat.className}`}
                 >
-                  {item % 2 === 0 ? "Not So Koplo" : "About"}
+                  {item % 2 === 0 ? "Not So Koplo" : "Kenalan Yuk!"}
                 </h4>
               </div>
             ))}
@@ -62,7 +62,7 @@ const AboutComponent = ({ data }: PageProps) => {
                 <h4
                   className={`stroke-2 text-3xl lg:text-4xl uppercase mx-6 text-white font-semibold ${montserrat.className}`}
                 >
-                  {item % 2 === 0 ? "Not So Koplo" : "About"}
+                  {item % 2 === 0 ? "Not So Koplo" : "Kenalan Yuk!"}
                 </h4>
               </div>
             ))}
@@ -72,30 +72,32 @@ const AboutComponent = ({ data }: PageProps) => {
           <div className="px-6 py-10 md:px-12 md:py-16 lg:p-16 bg-white backdrop-blur-lg relative z-20">
             <div className="flex justify-between items-center mb-4 gap-x-6">
               <h1
-                className={`font-bold text-4xl md:text-5xl lg:text-6xl text-dark uppercase`}
+                className={`font-semibold text-4xl md:text-5xl lg:text-6xl text-dark`}
               >
                 Not So Koplo
               </h1>
-              <div className="h-8 md:h-12 w-[1px] bg-dark/10 my-4"></div>
+              <div className="flex items-center gap-x-6">
+                <div className="h-8 md:h-12 w-[1px] bg-primary my-4"></div>
+              </div>
             </div>
             <p className="text-dark leading-7 text-justify text-xs lg:text-sm">
-              Not So Koplo is an energetic music group hailing from Denpasar,
-              Bali, formed on February 26, 2020. Known for their creative blend
-              of genres, they center their sound around Koplo, a popular
-              Indonesian dangdut subgenre while adding a unique twist to every
-              remix they produce. The duo is made up of long-time friends Dwiki
-              Krisnanda (MC/Crowd Control) and Ari Wiradana (DJ & Producer), who
-              first met during their college years.
+              Hai, kami Not So Koplo, sobat panggung dari Denpasar, Bali 🎶 Kami
+              mulai kebentuk sejak 26 Februari 2020, dan sejak itu gak pernah
+              berhenti ngeracik musik yang bisa bikin kepala angguk-angguk dan
+              kaki gak mau diam. Musik kami berangkat dari Koplo, tapi kami suka
+              nambahin bumbu lain kayak EDM, hip hop, dan pop. Hasilnya?
+              Remix-remix unik yang bisa bikin suasana makin hidup — entah di
+              party, festival, atau acara apapun yang butuh energi. Di balik
+              nama ini, ada kami berdua: Dwiki Krisnanda (MC/Crowd Control) &
+              Ari Wiradana (DJ & Producer) — dua orang random yang pertama
+              ketemu pas kuliah, lalu nyatu karena satu hal: musik dan semangat
+              buat ngasih vibe yang beda di tiap panggung. <br />
               <br />
-              <br />
-              The group&apos;s name, &quot;Not So Koplo,&quot; cleverly reflects
-              their musical identity. It plays on the idea that while their
-              foundation is Koplo, they are &quot;not just&quot; about that one
-              style. By skillfully incorporating various elements from EDM, hip
-              hop, and pop, they create fresh, exciting sounds that set them
-              apart from typical Koplo acts. Their DJ sets captivate audiences
-              by seamlessly blending genres, turning every performance into a
-              high-energy, genre-bending experience.
+              Kenapa “Not So Koplo”? Karena walaupun kami cinta Koplo, kami gak
+              mau berhenti di situ aja. Kami suka eksplorasi, nyampur genre, dan
+              bawa kejutan-kejutan kecil di setiap set. Kalau kamu suka musik
+              yang fresh, vibe yang fun, dan suasana yang hangat, kami senang
+              banget bisa jadi bagian dari momen kamu.
             </p>
           </div>
         </div>

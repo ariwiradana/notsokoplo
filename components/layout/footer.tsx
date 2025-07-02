@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className={`py-20 ${montserrat.className} relative bg-dark z-0`}>
       <p className="text-center mb-4 font-medium text-white text-sm md:text-base">
-        Find Us On :
+        Kenalan lebih dekat :
       </p>
       <div className="flex justify-center w-full">
         <div className="flex items-center border border-white/30 divide-white/30 divide-x transition-all ease-in-out duration-500">

@@ -8,6 +8,7 @@ import Button from "../ui/button";
 import { IoTicketSharp } from "react-icons/io5";
 import { Image as ImageType } from "@/types/image";
 import Image from "next/image";
+import "moment/locale/id";
 
 interface PageProps {
   data: Event[];
@@ -15,7 +16,7 @@ interface PageProps {
 }
 
 const SchedulesComponent = ({ data, images }: PageProps) => {
-  const [sliced, setSliced] = useState<number | null>(4);
+  const [sliced] = useState<number>(4);
   const [isAllShown, setIsAllShown] = useState(false);
 
   const filteredData = data?.filter((event) => {
@@ -35,27 +36,30 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
 
   if (filteredData?.length > 0)
     return (
-      <div className="relative bg-dark" id="schedules">
+      <div className="relative bg-dark" id="jadwal">
         <div className="py-16 lg:py-28 max-w-screen-xl mx-auto">
           <div className="px-4 md:px-12 lg:px-0">
             <div
               className={`flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-12 gap-4 md:gap-12 ${montserrat.className}`}
             >
               <h1
-                className={`font-bold text-left text-4xl md:text-5xl lg:text-6xl text-white uppercase`}
+                className={`text-left text-3xl md:text-4xl lg:text-5xl text-white font-medium`}
               >
-                Upcoming Schedules
+                Mau{" "}
+                <span className="italic font-italianno tracking-wide  text-[32px] md:text-[38px] lg:text-[50px]">
+                  Joget
+                </span>{" "}
+                di mana<span className="text-primary">?</span>{" "}
               </h1>
               <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base">
-                Discover our upcoming schedules and join for an unforgettable
-                experience. Don&apos;t miss the chance to vibe to the music
-                live!
+                Nggak sabar pengin joget bareng? Nih, intip jadwal acara kami
+                dan tandai tanggalnya. Kita ketemu di lantai dansa!
               </p>
               <div className="h-16 md:h-24 w-[1px] bg-white/10"></div>
             </div>
           </div>
           <div className="flex items-stretch">
-            <div className="min-w-4 w-4 md:w-[30%] md:min-w-[30%] relative flex flex-col gap-1 items-stretch gap-2">
+            <div className="min-w-4 w-4 md:w-[30%] md:min-w-[30%] relative flex flex-col items-stretch gap-2">
               {sectionImages.map((image, index) => (
                 <div
                   className="w-full h-full relative"
@@ -73,105 +77,94 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
             </div>
             <table className="table table-auto bg-dark z-10 border-t border-t-white/5">
               <tbody>
-                {filteredData &&
-                  (sliced != null
-                    ? filteredData.slice(0, sliced)
-                    : filteredData
-                  ).map((event: Event, index: number) => {
-                    const formats = ["YYYY-MM-DD", "DD/MM/YYYY"];
-                    const isExpired = moment(
-                      event.date,
-                      formats,
-                      true
-                    ).isBefore(moment().subtract(1, "days"));
+                {(isAllShown
+                  ? filteredData
+                  : filteredData.slice(0, sliced)
+                )?.map((event: Event, index: number) => {
+                  const formats = ["YYYY-MM-DD", "DD/MM/YYYY"];
+                  const isExpired = moment(event.date, formats, true).isBefore(
+                    moment().subtract(1, "days")
+                  );
 
-                    if (!isExpired)
-                      return (
-                        <tr
-                          key={`${event.event}-${index}`}
-                          className={`border-b border-b-white/5 transition-all ease-in-out duration-500 ${montserrat.className}`}
-                        >
-                          <td className="p-6 md:px-12 align-middle">
-                            <p className="text-white text-base tracking-[1px] uppercase whitespace-nowrap mb-2">
-                              {moment(event.date, formats, true).format(
-                                "MMM DD"
-                              )}
-                              <span className="ml-3">
-                                {moment(event.date, formats, true).format(
-                                  "ddd"
-                                )}
-                              </span>
-                            </p>
-                            <div className="flex items-center gap-x-3">
-                              <p className={`text-white text-xl md:text-2xl`}>
-                                <span>{event.event} </span>
-                                {event.category === "private" && (
-                                  <span className="text-white/80 text-base font-light capitalize">
-                                    ({event.category})
-                                  </span>
-                                )}
-                              </p>
-                              <GoArrowUpRight className="text-3xl text-white hidden lg:block" />
-                            </div>
-                            <p className="text-white/70 text-base md:text-lg mt-2 flex">
-                              <span>{event.address}</span>
-                            </p>
-                            {event.link && (
-                              <div className="flex lg:hidden mt-3">
-                                <Link
-                                  rel="noopener"
-                                  aria-label="Action Detail Mobile"
-                                  target="_blank"
-                                  href={event.link || ""}
-                                >
-                                  <Button
-                                    aria-label="Button Detail Mobile"
-                                    title="Info"
-                                    icon={<IoTicketSharp />}
-                                  />
-                                </Link>
-                              </div>
+                  if (!isExpired)
+                    return (
+                      <tr
+                        key={`${event.event}-${index}`}
+                        className={`border-b border-b-white/5 transition-all ease-in-out duration-500 ${montserrat.className}`}
+                      >
+                        <td className="p-6 md:px-12 align-middle">
+                          <p className="text-white text-base tracking-[1px] uppercase whitespace-nowrap mb-2">
+                            {moment(event.date, formats, true).format(
+                              "dddd - DD MMM YYYY"
                             )}
-                          </td>
-                          <td className="align-middle p-6 md:px-12 hidden lg:table-cell">
-                            <div className="flex gap-x-4">
-                              {event.link && (
-                                <Link
-                                  rel="noopener"
-                                  aria-label="Action Detail"
-                                  target="_blank"
-                                  href={event.link || ""}
-                                >
-                                  <Button
-                                    aria-label="Button Detail"
-                                    title="Info"
-                                    icon={<IoTicketSharp />}
-                                  />
-                                </Link>
+                          </p>
+                          <div className="flex items-center gap-x-3">
+                            <p className={`text-white text-xl md:text-2xl`}>
+                              <span>{event.event} </span>
+                              {event.category === "private" && (
+                                <span className="text-white/80 text-base font-light capitalize font-italianno italic">
+                                  ({event.category})
+                                </span>
                               )}
+                            </p>
+                            <GoArrowUpRight className="text-3xl text-white hidden lg:block" />
+                          </div>
+                          <p className="text-white/70 text-base md:text-lg mt-2 flex">
+                            <span>{event.address}</span>
+                          </p>
+                          {event.link && (
+                            <div className="flex lg:hidden mt-3">
+                              <Link
+                                rel="noopener"
+                                aria-label="Action Detail Mobile"
+                                target="_blank"
+                                href={event.link || ""}
+                              >
+                                <Button
+                                  aria-label="Button Detail Mobile"
+                                  title="Info"
+                                  icon={<IoTicketSharp />}
+                                />
+                              </Link>
                             </div>
-                          </td>
-                        </tr>
-                      );
-                  })}
+                          )}
+                        </td>
+                        <td className="align-middle p-6 md:px-12 hidden lg:table-cell">
+                          <div className="flex gap-x-4">
+                            {event.link && (
+                              <Link
+                                rel="noopener"
+                                aria-label="Action Detail"
+                                target="_blank"
+                                href={event.link || ""}
+                              >
+                                <Button
+                                  aria-label="Button Detail"
+                                  title="Info"
+                                  icon={<IoTicketSharp />}
+                                />
+                              </Link>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                })}
               </tbody>
             </table>
           </div>
-          {!isAllShown && (
+          {filteredData.length > sliced && !isAllShown ? (
             <div
               className={`flex justify-center mt-12 lg:mt-16 ${montserrat.className}`}
             >
               <button
-                onClick={() => {
-                  setIsAllShown(true);
-                  setSliced(null);
-                }}
-                className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
+                onClick={() => setIsAllShown(true)}
+                className="text-base lg:text-lg underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
               >
-                <span>Show All</span>
+                <span>Lihat Lebih Banyak</span>
               </button>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     );

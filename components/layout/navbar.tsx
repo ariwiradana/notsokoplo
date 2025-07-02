@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import Sidebar from "./sidebar";
-import { useRouter } from "next/router";
+import { scrollToId } from "@/helper/scrollToId";
+import { NavDataMobile } from "@/constants/navdata";
 
 interface NavbarProps {
   fixed?: boolean;
@@ -12,8 +13,6 @@ interface NavbarProps {
 
 const Navbar = ({ fixed = true }: NavbarProps) => {
   const { openSidebar, scrollPosition } = useSidebar();
-
-  const router = useRouter();
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -35,55 +34,37 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
       }`}
     >
       <ul className="flex items-center justify-between md:justify-center w-full gap-x-16">
-        <li className="hidden md:inline">
-          <button
-            aria-label={`Button Nav Schedules`}
-            onClick={() => router.push("/#schedules")}
-            className="uppercase font-bold text-sm"
-          >
-            Schedules
-          </button>
-        </li>
-        <li className="hidden md:inline">
-          <button
-            aria-label={`Button Nav Biography`}
-            onClick={() => router.push("/#about")}
-            className="uppercase font-bold text-sm"
-          >
-            About
-          </button>
-        </li>
-        <li className="hidden md:inline">
-          <Link href="/" aria-label="Nav Logo">
-            <div className="relative w-16 aspect-square">
-              <Image
-                sizes="200px"
-                src="/logo.png"
-                fill
-                className="object-contain"
-                alt="Logo Navbar Notsokoplo"
-              />
-            </div>
-          </Link>
-        </li>
-        <li className="hidden md:inline">
-          <button
-            aria-label={`Button Nav Gallery`}
-            onClick={() => router.push("/#gallery")}
-            className="uppercase font-bold text-sm"
-          >
-            Gallery
-          </button>
-        </li>
-        <li className="hidden md:inline">
-          <button
-            aria-label={`Button Nav Music`}
-            onClick={() => router.push("/#music")}
-            className="uppercase font-bold text-sm"
-          >
-            Music
-          </button>
-        </li>
+        {NavDataMobile.map((nav) => {
+          if (nav.path !== "beranda") {
+            return (
+              <li className="hidden md:inline" key={`Nav ${nav.title}`}>
+                <button
+                  aria-label={`Button Nav Schedules`}
+                  onClick={() => scrollToId(nav.path)}
+                  className="uppercase font-bold text-sm"
+                >
+                  {nav.title}
+                </button>
+              </li>
+            );
+          } else {
+            return (
+              <li className="hidden md:inline" key={`Nav ${nav.title}`}>
+                <Link href="/" aria-label="Nav Logo">
+                  <div className="relative w-16 aspect-square">
+                    <Image
+                      sizes="200px"
+                      src="/logo.png"
+                      fill
+                      className="object-contain"
+                      alt="Logo Navbar Notsokoplo"
+                    />
+                  </div>
+                </Link>
+              </li>
+            );
+          }
+        })}
       </ul>
       {scrollPosition < 300 && <Sidebar />}
     </nav>

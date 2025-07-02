@@ -40,7 +40,7 @@ const Fab = () => {
           className="rounded-full bg-primary text-sm font-medium text-white flex justify-center px-4 py-2 shadow items-center gap-x-2 hover:bg-opacity-90 transition-all ease-in-out duration-500"
         >
           <IoLogoWhatsapp className="text-lg" />
-          <span>Book Now?</span>
+          <span>Mau Booking Ga?</span>
         </Link>
       </div>
     </div>

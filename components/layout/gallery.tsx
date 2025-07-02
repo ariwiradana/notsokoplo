@@ -29,7 +29,7 @@ const GalleryComponent = ({ videos }: GalleryComponentProps) => {
 
   return (
     <div
-      id="gallery"
+      id="galeri"
       className={`relative bg-black overflow-x-hidden ${montserrat.className} z-0`}
     >
       <div className="pt-16 lg:pb-8 lg:pt-28 z-0 relative">
@@ -37,13 +37,17 @@ const GalleryComponent = ({ videos }: GalleryComponentProps) => {
           className={`flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-12 gap-4 md:gap-12 max-w-screen-xl mx-auto px-4 md:px-12 lg:px-4 ${montserrat.className}`}
         >
           <h1
-            className={`font-bold text-left text-4xl md:text-5xl lg:text-6xl text-white uppercase`}
+            className={`text-left text-3xl md:text-4xl lg:text-5xl text-white font-medium`}
           >
-            Vibes Captured
+            Yang{" "}
+            <span className="italic font-italianno tracking-wide text-[32px] md:text-[38px] lg:text-[50px]">
+              Seru-Seru
+            </span>{" "}
+            bareng kami<span className="text-primary">.</span>
           </h1>
           <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base">
-            A showcase of the highlights and special experiences of our
-            performances.
+            Intip cuplikan seru dan momen gokil dari penampilan kami. Kameranya
+            aja ikut joget.
           </p>
           <div className="h-16 md:h-24 w-[1px] bg-white/20"></div>
         </div>

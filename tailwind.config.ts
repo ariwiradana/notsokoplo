@@ -14,6 +14,7 @@ export default {
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
+        italianno: ["Italianno", "serif"],
         "tan-pearl": ["TanPearl", "sans-serif"],
         "high-summit": ["HighSummit", "sans-serif"],
         edensor: ["Edensor", "sans-serif"],

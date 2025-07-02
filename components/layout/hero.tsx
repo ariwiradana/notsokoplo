@@ -14,7 +14,7 @@ const HeroComponent = (release: Release | null) => {
   return (
     <div
       className="h-[90svh] md:h-svh w-full relative z-10 flex items-center justify-center overflow-hidden"
-      id="home"
+      id="beranda"
     >
       {release && (
         <>
@@ -33,7 +33,6 @@ const HeroComponent = (release: Release | null) => {
               </span>
             </h1>
             <p className="text-white text-lg my-4 text-center lg:text-left">
-              <span className="text-white/50 text-base">By</span>{" "}
               {release.artist}
             </p>
             <Link
@@ -42,7 +41,10 @@ const HeroComponent = (release: Release | null) => {
               aria-label="URL Stream New Release"
               href={(release.url as string) || ""}
             >
-              <Button icon={<TbPlayerPlayFilled />} title="Stream Now" />
+              <Button
+                icon={<TbPlayerPlayFilled />}
+                title="Stream di Mana Aja"
+              />
             </Link>
           </div>
         </>

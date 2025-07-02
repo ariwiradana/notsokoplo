@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { TbMenu, TbX } from "react-icons/tb";
 import Sidebar from "./sidebar";
 import useSidebar from "@/store/useSidebar";
-import { useRouter } from "next/router";
+import { scrollToId } from "@/helper/scrollToId";
 
 const NavbarToggle = () => {
   const {
@@ -13,8 +13,6 @@ const NavbarToggle = () => {
     handleToggleSidebar,
     handleScrollPosition,
   } = useSidebar();
-
-  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,7 +48,7 @@ const NavbarToggle = () => {
           <li className="hidden md:inline" key={`nav-toggle-${nav.path}`}>
             <button
               aria-label={`Navigate to ${nav.title}`}
-              onClick={() => router.push(`/#${nav.path}`)}
+              onClick={() => scrollToId(nav.path)}
               className="uppercase font-bold text-sm"
             >
               {nav.title}

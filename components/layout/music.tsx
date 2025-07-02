@@ -25,19 +25,24 @@ const MusicComponent = ({ data }: PageProps) => {
   };
 
   return (
-    <div className={`relative bg-dark ${montserrat.className} z-0`} id="music">
+    <div className={`relative bg-dark ${montserrat.className} z-0`} id="musik">
       <div className="max-w-screen-xl mx-auto py-16 lg:py-28 px-4 md:px-12 lg:px-4">
         <div
           className={`flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-12 gap-4 md:gap-12 ${montserrat.className}`}
         >
           <h1
-            className={`font-bold text-left text-4xl md:text-5xl lg:text-6xl text-white uppercase`}
+            className={`text-left text-3xl md:text-4xl lg:text-5xl font-medium text-white`}
           >
-            Music/Remixes
+            Musik{" "}
+            <span className="italic font-italianno tracking-wide text-[32px] md:text-[38px] lg:text-[50px]">
+              Bikinan
+            </span>{" "}
+            kami
+            <span className="text-primary">.</span>
           </h1>
           <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base">
-            Dive into our newest tracks, created to bring joy to your day.
-            Listen now!
+            Kadang kami remix, kadang bikin dari nol. Tapi tujuannya sama: kasih
+            musik yang enak buat didengerin!.
           </p>
           <div className="h-16 md:h-24 w-[1px] bg-white/10"></div>
         </div>
@@ -73,7 +78,7 @@ const MusicComponent = ({ data }: PageProps) => {
                       handleIsPlaying(true);
                       handleAddMusic(music);
                     }}
-                    title="Preview"
+                    title="Puter Dikit"
                     icon={<TbPlayerPlayFilled />}
                   />
                 </div>
@@ -90,9 +95,9 @@ const MusicComponent = ({ data }: PageProps) => {
               <button
                 aria-label="Button Load More"
                 onClick={handleMoreMusic}
-                className="text-base lg:text-lg font-semibold underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
+                className="text-base lg:text-lg underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
               >
-                <span>Load More</span>
+                <span>Denger Lebih Banyak</span>
               </button>
             )}
           </div>

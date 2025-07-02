@@ -99,7 +99,7 @@ const MusicPlayer = () => {
           className={`${montserrat.className} text-sm font-medium flex items-center gap-x-3`}
         >
           <p className="whitespace-nowrap font-medium text-white hidden md:block">
-            {music?.url ? "Full Version :" : "Listen on :"}
+            {music?.url ? "Versi fullnya :" : "Denger di :"}
           </p>
           {music?.soundcloud && (
             <Link
@@ -140,7 +140,7 @@ const MusicPlayer = () => {
               className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center"
             >
               <FaLink className="text-lg" />
-              <span>Stream Now</span>
+              <span>Stream di Mana Aja</span>
             </Link>
           )}
         </div>
