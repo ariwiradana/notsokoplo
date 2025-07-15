@@ -9,17 +9,14 @@ import { IoTicketSharp } from "react-icons/io5";
 import { Image as ImageType } from "@/types/image";
 import Image from "next/image";
 import "moment/locale/id";
+import useAppStore from "@/store/useAppStore";
 
-interface PageProps {
-  data: Event[];
-  images: ImageType[];
-}
-
-const SchedulesComponent = ({ data, images }: PageProps) => {
+const SchedulesComponent = () => {
   const [sliced] = useState<number>(4);
   const [isAllShown, setIsAllShown] = useState(false);
+  const store = useAppStore();
 
-  const filteredData = data?.filter((event) => {
+  const filteredData = store.events?.filter((event) => {
     const isExpired = moment(
       event.date,
       ["YYYY-MM-DD", "DD/MM/YYYY"],
@@ -30,7 +27,7 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
     }
   });
 
-  const sectionImages: ImageType[] = images?.filter(
+  const sectionImages: ImageType[] = store.images?.filter(
     (img) => img.section === "schedule"
   );
 
@@ -46,7 +43,7 @@ const SchedulesComponent = ({ data, images }: PageProps) => {
                 className={`text-left text-3xl md:text-4xl lg:text-5xl text-white font-medium`}
               >
                 Mau{" "}
-                <span className="italic font-italianno tracking-wide  text-[32px] md:text-[38px] lg:text-[50px]">
+                <span className="italic font-italianno tracking-wide text-[32px] md:text-[38px] lg:text-[54px]">
                   Joget
                 </span>{" "}
                 di mana<span className="text-primary">?</span>{" "}

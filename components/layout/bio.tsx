@@ -1,18 +1,15 @@
 import { montserrat } from "@/constants/fonts";
-import { Image as ImageType } from "@/types/image";
+import useAppStore from "@/store/useAppStore";
 import Image from "next/image";
 import React from "react";
 import Marquee from "react-fast-marquee";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-interface PageProps {
-  data: ImageType[];
-}
-
-const AboutComponent = ({ data }: PageProps) => {
+const AboutComponent = () => {
+  const store = useAppStore();
   const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
-  const images = data?.filter((img) => img.section === "profile");
+  const images = store.images?.filter((img) => img.section === "profile");
 
   return (
     <div className="relative z-0" id="tentang">
@@ -81,26 +78,30 @@ const AboutComponent = ({ data }: PageProps) => {
               </div>
             </div>
             <p className="text-dark leading-7 text-justify text-xs lg:text-sm">
-              Hai, kami Not So Koplo, sobat panggung dari Denpasar, Bali 🎶 Kami
-              mulai kebentuk sejak 26 Februari 2020, dan sejak itu gak pernah
-              berhenti ngeracik musik yang bisa bikin kepala angguk-angguk dan
-              kaki gak mau diam. Musik kami berangkat dari Koplo, tapi kami suka
-              nambahin bumbu lain kayak EDM, hip hop, dan pop. Hasilnya?
-              Remix-remix unik yang bisa bikin suasana makin hidup — entah di
-              party, festival, atau acara apapun yang butuh energi.
+              Not So Koplo adalah duo musik asal Denpasar, Bali, yang terdiri
+              dari Dwiki Krisnanda (MC/Crowd Control) dan Ari Wiradana (DJ &
+              Producer). Terbentuk pada 26 Februari 2020, Not So Koplo hadir
+              dengan semangat untuk menghadirkan pengalaman musik yang segar dan
+              penuh energi.
               <br />
               <br />
-              Di balik nama ini, ada kami berdua: Dwiki Krisnanda (MC/Crowd
-              Control) & Ari Wiradana (DJ & Producer) — dua orang random yang
-              pertama ketemu pas kuliah, lalu nyatu karena satu hal: musik dan
-              semangat buat ngasih vibe yang beda di tiap panggung.
+              Mengusung akar musik Koplo sebagai fondasi, Not So Koplo
+              mengeksplorasi berbagai genre seperti EDM, hip hop, dan pop dalam
+              setiap remix yang mereka ciptakan. Perpaduan ini menghasilkan
+              aransemen yang unik dan dinamis, cocok untuk berbagai suasana —
+              mulai dari panggung festival, pesta, hingga acara-acara privat
+              yang membutuhkan energi positif.
               <br />
               <br />
-              Kenapa “Not So Koplo”? Karena walaupun kami cinta Koplo, kami gak
-              mau berhenti di situ aja. Kami suka eksplorasi, nyampur genre, dan
-              bawa kejutan-kejutan kecil di setiap set. Kalau kamu suka musik
-              yang fresh, vibe yang fun, dan suasana yang hangat, kami senang
-              banget bisa jadi bagian dari momen kamu.
+              Nama “Not So Koplo” dipilih sebagai representasi dari semangat
+              eksploratif mereka. Meskipun terinspirasi oleh Koplo, mereka tidak
+              membatasi diri hanya pada satu genre. Setiap penampilan dirancang
+              untuk memberikan kejutan dan nuansa berbeda, menjadikan setiap
+              momen bersama Not So Koplo sebagai pengalaman yang tak terlupakan.
+              <br /> <br /> Dengan latar belakang pertemanan yang dimulai sejak
+              masa kuliah, keduanya menyatukan visi yang sama dalam bermusik:
+              menciptakan atmosfer yang menyenangkan dan penuh semangat di
+              setiap kesempatan.
             </p>
           </div>
         </div>

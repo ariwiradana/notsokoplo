@@ -1,17 +1,15 @@
 import { montserrat } from "@/constants/fonts";
-import { Music } from "@/types/music";
 import Image from "next/image";
 import React, { useState } from "react";
 import Button from "../ui/button";
 import { SquareLoader } from "react-spinners";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import { TbPlayerPlayFilled } from "react-icons/tb";
-interface PageProps {
-  data: Music[];
-}
+import useAppStore from "@/store/useAppStore";
 
-const MusicComponent = ({ data }: PageProps) => {
-  const [sliced, setSliced] = useState<number>(3);
+const MusicComponent = () => {
+  const store = useAppStore();
+  const [sliced, setSliced] = useState<number>(6);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { handleIsPlaying, handleIsOpenPlayer, handleAddMusic } =
     useMusicPlayer();
@@ -19,7 +17,7 @@ const MusicComponent = ({ data }: PageProps) => {
   const handleMoreMusic = () => {
     setIsLoading(true);
     setTimeout(() => {
-      setSliced((prevState) => prevState + 3);
+      setSliced((prevState) => prevState + 6);
       setIsLoading(false);
     }, 1000);
   };
@@ -34,20 +32,20 @@ const MusicComponent = ({ data }: PageProps) => {
             className={`text-left text-3xl md:text-4xl lg:text-5xl font-medium text-white`}
           >
             Musik{" "}
-            <span className="italic font-italianno tracking-wide text-[32px] md:text-[38px] lg:text-[50px]">
-              Bikinan
+            <span className="italic font-italianno tracking-wide text-[32px] md:text-[38px] lg:text-[54px]">
+              Buatan
             </span>{" "}
             kami
             <span className="text-primary">.</span>
           </h1>
           <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base">
-            Kadang kami remix, kadang bikin dari nol. Tapi tujuannya sama: kasih
-            musik yang enak buat didengerin!.
+            Kadang remix, kadang bikin dari nol. Tapi tujuannya sama: kasih
+            musik yang enak buat didengarkan!.
           </p>
           <div className="h-16 md:h-24 w-[1px] bg-white/10"></div>
         </div>
         <div className="grid md:grid-cols-3 gap-x-6 gap-y-12">
-          {data?.slice(0, sliced).map((music) => (
+          {store.music?.slice(0, sliced).map((music) => (
             <div key={music.title} className="text-center">
               <div className="w-full aspect-square relative shadow-lg mb-6">
                 <Image
@@ -78,7 +76,7 @@ const MusicComponent = ({ data }: PageProps) => {
                       handleIsPlaying(true);
                       handleAddMusic(music);
                     }}
-                    title="Puter Dikit"
+                    title="Putar"
                     icon={<TbPlayerPlayFilled />}
                   />
                 </div>
@@ -87,7 +85,7 @@ const MusicComponent = ({ data }: PageProps) => {
           ))}
         </div>
 
-        {data?.length > sliced && (
+        {store.music?.length > sliced && (
           <div className="flex justify-center mt-12 lg:mt-16">
             {isLoading ? (
               <SquareLoader color="white" size={30} />
@@ -97,7 +95,7 @@ const MusicComponent = ({ data }: PageProps) => {
                 onClick={handleMoreMusic}
                 className="text-base lg:text-lg underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
               >
-                <span>Denger Lebih Banyak</span>
+                <span>Lebih Banyak</span>
               </button>
             )}
           </div>

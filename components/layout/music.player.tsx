@@ -28,8 +28,6 @@ const MusicPlayer = () => {
     }
   }, [isPlaying, music]);
 
-  console.log(music);
-
   return (
     <div
       className={`fixed inset-x-0 p-6 md:px-12 bg-dark/90 backdrop-blur-sm flex flex-col md:flex-row justify-between gap-y-6 gap-x-24 md:items-center transition-all ease-in-out duration-500 z-50 ${
@@ -99,7 +97,7 @@ const MusicPlayer = () => {
           className={`${montserrat.className} text-sm font-medium flex items-center gap-x-3`}
         >
           <p className="whitespace-nowrap font-medium text-white hidden md:block">
-            {music?.url ? "Versi fullnya :" : "Denger di :"}
+            {music?.url ? "Versi fullnya :" : "Dengarkan di :"}
           </p>
           {music?.soundcloud && (
             <Link
@@ -140,7 +138,7 @@ const MusicPlayer = () => {
               className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center"
             >
               <FaLink className="text-lg" />
-              <span>Stream di Mana Aja</span>
+              <span>Stream Sekarang</span>
             </Link>
           )}
         </div>

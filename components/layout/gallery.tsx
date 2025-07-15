@@ -1,29 +1,26 @@
 import { montserrat } from "@/constants/fonts";
-import { Video } from "@/types/video";
 import React from "react";
 import YouTubeEmbed from "../ui/youtube.embed";
 import YouTubeEmbedPotrait from "../ui/youtube.embed.potrait";
+import useAppStore from "@/store/useAppStore";
 
-interface GalleryComponentProps {
-  videos: Video[];
-}
-
-const GalleryComponent = ({ videos }: GalleryComponentProps) => {
+const GalleryComponent = () => {
+  const store = useAppStore();
   const landscapeVideoYoutube =
-    videos?.filter(
+    store.videos?.filter(
       (video) => video.orientation === "landscape" && video.type === "youtube"
     ) || [];
   const potraitVideoYoutube =
-    videos?.filter(
+    store.videos?.filter(
       (video) => video.orientation === "potrait" && video.type === "youtube"
     ) || [];
   const landscapeVideoCloudinary =
-    videos?.filter(
+    store.videos?.filter(
       (video) =>
         video.orientation === "landscape" && video.type === "cloudinary"
     ) || [];
   const potraitVideoCloudinary =
-    videos?.filter(
+    store.videos?.filter(
       (video) => video.orientation === "potrait" && video.type === "cloudinary"
     ) || [];
 
@@ -40,7 +37,7 @@ const GalleryComponent = ({ videos }: GalleryComponentProps) => {
             className={`text-left text-3xl md:text-4xl lg:text-5xl text-white font-medium`}
           >
             Yang{" "}
-            <span className="italic font-italianno tracking-wide text-[32px] md:text-[38px] lg:text-[50px]">
+            <span className="italic font-italianno tracking-wide text-[32px] md:text-[38px] lg:text-[54px]">
               Seru-Seru
             </span>{" "}
             bareng kami<span className="text-primary">.</span>
@@ -76,10 +73,10 @@ const GalleryComponent = ({ videos }: GalleryComponentProps) => {
             zIndex: 0,
             padding: 0,
           }}
-          className="elfsight-app-9b1d0fb8-a916-4fe6-942f-e2a0d4714b0e"
+          className="elfsight-app-ab8e00f0-6827-4108-a696-7e589fb0a1af"
           data-elfsight-app-lazy
         ></div>
-        <div className="w-full h-16 lg:h-28 absolute bottom-0 lg:bottom-8 bg-black z-[999]"></div>
+        <div className="w-full h-16 absolute bottom-0 lg:bottom-8 bg-black z-[999]"></div>
       </div>
     </div>
   );

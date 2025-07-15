@@ -22,8 +22,6 @@ const Fab = () => {
     };
   }, []);
 
-  
-
   return (
     <div
       className={`fixed right-6 md:right-8 flex justify-center transition-all ease-in-out duration-500 z-40 ${
@@ -40,7 +38,7 @@ const Fab = () => {
           className="rounded-full bg-primary text-sm font-medium text-white flex justify-center px-4 py-2 shadow items-center gap-x-2 hover:bg-opacity-90 transition-all ease-in-out duration-500"
         >
           <IoLogoWhatsapp className="text-lg" />
-          <span>Mau Booking Ga?</span>
+          <span>Mau Booking?</span>
         </Link>
       </div>
     </div>

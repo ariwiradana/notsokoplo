@@ -4,47 +4,43 @@ import Button from "../ui/button";
 import { montserrat } from "@/constants/fonts";
 import Link from "next/link";
 import { TbPlayerPlayFilled } from "react-icons/tb";
-import { Release } from "@/types/release";
+import useAppStore from "@/store/useAppStore";
 
-const HeroComponent = (release: Release | null) => {
+const HeroComponent = () => {
   const { handleIsLoading } = useLoading();
-
-  console.log(release);
+  const store = useAppStore();
 
   return (
     <div
       className="h-[90svh] md:h-svh w-full relative z-10 flex items-center justify-center overflow-hidden"
       id="beranda"
     >
-      {release && (
+      {store.release && (
         <>
           <div
             className={`absolute inset-0 flex flex-col justify-end items-center bg-gradient-to-b from-transparent via-dark/40 to-dark/60 px-4 md:px-12 py-16 lg:p-32 z-20 ${montserrat.className}`}
           >
             <h1
               style={{
-                lineHeight: "0.8em",
+                lineHeight: "0.9em",
               }}
               className="text-white font-semibold text-center text-5xl md:text-6xl lg:text-8xl uppercase mt-6 relative"
             >
-              {release.title}{" "}
+              {store.release.title}{" "}
               <span className="text-xl md:text-2xl font-medium text-white/60">
-                {release.caption}
+                {store.release.caption}
               </span>
             </h1>
             <p className="text-white text-lg my-4 text-center lg:text-left">
-              {release.artist}
+              {store.release.artist}
             </p>
             <Link
               className="mt-4"
               target="_blank"
               aria-label="URL Stream New Release"
-              href={(release.url as string) || ""}
+              href={(store.release.url as string) || ""}
             >
-              <Button
-                icon={<TbPlayerPlayFilled />}
-                title="Stream di Mana Aja"
-              />
+              <Button icon={<TbPlayerPlayFilled />} title="Stream Sekarang" />
             </Link>
           </div>
         </>
@@ -57,9 +53,9 @@ const HeroComponent = (release: Release | null) => {
           muted
           loop
           playsInline
-          poster={release?.poster as string}
+          poster={store.release?.poster as string}
         >
-          <source src={release?.video as string} />
+          <source src={store.release?.video as string} />
         </video>
       </div>
 

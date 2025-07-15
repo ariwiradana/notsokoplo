@@ -4,7 +4,7 @@ export const NavData: Nav[] = [
   { path: "jadwal", title: "Cek Jadwal" },
   { path: "tentang", title: "Siapa Kita?" },
   { path: "galeri", title: "Momen Seru" },
-  { path: "musik", title: "Dengerin Yuk" },
+  { path: "musik", title: "Karya Musik" },
 ];
 
 export const NavDataMobile: Nav[] = [
@@ -12,6 +12,6 @@ export const NavDataMobile: Nav[] = [
   { path: "tentang", title: "Siapa Kita?" },
   { path: "beranda", title: "Beranda" },
   { path: "galeri", title: "Momen Seru" },
-  { path: "musik", title: "Dengerin Yuk" },
+  { path: "musik", title: "Karya Musik" },
 ];
 

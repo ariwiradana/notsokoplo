@@ -17,31 +17,64 @@ import TabNav from "@/components/layout/tab";
 import Fab from "@/components/ui/fab";
 import MusicPlayer from "@/components/layout/music.player";
 import GalleryComponent from "@/components/layout/gallery";
-import { Release } from "@/types/release";
+import ClientsComponent from "@/components/layout/clients";
+import useAppStore from "@/store/useAppStore";
 
 const HomePage = () => {
-  const { data: events, isLoading: isLoadingEvents } = useSWR(
-    "/api/events",
-    fetcher
-  );
-  const { data: music, isLoading: isLoadingMusic } = useSWR(
+  const store = useAppStore();
+
+  const { isLoading: isLoadingEvents } = useSWR("/api/events", fetcher, {
+    onSuccess(data) {
+      if (data.length > 0) {
+        store.setEvents(data);
+      }
+    },
+  });
+
+  const { isLoading: isLoadingMusic } = useSWR(
     "/api/music",
-    fetcher
+    fetcher, {
+      onSuccess(data) {
+        if (data.length > 0) {
+          store.setMusic(data)
+        }
+      }
+    }
   );
 
-  const { data: images, isLoading: isLoadingImages } = useSWR(
-    "/api/images",
-    fetcher
-  );
+  const { isLoading: isLoadingImages } = useSWR("/api/images", fetcher, {
+    onSuccess(data) {
+      if (data.length > 0) {
+        store.setImages(data);
+      }
+    },
+  });
 
-  const { data: videos, isLoading: isLoadingVideos } = useSWR(
+  const {isLoading: isLoadingVideos } = useSWR(
     "/api/videos",
-    fetcher
+    fetcher, {
+      onSuccess(data) {
+        if (data.length > 0) {
+          store.setVideos(data)
+        }
+      }
+    }
   );
 
-  const { data: release } = useSWR("/api/release", fetcher);
-
-  const releaseData: Release | null = release?.length > 0 ? release[0] : null;
+  useSWR("/api/release", fetcher, {
+    onSuccess(data) {
+      if (data.length > 0) {
+        store.setRelease(data[0]);
+      }
+    },
+  });
+  useSWR("/api/clients", fetcher, {
+    onSuccess(data) {
+      if (data.length > 0) {
+        store.setClients(data);
+      }
+    },
+  });
 
   useDisableInspect();
 
@@ -66,20 +99,13 @@ const HomePage = () => {
           <NavbarToggle />
           <Navbar />
           <MusicPlayer />
-          <HeroComponent
-            artist={releaseData?.artist as string}
-            caption={releaseData?.caption as string}
-            cover={releaseData?.cover as string}
-            title={releaseData?.title as string}
-            url={releaseData?.url as string}
-            video={releaseData?.video as string}
-            poster={releaseData?.poster as string}
-          />
+          <HeroComponent />
           <TabNav />
-          <EventComponent images={images} data={events} />
-          <BioComponent data={images} />
-          <GalleryComponent videos={videos} />
-          <MusicComponent data={music} />
+          <EventComponent />
+          <BioComponent />
+          <GalleryComponent />
+          <MusicComponent />
+          <ClientsComponent />
           <Footer />
         </section>
       )}
