@@ -9,15 +9,15 @@ const ClientsComponent: NextPage = ({}) => {
   return (
     <div className={`pt-12 bg-dark ${montserrat.className}`}>
       <h2
-        className={`text-lg md:text-xl lg:text-2xl text-white font-medium whitespace-nowrap text-center`}
+        className={`text-xl md:text-2xl text-white font-medium whitespace-nowrap text-center`}
       >
         Kami{" "}
-        <span className="italic font-italianno tracking-wide text-[20px] md:text-[24px] lg:text-[28px]">
+        <span className="italic font-italianno tracking-wide text-[22px] md:text-[28px]">
           Telah Dipercaya
         </span>{" "}
         oleh<span className="text-primary">.</span>
       </h2>
-      <div className="bg-white mt-4 lg:mt-8">
+      <div className="bg-white mt-4 md:mt-6 lg:mt-8">
         <div className="max-w-screen-xl mx-auto px-4 md:px-12 lg:px-0 relative py-4 lg:py-6">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
@@ -32,7 +32,7 @@ const ClientsComponent: NextPage = ({}) => {
                       alt={client.name}
                       width={720}
                       height={720}
-                      className="object-contain object-center h-12 lg:h-16 w-auto"
+                      className="object-contain object-center h-12 md:h-14 lg:h-16 w-auto"
                     />
                   </div>
                 </div>

@@ -6,16 +6,7 @@ import React from "react";
 const Footer = () => {
   return (
     <div className={`py-20 ${montserrat.className} relative bg-dark z-0`}>
-      <h2
-        className={`text-lg md:text-xl lg:text-2xl text-white font-medium whitespace-nowrap text-center`}
-      >
-        Kenalan{" "}
-        <span className="italic font-italianno tracking-wide text-[20px] md:text-[24px] lg:text-[28px]">
-          Lebih Dekat
-        </span>
-        <span className="text-primary">.</span>
-      </h2>
-      <div className="flex justify-center w-full mt-4">
+      <div className="flex justify-center w-full">
         <div className="flex items-center border border-white/30 divide-white/30 divide-x transition-all ease-in-out duration-500">
           {Socials.map((social) => (
             <Link
