@@ -3,6 +3,7 @@ import useMusicPlayer from "@/store/useMusicPlayer";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
+import Marquee from "react-fast-marquee";
 import { FaLink, FaSoundcloud, FaYoutube } from "react-icons/fa6";
 import { TbPlayerPauseFilled, TbPlayerPlayFilled, TbX } from "react-icons/tb";
 
@@ -85,9 +86,13 @@ const MusicPlayer = () => {
                 - {music?.artist}
               </span>{" "}
             </h4>
-            <p className="text-sm font-normal text-white/80 md:hidden line-clamp-1">
-              {music?.artist}
-            </p>
+            <Marquee direction="left" speed={10}>
+              <div className="mr-2">
+                <p className="text-sm font-normal text-white/80 md:hidden line-clamp-1">
+                  {music?.artist}
+                </p>
+              </div>
+            </Marquee>
           </div>
         </div>
       </div>

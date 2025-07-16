@@ -20,9 +20,9 @@ const ClientsComponent: NextPage = ({}) => {
       <div className="bg-white mt-4 md:mt-6 lg:mt-8">
         <div className="max-w-screen-xl mx-auto px-4 md:px-12 lg:px-0 relative py-4 lg:py-6">
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
-            <Marquee className="overflow-hidden">
+            <div className="absolute inset-y-0 left-0 w-20 md:w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
+            <div className="absolute inset-y-0 right-0 w-20 md:w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+            <Marquee className="overflow-hidden" speed={30}>
               {store.clients.map((client) => (
                 <div className="px-4 lg:px-6" key={`Client ${client.name}`}>
                   <div className="relative">

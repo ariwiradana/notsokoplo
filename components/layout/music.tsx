@@ -95,7 +95,7 @@ const MusicComponent = () => {
                 onClick={handleMoreMusic}
                 className="text-base lg:text-lg underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
               >
-                <span>Lebih Banyak</span>
+                <span>Dengar Lebih Banyak</span>
               </button>
             )}
           </div>
