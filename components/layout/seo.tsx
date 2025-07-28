@@ -39,8 +39,8 @@ const Seo: FC<SEOProps> = ({ title, description, keywords, image, url }) => {
 
       <link rel="canonical" href={url} />
 
-      <link rel="apple-touch-icon" href="/favicon2.png" />
-      <link rel="icon" href="/favicon2.png" />
+      <link rel="apple-touch-icon" href="/favicon.png" />
+      <link rel="icon" href="/favicon.png" />
 
       <script type="application/ld+json">
         {JSON.stringify({
