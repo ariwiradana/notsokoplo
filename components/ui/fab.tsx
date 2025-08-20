@@ -12,12 +12,17 @@ const Fab = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
+      const isBottom =
+        window.innerHeight + window.scrollY >= document.body.scrollHeight;
+
       if (currentScrollY === 0) {
         setIsShown(false);
+      } else if (isBottom) {
+        setIsShown(false); // hide kalau udah sampai bawah
       } else if (currentScrollY > lastScrollY.current) {
-        setIsShown(true);
+        setIsShown(true); // scrolling ke bawah → show
       } else if (currentScrollY < lastScrollY.current) {
-        setIsShown(false);
+        setIsShown(false); // scrolling ke atas → hide
       }
 
       lastScrollY.current = currentScrollY;

@@ -1,17 +1,16 @@
 import { Nav } from "@/types/nav";
 
 export const NavData: Nav[] = [
-  { path: "jadwal", title: "Cek Jadwal" },
-  { path: "tentang", title: "Siapa Kita?" },
-  { path: "galeri", title: "Momen Seru" },
-  { path: "musik", title: "Karya Musik" },
+  { path: "cek-jadwal", title: "Cek Jadwal", flag: "page" },
+  { path: "/siapa-kita", title: "Siapa Kita?", flag: "link" },
+  { path: "momen-seru", title: "Momen Seru", flag: "page" },
+  { path: "musik", title: "Musik A6", flag: "page" },
 ];
 
 export const NavDataMobile: Nav[] = [
-  { path: "jadwal", title: "Cek Jadwal" },
-  { path: "tentang", title: "Siapa Kita?" },
-  { path: "beranda", title: "Beranda" },
-  { path: "galeri", title: "Momen Seru" },
-  { path: "musik", title: "Karya Musik" },
+  { path: "cek-jadwal", title: "Cek Jadwal", flag: "page" },
+  { path: "/siapa-kita", title: "Siapa Kita?", flag: "link" },
+  { path: "beranda", title: "Beranda", flag: "page" },
+  { path: "momen-seru", title: "Momen Seru", flag: "page" },
+  { path: "musik", title: "Musik A6", flag: "page" },
 ];
-

@@ -2,7 +2,7 @@ import { montserrat } from "@/constants/fonts";
 import Image from "next/image";
 import React, { useState } from "react";
 import Button from "../ui/button";
-import { SquareLoader } from "react-spinners";
+import { BarLoader } from "react-spinners";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import { TbPlayerPlayFilled } from "react-icons/tb";
 import useAppStore from "@/store/useAppStore";
@@ -31,11 +31,7 @@ const MusicComponent = () => {
           <h1
             className={`text-left text-3xl md:text-4xl lg:text-5xl font-medium text-white`}
           >
-            Musik{" "}
-            <span className="italic font-italianno tracking-wide text-[32px] md:text-[38px] lg:text-[54px]">
-              Buatan
-            </span>{" "}
-            kami
+            The Koplo Mix
             <span className="text-primary">.</span>
           </h1>
           <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base">
@@ -87,17 +83,17 @@ const MusicComponent = () => {
 
         {store.music?.length > sliced && (
           <div className="flex justify-center mt-12 lg:mt-16">
-            {isLoading ? (
-              <SquareLoader color="white" size={30} />
-            ) : (
-              <button
-                aria-label="Button Load More"
-                onClick={handleMoreMusic}
-                className="text-base lg:text-lg underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
-              >
+            <button
+              aria-label="Button Load More"
+              onClick={handleMoreMusic}
+              className="text-base lg:text-lg min-h-12 underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
+            >
+              {isLoading ? (
+                <BarLoader color="white" />
+              ) : (
                 <span>Dengar Lebih Banyak</span>
-              </button>
-            )}
+              )}
+            </button>
           </div>
         )}
       </div>

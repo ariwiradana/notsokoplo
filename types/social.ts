@@ -4,4 +4,5 @@ export interface Social {
   title: string;
   link: string;
   icon: JSX.Element;
+  color?:string
 }

@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import Sidebar from "./sidebar";
 import { scrollToId } from "@/helper/scrollToId";
 import { NavDataMobile } from "@/constants/navdata";
+import { useRouter } from "next/router";
 
 interface NavbarProps {
   fixed?: boolean;
@@ -25,6 +26,8 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
     }
   }, []);
 
+  const router = useRouter();
+
   return (
     <nav
       className={`${montserrat.className} ${
@@ -40,7 +43,13 @@ const Navbar = ({ fixed = true }: NavbarProps) => {
               <li className="hidden md:inline" key={`Nav ${nav.title}`}>
                 <button
                   aria-label={`Button Nav Schedules`}
-                  onClick={() => scrollToId(nav.path)}
+                  onClick={() =>
+                    nav.flag === "page" && router.pathname !== "/siapa-kita"
+                      ? scrollToId(nav.path)
+                      : nav.flag === "page" && router.pathname === "/siapa-kita"
+                      ? router.push(`/#${nav.path}`)
+                      : router.push(nav.path)
+                  }
                   className="uppercase font-bold text-sm"
                 >
                   {nav.title}

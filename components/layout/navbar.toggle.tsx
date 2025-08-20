@@ -5,6 +5,7 @@ import { TbMenu, TbX } from "react-icons/tb";
 import Sidebar from "./sidebar";
 import useSidebar from "@/store/useSidebar";
 import { scrollToId } from "@/helper/scrollToId";
+import { useRouter } from "next/router";
 
 const NavbarToggle = () => {
   const {
@@ -34,6 +35,7 @@ const NavbarToggle = () => {
     };
   }, []);
 
+  const router = useRouter();
   return (
     <nav
       className={`${montserrat.className} ${
@@ -48,7 +50,13 @@ const NavbarToggle = () => {
           <li className="hidden md:inline" key={`nav-toggle-${nav.path}`}>
             <button
               aria-label={`Navigate to ${nav.title}`}
-              onClick={() => scrollToId(nav.path)}
+              onClick={() =>
+                nav.flag === "page" && router.pathname !== "/siapa-kita"
+                  ? scrollToId(nav.path)
+                  : nav.flag === "page" && router.pathname === "/siapa-kita"
+                  ? router.push(`/#${nav.path}`)
+                  : router.push(nav.path)
+              }
               className="uppercase font-bold text-sm"
             >
               {nav.title}
