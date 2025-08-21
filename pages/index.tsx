@@ -16,7 +16,6 @@ import TabNav from "@/components/layout/tab";
 import Fab from "@/components/ui/fab";
 import MusicPlayer from "@/components/layout/music.player";
 import GalleryComponent from "@/components/layout/gallery";
-import ClientsComponent from "@/components/layout/clients";
 import useAppStore from "@/store/useAppStore";
 
 const HomePage = () => {
@@ -97,7 +96,7 @@ const HomePage = () => {
           <EventComponent />
           <MusicComponent />
           <GalleryComponent />
-          <ClientsComponent />
+          {/* <ClientsComponent /> */}
           <Footer />
         </section>
       )}

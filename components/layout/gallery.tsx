@@ -29,9 +29,9 @@ const GalleryComponent = () => {
       id="momen-seru"
       className={`relative bg-gradient-to-b from-dark to-black overflow-x-hidden ${montserrat.className} z-0`}
     >
-      <div className="pt-16 pb-8 lg:pt-28 z-0 relative">
+      <div className="pb-8 z-0 relative">
         {landscapeVideoYoutube || landscapeVideoCloudinary ? (
-          <div className="max-w-screen-xl mx-auto mb-16 lg:mb-0">
+          <div className="mb-16 lg:mb-0">
             {landscapeVideoYoutube.length > 0 && (
               <YouTubeEmbed videos={landscapeVideoYoutube} />
             )}

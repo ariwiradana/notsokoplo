@@ -1,10 +1,8 @@
 import { montserrat } from "@/constants/fonts";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import Marquee from "react-fast-marquee";
-import { FaLink, FaSoundcloud, FaYoutube } from "react-icons/fa6";
 import { TbPlayerPauseFilled, TbPlayerPlayFilled, TbX } from "react-icons/tb";
 
 const MusicPlayer = () => {
@@ -96,60 +94,6 @@ const MusicPlayer = () => {
           </div>
         </div>
       </div>
-
-      {music?.soundcloud || music?.youtube || music?.url ? (
-        <div
-          className={`${montserrat.className} text-sm font-medium flex items-center gap-x-3`}
-        >
-          <p className="whitespace-nowrap font-medium text-white hidden md:block">
-            {music?.url ? "Versi fullnya :" : "Dengarkan di :"}
-          </p>
-          {music?.soundcloud && (
-            <Link
-              target="_blank"
-              href={music.soundcloud || ""}
-              aria-label="Action SoundCloud Music"
-              onClick={() => {
-                handleIsPlaying(false);
-              }}
-              className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center"
-            >
-              <FaSoundcloud className="text-lg" />
-              <span>SoundCloud</span>
-            </Link>
-          )}
-          {music?.youtube && (
-            <Link
-              aria-label="Action Youtube Music"
-              target="_blank"
-              href={music.youtube || ""}
-              onClick={() => {
-                handleIsPlaying(false);
-              }}
-              className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center"
-            >
-              <FaYoutube className="text-lg" />
-              <span>Youtube</span>
-            </Link>
-          )}
-          {music?.url && (
-            <Link
-              target="_blank"
-              href={music.url || ""}
-              aria-label="Action URL Music"
-              onClick={() => {
-                handleIsPlaying(false);
-              }}
-              className="border px-4 py-2 rounded-full border-white flex items-center gap-x-2 hover:bg-primary text-white hover:border-primary w-full justify-center"
-            >
-              <FaLink className="text-lg" />
-              <span>Stream Sekarang</span>
-            </Link>
-          )}
-        </div>
-      ) : (
-        <></>
-      )}
     </div>
   );
 };

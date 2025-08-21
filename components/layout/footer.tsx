@@ -18,19 +18,16 @@ const Footer = () => {
               key={social.title}
               href={social.link}
             >
-              <div className="flex items-center gap-x-2 group py-2 hover:md:px-3.5 hover:px-2.5 px-2 md:px-3 transition-all ease-in-out duration-300 hover:scale-105 hover:bg-white/10 hover:backdrop-blur-md rounded-full">
+              <div className="flex items-center gap-x-2 group py-2 px-2 md:px-3">
                 <div className="text-white md:text-lg">{social.icon}</div>
-                <span
-                  className={`text-[11px] md:text-[12px] whitespace-nowrap text-white hidden group-hover:block capitalize font-medium`}
-                >
-                  {social.title}
-                </span>
               </div>
             </Link>
           ))}
         </div>
         <div className="flex justify-center md:justify-end items-center">
-        <p className="text-xs md:text-sm text-white uppercase">© 2025 Not So Koplo</p>
+          <p className="text-xs md:text-sm text-white uppercase">
+            © 2025 Not So Koplo
+          </p>
         </div>
       </div>
     </section>

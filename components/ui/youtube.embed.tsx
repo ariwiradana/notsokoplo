@@ -16,7 +16,7 @@ const YouTubeEmbed = ({ videos = [] }: YouTubeEmbedProps) => {
       <iframe
         src={`https://www.youtube.com/embed?playlist=${videoIds.join(
           ","
-        )}&modestbranding=1&showinfo=0&rel=0&cc_load_policy=0&vq=hd1080`}
+        )}&autoplay=1&mute=1&loop=1&controls=0&modestbranding=1&rel=0`}
         title="Video Not So Koplo"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

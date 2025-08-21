@@ -1,4 +1,3 @@
-import Navbar from "@/components/layout/navbar";
 import NavbarToggle from "@/components/layout/navbar.toggle";
 import Seo from "@/components/layout/seo";
 import { NextPage } from "next";
@@ -37,7 +36,6 @@ const BiographyPage: NextPage = ({}) => {
         keywords="Not So Koplo, siapa Not So Koplo, duo DJ Bali, DJ remix Indonesia, profil DJ Bali, DJ panggung Bali, DJ live Bali, duo DJ Indonesia, DJ untuk event Bali, cerita DJ Bali, musik remix Bali, DJ terkenal Bali, bio DJ Bali, duo musik elektronik Indonesia, DJ Denpasar, EDM Bali, DJ untuk festival Bali, duo remix lokal, DJ acara Bali"
       />
 
-      <Navbar />
       <NavbarToggle />
       <TabNav />
       <div className={`w-screen h-dvh relative ${montserrat.className}`}>
@@ -89,13 +87,13 @@ const BiographyPage: NextPage = ({}) => {
               </div>
 
               {/* Text overlay (optional, shows section) */}
-              <div className="relative z-10 flex h-full justify-center lg:items-center bg-dark/70 pt-[16vh] lg:pt-0 px-4">
+              <div className="relative flex h-full justify-center items-center bg-dark/70 px-4 md:px-12 lg:px-0 z-30 -pt-20 lg:mt-0">
                 <div data-swiper-parallax="-500" className="lg:max-w-[40vw]">
-                  <h2 className="text-3xl font-semibold text-white">
+                  <h2 className="text-3xl md:text-4xl font-semibold text-white">
                     {bio.title}
                   </h2>
                   <p
-                    className="text-white text-sm lg:text-base mt-4"
+                    className="text-white text-base lg:text-lg mt-4"
                     dangerouslySetInnerHTML={{
                       __html: bio.description,
                     }}

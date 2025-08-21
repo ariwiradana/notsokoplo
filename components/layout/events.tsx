@@ -4,10 +4,10 @@ import moment from "moment";
 import Link from "next/link";
 import React, { useState } from "react";
 import Button from "../ui/button";
-import { IoTicketSharp } from "react-icons/io5";
+import { IoChevronDown, IoTicketSharp } from "react-icons/io5";
 import "moment/locale/id";
 import useAppStore from "@/store/useAppStore";
-import { BarLoader } from "react-spinners";
+import { PuffLoader } from "react-spinners";
 
 const SchedulesComponent = () => {
   const [sliced] = useState<number>(4);
@@ -37,7 +37,7 @@ const SchedulesComponent = () => {
   if (filteredData?.length > 0)
     return (
       <div className="relative bg-dark" id="cek-jadwal">
-        <div className="py-16 lg:py-28 max-w-screen-xl mx-auto">
+        <div className="py-16 md:py-20 lg:py-28 max-w-screen-xl mx-auto">
           <div className="px-4 md:px-12 lg:px-0">
             <div
               className={`flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-12 gap-4 md:gap-12 ${montserrat.className}`}
@@ -50,14 +50,15 @@ const SchedulesComponent = () => {
               </h1>
               <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base font-light">
                 Nggak sabar pengin joget bareng? Nih, intip jadwal acara kami
-                dan tandai tanggalnya. Kita ketemu di lantai dansa!
+                untuk bulan {moment().format("MMMM YYYY")}
               </p>
-              <div className="h-16 md:h-24 w-[1px] bg-white/10"></div>
+
+              <div className="h-12 md:h-24 w-[1px] bg-white/20"></div>
             </div>
           </div>
 
           <div className="px-4 md:px-12 lg:px-0">
-            <table className="table table-auto bg-dark z-10 border-t border-t-white/10 w-full">
+            <table className="table table-auto bg-dark z-10 border-t border-t-white/20 w-full">
               <tbody>
                 {(isAllShown
                   ? filteredData
@@ -72,7 +73,7 @@ const SchedulesComponent = () => {
                     return (
                       <tr
                         key={`${event.event}-${index}`}
-                        className={`border-b border-b-white/10 transition-all ease-in-out duration-500 ${montserrat.className}`}
+                        className={`border-b border-b-white/20 transition-all ease-in-out duration-500 ${montserrat.className}`}
                       >
                         <td className="py-6 md:pr-12 md:pl-0 align-middle">
                           <p className="text-white text-base tracking-[1px] uppercase whitespace-nowrap mb-2">
@@ -147,15 +148,34 @@ const SchedulesComponent = () => {
             <div
               className={`flex justify-center mt-8 lg:mt-12 ${montserrat.className}`}
             >
-              <button
+              {/* <button
                 onClick={handleShowMore}
-                className="text-base lg:text-lg min-h-12 underline underline-offset-8 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-3"
+                className="rounded-full min-h-9 text-sm border px-4 border-white/20 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-2"
               >
                 {isLoading ? (
                   <BarLoader color="white" />
                 ) : (
-                  <span>Lihat Lebih Banyak</span>
+                  <>
+                    <span>Lihat Lebih Banyak</span>
+                    <span>
+                      <IoChevronDown />
+                    </span>
+                  </>
                 )}
+              </button> */}
+
+              <button
+                onClick={handleShowMore}
+                className="text-sm px-4 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-2"
+              >
+                {isLoading ? "Lagi nyiapin panggung..." : "Lihat Semua Jadwal"}
+                <div className="min-h-10 min-w-10 flex items-center justify-center rounded-full border border-white/20 aspect-square">
+                  {!isLoading ? (
+                    <IoChevronDown />
+                  ) : (
+                    <PuffLoader size={30} color="#ffffff" />
+                  )}
+                </div>
               </button>
             </div>
           ) : null}
