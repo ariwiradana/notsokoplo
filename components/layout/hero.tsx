@@ -12,7 +12,7 @@ const HeroComponent = () => {
 
   return (
     <div
-      className="h-[90svh] md:h-svh w-full relative z-10 flex items-center justify-center overflow-hidden"
+      className="h-svh w-full relative z-10 flex items-center justify-center overflow-hidden"
       id="beranda"
     >
       {store.release && (
@@ -27,7 +27,7 @@ const HeroComponent = () => {
               className="text-white font-semibold text-center text-5xl md:text-6xl lg:text-8xl uppercase mt-6 relative"
             >
               {store.release.title}{" "}
-              <span className="text-xl md:text-2xl font-medium text-white/60">
+              <span className="text-lg md:text-xl font-medium text-white/60">
                 {store.release.caption}
               </span>
             </h1>

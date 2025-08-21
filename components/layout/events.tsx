@@ -1,4 +1,4 @@
-import { montserrat } from "@/constants/fonts";
+import {  montserrat } from "@/constants/fonts";
 import { Event } from "@/types/event";
 import moment from "moment";
 import Link from "next/link";
@@ -37,18 +37,24 @@ const SchedulesComponent = () => {
   if (filteredData?.length > 0)
     return (
       <div className="relative bg-dark" id="cek-jadwal">
-        <div className="py-16 md:py-20 lg:py-28 max-w-screen-xl mx-auto">
+        <div
+          className={`${
+            isAllShown ? "pt-16 pb-10" : "py-16"
+          } md:py-20 lg:py-28 max-w-screen-xl mx-auto`}
+        >
           <div className="px-4 md:px-12 lg:px-0">
             <div
-              className={`flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-12 gap-4 md:gap-12 ${montserrat.className}`}
+              className={`flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-12 gap-4 md:gap-12`}
             >
               <h1
-                className={`text-left text-3xl md:text-4xl lg:text-5xl font-medium text-white`}
+                className={`text-left text-4xl md:text-5xl lg:text-6xl font-medium text-white ${montserrat.className}`}
               >
                 Mau Joget Dimana?
                 <span className="text-primary">.</span>
               </h1>
-              <p className="md:max-w-[50%] md:text-right text-white/80 text-sm lg:text-base font-light">
+              <p
+                className={`md:max-w-[50%] md:text-right text-white/80 text-base md:text-lg font-light ${montserrat.className}`}
+              >
                 Nggak sabar pengin joget bareng? Nih, intip jadwal acara kami
                 untuk bulan {moment().format("MMMM YYYY")}
               </p>
@@ -73,7 +79,11 @@ const SchedulesComponent = () => {
                     return (
                       <tr
                         key={`${event.event}-${index}`}
-                        className={`border-b border-b-white/20 transition-all ease-in-out duration-500 ${montserrat.className}`}
+                        className={`border-b border-b-white/20 ${
+                          isAllShown && "last:border-b-transparent"
+                        } transition-all ease-in-out duration-500 ${
+                          montserrat.className
+                        }`}
                       >
                         <td className="py-6 md:pr-12 md:pl-0 align-middle">
                           <p className="text-white text-base tracking-[1px] uppercase whitespace-nowrap mb-2">
@@ -83,7 +93,7 @@ const SchedulesComponent = () => {
                           </p>
                           <div className="flex items-center gap-x-3">
                             <p
-                              className={`text-white font-semibold text-2xl md:text-3xl`}
+                              className={`text-white font-medium text-2xl md:text-3xl`}
                             >
                               <span>{event.event} </span>
                               {event.category === "private" && (
@@ -94,7 +104,9 @@ const SchedulesComponent = () => {
                             </p>
                           </div>
 
-                          <p className="text-white/70 text-base md:text-lg mt-2 flex lg:hidden">
+                          <p
+                            className={`text-white/70 text-base md:text-lg mt-2 flex lg:hidden`}
+                          >
                             <span>{event.address}</span>
                           </p>
 

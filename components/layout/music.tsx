@@ -17,10 +17,10 @@ const MusicComponent = () => {
     <div className={`relative ${montserrat.className} z-0 bg-black`} id="musik">
       <div className="max-w-screen-xl mx-auto py-16 md:py-20 lg:py-28 px-4 md:px-12 lg:px-4">
         <div
-          className={`flex flex-col md:flex-row md:items-center justify-between mb-6 md:mb-12 gap-3 md:gap-12 ${montserrat.className}`}
+          className={`flex items-center justify-between mb-6 md:mb-12 gap-3 md:gap-12 ${montserrat.className}`}
         >
           <h1
-            className={`text-left text-3xl md:text-4xl lg:text-5xl font-medium text-white`}
+            className={`text-left text-4xl md:text-5xl lg:text-6xl font-medium text-white`}
           >
             The Koplo Mix
             <span className="text-primary">.</span>

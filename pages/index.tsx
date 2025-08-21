@@ -12,7 +12,6 @@ import EventComponent from "@/components/layout/events";
 import Seo from "@/components/layout/seo";
 import useDisableInspect from "@/hooks/useDisableInspect";
 import Loading from "@/components/ui/loading";
-import TabNav from "@/components/layout/tab";
 import Fab from "@/components/ui/fab";
 import MusicPlayer from "@/components/layout/music.player";
 import GalleryComponent from "@/components/layout/gallery";
@@ -92,7 +91,7 @@ const HomePage = () => {
           <Navbar />
           <MusicPlayer />
           <HeroComponent />
-          <TabNav />
+          {/* <TabNav /> */}
           <EventComponent />
           <MusicComponent />
           <GalleryComponent />
