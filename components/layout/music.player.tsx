@@ -7,7 +7,13 @@ import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import Marquee from "react-fast-marquee";
 import { FaApple, FaSoundcloud, FaSpotify, FaYoutube } from "react-icons/fa6";
-import { IoChevronForward, IoClose, IoPause, IoPlay } from "react-icons/io5";
+import {
+  IoChevronBack,
+  IoChevronForward,
+  IoClose,
+  IoPause,
+  IoPlay,
+} from "react-icons/io5";
 
 const MusicPlayer = () => {
   const {
@@ -50,7 +56,7 @@ const MusicPlayer = () => {
     };
   }, [isPlaying, music]);
 
-  const handleNexSong = () => {
+  const handleNextPrevMusic = (flag: "next" | "prev") => {
     const allMusic = [...store.music];
     if (!music || allMusic.length === 0) return;
 
@@ -58,12 +64,28 @@ const MusicPlayer = () => {
       (m) => m.title === music.title
     );
     let newIndex = currentIndexPlayed;
-    newIndex = currentIndexPlayed + 1;
-    if (newIndex >= allMusic.length) {
-      newIndex = 0; // wrap ke lagu pertama
+
+    if (flag === "next") {
+      newIndex = currentIndexPlayed + 1;
+      if (newIndex >= allMusic.length) {
+        newIndex = 0; // wrap ke lagu pertama
+      }
+      handleAddMusic(allMusic[newIndex]);
+      handleIsPlaying(true);
+    } else {
+      // flag === "prev"
+      if (audioRef.current && audioRef.current.currentTime > 1) {
+        audioRef.current.currentTime = 0;
+        handleIsPlaying(true);
+      } else {
+        newIndex = currentIndexPlayed - 1;
+        if (newIndex < 0) {
+          newIndex = allMusic.length - 1; // wrap ke lagu terakhir
+        }
+        handleAddMusic(allMusic[newIndex]);
+        handleIsPlaying(true);
+      }
     }
-    handleAddMusic(allMusic[newIndex]);
-    handleIsPlaying(true);
   };
 
   const progressPercent = duration ? (currentTime / duration) * 100 : 0;
@@ -97,7 +119,14 @@ const MusicPlayer = () => {
             <IoClose className="text-[26px]" />
           </button>
         </div>
-
+        <div className="flex">
+          <button
+            aria-label="Action Back Music"
+            onClick={() => handleNextPrevMusic("prev")}
+          >
+            <IoChevronBack className="text-[26px]" />
+          </button>
+        </div>
         <div className="flex">
           <button
             aria-label="Action Play Pause Music"
@@ -107,7 +136,10 @@ const MusicPlayer = () => {
           </button>
         </div>
         <div className="flex">
-          <button aria-label="Action Next Music" onClick={handleNexSong}>
+          <button
+            aria-label="Action Next Music"
+            onClick={() => handleNextPrevMusic("next")}
+          >
             <IoChevronForward className="text-[26px]" />
           </button>
         </div>
