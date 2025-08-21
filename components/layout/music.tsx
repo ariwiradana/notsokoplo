@@ -3,15 +3,19 @@ import Image from "next/image";
 import React from "react";
 import useAppStore from "@/store/useAppStore";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FaApple, FaSoundcloud, FaSpotify, FaYoutube } from "react-icons/fa6";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import { Autoplay, Navigation } from "swiper/modules";
-import Link from "next/link";
+import { BiChevronLeft, BiChevronRight, BiPause, BiPlay } from "react-icons/bi";
+import { Navigation } from "swiper/modules";
+import useMusicPlayer from "@/store/useMusicPlayer";
 
 const MusicComponent = () => {
   const store = useAppStore();
-  // const { handleIsPlaying, handleIsOpenPlayer, handleAddMusic } =
-  //   useMusicPlayer();
+  const {
+    handleIsPlaying,
+    handleIsOpenPlayer,
+    handleAddMusic,
+    isPlaying,
+    music: playedMusic,
+  } = useMusicPlayer();
 
   return (
     <div className={`relative ${montserrat.className} z-0 bg-black`} id="musik">
@@ -37,18 +41,13 @@ const MusicComponent = () => {
         <div>
           <Swiper
             speed={1000}
-            autoplay={{
-              delay: 8000,
-              pauseOnMouseEnter: true,
-              disableOnInteraction: true,
-            }}
             navigation={{
               prevEl: ".action-prev",
               nextEl: ".action-next",
             }}
             slidesPerView={"auto"}
             spaceBetween={16}
-            modules={[Navigation, Autoplay]}
+            modules={[Navigation]}
           >
             {store.music.map((music) => (
               <SwiperSlide
@@ -56,67 +55,36 @@ const MusicComponent = () => {
                 className="max-w-[80vw] md:max-w-[40vw] lg:max-w-96"
               >
                 <div className="md:text-center">
-                  <div className="w-full aspect-square relative shadow-lg mb-6 group/music overflow-hidden">
+                  <div className="w-full aspect-square relative shadow-lg mb-6 group/music">
                     <Image
                       sizes="600px"
                       src={music.cover}
                       fill
-                      className="object-cover bg-white/5 group-hover/music:scale-95 transition-all ease-in-out duration-300 delay-100"
+                      className="object-cover bg-white/5 group-hover/music:scale-[0.98] transition-all ease-in-out duration-300 delay-100"
                       alt={`Cover Image ${music.title} Notsokoplo`}
                     />
                     <div className="absolute inset-0 h-auto group-hover/music:visible group-hover/music:opacity-100 opacity-0 invisible z-10 bg-dark/70 backdrop-blur-sm flex flex-col justify-center items-center gap-2 transition-all ease-in-out duration-300">
-                      <div className="flex items-center justify-center gap-2 translate-y-6 group-hover/music:translate-y-0 transition-all ease-in-out delay-200 opacity-0 group-hover/music:opacity-100">
-                        {music.spotify && (
-                          <Link
-                            href={music.spotify}
-                            target="_blank"
-                            className="p-3 rounded-full text-white border border-white/30 hover:bg-white/20 flex items-center group transition-all ease-in-out"
-                          >
-                            <FaSpotify />
-                            <span className="text-xs group-hover:ml-2 delay-75 font-medium max-w-0 overflow-hidden group-hover:max-w-[80px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
-                              Spotify
-                            </span>
-                          </Link>
+                      <button
+                        onClick={() => {
+                          handleAddMusic(music);
+                          handleIsOpenPlayer(true);
+                          if (music.title === playedMusic?.title) {
+                            handleIsPlaying(!isPlaying);
+                          } else {
+                            handleIsPlaying(true);
+                          }
+                        }}
+                        className="text-white text-sm flex items-center bg-primary rounded-full p-2 lg:p-3"
+                      >
+                        {music.title === playedMusic?.title && isPlaying ? (
+                          <BiPause className="text-4xl" />
+                        ) : (
+                          <BiPlay className="text-4xl" />
                         )}
-                        {music.applemusic && (
-                          <Link
-                            href={music.applemusic}
-                            target="_blank"
-                            className="p-3 rounded-full text-white border border-white/30 hover:bg-white/20 flex items-center group transition-all ease-in-out"
-                          >
-                            <FaApple />
-                            <span className="text-xs group-hover:ml-2 delay-75 font-medium max-w-0 overflow-hidden group-hover:max-w-[80px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
-                              Apple Music
-                            </span>
-                          </Link>
-                        )}
-                        {music.soundcloud && (
-                          <Link
-                            href={music.soundcloud}
-                            target="_blank"
-                            className="p-3 rounded-full text-white border border-white/30 hover:bg-white/20 flex items-center group transition-all ease-in-out"
-                          >
-                            <FaSoundcloud />
-                            <span className="text-xs group-hover:ml-2 delay-75 font-medium max-w-0 overflow-hidden group-hover:max-w-[80px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
-                              Soundcloud
-                            </span>
-                          </Link>
-                        )}
-                        {music.youtube && (
-                          <Link
-                            href={music.youtube}
-                            target="_blank"
-                            className="p-3 rounded-full text-white border border-white/30 hover:bg-white/20 flex items-center group transition-all ease-in-out"
-                          >
-                            <FaYoutube />
-                            <span className="text-xs group-hover:ml-2 delay-75 font-medium max-w-0 overflow-hidden group-hover:max-w-[80px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
-                              Youtube
-                            </span>
-                          </Link>
-                        )}
-                      </div>
+                      </button>
                     </div>
                   </div>
+
                   {music.caption && (
                     <div className="mb-3">
                       <p className="bg-primary/30 border border-primary/50 text-white inline px-3 py-[3px] rounded-full text-sm">

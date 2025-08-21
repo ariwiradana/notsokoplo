@@ -26,7 +26,7 @@ const GalleryComponent = () => {
 
   return (
     <div
-      id="momen-seru"
+      id="galeri"
       className={`relative bg-gradient-to-b from-dark to-black overflow-x-hidden ${montserrat.className} z-0`}
     >
       <div className="pb-8 z-0 relative">

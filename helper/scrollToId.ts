@@ -1,7 +1,8 @@
 export function scrollToId(id: string, behavior: ScrollBehavior = "smooth") {
   const element = document.getElementById(id);
   if (element) {
-    element.scrollIntoView({ behavior });
+    const y = element.getBoundingClientRect().top + window.pageYOffset - 30;
+    window.scrollTo({ top: y, behavior: "smooth" });
   } else {
     console.warn(`Element with ID "${id}" not found.`);
   }

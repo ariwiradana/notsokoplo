@@ -16,6 +16,7 @@ import Fab from "@/components/ui/fab";
 import MusicPlayer from "@/components/layout/music.player";
 import GalleryComponent from "@/components/layout/gallery";
 import useAppStore from "@/store/useAppStore";
+import TabNav from "@/components/layout/tab";
 
 const HomePage = () => {
   const store = useAppStore();
@@ -91,7 +92,7 @@ const HomePage = () => {
           <Navbar />
           <MusicPlayer />
           <HeroComponent />
-          {/* <TabNav /> */}
+          <TabNav />
           <EventComponent />
           <MusicComponent />
           <GalleryComponent />

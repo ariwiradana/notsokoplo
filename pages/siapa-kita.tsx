@@ -1,4 +1,3 @@
-import NavbarToggle from "@/components/layout/navbar.toggle";
 import Seo from "@/components/layout/seo";
 import { NextPage } from "next";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -20,6 +19,7 @@ import { Biography } from "@/types/Biography";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import TabNav from "@/components/layout/tab";
 import Loading from "@/components/ui/loading";
+import Navbar from "@/components/layout/navbar";
 
 const BiographyPage: NextPage = ({}) => {
   const { isLoading, data } = useSWR<Biography[]>("/api/biography", fetcher);
@@ -36,9 +36,9 @@ const BiographyPage: NextPage = ({}) => {
         keywords="Not So Koplo, siapa Not So Koplo, duo DJ Bali, DJ remix Indonesia, profil DJ Bali, DJ panggung Bali, DJ live Bali, duo DJ Indonesia, DJ untuk event Bali, cerita DJ Bali, musik remix Bali, DJ terkenal Bali, bio DJ Bali, duo musik elektronik Indonesia, DJ Denpasar, EDM Bali, DJ untuk festival Bali, duo remix lokal, DJ acara Bali"
       />
 
-      <NavbarToggle />
+      <Navbar />
       <TabNav />
-      <div className={`w-screen h-dvh relative ${montserrat.className}`}>
+      <div className={`w-screen h-svh relative ${montserrat.className}`}>
         <button className="text-white text-sm flex items-center gap-x-2 tracking-[1px] btn-prev fixed bottom-8 left-4 lg:left-8 z-20">
           <BiChevronLeft className="text-2xl" />
           Prev
@@ -87,13 +87,16 @@ const BiographyPage: NextPage = ({}) => {
               </div>
 
               {/* Text overlay (optional, shows section) */}
-              <div className="relative flex h-full justify-center items-center bg-dark/70 px-4 md:px-12 lg:px-0 z-30 -pt-20 lg:mt-0">
-                <div data-swiper-parallax="-500" className="lg:max-w-[40vw]">
+              <div className="relative flex h-full justify-center items-center bg-dark/70 px-4 md:px-12 lg:px-0 z-30">
+                <div
+                  data-swiper-parallax="-500"
+                  className="lg:max-w-[40vw] -mt-24 md:mt-0"
+                >
                   <h2 className="text-3xl md:text-4xl font-semibold text-white">
                     {bio.title}
                   </h2>
                   <p
-                    className="text-white text-base lg:text-lg mt-4"
+                    className="text-white text-sm md:text-base lg:text-lg mt-4"
                     dangerouslySetInnerHTML={{
                       __html: bio.description,
                     }}
