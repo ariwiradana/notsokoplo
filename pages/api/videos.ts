@@ -12,9 +12,8 @@ export default async function handler(
   const rows = await sheet.getRows();
 
   const data = rows.map((row) => ({
-    url: row["_rawData"][0] || null,
-    orientation: row["_rawData"][1] || null,
-    type: row["_rawData"][2] || null,
+    id: row["_rawData"][0] || null,
+    source: row["_rawData"][1] || null,
   }));
 
   res.status(200).json(data);

@@ -7,7 +7,10 @@ interface YouTubeEmbedProps {
 }
 
 const YouTubeEmbed = ({ videos = [] }: YouTubeEmbedProps) => {
-  const videoIds = videos.map((video) => video.url);
+  const videoIds = videos.map((video) => video.id);
+
+  if (videoIds.length === 0) return;
+
   return (
     <div
       className="w-full"
@@ -16,7 +19,7 @@ const YouTubeEmbed = ({ videos = [] }: YouTubeEmbedProps) => {
       <iframe
         src={`https://www.youtube.com/embed?playlist=${videoIds.join(
           ","
-        )}&autoplay=1&mute=1&loop=1&controls=0&modestbranding=1&rel=0`}
+        )}&autoplay=1&mute=1&loop=1&modestbranding=1&rel=0`}
         title="Video Not So Koplo"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
