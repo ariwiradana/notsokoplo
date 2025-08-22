@@ -64,8 +64,8 @@ const MusicComponent = () => {
                       <div
                         className={`absolute inset-0 z-10 transition-all ease-in-out duration-200 delay-200 ${
                           playedMusic.title === music.title
-                            ? "translate-x-14"
-                            : "group-hover/music:translate-x-14"
+                            ? "translate-x-10"
+                            : "group-hover/music:translate-x-10"
                         }`}
                       >
                         <Image
@@ -101,7 +101,9 @@ const MusicComponent = () => {
                       <button
                         onClick={() => {
                           handleAddMusic(music);
-                          handleIsOpenPlayer(true);
+                          if (!playedMusic) {
+                            handleIsOpenPlayer(true);
+                          }
                           if (music.title === playedMusic?.title) {
                             handleIsPlaying(!isPlaying);
                           } else {

@@ -4,7 +4,6 @@ import useAppStore from "@/store/useAppStore";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
-import Marquee from "react-fast-marquee";
 import { BiLoaderAlt } from "react-icons/bi";
 import {
   FaApple,
@@ -179,7 +178,7 @@ const MusicPlayer = () => {
           >
             <LuMinimize />
           </button>
-          <div className="flex md:items-center gap-x-4 md:gap-x-6">
+          <div className="flex w-full md:items-center gap-x-4 md:gap-x-6">
             {music?.cover && (
               <div className="relative min-w-12 w-12 h-12 min-h-12 md:min-w-14 md:w-14 md:h-14 md:min-h-14 aspect-square">
                 <Image
@@ -197,17 +196,10 @@ const MusicPlayer = () => {
                 >
                   {music?.title}{" "}
                 </h4>
-                <p className="text-base md:text-lg font-normal text-white/80 whitespace-nowrap hidden md:inline">
+                <p className="text-sm line-clamp-1 md:text-lg font-normal text-white/80 whitespace-nowrap">
                   {music?.artist}
                 </p>
               </div>
-              <Marquee direction="left" speed={10}>
-                <div className="mr-2">
-                  <p className="text-sm font-normal text-white/80 md:hidden line-clamp-1">
-                    {music?.artist}
-                  </p>
-                </div>
-              </Marquee>
             </div>
           </div>
         </div>
