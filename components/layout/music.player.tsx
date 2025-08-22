@@ -208,7 +208,9 @@ const MusicPlayer = () => {
         <div className="flex items-center gap-x-6 w-full">
           <p className="text-sm text-white">
             {formatTime(
-              currentTime < duration && progressPercent > 0 ? currentTime : 0
+              !buffering && currentTime < duration && progressPercent > 0
+                ? currentTime
+                : 0
             )}
           </p>
           <div className="w-full h-1 bg-white/5 relative rounded-full">
