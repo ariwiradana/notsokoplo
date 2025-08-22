@@ -117,7 +117,7 @@ const MusicPlayer = () => {
   const handlePlayFullVersion = (url: string) => {
     setTimeout(() => {
       window.open(url, "_blank");
-    }, 500);
+    }, 1000);
   };
 
   return (
