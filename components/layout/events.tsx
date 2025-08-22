@@ -64,7 +64,7 @@ const SchedulesComponent = () => {
           </div>
 
           <div className="px-4 md:px-12 lg:px-0">
-            <table className="table table-auto bg-dark z-10 border-t border-t-white/20 w-full">
+            <table className="table table-auto bg-dark z-10 border-t border-t-white/10 w-full">
               <tbody>
                 {(isAllShown
                   ? filteredData
@@ -79,7 +79,7 @@ const SchedulesComponent = () => {
                     return (
                       <tr
                         key={`${event.event}-${index}`}
-                        className={`border-b border-b-white/20 ${
+                        className={`border-b border-b-white/10 ${
                           isAllShown && "last:border-b-transparent"
                         } transition-all ease-in-out duration-500 ${
                           montserrat.className
@@ -160,28 +160,14 @@ const SchedulesComponent = () => {
             <div
               className={`flex justify-center mt-8 lg:mt-12 ${montserrat.className}`}
             >
-              {/* <button
-                onClick={handleShowMore}
-                className="rounded-full min-h-9 text-sm border px-4 border-white/20 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-2"
-              >
-                {isLoading ? (
-                  <BarLoader color="white" />
-                ) : (
-                  <>
-                    <span>Lihat Lebih Banyak</span>
-                    <span>
-                      <IoChevronDown />
-                    </span>
-                  </>
-                )}
-              </button> */}
+              
 
               <button
                 onClick={handleShowMore}
                 className="text-sm px-4 text-white relative hover:opacity-70 transition-all ease-in-out duration-300 flex items-center gap-x-2"
               >
                 {isLoading ? "Lagi nyiapin panggung..." : "Lihat Semua Jadwal"}
-                <div className="min-h-10 min-w-10 flex items-center justify-center rounded-full border border-white/20 aspect-square">
+                <div className="min-h-10 min-w-10 flex items-center justify-center rounded-full border border-white/10 aspect-square">
                   {!isLoading ? (
                     <IoChevronDown />
                   ) : (

@@ -48,10 +48,26 @@ const MusicPlayer = () => {
     const handleWaiting = () => setBuffering(true);
     const handlePlaying = () => setBuffering(false);
 
+    const handleEnded = () => {
+      console.log("is ended");
+      const allMusic = [...store.music];
+      const newIndex =
+        (allMusic.findIndex((m) => m.title === music.title) + 1) %
+        allMusic.length;
+
+      handleAddMusic(allMusic[newIndex]);
+      handleIsPlaying(true);
+    };
+
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("timeupdate", handleTimeUpdate);
     audio.addEventListener("waiting", handleWaiting);
     audio.addEventListener("playing", handlePlaying);
+    audio.addEventListener("ended", handleEnded);
+
+    if (audioRef.current.ended) {
+      handleEnded();
+    }
 
     if (isPlaying) audio.play();
     else audio.pause();
@@ -61,6 +77,7 @@ const MusicPlayer = () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("waiting", handleWaiting);
       audio.removeEventListener("playing", handlePlaying);
+      audio.removeEventListener("ended", handleEnded);
     };
   }, [isPlaying, music]);
 
@@ -81,7 +98,6 @@ const MusicPlayer = () => {
       handleAddMusic(allMusic[newIndex]);
       handleIsPlaying(true);
     } else {
-      // flag === "prev"
       if (audioRef.current && audioRef.current.currentTime > 1.5) {
         audioRef.current.currentTime = 0;
         handleIsPlaying(true);
@@ -136,6 +152,26 @@ const MusicPlayer = () => {
           />
         )}
         <div className="flex justify-center md:justify-start items-center gap-x-4 md:gap-x-8 text-white text-2xl">
+          <button
+            className="text-2xl hidden xl:block"
+            aria-label="Action Close Music"
+            onClick={() => {
+              handleIsOpenPlayer(false);
+              handleIsPlaying(false);
+              handleAddMusic(null);
+            }}
+          >
+            <LuX />
+          </button>
+          <button
+            className="hidden text-2xl xl:block"
+            aria-label="Action Minimize Music"
+            onClick={() => {
+              handleIsOpenPlayer(false);
+            }}
+          >
+            <LuMinimize />
+          </button>
           <div className="flex md:items-center gap-x-4 md:gap-x-6">
             {music?.cover && (
               <div className="relative min-w-12 w-12 h-12 min-h-12 md:min-w-14 md:w-14 md:h-14 md:min-h-14 aspect-square">
@@ -188,7 +224,7 @@ const MusicPlayer = () => {
 
         <div className="flex justify-between gap-x-4 md:gap-x-6">
           <button
-            className="text-xl"
+            className="text-xl xl:hidden"
             aria-label="Action Close Music"
             onClick={() => {
               handleIsOpenPlayer(false);
@@ -228,8 +264,8 @@ const MusicPlayer = () => {
             </button>
           </div>
           <button
-            className="text-xl"
-            aria-label="Action Close Music"
+            className="text-xl xl:hidden"
+            aria-label="Action Minimize Music"
             onClick={() => {
               handleIsOpenPlayer(false);
             }}
