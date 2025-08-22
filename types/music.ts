@@ -7,6 +7,8 @@ export interface Music {
   applemusic: string;
   soundcloud: string;
   youtube: string;
+  deezer: string;
+  ytmusic: string;
   caption?: string;
   url: string;
 }

@@ -6,7 +6,13 @@ import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import Marquee from "react-fast-marquee";
 import { BiLoaderAlt } from "react-icons/bi";
-import { FaApple, FaSoundcloud, FaSpotify, FaYoutube } from "react-icons/fa6";
+import {
+  FaApple,
+  FaDeezer,
+  FaSoundcloud,
+  FaSpotify,
+  FaYoutube,
+} from "react-icons/fa6";
 import { LuChevronUp, LuMinimize, LuX } from "react-icons/lu";
 import {
   PiCaretLineLeftFill,
@@ -14,6 +20,7 @@ import {
   PiPauseFill,
   PiPlayFill,
 } from "react-icons/pi";
+import { SiYoutubemusic } from "react-icons/si";
 
 const MusicPlayer = () => {
   const {
@@ -137,7 +144,7 @@ const MusicPlayer = () => {
         </button>
       </div>
       <div
-        className={`fixed inset-x-0 px-6 py-8 md:px-12 bg-dark/90 backdrop-blur-md border-x border-t border-white/10 rounded-t-2xl xl:rounded-t-3xl flex flex-col xl:flex-row justify-between gap-y-4 gap-x-16 xl:items-center transition-all ease-in-out duration-500 z-50 ${
+        className={`fixed inset-x-0 px-6 py-8 md:px-12 bg-dark/90 backdrop-blur-md border-x border-t ignore-click border-white/10 rounded-t-2xl xl:rounded-t-3xl flex flex-col xl:flex-row justify-between gap-y-4 gap-x-16 xl:items-center transition-all ease-in-out duration-500 z-50 ${
           isOpenPlayer ? "bottom-0 visible" : "-bottom-full invisible"
         }`}
       >
@@ -276,7 +283,7 @@ const MusicPlayer = () => {
           </button>
         </div>
 
-        <div className="flex justify-between items-center border-t xl:border-t-0 border-white/10 pt-4 xl:pt-0 gap-x-4">
+        <div className="flex justify-between flex-wrap xl:flex-nowrap items-center border-t xl:border-t-0 border-white/10 pt-4 xl:pt-0 gap-x-4 gap-y-2">
           <p
             className={`${montserrat.className} text-sm text-white whitespace-nowrap`}
           >
@@ -286,6 +293,8 @@ const MusicPlayer = () => {
           music?.youtube ||
           music?.spotify ||
           music?.applemusic ||
+          music?.deezer ||
+          music?.ytmusic ||
           music?.url ? (
             <div
               className={`${montserrat.className} text-sm font-medium flex items-center gap-x-2`}
@@ -296,7 +305,7 @@ const MusicPlayer = () => {
                   className="p-3 rounded-full text-white border border-white/30 hover:bg-white/10 flex items-center group transition-all ease-in-out"
                 >
                   <FaSpotify />
-                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[80px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[100px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
                     Spotify
                   </span>
                 </button>
@@ -307,8 +316,30 @@ const MusicPlayer = () => {
                   className="p-3 rounded-full text-white border border-white/30 hover:bg-white/10 flex items-center group transition-all ease-in-out"
                 >
                   <FaApple />
-                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[80px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[100px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
                     Apple Music
+                  </span>
+                </button>
+              )}
+              {music.deezer && (
+                <button
+                  onClick={() => handlePlayFullVersion(music.deezer)}
+                  className="p-3 rounded-full text-white border border-white/30 hover:bg-white/10 flex items-center group transition-all ease-in-out"
+                >
+                  <FaDeezer />
+                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[100px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                    Deezer
+                  </span>
+                </button>
+              )}
+              {music.ytmusic && (
+                <button
+                  onClick={() => handlePlayFullVersion(music.ytmusic)}
+                  className="p-3 rounded-full text-white border border-white/30 hover:bg-white/10 flex items-center group transition-all ease-in-out"
+                >
+                  <SiYoutubemusic />
+                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[100px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                    Youtube Music
                   </span>
                 </button>
               )}
@@ -318,7 +349,7 @@ const MusicPlayer = () => {
                   className="p-3 rounded-full text-white border border-white/30 hover:bg-white/10 flex items-center group transition-all ease-in-out"
                 >
                   <FaSoundcloud />
-                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[80px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[100px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
                     SoundCloud
                   </span>
                 </button>
@@ -329,7 +360,7 @@ const MusicPlayer = () => {
                   className="p-3 rounded-full text-white border border-white/30 hover:bg-white/10 flex items-center group transition-all ease-in-out"
                 >
                   <FaYoutube />
-                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[80px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[100px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
                     Youtube
                   </span>
                 </button>

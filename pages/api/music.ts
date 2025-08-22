@@ -20,8 +20,10 @@ export default async function handler(
     youtube: row["_rawData"][5] || "",
     applemusic: row["_rawData"][6] || "",
     spotify: row["_rawData"][7] || "",
-    url: row["_rawData"][8] || "",
-    caption: row["_rawData"][9] || "",
+    ytmusic: row["_rawData"][8] || "",
+    deezer: row["_rawData"][9] || "",
+    url: row["_rawData"][10] || "",
+    caption: row["_rawData"][11] || "",
   }));
 
   res.status(200).json(data);
