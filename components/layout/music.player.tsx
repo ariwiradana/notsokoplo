@@ -280,7 +280,7 @@ const MusicPlayer = () => {
           <p
             className={`${montserrat.className} text-sm text-white whitespace-nowrap`}
           >
-            Tersedia di :
+            Dengarkan di :
           </p>
           {music?.soundcloud ||
           music?.youtube ||
