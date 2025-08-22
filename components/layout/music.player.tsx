@@ -125,7 +125,7 @@ const MusicPlayer = () => {
       <div
         className={`fixed transition-all ease-in-out duration-300 delay-200 ${
           !isOpenPlayer && music ? "-bottom-1" : "-bottom-full"
-        } left-8 z-[55]`}
+        } left-4 md:left-6 xl:left-8 z-[55]`}
       >
         <button
           className="text-white px-3 py-1 rounded-t-2xl text-2xl bg-dark/90 backdrop-blur-md border-x border-t border-white/10"
