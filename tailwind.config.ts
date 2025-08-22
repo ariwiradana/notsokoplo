@@ -20,6 +20,14 @@ export default {
         edensor: ["Edensor", "sans-serif"],
         bigilla: ["Bigilla", "sans-serif"],
       },
+      animation: {
+        "spin-slow": "spin-slow 4s linear infinite",
+      },
+      keyframes: {
+        "spin-slow": {
+          to: { transform: "rotate(360deg)" },
+        },
+      },
     },
   },
   plugins: [],

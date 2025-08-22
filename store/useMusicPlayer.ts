@@ -7,11 +7,13 @@ interface StoreState {
   music: Music | null;
   duration: number;
   currentTime: number;
+  buffering: boolean;
   handleIsPlaying: (isPlaying: boolean) => void;
   handleIsOpenPlayer: (isOpen: boolean) => void;
   handleAddMusic: (music: Music | null) => void;
   setDuration: (duration: number) => void;
   setCurrentTime: (time: number) => void;
+  setBuffering: (buffering: boolean) => void;
 }
 
 const useMusicPlayer = create<StoreState>((set) => ({
@@ -20,6 +22,7 @@ const useMusicPlayer = create<StoreState>((set) => ({
   music: null,
   duration: 0,
   currentTime: 0,
+  buffering: false,
   handleIsOpenPlayer: (isOpen) =>
     set(() => ({
       isOpenPlayer: isOpen,
@@ -31,6 +34,7 @@ const useMusicPlayer = create<StoreState>((set) => ({
   handleAddMusic: (music) => set(() => ({ music })),
   setDuration: (duration) => set(() => ({ duration })),
   setCurrentTime: (currentTime) => set(() => ({ currentTime })),
+  setBuffering: (buffering) => set(() => ({ buffering })),
 }));
 
 export default useMusicPlayer;
