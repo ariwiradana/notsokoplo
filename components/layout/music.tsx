@@ -40,7 +40,7 @@ const MusicComponent = () => {
         </div>
         <div>
           <Swiper
-            speed={1000}
+            speed={500}
             navigation={{
               prevEl: ".action-prev",
               nextEl: ".action-next",
@@ -55,15 +55,49 @@ const MusicComponent = () => {
                 className="max-w-[80vw] md:max-w-[40vw] lg:max-w-96"
               >
                 <div className="md:text-center">
-                  <div className="w-full aspect-square relative shadow-lg mb-6 group/music">
+                  <div
+                    className={`w-full aspect-square relative shadow-lg mb-6 group/music transition-all ease-in-out duration-300 ${
+                      playedMusic?.title === music.title ? "scale-[0.85]" : ""
+                    }`}
+                  >
+                    {playedMusic?.title === music.title && (
+                      <div
+                        className={`absolute inset-0 z-10 transition-all ease-in-out duration-200 delay-200 ${
+                          playedMusic.title === music.title
+                            ? "translate-x-14"
+                            : "group-hover/music:translate-x-14"
+                        }`}
+                      >
+                        <Image
+                          sizes="600px"
+                          src="/images/disc.png"
+                          fill
+                          className={`object-contain transition-all ease-in-out duration-300 delay-100 ${
+                            isPlaying && "animate-spin-slow"
+                          }`}
+                          alt={`Disc Image ${music.title} Notsokoplo`}
+                        />
+                      </div>
+                    )}
                     <Image
                       sizes="600px"
                       src={music.cover}
                       fill
-                      className="object-cover bg-white/5 group-hover/music:scale-[0.98] transition-all ease-in-out duration-300 delay-100"
+                      className={`object-cover z-30 transition-all ease-in-out duration-200 ${
+                        playedMusic?.title === music.title
+                          ? "-translate-x-6"
+                          : ""
+                      }`}
                       alt={`Cover Image ${music.title} Notsokoplo`}
                     />
-                    <div className="absolute inset-0 h-auto group-hover/music:visible group-hover/music:opacity-100 opacity-0 invisible z-10 bg-dark/70 backdrop-blur-sm flex flex-col justify-center items-center gap-2 transition-all ease-in-out duration-300">
+                    <div
+                      className={`absolute inset-0 h-auto group-hover/music:visible group-hover/music:opacity-100 opacity-0 invisible z-30 bg-dark/20 flex flex-col justify-center items-center gap-2 transition-all ease-in-out duration-200 ${
+                        playedMusic?.title === music.title
+                          ? "-translate-x-6"
+                          : ""
+                      }
+                      `}
+                    >
                       <button
                         onClick={() => {
                           handleAddMusic(music);
