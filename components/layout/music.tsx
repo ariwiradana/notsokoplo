@@ -3,7 +3,13 @@ import Image from "next/image";
 import React from "react";
 import useAppStore from "@/store/useAppStore";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { BiChevronLeft, BiChevronRight, BiPause, BiPlay } from "react-icons/bi";
+import {
+  BiChevronLeft,
+  BiChevronRight,
+  BiLoaderAlt,
+  BiPause,
+  BiPlay,
+} from "react-icons/bi";
 import { Navigation } from "swiper/modules";
 import useMusicPlayer from "@/store/useMusicPlayer";
 
@@ -15,7 +21,12 @@ const MusicComponent = () => {
     handleAddMusic,
     isPlaying,
     music: playedMusic,
+    duration,
+    currentTime,
+    buffering,
   } = useMusicPlayer();
+
+  const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
   return (
     <div className={`relative ${montserrat.className} z-0 bg-black`} id="musik">
@@ -56,49 +67,20 @@ const MusicComponent = () => {
               >
                 <div className="md:text-center">
                   <div
-                    className={`w-full aspect-square relative shadow-lg mb-6 group/music transition-all ease-in-out duration-300 ${
-                      playedMusic?.title === music.title ? "scale-[0.85]" : ""
-                    }`}
+                    className={`w-full aspect-square relative shadow-lg mb-6 group/music transition-all ease-in-out duration-300`}
                   >
-                    {playedMusic?.title === music.title && (
-                      <div
-                        className={`absolute inset-0 z-10 transition-all ease-in-out duration-200 delay-200 ${
-                          playedMusic.title === music.title
-                            ? "translate-x-10"
-                            : "group-hover/music:translate-x-10"
-                        }`}
-                      >
-                        <Image
-                          sizes="600px"
-                          src="/images/disc.png"
-                          fill
-                          className={`object-contain transition-all ease-in-out duration-300 delay-100 ${
-                            isPlaying && "animate-spin-slow"
-                          }`}
-                          alt={`Disc Image ${music.title} Notsokoplo`}
-                        />
-                      </div>
-                    )}
                     <Image
                       sizes="600px"
                       src={music.cover}
                       fill
-                      className={`object-cover z-30 transition-all ease-in-out duration-200 ${
-                        playedMusic?.title === music.title
-                          ? "-translate-x-6"
-                          : ""
-                      }`}
+                      className={`object-cover z-30 transition-all ease-in-out duration-200`}
                       alt={`Cover Image ${music.title} Notsokoplo`}
                     />
                     <div
-                      className={`absolute inset-0 h-auto group-hover/music:visible group-hover/music:opacity-100 opacity-0 invisible z-30 bg-dark/20 flex flex-col justify-center items-center gap-2 transition-all ease-in-out duration-200 ${
-                        playedMusic?.title === music.title
-                          ? "-translate-x-6"
-                          : ""
-                      }
-                      `}
+                      className={`absolute inset-0 h-auto group-hover/music:visible group-hover/music:opacity-100 opacity-0 invisible z-30 bg-dark/20 flex flex-col justify-center items-center gap-2 transition-all ease-in-out duration-200`}
                     >
                       <button
+                        disabled={buffering}
                         onClick={() => {
                           handleAddMusic(music);
                           if (!playedMusic) {
@@ -110,14 +92,35 @@ const MusicComponent = () => {
                             handleIsPlaying(true);
                           }
                         }}
-                        className="text-white text-sm flex items-center bg-primary rounded-full p-2 lg:p-3"
+                        className="text-white text-sm flex items-center bg-primary rounded-full min-w-14 min-h-14 aspect-square justify-center relative z-10 disabled:bg-opacity-70"
                       >
-                        {music.title === playedMusic?.title && isPlaying ? (
-                          <BiPause className="text-4xl" />
+                        {buffering ? (
+                          <BiLoaderAlt className="animate-spin text-2xl" />
                         ) : (
-                          <BiPlay className="text-4xl" />
+                          <>
+                            {" "}
+                            {music.title === playedMusic?.title && isPlaying ? (
+                              <BiPause className="text-4xl" />
+                            ) : (
+                              <BiPlay className="text-4xl" />
+                            )}
+                          </>
                         )}
                       </button>
+                      {music.title === playedMusic?.title &&
+                      progressPercent > 0 &&
+                      currentTime < duration ? (
+                        <div
+                          className="absolute rounded-full top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+                          style={{
+                            width: 62,
+                            height: 62,
+                            background: `conic-gradient(#ffff ${progressPercent}%, transparent 0)`,
+                            WebkitMask: `radial-gradient(circle calc(50% - 2px), transparent 99%, black 100%)`,
+                            mask: `radial-gradient(circle calc(50% - 2px), transparent 99%, black 100%)`,
+                          }}
+                        />
+                      ) : null}
                     </div>
                   </div>
 
