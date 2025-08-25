@@ -3,15 +3,10 @@ import Image from "next/image";
 import React from "react";
 import useAppStore from "@/store/useAppStore";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  BiChevronLeft,
-  BiChevronRight,
-  BiLoaderAlt,
-  BiPause,
-  BiPlay,
-} from "react-icons/bi";
+import { BiChevronLeft, BiChevronRight, BiPause, BiPlay } from "react-icons/bi";
 import { Navigation } from "swiper/modules";
 import useMusicPlayer from "@/store/useMusicPlayer";
+import { BeatLoader } from "react-spinners";
 
 const MusicComponent = () => {
   const store = useAppStore();
@@ -92,13 +87,12 @@ const MusicComponent = () => {
                             handleIsPlaying(true);
                           }
                         }}
-                        className="text-white text-sm flex items-center bg-primary rounded-full min-w-14 min-h-14 aspect-square justify-center relative z-10 disabled:bg-opacity-70"
+                        className="text-white text-sm flex items-center bg-primary rounded-full min-w-14 min-h-14 aspect-square justify-center relative z-10"
                       >
-                        {buffering ? (
-                          <BiLoaderAlt className="animate-spin text-2xl" />
+                        {buffering && music.title === playedMusic?.title ? (
+                          <BeatLoader color="white" size={7} />
                         ) : (
                           <>
-                            {" "}
                             {music.title === playedMusic?.title && isPlaying ? (
                               <BiPause className="text-4xl" />
                             ) : (

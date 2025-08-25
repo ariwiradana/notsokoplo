@@ -4,7 +4,6 @@ import useAppStore from "@/store/useAppStore";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
-import { BiLoaderAlt } from "react-icons/bi";
 import {
   FaApple,
   FaDeezer,
@@ -20,6 +19,7 @@ import {
   PiPlayFill,
 } from "react-icons/pi";
 import { SiYoutubemusic } from "react-icons/si";
+import { BeatLoader } from "react-spinners";
 
 const MusicPlayer = () => {
   const {
@@ -55,7 +55,6 @@ const MusicPlayer = () => {
     const handlePlaying = () => setBuffering(false);
 
     const handleEnded = () => {
-      console.log("is ended");
       const allMusic = [...store.music];
       const newIndex =
         (allMusic.findIndex((m) => m.title === music.title) + 1) %
@@ -246,12 +245,12 @@ const MusicPlayer = () => {
             </button>
             <button
               disabled={buffering}
-              className="text-2xl bg-white text-dark rounded-full p-2 aspect-square disabled:opacity-50 transition-all ease-in-out duration-300"
+              className="text-2xl bg-white text-dark rounded-full aspect-square transition-all ease-in-out duration-300 h-11 w-11 flex justify-center items-center disabled:opacity-70"
               aria-label="Action Play Pause Music"
               onClick={() => handleIsPlaying(!isPlaying)}
             >
               {buffering ? (
-                <BiLoaderAlt className="animate-spin" />
+                <BeatLoader color="#0f0f0f" size={5} />
               ) : (
                 <>{isPlaying ? <PiPauseFill /> : <PiPlayFill />}</>
               )}
