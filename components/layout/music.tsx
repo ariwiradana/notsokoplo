@@ -75,7 +75,9 @@ const MusicComponent = () => {
                       className={`absolute inset-0 h-auto group-hover/music:visible group-hover/music:opacity-100 opacity-0 invisible z-30 bg-dark/20 flex flex-col justify-center items-center gap-2 transition-all ease-in-out duration-200`}
                     >
                       <button
-                        disabled={buffering}
+                        disabled={
+                          buffering && music.title === playedMusic?.title
+                        }
                         onClick={() => {
                           handleAddMusic(music);
                           if (!playedMusic) {
@@ -119,7 +121,7 @@ const MusicComponent = () => {
                   </div>
 
                   {music.caption && (
-                    <div className="mb-3">
+                    <div className="mb-2">
                       <p className="bg-primary/30 border border-primary/50 text-white inline px-3 py-[3px] rounded-full text-sm">
                         {music.caption}
                       </p>

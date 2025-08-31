@@ -3,12 +3,8 @@ export interface Music {
   artist: string;
   cover: string;
   preview: string;
-  spotify: string;
-  applemusic: string;
   soundcloud: string;
   youtube: string;
-  deezer: string;
-  ytmusic: string;
-  caption?: string;
   url: string;
+  caption?: string;
 }
