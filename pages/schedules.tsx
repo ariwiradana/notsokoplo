@@ -16,7 +16,7 @@ import React, { useState } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import { GoArrowUpRight } from "react-icons/go";
 import { IoTicketSharp } from "react-icons/io5";
-import { SquareLoader } from "react-spinners";
+import { BarLoader } from "react-spinners";
 import useSWR from "swr";
 
 const Events = () => {
@@ -207,7 +207,7 @@ const Events = () => {
                 className={`flex justify-center mt-12 lg:mt-16 ${montserrat.className}`}
               >
                 {isLoading ? (
-                  <SquareLoader color="white" size={30} />
+                  <BarLoader color="white" className="scale-75" />
                 ) : (
                   <button
                     aria-label="Button Load More Event"

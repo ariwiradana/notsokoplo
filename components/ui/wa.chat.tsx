@@ -108,8 +108,9 @@ const WAChat: NextPage = () => {
           />
           <div className="absolute bottom-4 right-4">
             <button
+              disabled={text.length === 0}
               type="submit"
-              className="p-1.5 aspect-square rounded-full bg-green-500 flex justify-center items-center"
+              className="p-1.5 aspect-square rounded-full disabled:bg-green-500/60 bg-green-500 flex justify-center items-center"
             >
               <Image
                 sizes="20px"

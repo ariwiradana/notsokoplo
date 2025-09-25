@@ -1,5 +1,5 @@
 import React from "react";
-import { SquareLoader } from "react-spinners";
+import { BarLoader } from "react-spinners";
 
 interface LoadingProps {
   show?: boolean;
@@ -12,7 +12,7 @@ const Loading = ({ show = true }: LoadingProps) => {
         show ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
     >
-      <SquareLoader color="white" />
+      <BarLoader color="white" className="scale-75" />
     </div>
   );
 };

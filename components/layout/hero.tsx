@@ -1,14 +1,43 @@
 import useLoading from "@/store/useLoading";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "../ui/button";
 import { montserrat } from "@/constants/fonts";
 import Link from "next/link";
 import { TbLink, TbPlayerPlayFilled } from "react-icons/tb";
 import useAppStore from "@/store/useAppStore";
+import { VideoStatus } from "@/types/VideoStatus";
+import { BarLoader } from "react-spinners";
 
 const HeroComponent = () => {
   const { handleIsLoading } = useLoading();
   const store = useAppStore();
+
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [status, setStatus] = useState<VideoStatus>("idle");
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handlePlaying = () => setStatus("playing");
+    const handlePause = () => setStatus("paused");
+    const handleWaiting = () => setStatus("buffering");
+    const handleEnded = () => setStatus("ended");
+
+    video.addEventListener("playing", handlePlaying);
+    video.addEventListener("pause", handlePause);
+    video.addEventListener("waiting", handleWaiting);
+    video.addEventListener("ended", handleEnded);
+
+    return () => {
+      video.removeEventListener("playing", handlePlaying);
+      video.removeEventListener("pause", handlePause);
+      video.removeEventListener("waiting", handleWaiting);
+      video.removeEventListener("ended", handleEnded);
+    };
+  }, []);
+
+  console.log({ status });
 
   return (
     <div
@@ -56,15 +85,20 @@ const HeroComponent = () => {
           </div>
         </>
       )}
+      {["idle", "buffering"].includes(status) && (
+        <div className="absolute z-20 inset-0 flex justify-center items-center">
+          <BarLoader className="scale-75" color="white" />
+        </div>
+      )}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video
+          ref={videoRef}
           onLoadedData={handleIsLoading}
           className="min-w-full min-h-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 object-cover"
           autoPlay
           muted
           loop
           playsInline
-          poster={store.release?.poster as string}
         >
           <source src={store.release?.video as string} />
         </video>
