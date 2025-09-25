@@ -3,7 +3,7 @@ import React from "react";
 import Button from "../ui/button";
 import { montserrat } from "@/constants/fonts";
 import Link from "next/link";
-import { TbPlayerPlayFilled } from "react-icons/tb";
+import { TbLink, TbPlayerPlayFilled } from "react-icons/tb";
 import useAppStore from "@/store/useAppStore";
 
 const HeroComponent = () => {
@@ -40,7 +40,16 @@ const HeroComponent = () => {
               aria-label="URL Stream New Release"
               href={(store.release.url as string) || ""}
             >
-              <Button icon={<TbPlayerPlayFilled />} title="Stream Sekarang" />
+              <Button
+                icon={
+                  store.release.action_title ? (
+                    <TbLink />
+                  ) : (
+                    <TbPlayerPlayFilled />
+                  )
+                }
+                title={store.release.action_title || "Stream Sekarang"}
+              />
             </Link>
           </div>
         </>

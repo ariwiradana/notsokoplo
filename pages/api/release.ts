@@ -19,6 +19,7 @@ export default async function handler(
     caption: row["_rawData"][4] || null,
     video: row["_rawData"][5] || null,
     poster: row["_rawData"][6] || null,
+    action_title: row["_rawData"][7] || null,
   }));
 
   res.status(200).json(data);

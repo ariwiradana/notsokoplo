@@ -4,7 +4,6 @@ import Navbar from "@/components/layout/navbar";
 import NavbarToggle from "@/components/layout/navbar.toggle";
 import Seo from "@/components/layout/seo";
 import Button from "@/components/ui/button";
-import Fab from "@/components/ui/fab";
 import Loading from "@/components/ui/loading";
 import { montserrat } from "@/constants/fonts";
 import fetcher from "@/lib/axios";
@@ -72,7 +71,6 @@ const Events = () => {
         <Loading />
       ) : (
         <section className="bg-dark relative">
-          <Fab />
           <Navbar fixed={false} />
 
           <div className="pb-16 lg:pb-28 pt-16 md:pt-2 max-w-screen-xl mx-auto">

@@ -6,4 +6,5 @@ export interface Release {
   caption: string;
   video: string;
   poster: string;
+  action_title?: string;
 }

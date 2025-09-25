@@ -12,11 +12,11 @@ import EventComponent from "@/components/layout/events";
 import Seo from "@/components/layout/seo";
 import useDisableInspect from "@/hooks/useDisableInspect";
 import Loading from "@/components/ui/loading";
-import Fab from "@/components/ui/fab";
 import MusicPlayer from "@/components/layout/music.player";
 import GalleryComponent from "@/components/layout/gallery";
 import useAppStore from "@/store/useAppStore";
 import TabNav from "@/components/layout/tab";
+import WAChat from "@/components/ui/wa.chat";
 
 const HomePage = () => {
   const store = useAppStore();
@@ -87,7 +87,7 @@ const HomePage = () => {
         <Loading />
       ) : (
         <section className="bg-dark relative">
-          <Fab />
+          <WAChat />
           <NavbarToggle />
           <Navbar />
           <MusicPlayer />
