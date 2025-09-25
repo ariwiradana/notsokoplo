@@ -99,6 +99,7 @@ const HeroComponent = () => {
           muted
           loop
           playsInline
+          poster={store.release?.poster || ""}
         >
           <source src={store.release?.video as string} />
         </video>
