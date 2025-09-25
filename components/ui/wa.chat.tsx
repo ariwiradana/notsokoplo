@@ -79,7 +79,7 @@ const WAChat: NextPage = () => {
           <div className="px-4 py-2 rounded-2xl bg-dark/5 inline-flex mt-4">
             <div className="text-dark">
               <p>Hai👋</p>
-              <p className="mt-3">Mau booking?</p>
+              <p className="mt-3">Ada yang bisa dibantu?</p>
             </div>
           </div>
         </div>
