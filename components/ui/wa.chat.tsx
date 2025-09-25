@@ -87,8 +87,7 @@ const WAChat: NextPage = () => {
           onSubmit={handleSubmit}
           className="border-t border-t-dark/10 relative py-4"
         >
-          <input
-            type="text"
+          <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
             className="w-full h-full pl-6 pr-12 outline-none text-dark"
