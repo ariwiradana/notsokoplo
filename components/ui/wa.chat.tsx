@@ -103,7 +103,7 @@ const WAChat: NextPage = () => {
             rows={rows}
             value={text}
             onChange={handleChange}
-            className="w-full h-full pl-6 pr-12 outline-none text-dark max-h-40 overflow-y-auto"
+            className="w-full h-full pl-6 pr-12 outline-none text-dark max-h-28 md:max-h-40 overflow-y-auto"
             placeholder="Enter Your Message"
           />
           <div className="absolute bottom-4 right-4">
