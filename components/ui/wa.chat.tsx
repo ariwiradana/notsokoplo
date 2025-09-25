@@ -43,7 +43,7 @@ const WAChat: NextPage = () => {
 
   return (
     <div
-      className={`fixed bottom-4 right-4 z-50 flex flex-col items-end gap-y-6 lg:gap-y-8 ${
+      className={`fixed bottom-4 right-4 z-50 w-0 flex flex-col items-end gap-y-6 bg-red-500 lg:gap-y-8 ${
         isShown
           ? "opacity-100 translate-y-0 visible"
           : "opacity-0 translate-y-4 invisible"
