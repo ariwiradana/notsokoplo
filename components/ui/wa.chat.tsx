@@ -44,12 +44,16 @@ const WAChat: NextPage = () => {
   return (
     <div
       className={`fixed bottom-4 right-4 z-50 flex flex-col items-end gap-y-6 lg:gap-y-8 ${
-        isShown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        isShown
+          ? "opacity-100 translate-y-0 visible"
+          : "opacity-0 translate-y-4 invisible"
       } transition-all ease-in-out duration-300`}
     >
       <div
         className={`bg-white min-w-72 lg:min-w-96 rounded-2xl overflow-hidden shadow ${
-          isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          isOpen
+            ? "opacity-100 translate-y-0 visible"
+            : "opacity-0 translate-y-4 invisible"
         } transition-all ease-in-out duration-300`}
       >
         <div className="flex justify-between gap-x-8 p-4 border-b border-b-dark/10 items-start">
