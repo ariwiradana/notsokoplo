@@ -20,17 +20,19 @@ const HeroComponent = () => {
           <div
             className={`absolute inset-0 flex flex-col justify-end items-center bg-gradient-to-b from-transparent via-dark/40 to-dark/60 px-4 md:px-12 py-16 lg:p-32 z-20 ${montserrat.className}`}
           >
-            <h1
-              style={{
-                lineHeight: "0.9em",
-              }}
-              className="text-white font-semibold text-center text-5xl md:text-6xl lg:text-8xl uppercase mt-6 relative"
-            >
-              {store.release.title}{" "}
-              <span className="text-lg md:text-xl font-medium text-white/60">
+            <div className="flex flex-col lg:flex-row items-center lg:items-end mt-6 gap-2">
+              <h1
+                style={{
+                  lineHeight: "0.9em",
+                }}
+                className="text-white font-semibold text-center text-5xl md:text-6xl lg:text-8xl uppercase relative"
+              >
+                {store.release.title}{" "}
+              </h1>
+              <p className="text-lg md:text-xl font-medium text-white/60">
                 {store.release.caption}
-              </span>
-            </h1>
+              </p>
+            </div>
             <p className="text-white text-lg my-4 text-center lg:text-left">
               {store.release.artist}
             </p>
