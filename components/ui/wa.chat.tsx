@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 import { HiX } from "react-icons/hi";
 
@@ -8,6 +8,7 @@ const WAChat: NextPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [text, setText] = useState("");
   const [isShown, setIsShown] = useState<boolean>(false);
+  const [rows, setRows] = useState(1);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,6 +33,13 @@ const WAChat: NextPage = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    setText(value);
+    const newLines = value.split("\n").length;
+    setRows(newLines);
+  };
 
   return (
     <div
@@ -88,9 +96,10 @@ const WAChat: NextPage = () => {
           className="border-t border-t-dark/10 relative py-4"
         >
           <textarea
+            rows={rows}
             value={text}
-            onChange={(e) => setText(e.target.value)}
-            className="w-full h-full pl-6 pr-12 outline-none text-dark"
+            onChange={handleChange}
+            className="w-full h-full pl-6 pr-12 outline-none text-dark max-h-40 overflow-y-auto"
             placeholder="Enter Your Message"
           />
           <div className="absolute bottom-4 right-4">
