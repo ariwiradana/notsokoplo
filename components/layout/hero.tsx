@@ -86,7 +86,7 @@ const HeroComponent = () => {
         </>
       )}
       {["idle", "buffering"].includes(status) && (
-        <div className="absolute z-20 inset-0 flex justify-center items-center">
+        <div className="absolute z-10 inset-0 flex justify-center items-center">
           <BarLoader className="scale-75" color="white" />
         </div>
       )}
