@@ -4,11 +4,7 @@ import useAppStore from "@/store/useAppStore";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
-import {
-  FaCompactDisc,
-  FaSoundcloud,
-  FaYoutube,
-} from "react-icons/fa6";
+import { FaCompactDisc, FaSoundcloud, FaYoutube } from "react-icons/fa6";
 import { LuChevronUp, LuMinimize, LuX } from "react-icons/lu";
 import {
   PiCaretLineLeftFill,
@@ -275,7 +271,7 @@ const MusicPlayer = () => {
           <p
             className={`${montserrat.className} text-sm text-white whitespace-nowrap`}
           >
-            Dengarkan di :
+            Versi Full :
           </p>
           {music?.soundcloud || music?.youtube || music?.url ? (
             <div

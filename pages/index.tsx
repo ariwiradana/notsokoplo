@@ -56,7 +56,7 @@ const HomePage = () => {
   useSWR("/api/release", fetcher, {
     onSuccess(data) {
       if (data.length > 0) {
-        store.setRelease(data[0]);
+        store.setRelease(data);
       }
     },
   });

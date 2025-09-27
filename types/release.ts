@@ -1,4 +1,5 @@
 export interface Release {
+  orientation: string;
   url: string;
   artist: string;
   title: string;

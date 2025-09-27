@@ -8,13 +8,13 @@ import { create } from "zustand";
 
 interface Store {
   clients: Client[];
-  release: Release | null;
+  release: Release[];
   events: Event[];
   images: Image[];
   music: Music[];
   videos: Video[];
   setClients: (clients: Client[]) => void;
-  setRelease: (release: Release) => void;
+  setRelease: (release: Release[]) => void;
   setEvents: (events: Event[]) => void;
   setImages: (images: Image[]) => void;
   setMusic: (music: Music[]) => void;
@@ -23,13 +23,13 @@ interface Store {
 
 const useAppStore = create<Store>((set) => ({
   clients: [],
-  release: null,
+  release: [],
   events: [],
   images: [],
   music: [],
   videos: [],
   setClients: (clients: Client[]) => set(() => ({ clients })),
-  setRelease: (release: Release) => set(() => ({ release })),
+  setRelease: (release: Release[]) => set(() => ({ release })),
   setEvents: (events: Event[]) => set(() => ({ events })),
   setImages: (images: Image[]) => set(() => ({ images })),
   setMusic: (music: Music[]) => set(() => ({ music })),
