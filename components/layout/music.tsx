@@ -55,7 +55,7 @@ const MusicComponent = () => {
             spaceBetween={16}
             modules={[Navigation]}
           >
-            {store.music?.map((musics) => {
+            {store.music?.map((musics, index) => {
               const music = musics.musics[0];
               const isMultiple = musics.musics.length > 1;
               return (
@@ -68,8 +68,10 @@ const MusicComponent = () => {
                       className={`w-full aspect-square relative shadow-lg mb-6 group/music transition-all ease-in-out duration-300`}
                     >
                       <Image
+                        loading={index < 3 ? "eager" : "lazy"}
                         sizes="600px"
                         src={music.cover}
+                        priority={index < 3}
                         fill
                         className={`object-cover z-30 transition-all rounded-2xl ease-in-out duration-200 shadow-lg ${
                           isMultiple &&

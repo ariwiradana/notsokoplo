@@ -245,9 +245,15 @@ const MusicPlayer = () => {
               onChange={(e) => setDragTime(parseFloat(e.target.value))}
               onMouseUp={() => {
                 if (!audioRef.current || dragTime === null) return;
-                audioRef.current.currentTime = dragTime; // apply ke audio
-                setCurrentTime(dragTime); // update store
-                setDragTime(null); // reset drag state
+                audioRef.current.currentTime = dragTime;
+                setCurrentTime(dragTime);
+                setDragTime(null); // reset setelah selesai drag
+              }}
+              onTouchEnd={() => {
+                if (!audioRef.current || dragTime === null) return;
+                audioRef.current.currentTime = dragTime;
+                setCurrentTime(dragTime);
+                setDragTime(null);
               }}
               className="w-full h-1 rounded-full accent-primary cursor-pointer relative z-10"
             />
