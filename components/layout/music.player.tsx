@@ -111,12 +111,6 @@ const MusicPlayer = () => {
 
   const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
-  // const handlePlayFullVersion = (url: string) => {
-  //   setTimeout(() => {
-  //     window.open(url, "_blank");
-  //   }, 500);
-  // };
-
   useEffect(() => {
     if (isOpenPlayer) {
       document.body.classList.add("overflow-hidden");
@@ -125,6 +119,8 @@ const MusicPlayer = () => {
     }
     return () => document.body.classList.remove("overflow-hidden");
   }, [isOpenPlayer]);
+
+  const [dragTime, setDragTime] = React.useState<number | null>(null);
 
   return (
     <>
@@ -146,13 +142,13 @@ const MusicPlayer = () => {
         onClick={() => {
           handleIsOpenPlayer(false);
         }}
-        className={`fixed overflow-hidden inset-0 select-none ignore-click bg-dark/90 backdrop-blur-sm flex flex-col justify-end md:justify-center items-center transition-all ease-in-out duration-500 z-50 ${
+        className={`fixed overflow-hidden inset-0 select-none ignore-click bg-dark/60 md:bg-dark/90 backdrop-blur-sm flex flex-col justify-end md:justify-center items-center transition-all ease-in-out duration-300 z-50 ${
           isOpenPlayer ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`relative overflow-hidden bg-dark/90 backdrop-blur-md rounded-t-2xl md:rounded-3xl px-6 py-8 md:px-10 md:py-10 transition-all ease-in-out duration-500 ${
+          className={`relative overflow-hidden bg-dark/90 backdrop-blur-md rounded-t-2xl md:rounded-3xl px-6 py-8 md:px-10 md:py-10 transition-all ease-in-out duration-300 ${
             isOpenPlayer ? "translate-y-0" : "translate-y-5"
           }`}
         >
@@ -160,8 +156,11 @@ const MusicPlayer = () => {
             <Image
               src={music?.cover}
               fill
-              className="object-cover blur-2xl opacity-20"
+              className="object-cover opacity-15 blur-3xl"
               alt={`Cover Backdrop ${music?.title} Notsokoplo`}
+              quality={30}
+              priority={false}
+              sizes="(max-width: 640px) 80vw, (max-width: 768px) 40vw, (max-width: 1024px) 30vw, 20vw"
             />
           )}
           <div className="grid grid-cols-3 relative z-10 mb-4 md:mb-6">
@@ -217,8 +216,11 @@ const MusicPlayer = () => {
                   <Image
                     src={music?.cover}
                     fill
-                    className="object-cover bg-white/5 shadow-2xl shadow-dark/30 rounded-2xl"
+                    className="object-cover bg-white/[0.03] shadow-2xl shadow-dark/30 rounded-2xl"
                     alt={`Cover Image Small ${music?.title} Notsokoplo`}
+                    quality={60}
+                    sizes="(max-width: 640px) 80vw, (max-width: 768px) 40vw, (max-width: 1024px) 30vw, 20vw"
+                    priority={false}
                   />
                 </div>
               </div>
@@ -233,28 +235,23 @@ const MusicPlayer = () => {
                 {music?.artist}
               </p>
             </div>
-            <div
-              role="button"
-              onClick={(e) => {
-                if (!audioRef.current) return;
 
-                const rect = e.currentTarget.getBoundingClientRect();
-                const clickX = e.clientX - rect.left; // posisi klik relatif terhadap progress bar
-                const newTime = (clickX / rect.width) * duration; // hitung waktu baru
-
-                audioRef.current.currentTime = newTime; // update audio
+            <input
+              type="range"
+              min={0}
+              max={duration || 0}
+              step={0.01}
+              value={dragTime ?? currentTime}
+              onChange={(e) => setDragTime(parseFloat(e.target.value))}
+              onMouseUp={() => {
+                if (!audioRef.current || dragTime === null) return;
+                audioRef.current.currentTime = dragTime; // apply ke audio
+                setCurrentTime(dragTime); // update store
+                setDragTime(null); // reset drag state
               }}
-              className="w-full h-1 mt-4 cursor-pointer bg-white/5 relative rounded-full"
-            >
-              {progressPercent > 0 && currentTime < duration ? (
-                <div
-                  className="h-1 bg-primary absolute inset-0"
-                  style={{ width: `${progressPercent}%` }}
-                >
-                  <div className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary z-10 -right-1"></div>
-                </div>
-              ) : null}
-            </div>
+              className="w-full h-1 rounded-full accent-primary cursor-pointer relative z-10"
+            />
+
             <div className="flex justify-between items-center gap-x-6 w-full mt-3">
               <p className="text-sm text-white">
                 {formatTime(
