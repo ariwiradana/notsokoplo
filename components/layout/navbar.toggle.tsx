@@ -15,12 +15,16 @@ const NavbarToggle = () => {
     handleScrollPosition,
   } = useSidebar();
 
+  const router = useRouter();
+
   useEffect(() => {
     const handleScroll = () => {
       handleScrollPosition(window.scrollY);
     };
-    window.addEventListener("scroll", handleScroll);
+    // gunakan passive listener untuk kinerja scroll yang lebih baik
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
+    // jika ada hash pada URL, scroll otomatis ke elemen tersebut
     const hash = window.location.hash;
     if (hash) {
       const id = hash.substring(1);
@@ -33,43 +37,58 @@ const NavbarToggle = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [handleScrollPosition]);
 
-  const router = useRouter();
   return (
     <nav
+      role="navigation"
+      aria-label="Main Navigation"
       className={`${montserrat.className} ${
         scrollPosition > 300 ? "top-0" : "-top-20"
       } hidden fixed inset-x-0 z-50 bg-dark w-full md:flex flex-col justify-center items-center md:h-12 md:px-12 lg:px-4 transition-all ease-in-out duration-500`}
     >
       <ul
-        onClick={(e) => e.stopPropagation()}
         className="flex justify-between md:justify-center w-full gap-x-16"
+        onClick={(e) => e.stopPropagation()}
       >
         {NavData.map((nav) => (
           <li className="hidden md:inline" key={`nav-toggle-${nav.path}`}>
             <button
               aria-label={`Navigate to ${nav.title}`}
-              onClick={() =>
-                nav.flag === "page" && router.pathname !== "/siapa-kita"
-                  ? scrollToId(nav.path)
-                  : nav.flag === "page" && router.pathname === "/siapa-kita"
-                  ? router.push(`/#${nav.path}`)
-                  : router.push(nav.path)
-              }
-              className="uppercase font-bold text-sm"
+              onClick={() => {
+                if (nav.flag === "page" && router.pathname !== "/siapa-kita") {
+                  scrollToId(nav.path);
+                } else if (
+                  nav.flag === "page" &&
+                  router.pathname === "/siapa-kita"
+                ) {
+                  router.push(`/#${nav.path}`);
+                } else {
+                  router.push(nav.path);
+                }
+              }}
+              className="uppercase font-bold text-sm text-white hover:text-accent transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent/50"
             >
               {nav.title}
             </button>
           </li>
         ))}
+
+        {/* Tombol toggle untuk sidebar mobile */}
         <li className="md:hidden">
           <button
-            aria-label={`Button Toggle Sidebar`}
+            type="button"
+            aria-label={openSidebar ? "Close menu" : "Open menu"}
+            aria-expanded={openSidebar}
+            aria-controls="sidebar-menu"
             onClick={handleToggleSidebar}
-            className="text-2xl p-3 text-white"
+            className="text-2xl p-3 text-white hover:text-accent transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent/50"
           >
-            {openSidebar ? <TbX /> : <TbMenu />}
+            {openSidebar ? (
+              <TbX aria-hidden="true" />
+            ) : (
+              <TbMenu aria-hidden="true" />
+            )}
           </button>
         </li>
       </ul>

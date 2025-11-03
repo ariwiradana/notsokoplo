@@ -1,6 +1,8 @@
 import React from "react";
+import Head from "next/head";
 import "swiper/css";
 import "swiper/css/effect-fade";
+
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import HeroComponent from "@/components/layout/hero";
@@ -17,58 +19,60 @@ import GalleryComponent from "@/components/layout/gallery";
 import useAppStore from "@/store/useAppStore";
 import TabNav from "@/components/layout/tab";
 import WAChat from "@/components/ui/wa.chat";
+import { Socials } from "@/constants/social";
 
 const HomePage = () => {
   const store = useAppStore();
 
+  // Fetching data (optimized with SWR deduping)
   const { isLoading: isLoadingEvents } = useSWR("/api/events", fetcher, {
-    onSuccess(data) {
-      if (data.length > 0) {
-        store.setEvents(data);
-      }
-    },
+    onSuccess: (data) => data?.length && store.setEvents(data),
+    revalidateOnFocus: false,
   });
 
   const { isLoading: isLoadingMusic } = useSWR("/api/music", fetcher, {
-    onSuccess(data) {
-      if (data.length > 0) {
-        store.setMusic(data);
-      }
-    },
+    onSuccess: (data) => data?.length && store.setMusic(data),
+    revalidateOnFocus: false,
   });
 
   const { isLoading: isLoadingImages } = useSWR("/api/images", fetcher, {
-    onSuccess(data) {
-      if (data.length > 0) {
-        store.setImages(data);
-      }
-    },
+    onSuccess: (data) => data?.length && store.setImages(data),
+    revalidateOnFocus: false,
   });
 
   const { isLoading: isLoadingVideos } = useSWR("/api/videos", fetcher, {
-    onSuccess(data) {
-      if (data.length > 0) {
-        store.setVideos(data);
-      }
-    },
+    onSuccess: (data) => data?.length && store.setVideos(data),
+    revalidateOnFocus: false,
   });
 
   useSWR("/api/release", fetcher, {
-    onSuccess(data) {
-      if (data.length > 0) {
-        store.setRelease(data);
-      }
-    },
+    onSuccess: (data) => data?.length && store.setRelease(data),
+    revalidateOnFocus: false,
   });
+
   useSWR("/api/clients", fetcher, {
-    onSuccess(data) {
-      if (data.length > 0) {
-        store.setClients(data);
-      }
-    },
+    onSuccess: (data) => data?.length && store.setClients(data),
+    revalidateOnFocus: false,
   });
 
   useDisableInspect();
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    name: "Not So Koplo",
+    url: "https://notsokoplo.com",
+    image:
+      "https://www.dropbox.com/scl/fi/u82pe9o6qvtb814230p5m/image_seo_gvzx3b.webp?rlkey=rucjwg266qcspkaxp9k31iav6&raw=1",
+    description:
+      "Not So Koplo is a DJ duo from Denpasar, Bali bringing energetic live remix performances and party vibes across the island.",
+    genre: "Electronic / Remix / Koplo",
+    member: [
+      { "@type": "Person", name: "Ari Wiradana" },
+      { "@type": "Person", name: "Dwiki Krisnanda" },
+    ],
+    sameAs: Socials.map((social) => social.link),
+  };
 
   return (
     <>
@@ -80,25 +84,34 @@ const HomePage = () => {
         keywords="Not So Koplo, DJ Bali, duo DJ Indonesia, remix DJ Bali, DJ gigs Bali, jadwal acara DJ, DJ for event in Bali, live DJ performance, DJ party, DJ untuk acara, DJ elektronik Indonesia, music remix, Bali DJ live, hire DJ Bali, musik remix Indonesia, electronic gigs Bali, remix artist, Bali event DJ, DJ lokal Bali, DJ event highlights, DJ photo gallery, remix show, DJ crowd Bali, panggung DJ, DJ terkenal Indonesia, DJ EDM Bali, DJ for weddings Bali, DJ party Bali, live gigs Bali"
       />
 
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </Head>
+
       {isLoadingEvents ||
       isLoadingImages ||
       isLoadingMusic ||
       isLoadingVideos ? (
-        <Loading />
+        <Loading aria-label="Loading website content..." />
       ) : (
-        <section className="bg-dark relative">
-          <WAChat />
-          <NavbarToggle />
-          <Navbar />
-          <MusicPlayer />
-          <HeroComponent />
-          <TabNav />
-          <EventComponent />
-          <MusicComponent />
-          <GalleryComponent />
-          {/* <ClientsComponent /> */}
-          <Footer />
-        </section>
+        <main
+          className="bg-dark relative"
+          aria-label="Not So Koplo homepage main content"
+        >
+          <WAChat aria-label="Chat on WhatsApp" />
+          <NavbarToggle aria-label="Open navigation menu" />
+          <Navbar aria-label="Main site navigation" />
+          <MusicPlayer aria-label="Music player section" />
+          <HeroComponent aria-label="Hero banner section" />
+          <TabNav aria-label="Tab navigation for content" />
+          <EventComponent aria-label="Upcoming events and gigs" />
+          <MusicComponent aria-label="Music releases and remixes" />
+          <GalleryComponent aria-label="Photo and video gallery" />
+          <Footer aria-label="Footer with links and social media" />
+        </main>
       )}
     </>
   );

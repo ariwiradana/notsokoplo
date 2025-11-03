@@ -35,9 +35,10 @@ const HeroComponent = () => {
   }, [store.release]);
 
   return (
-    <div
-      className="h-svh w-full relative z-10 flex items-center justify-center overflow-hidden"
+    <section
       id="beranda"
+      className="h-svh w-full relative z-10 flex items-center justify-center overflow-hidden"
+      aria-label="Hero Section Notsokoplo - New Music Release"
     >
       {release && (
         <>
@@ -51,19 +52,26 @@ const HeroComponent = () => {
                 }}
                 className="text-white font-semibold text-center text-5xl md:text-6xl lg:text-8xl uppercase relative"
               >
-                {release.title}{" "}
+                {release.title}
               </h1>
-              <p className="text-lg md:text-xl font-medium text-white/60">
+              <p
+                className="text-lg md:text-xl font-medium text-white/60"
+                aria-label={`Caption Release ${release.caption}`}
+              >
                 {release.caption}
               </p>
             </div>
-            <p className="text-white text-lg my-4 text-center lg:text-left">
+            <p
+              className="text-white text-lg my-4 text-center lg:text-left"
+              aria-label={`Artist ${release.artist}`}
+            >
               {release.artist}
             </p>
             <Link
               className="mt-4"
               target="_blank"
-              aria-label="URL Stream New Release"
+              rel="noopener noreferrer"
+              aria-label={`Open streaming link for ${release.title}`}
               href={(release.url as string) || ""}
             >
               <Button
@@ -77,24 +85,35 @@ const HeroComponent = () => {
         </>
       )}
 
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <video
-          key={release?.video}
-          ref={videoRef}
-          onLoadedData={handleIsLoading}
-          className="min-w-full min-h-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={release?.poster || ""}
-        >
-          <source src={release?.video as string} />
-        </video>
+      <div
+        className="absolute inset-0 w-full h-full overflow-hidden"
+        aria-hidden="true"
+      >
+        {release?.video && (
+          <video
+            key={release?.video}
+            ref={videoRef}
+            onLoadedData={handleIsLoading}
+            className="min-w-full min-h-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={release?.poster || ""}
+          >
+            <source src={release?.video as string} type="video/mp4" />
+            {/* Fallback text for accessibility */}
+            Your browser does not support the video tag.
+          </video>
+        )}
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-[30%] via-transparent to-dark z-10 flex items-end justify-center"></div>
-    </div>
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-dark/60 via-[30%] via-transparent to-dark z-10 flex items-end justify-center"
+        aria-hidden="true"
+      ></div>
+    </section>
   );
 };
 
