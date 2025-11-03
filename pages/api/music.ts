@@ -1,26 +1,47 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+// pages/api/music.ts
 import { doc } from "@/lib/google-sheet";
-import { Music } from "@/types/music";
+import { Music, MusicGrouped } from "@/types/music";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Music[]>
+  res: NextApiResponse<MusicGrouped>
 ) {
-  await doc.loadInfo();
-  const sheet = doc.sheetsById["1509457795"];
-  const rows = await sheet.getRows();
+  try {
+    // Load Google Sheet
+    await doc.loadInfo();
+    const sheet = doc.sheetsById["1509457795"];
+    const rows = await sheet.getRows();
 
-  const data = rows.map((row) => ({
-    title: row["_rawData"][0] || null,
-    artist: row["_rawData"][1] || null,
-    cover: row["_rawData"][2] || "",
-    preview: row["_rawData"][3] || "",
-    soundcloud: row["_rawData"][4] || "",
-    youtube: row["_rawData"][5] || "",
-    url: row["_rawData"][6] || "",
-    caption: row["_rawData"][7] || "",
-  }));
+    // Mapping row ke Music
+    const musics: Music[] = rows.map((row) => ({
+      key: row["_rawData"][0] || "",
+      title: row["_rawData"][1] || "",
+      artist: row["_rawData"][2] || "",
+      cover: row["_rawData"][3] || "",
+      preview: row["_rawData"][4] || "",
+      soundcloud: row["_rawData"][5] || "",
+      youtube: row["_rawData"][6] || "",
+      url: row["_rawData"][7] || "",
+      caption: row["_rawData"][8] || "",
+    }));
 
-  res.status(200).json(data);
+    // Grouping berdasarkan key
+    const groupedObj: Record<string, Music[]> = musics.reduce((acc, item) => {
+      if (!item.key) return acc;
+      if (!acc[item.key]) acc[item.key] = [];
+      acc[item.key].push(item);
+      return acc;
+    }, {} as Record<string, Music[]>);
+
+    // Convert ke array of grouped musics
+    const groupedArray: MusicGrouped = Object.entries(groupedObj).map(
+      ([key, musics]) => ({ key, musics })
+    );
+
+    res.status(200).json(groupedArray);
+  } catch (error) {
+    console.error("Error fetching musics:", error);
+    res.status(500).json([]);
+  }
 }

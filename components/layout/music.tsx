@@ -55,85 +55,105 @@ const MusicComponent = () => {
             spaceBetween={16}
             modules={[Navigation]}
           >
-            {store.music.map((music) => (
-              <SwiperSlide
-                key={music.title}
-                className="max-w-[80vw] md:max-w-[40vw] lg:max-w-96"
-              >
-                <div className="md:text-center">
-                  <div
-                    className={`w-full aspect-square relative shadow-lg mb-6 group/music transition-all ease-in-out duration-300`}
-                  >
-                    <Image
-                      sizes="600px"
-                      src={music.cover}
-                      fill
-                      className={`object-cover z-30 transition-all ease-in-out duration-200`}
-                      alt={`Cover Image ${music.title} Notsokoplo`}
-                    />
+            {store.music?.map((musics) => {
+              const music = musics.musics[0];
+              const isMultiple = musics.musics.length > 1;
+              return (
+                <SwiperSlide
+                  key={music.key}
+                  className="max-w-[80vw] md:max-w-[40vw] lg:max-w-96"
+                >
+                  <div className="md:text-center">
                     <div
-                      className={`absolute inset-0 h-auto group-hover/music:visible group-hover/music:opacity-100 opacity-0 invisible z-30 bg-dark/20 flex flex-col justify-center items-center gap-2 transition-all ease-in-out duration-200`}
+                      className={`w-full aspect-square relative shadow-lg mb-6 group/music transition-all ease-in-out duration-300`}
                     >
-                      <button
-                        disabled={
-                          buffering && music.title === playedMusic?.title
-                        }
-                        onClick={() => {
-                          handleAddMusic(music);
-                          if (!playedMusic) {
-                            handleIsOpenPlayer(true);
-                          }
-                          if (music.title === playedMusic?.title) {
-                            handleIsPlaying(!isPlaying);
-                          } else {
-                            handleIsPlaying(true);
-                          }
-                        }}
-                        className="text-white text-sm flex items-center bg-primary rounded-full min-w-14 min-h-14 aspect-square justify-center relative z-10"
-                      >
-                        {buffering && music.title === playedMusic?.title ? (
-                          <BeatLoader color="white" size={7} />
-                        ) : (
-                          <>
-                            {music.title === playedMusic?.title && isPlaying ? (
-                              <BiPause className="text-4xl" />
-                            ) : (
-                              <BiPlay className="text-4xl" />
-                            )}
-                          </>
-                        )}
-                      </button>
-                      {music.title === playedMusic?.title &&
-                      progressPercent > 0 &&
-                      currentTime < duration ? (
-                        <div
-                          className="absolute rounded-full top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
-                          style={{
-                            width: 62,
-                            height: 62,
-                            background: `conic-gradient(#ffff ${progressPercent}%, transparent 0)`,
-                            WebkitMask: `radial-gradient(circle calc(50% - 2px), transparent 99%, black 100%)`,
-                            mask: `radial-gradient(circle calc(50% - 2px), transparent 99%, black 100%)`,
-                          }}
+                      <Image
+                        sizes="600px"
+                        src={music.cover}
+                        fill
+                        className={`object-cover z-30 transition-all ease-in-out duration-200 shadow-lg ${
+                          isMultiple &&
+                          "scale-95 -translate-x-1.5 -translate-y-1.5"
+                        }`}
+                        alt={`Cover Image ${music.title} Notsokoplo`}
+                      />
+                      {isMultiple && (
+                        <Image
+                          sizes="600px"
+                          src={music.cover}
+                          fill
+                          className={`object-cover z-20 transition-all ease-in-out duration-200 scale-95 translate-x-1.5 translate-y-1.5`}
+                          alt={`Cover Image ${music.title} Notsokoplo`}
                         />
-                      ) : null}
+                      )}
+                      <div
+                        className={`absolute inset-0 h-auto group-hover/music:visible group-hover/music:opacity-100 opacity-0 invisible z-30 flex flex-col justify-center items-center gap-2 transition-all ease-in-out duration-200 ${
+                          isMultiple &&
+                          "scale-95 -translate-y-1.5 -translate-x-1.5"
+                        }`}
+                      >
+                        <button
+                          disabled={
+                            buffering && music.title === playedMusic?.title
+                          }
+                          onClick={() => {
+                            handleAddMusic(music);
+                            if (!playedMusic) {
+                              handleIsOpenPlayer(true);
+                            }
+                            if (music.title === playedMusic?.title) {
+                              handleIsPlaying(!isPlaying);
+                            } else {
+                              handleIsPlaying(true);
+                            }
+                          }}
+                          className="text-white text-sm flex items-center bg-primary rounded-full min-w-14 min-h-14 aspect-square justify-center relative z-10"
+                        >
+                          {buffering && music.title === playedMusic?.title ? (
+                            <BeatLoader color="white" size={7} />
+                          ) : (
+                            <>
+                              {music.title === playedMusic?.title &&
+                              isPlaying ? (
+                                <BiPause className="text-4xl" />
+                              ) : (
+                                <BiPlay className="text-4xl" />
+                              )}
+                            </>
+                          )}
+                        </button>
+                        {music.title === playedMusic?.title &&
+                        progressPercent > 0 &&
+                        currentTime < duration ? (
+                          <div
+                            className="absolute rounded-full top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+                            style={{
+                              width: 62,
+                              height: 62,
+                              background: `conic-gradient(#ffff ${progressPercent}%, transparent 0)`,
+                              WebkitMask: `radial-gradient(circle calc(50% - 2px), transparent 99%, black 100%)`,
+                              mask: `radial-gradient(circle calc(50% - 2px), transparent 99%, black 100%)`,
+                            }}
+                          />
+                        ) : null}
+                      </div>
                     </div>
-                  </div>
 
-                  {music.caption && (
-                    <div className="mb-2">
-                      <p className="bg-primary/30 border border-primary/50 text-white inline px-3 py-[3px] rounded-full text-sm">
-                        {music.caption}
-                      </p>
-                    </div>
-                  )}
-                  <h5 className="text-2xl font-semibold text-white">
-                    {music.title}
-                  </h5>
-                  <h6 className="mt-2 text-white/70">{music.artist}</h6>
-                </div>
-              </SwiperSlide>
-            ))}
+                    {music.caption && (
+                      <div className="mb-2">
+                        <p className="bg-primary/30 border border-primary/50 text-white inline px-3 py-[3px] rounded-full text-sm">
+                          {music.caption}
+                        </p>
+                      </div>
+                    )}
+                    <h5 className="text-2xl font-semibold text-white">
+                      {music.title}
+                    </h5>
+                    <h6 className="mt-2 text-white/70">{music.artist}</h6>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
       </div>

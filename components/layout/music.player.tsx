@@ -48,7 +48,7 @@ const MusicPlayer = () => {
     const handlePlaying = () => setBuffering(false);
 
     const handleEnded = () => {
-      const allMusic = [...store.music];
+      const allMusic = [...store.music].flatMap((m) => m.musics);
       const newIndex =
         (allMusic.findIndex((m) => m.title === music.title) + 1) %
         allMusic.length;
@@ -80,7 +80,7 @@ const MusicPlayer = () => {
   }, [isPlaying, music]);
 
   const handleNextPrevMusic = (flag: "next" | "prev") => {
-    const allMusic = [...store.music];
+    const allMusic = [...store.music].flatMap((m) => m.musics);
     if (!music || allMusic.length === 0) return;
 
     const currentIndexPlayed = allMusic.findIndex(

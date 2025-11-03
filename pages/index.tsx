@@ -31,7 +31,7 @@ const HomePage = () => {
   });
 
   const { isLoading: isLoadingMusic } = useSWR("/api/music", fetcher, {
-    onSuccess: (data) => data?.length && store.setMusic(data),
+    onSuccess: (data) => data && store.setMusic(data),
     revalidateOnFocus: false,
   });
 
@@ -73,6 +73,8 @@ const HomePage = () => {
     ],
     sameAs: Socials.map((social) => social.link),
   };
+
+  console.log(store.music);
 
   return (
     <>

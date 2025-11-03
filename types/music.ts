@@ -1,4 +1,5 @@
 export interface Music {
+  key: string;
   title: string;
   artist: string;
   cover: string;
@@ -8,3 +9,9 @@ export interface Music {
   url: string;
   caption?: string;
 }
+
+
+export type MusicGrouped = {
+  key: string;
+  musics: Music[];
+}[];
