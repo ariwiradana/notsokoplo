@@ -4,8 +4,7 @@ import useAppStore from "@/store/useAppStore";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
-import { FaCompactDisc, FaSoundcloud, FaYoutube } from "react-icons/fa6";
-import { LuChevronUp, LuMinimize, LuX } from "react-icons/lu";
+import { LuChevronDown, LuChevronUp, LuX } from "react-icons/lu";
 import {
   PiCaretLineLeftFill,
   PiCaretLineRightFill,
@@ -112,11 +111,20 @@ const MusicPlayer = () => {
 
   const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
-  const handlePlayFullVersion = (url: string) => {
-    setTimeout(() => {
-      window.open(url, "_blank");
-    }, 500);
-  };
+  // const handlePlayFullVersion = (url: string) => {
+  //   setTimeout(() => {
+  //     window.open(url, "_blank");
+  //   }, 500);
+  // };
+
+  useEffect(() => {
+    if (isOpenPlayer) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [isOpenPlayer]);
 
   return (
     <>
@@ -135,185 +143,159 @@ const MusicPlayer = () => {
         </button>
       </div>
       <div
-        className={`fixed inset-x-0 px-6 py-8 md:px-12 bg-dark/90 backdrop-blur-md border-x border-t ignore-click border-white/10 rounded-t-2xl xl:rounded-t-3xl flex flex-col xl:flex-row justify-between gap-y-4 gap-x-16 xl:items-center transition-all ease-in-out duration-500 z-50 ${
-          isOpenPlayer ? "bottom-0 visible" : "-bottom-full invisible"
+        onClick={() => {
+          handleIsOpenPlayer(false);
+        }}
+        className={`fixed overflow-hidden inset-0 select-none ignore-click bg-dark/90 backdrop-blur-sm flex flex-col justify-end md:justify-center items-center transition-all ease-in-out duration-500 z-50 ${
+          isOpenPlayer ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
-        {music?.preview && (
-          <audio
-            loop={false}
-            ref={audioRef}
-            src={music?.preview}
-            onEnded={() => {
-              handleIsPlaying(false);
-            }}
-          />
-        )}
-        <div className="flex justify-center md:justify-start items-center gap-x-4 md:gap-x-8 text-white text-2xl">
-          <button
-            className="text-2xl hidden xl:block"
-            aria-label="Action Close Music"
-            onClick={() => {
-              handleIsOpenPlayer(false);
-              handleIsPlaying(false);
-              handleAddMusic(null);
-            }}
-          >
-            <LuX />
-          </button>
-          <button
-            className="hidden text-2xl xl:block"
-            aria-label="Action Minimize Music"
-            onClick={() => {
-              handleIsOpenPlayer(false);
-            }}
-          >
-            <LuMinimize />
-          </button>
-          <div className="flex w-full md:items-center gap-x-4 md:gap-x-6">
-            {music?.cover && (
-              <div className="relative min-w-12 w-12 h-12 min-h-12 md:min-w-14 md:w-14 md:h-14 md:min-h-14 aspect-square">
-                <Image
-                  src={music?.cover}
-                  fill
-                  className="object-cover bg-white/5"
-                  alt={`Cover Image Small ${music?.title} Notsokoplo`}
-                />
-              </div>
-            )}
-            <div>
-              <div>
-                <h4
-                  className={`${montserrat.className} font-semibold text-lg md:text-xl whitespace-nowrap text-white line-clamp-1`}
-                >
-                  {music?.title}{" "}
-                </h4>
-                <p className="text-sm line-clamp-1 md:text-lg font-normal text-white/80 whitespace-nowrap">
-                  {music?.artist}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-x-6 w-full">
-          <p className="text-sm text-white">
-            {formatTime(
-              !buffering && currentTime < duration && progressPercent > 0
-                ? currentTime
-                : 0
-            )}
-          </p>
-          <div className="w-full h-1 bg-white/5 relative rounded-full">
-            {progressPercent > 0 && currentTime < duration ? (
-              <div
-                className="h-1 bg-primary absolute inset-0"
-                style={{ width: `${progressPercent}%` }}
-              ></div>
-            ) : null}
-          </div>
-          <p className="text-sm text-white">{formatTime(duration)}</p>
-        </div>
-
-        <div className="flex justify-between gap-x-4 md:gap-x-6">
-          <button
-            className="text-xl xl:hidden"
-            aria-label="Action Close Music"
-            onClick={() => {
-              handleIsOpenPlayer(false);
-              handleIsPlaying(false);
-              handleAddMusic(null);
-            }}
-          >
-            <LuX />
-          </button>
-
-          <div className="flex items-center justify-center gap-x-4">
-            <button
-              className="text-2xl"
-              aria-label="Action Back Music"
-              onClick={() => handleNextPrevMusic("prev")}
-            >
-              <PiCaretLineLeftFill />
-            </button>
-            <button
-              disabled={buffering}
-              className="text-2xl bg-white text-dark rounded-full aspect-square transition-all ease-in-out duration-300 h-11 w-11 flex justify-center items-center disabled:opacity-70"
-              aria-label="Action Play Pause Music"
-              onClick={() => handleIsPlaying(!isPlaying)}
-            >
-              {buffering ? (
-                <BeatLoader color="#0f0f0f" size={5} />
-              ) : (
-                <>{isPlaying ? <PiPauseFill /> : <PiPlayFill />}</>
-              )}
-            </button>
-            <button
-              className="text-2xl"
-              aria-label="Action Next Music"
-              onClick={() => handleNextPrevMusic("next")}
-            >
-              <PiCaretLineRightFill />
-            </button>
-          </div>
-          <button
-            className="text-xl xl:hidden"
-            aria-label="Action Minimize Music"
-            onClick={() => {
-              handleIsOpenPlayer(false);
-            }}
-          >
-            <LuMinimize />
-          </button>
-        </div>
-
-        <div className="flex flex-wrap xl:flex-nowrap justify-between flex-col md:flex-row items-center border-t xl:border-t-0 border-white/10 pt-4 xl:pt-0 gap-x-4 gap-y-2">
-          <p
-            className={`${montserrat.className} text-sm text-white whitespace-nowrap`}
-          >
-            Versi Full :
-          </p>
-          {music?.soundcloud || music?.youtube || music?.url ? (
-            <div
-              className={`${montserrat.className} text-sm font-medium flex items-center gap-x-2`}
-            >
-              {music.url && (
-                <button
-                  onClick={() => handlePlayFullVersion(music.url)}
-                  className="p-3 rounded-full text-white border border-white/30 hover:bg-white/10 flex items-center group transition-all ease-in-out"
-                >
-                  <FaCompactDisc className="text-lg" />
-                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[200px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
-                    Digital Streaming Platform
-                  </span>
-                </button>
-              )}
-              {music.soundcloud && (
-                <button
-                  onClick={() => handlePlayFullVersion(music.soundcloud)}
-                  className="p-3 rounded-full text-white border border-white/30 hover:bg-white/10 flex items-center group transition-all ease-in-out"
-                >
-                  <FaSoundcloud className="text-lg" />
-                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[200px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
-                    SoundCloud
-                  </span>
-                </button>
-              )}
-              {music.youtube && (
-                <button
-                  onClick={() => handlePlayFullVersion(music.youtube)}
-                  className="p-3 rounded-full text-white border border-white/30 hover:bg-white/10 flex items-center group transition-all ease-in-out"
-                >
-                  <FaYoutube className="text-lg" />
-                  <span className="text-xs group-hover:ml-2 delay-500 font-medium max-w-0 overflow-hidden group-hover:max-w-[200px] whitespace-nowrap group-hover:opacity-100 transition-all duration-300 ease-in-out">
-                    Youtube
-                  </span>
-                </button>
-              )}
-            </div>
-          ) : (
-            <></>
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className={`relative overflow-hidden bg-dark/90 backdrop-blur-md rounded-t-2xl md:rounded-3xl px-6 py-8 md:px-10 md:py-10 transition-all ease-in-out duration-500 ${
+            isOpenPlayer ? "translate-y-0" : "translate-y-5"
+          }`}
+        >
+          {music?.cover && (
+            <Image
+              src={music?.cover}
+              fill
+              className="object-cover blur-2xl opacity-20"
+              alt={`Cover Backdrop ${music?.title} Notsokoplo`}
+            />
           )}
+          <div className="grid grid-cols-3 relative z-10 mb-4 md:mb-6">
+            <button
+              className="text-xl xl:text-2xl flex items-start"
+              aria-label="Action Minimize Music"
+              onClick={() => {
+                handleIsOpenPlayer(false);
+              }}
+            >
+              <LuChevronDown />
+            </button>
+            <div className="flex flex-col items-center">
+              <h4
+                className={`${montserrat.className} font-semibold text-lg md:text-xl whitespace-nowrap text-white line-clamp-1`}
+              >
+                Not So Koplo
+              </h4>
+              <p className="text-base line-clamp-1 md:text-lg font-normal text-white/80 whitespace-nowrap">
+                {music?.caption}
+              </p>
+            </div>
+
+            <div className="flex justify-end">
+              <button
+                className="text-xl xl:text-2xl flex items-start"
+                aria-label="Action Close Music"
+                onClick={() => {
+                  handleIsOpenPlayer(false);
+                  handleIsPlaying(false);
+                  handleAddMusic(null);
+                }}
+              >
+                <LuX />
+              </button>
+            </div>
+          </div>
+
+          {music?.preview && (
+            <audio
+              loop={false}
+              ref={audioRef}
+              src={music?.preview}
+              onEnded={() => {
+                handleIsPlaying(false);
+              }}
+            />
+          )}
+          <div>
+            {music?.cover && (
+              <div className="flex justify-center">
+                <div className="relative w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[20vw] aspect-square">
+                  <Image
+                    src={music?.cover}
+                    fill
+                    className="object-cover bg-white/5 shadow-2xl shadow-dark/30 rounded-2xl"
+                    alt={`Cover Image Small ${music?.title} Notsokoplo`}
+                  />
+                </div>
+              </div>
+            )}
+            <div className="mt-6">
+              <h4
+                className={`${montserrat.className} font-semibold text-xl md:text-2xl whitespace-nowrap text-white line-clamp-1`}
+              >
+                {music?.title}{" "}
+              </h4>
+              <p className="text-lg line-clamp-1 md:text-lg font-normal text-white/80 whitespace-nowrap">
+                {music?.artist}
+              </p>
+            </div>
+            <div
+              role="button"
+              onClick={(e) => {
+                if (!audioRef.current) return;
+
+                const rect = e.currentTarget.getBoundingClientRect();
+                const clickX = e.clientX - rect.left; // posisi klik relatif terhadap progress bar
+                const newTime = (clickX / rect.width) * duration; // hitung waktu baru
+
+                audioRef.current.currentTime = newTime; // update audio
+              }}
+              className="w-full h-1 mt-4 cursor-pointer bg-white/5 relative rounded-full"
+            >
+              {progressPercent > 0 && currentTime < duration ? (
+                <div
+                  className="h-1 bg-primary absolute inset-0"
+                  style={{ width: `${progressPercent}%` }}
+                >
+                  <div className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary z-10 -right-1"></div>
+                </div>
+              ) : null}
+            </div>
+            <div className="flex justify-between items-center gap-x-6 w-full mt-3">
+              <p className="text-sm text-white">
+                {formatTime(
+                  !buffering && currentTime < duration && progressPercent > 0
+                    ? currentTime
+                    : 0
+                )}
+              </p>
+
+              <p className="text-sm text-white">{formatTime(duration)}</p>
+            </div>
+
+            <div className="flex items-center justify-center gap-x-8 relative z-10">
+              <button
+                className="text-3xl"
+                aria-label="Action Back Music"
+                onClick={() => handleNextPrevMusic("prev")}
+              >
+                <PiCaretLineLeftFill />
+              </button>
+              <button
+                disabled={buffering}
+                className="text-2xl bg-white text-dark rounded-full aspect-square transition-all ease-in-out duration-300 h-12 w-12 flex justify-center items-center disabled:opacity-70"
+                aria-label="Action Play Pause Music"
+                onClick={() => handleIsPlaying(!isPlaying)}
+              >
+                {buffering ? (
+                  <BeatLoader color="#0f0f0f" size={5} />
+                ) : (
+                  <>{isPlaying ? <PiPauseFill /> : <PiPlayFill />}</>
+                )}
+              </button>
+              <button
+                className="text-3xl"
+                aria-label="Action Next Music"
+                onClick={() => handleNextPrevMusic("next")}
+              >
+                <PiCaretLineRightFill />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>

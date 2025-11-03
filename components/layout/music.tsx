@@ -71,7 +71,7 @@ const MusicComponent = () => {
                         sizes="600px"
                         src={music.cover}
                         fill
-                        className={`object-cover z-30 transition-all ease-in-out duration-200 shadow-lg ${
+                        className={`object-cover z-30 transition-all rounded-2xl ease-in-out duration-200 shadow-lg ${
                           isMultiple &&
                           "scale-95 -translate-x-1.5 -translate-y-1.5"
                         }`}
@@ -82,7 +82,7 @@ const MusicComponent = () => {
                           sizes="600px"
                           src={music.cover}
                           fill
-                          className={`object-cover z-20 transition-all ease-in-out duration-200 scale-95 translate-x-1.5 translate-y-1.5`}
+                          className={`object-cover z-20 opacity-95 transition-all rounded-2xl ease-in-out duration-200 scale-95 translate-x-1.5 translate-y-1.5`}
                           alt={`Cover Image ${music.title} Notsokoplo`}
                         />
                       )}
@@ -98,14 +98,12 @@ const MusicComponent = () => {
                           }
                           onClick={() => {
                             handleAddMusic(music);
-                            if (!playedMusic) {
-                              handleIsOpenPlayer(true);
-                            }
                             if (music.title === playedMusic?.title) {
                               handleIsPlaying(!isPlaying);
                             } else {
                               handleIsPlaying(true);
                             }
+                            handleIsOpenPlayer(true);
                           }}
                           className="text-white text-sm flex items-center bg-primary rounded-full min-w-14 min-h-14 aspect-square justify-center relative z-10"
                         >
