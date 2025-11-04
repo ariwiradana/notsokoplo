@@ -74,8 +74,6 @@ const HomePage = () => {
     sameAs: Socials.map((social) => social.link),
   };
 
-  console.log(store.music);
-
   return (
     <>
       <Seo

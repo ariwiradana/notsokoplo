@@ -179,7 +179,7 @@ const MusicPlayer = () => {
               >
                 Not So Koplo
               </h4>
-              <p className="text-base line-clamp-1 md:text-lg font-normal text-white/80 whitespace-nowrap">
+              <p className="text-base line-clamp-1 md:text-lg font-normal text-white/80 whitespace-nowrap -mt-0.5">
                 {music?.caption}
               </p>
             </div>

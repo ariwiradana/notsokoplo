@@ -6,6 +6,7 @@ import Link from "next/link";
 import { TbLink, TbPlayerPlayFilled } from "react-icons/tb";
 import useAppStore from "@/store/useAppStore";
 import { Release } from "@/types/release";
+import Image from "next/image";
 
 const HeroComponent = () => {
   const { handleIsLoading } = useLoading();
@@ -33,6 +34,8 @@ const HeroComponent = () => {
       window.removeEventListener("orientationchange", handleResize);
     };
   }, [store.release]);
+
+  const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <section
@@ -89,21 +92,32 @@ const HeroComponent = () => {
         className="absolute inset-0 w-full h-full overflow-hidden"
         aria-hidden="true"
       >
+        {release?.poster && !isPlaying && (
+          <Image
+            src={release.poster}
+            alt={`Poster ${release.title}`}
+            fill
+            sizes="100vw"
+            className="object-cover absolute z-0"
+            priority
+          />
+        )}
+
         {release?.video && (
           <video
             key={release?.video}
             ref={videoRef}
             onLoadedData={handleIsLoading}
-            className="min-w-full min-h-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 object-cover"
+            onPlaying={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+            className="min-w-full min-h-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 object-cover z-10"
             autoPlay
             muted
             loop
             playsInline
             preload="metadata"
-            poster={release?.poster || ""}
           >
             <source src={release?.video as string} type="video/mp4" />
-            {/* Fallback text for accessibility */}
             Your browser does not support the video tag.
           </video>
         )}
