@@ -14,20 +14,26 @@ export default async function handler(
     const rows = await sheet.getRows();
 
     // Mapping row ke Music
-    const musics: Music[] = rows.map((row) => ({
+    const data: Music[] = rows.map((row) => ({
       key: row["_rawData"][0] || "",
-      title: row["_rawData"][1] || "",
-      artist: row["_rawData"][2] || "",
-      cover: row["_rawData"][3] || "",
-      preview: row["_rawData"][4] || "",
-      soundcloud: row["_rawData"][5] || "",
-      youtube: row["_rawData"][6] || "",
-      url: row["_rawData"][7] || "",
-      caption: row["_rawData"][8] || "",
+      kind: row["_rawData"][1] || "",
+      title: row["_rawData"][2] || "",
+      artist: row["_rawData"][3] || "",
+      cover: row["_rawData"][4] || "",
+      preview: row["_rawData"][5] || "",
+      soundcloud: row["_rawData"][6] || "",
+      youtube: row["_rawData"][7] || "",
+      applemusic: row["_rawData"][8] || "",
+      spotify: row["_rawData"][9] || "",
+      tidal: row["_rawData"][10] || "",
+      youtubemusic: row["_rawData"][11] || "",
+      deezer: row["_rawData"][12] || "",
+      amazonmusic: row["_rawData"][13] || "",
     }));
 
+
     // Grouping berdasarkan key
-    const groupedObj: Record<string, Music[]> = musics.reduce((acc, item) => {
+    const groupedObj: Record<string, Music[]> = data.reduce((acc, item) => {
       if (!item.key) return acc;
       if (!acc[item.key]) acc[item.key] = [];
       acc[item.key].push(item);

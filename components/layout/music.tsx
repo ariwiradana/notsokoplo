@@ -3,10 +3,26 @@ import Image from "next/image";
 import React from "react";
 import useAppStore from "@/store/useAppStore";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { BiChevronLeft, BiChevronRight, BiPause, BiPlay } from "react-icons/bi";
+import {
+  BiChevronLeft,
+  BiChevronRight,
+  BiPause,
+  BiPlay,
+} from "react-icons/bi";
 import { Navigation } from "swiper/modules";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import { BeatLoader } from "react-spinners";
+import Link from "next/link";
+import {
+  SiAmazonmusic,
+  SiApplemusic,
+  SiSoundcloud,
+  SiSpotify,
+  SiTidal,
+  SiYoutube,
+  SiYoutubemusic,
+} from "react-icons/si";
+import { FaDeezer } from "react-icons/fa6";
 
 const MusicComponent = () => {
   const store = useAppStore();
@@ -22,6 +38,8 @@ const MusicComponent = () => {
   } = useMusicPlayer();
 
   const progressPercent = duration ? (currentTime / duration) * 100 : 0;
+
+  console.log(store.music);
 
   return (
     <div className={`relative ${montserrat.className} z-0 bg-black`} id="musik">
@@ -56,11 +74,11 @@ const MusicComponent = () => {
             modules={[Navigation]}
           >
             {store.music?.map((musics, index) => {
-              const music = musics.musics[0];
-              const isMultiple = musics.musics.length > 1;
+              const isMultiple = musics.musics.length > 1
+              const music = musics.musics[0]
               return (
                 <SwiperSlide
-                  key={music.key}
+                  key={music.title}
                   className="max-w-[80vw] md:max-w-[40vw] lg:max-w-96"
                 >
                   <div className="md:text-center">
@@ -104,8 +122,8 @@ const MusicComponent = () => {
                               handleIsPlaying(!isPlaying);
                             } else {
                               handleIsPlaying(true);
+                              handleIsOpenPlayer(true);
                             }
-                            handleIsOpenPlayer(true);
                           }}
                           className="text-white text-sm flex items-center bg-primary rounded-full min-w-14 min-h-14 aspect-square justify-center relative z-10"
                         >
@@ -139,10 +157,10 @@ const MusicComponent = () => {
                       </div>
                     </div>
 
-                    {music.caption && (
+                    {music.kind && (
                       <div className="mb-2">
                         <p className="bg-primary/30 border border-primary/50 text-white inline px-3 py-[3px] rounded-full text-sm">
-                          {music.caption}
+                          {music.kind}
                         </p>
                       </div>
                     )}
@@ -150,6 +168,88 @@ const MusicComponent = () => {
                       {music.title}
                     </h5>
                     <h6 className="mt-2 text-white/70">{music.artist}</h6>
+                    <div className="flex justify-center gap-x-4 mt-4">
+                      {music.applemusic && (
+                        <Link
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={music.applemusic}
+                          className="text-white/60 hover:text-white"
+                        >
+                          <SiApplemusic className="text-base" />
+                        </Link>
+                      )}
+                      {music.spotify && (
+                        <Link
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={music.spotify}
+                          className="text-white/60 hover:text-white"
+                        >
+                          <SiSpotify />
+                        </Link>
+                      )}
+                      {music.tidal && (
+                        <Link
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={music.tidal}
+                          className="text-white/60 hover:text-white"
+                        >
+                          <SiTidal />
+                        </Link>
+                      )}
+                      {music.youtube && (
+                        <Link
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={music.youtube}
+                          className="text-white/60 hover:text-white"
+                        >
+                          <SiYoutube />
+                        </Link>
+                      )}
+                      {music.youtubemusic && (
+                        <Link
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={music.youtubemusic}
+                          className="text-white/60 hover:text-white"
+                        >
+                          <SiYoutubemusic />
+                        </Link>
+                      )}
+                      {music.soundcloud && (
+                        <Link
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={music.soundcloud}
+                          className="text-white/60 hover:text-white"
+                        >
+                          <SiSoundcloud />
+                        </Link>
+                      )}
+                      {music.deezer && (
+                        <Link
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={music.deezer}
+                          className="text-white/60 hover:text-white"
+                        >
+                          <FaDeezer />
+                        </Link>
+                      )}
+                      {music.amazonmusic && (
+                        <Link
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={music.amazonmusic}
+                          className="text-white/60 hover:text-white"
+                        >
+                          <SiAmazonmusic />
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 </SwiperSlide>
               );

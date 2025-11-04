@@ -3,7 +3,9 @@ import { formatTime } from "@/helper/formatTime";
 import useAppStore from "@/store/useAppStore";
 import useMusicPlayer from "@/store/useMusicPlayer";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useRef } from "react";
+import { FaDeezer } from "react-icons/fa6";
 import { LuChevronDown, LuChevronUp, LuX } from "react-icons/lu";
 import {
   PiCaretLineLeftFill,
@@ -11,6 +13,15 @@ import {
   PiPauseFill,
   PiPlayFill,
 } from "react-icons/pi";
+import {
+  SiAmazonmusic,
+  SiApplemusic,
+  SiSoundcloud,
+  SiSpotify,
+  SiTidal,
+  SiYoutube,
+  SiYoutubemusic,
+} from "react-icons/si";
 import { BeatLoader } from "react-spinners";
 
 const MusicPlayer = () => {
@@ -180,7 +191,7 @@ const MusicPlayer = () => {
                 Not So Koplo
               </h4>
               <p className="text-base line-clamp-1 md:text-lg font-normal text-white/80 whitespace-nowrap -mt-0.5">
-                {music?.caption}
+                {music?.kind}
               </p>
             </div>
 
@@ -297,6 +308,92 @@ const MusicPlayer = () => {
               >
                 <PiCaretLineRightFill />
               </button>
+            </div>
+
+            <p className="text-center text-xs text-white/60 uppercase mt-8">
+              Listen On
+            </p>
+            <div className="flex justify-center gap-x-4 mt-3 relative z-10">
+              {music?.applemusic && (
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={music?.applemusic}
+                  className="text-white/60 hover:text-white"
+                >
+                  <SiApplemusic className="text-base" />
+                </Link>
+              )}
+              {music?.spotify && (
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={music?.spotify}
+                  className="text-white/60 hover:text-white"
+                >
+                  <SiSpotify />
+                </Link>
+              )}
+              {music?.tidal && (
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={music?.tidal}
+                  className="text-white/60 hover:text-white"
+                >
+                  <SiTidal />
+                </Link>
+              )}
+              {music?.youtube && (
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={music?.youtube}
+                  className="text-white/60 hover:text-white"
+                >
+                  <SiYoutube />
+                </Link>
+              )}
+              {music?.youtubemusic && (
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={music?.youtubemusic}
+                  className="text-white/60 hover:text-white"
+                >
+                  <SiYoutubemusic />
+                </Link>
+              )}
+              {music?.soundcloud && (
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={music?.soundcloud}
+                  className="text-white/60 hover:text-white"
+                >
+                  <SiSoundcloud />
+                </Link>
+              )}
+              {music?.deezer && (
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={music?.deezer}
+                  className="text-white/60 hover:text-white"
+                >
+                  <FaDeezer />
+                </Link>
+              )}
+              {music?.amazonmusic && (
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={music?.amazonmusic}
+                  className="text-white/60 hover:text-white"
+                >
+                  <SiAmazonmusic />
+                </Link>
+              )}
             </div>
           </div>
         </div>
