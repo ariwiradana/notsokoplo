@@ -37,6 +37,15 @@ const HeroComponent = () => {
 
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const handlePlay = async () => {
+    try {
+      await videoRef.current?.play();
+      setIsPlaying(true);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <section
       id="beranda"
@@ -108,7 +117,7 @@ const HeroComponent = () => {
             key={release?.video}
             ref={videoRef}
             onLoadedData={handleIsLoading}
-            onPlaying={() => setIsPlaying(true)}
+            onCanPlay={handlePlay}
             onPause={() => setIsPlaying(false)}
             className="min-w-full min-h-full absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 object-cover z-10"
             autoPlay
