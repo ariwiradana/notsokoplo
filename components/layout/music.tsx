@@ -168,7 +168,7 @@ const MusicComponent = () => {
                       {music.title}
                     </h5>
                     <h6 className="mt-2 text-white/70">{music.artist}</h6>
-                    <div className="flex justify-center gap-x-4 mt-4">
+                    <div className="flex lg:justify-center gap-x-4 mt-4">
                       {music.applemusic && (
                         <Link
                           target="_blank"

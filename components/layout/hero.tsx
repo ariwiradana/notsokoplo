@@ -55,7 +55,7 @@ const HeroComponent = () => {
       {release && (
         <>
           <div
-            className={`absolute inset-0 flex flex-col justify-end items-center bg-gradient-to-b from-transparent via-dark/40 to-dark/60 px-4 md:px-12 py-16 lg:p-32 z-20 ${montserrat.className}`}
+            className={`absolute inset-0 flex flex-col justify-end items-center bg-gradient-to-b from-transparent via-transparent md:via-dark/40 to-dark/60 px-4 md:px-12 py-16 lg:p-32 z-20 ${montserrat.className}`}
           >
             <div className="flex flex-col lg:flex-row items-center lg:items-end mt-6 gap-2">
               <h1
